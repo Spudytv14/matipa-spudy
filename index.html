@@ -3,48 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Spudy AI</title>
+  <title>Spudy AI - All-in-One AI Assistant</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --primary: #004c99;
+      --accent: #0073e6;
+      --bg: #e8f1fc;
+      --text: #003366;
+      --white: #ffffff;
+    }
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background-color: #e8f1fc;
-      color: #003366;
+      background-color: var(--bg);
+      color: var(--text);
     }
     header {
-      background-color: #004c99;
+      background-color: var(--primary);
       padding: 3rem 1rem;
       text-align: center;
       color: white;
+      animation: fadeInDown 2s ease-in-out;
     }
     header h1 {
       font-size: 3rem;
-      animation: fadeInDown 2s ease-in-out;
     }
     @keyframes fadeInDown {
       from {opacity: 0; transform: translateY(-20px);}
       to {opacity: 1; transform: translateY(0);}
     }
     section {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: auto;
       padding: 2rem;
     }
-    .services, .plans {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .animated-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      background: #f7fcf9;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      animation: fadeIn 2s ease-in-out;
     }
-    .card {
-      background-color: white;
+    .animated-card {
+      width: 250px;
+      margin: 1rem;
+      background: white;
+      border-radius: 15px;
       padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
     }
-    .card h3 { margin-top: 0; }
-    .button {
-      background-color: #0073e6;
+    .animated-card:hover {
+      transform: scale(1.05);
+    }
+    .animated-card i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .plans .card {
+      position: relative;
+    }
+    .plans .card ul {
+      padding-left: 1rem;
+      margin-top: 1rem;
+    }
+    .button, .whatsapp-btn, .start-btn {
+      background-color: var(--accent);
       color: white;
       padding: 0.8rem 1.2rem;
       border: none;
@@ -54,58 +85,13 @@
       margin-top: 1rem;
       transition: background 0.3s ease;
     }
-    .button:hover { background-color: #005bb5; }
-    footer {
-      background: #002d66;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
+    .button:hover, .start-btn:hover, .whatsapp-btn:hover {
+      background-color: #005bb5;
     }
-    img.logo, img.banner, img.creator {
-      display: block;
-      max-width: 100%;
-      margin: 1rem auto;
-      border-radius: 10px;
+    .whatsapp-btn i {
+      margin-right: 8px;
     }
-    .socials a {
-      margin: 0 10px;
-      color: white;
-      text-decoration: none;
-    }
-    .login-form {
-      max-width: 400px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    .login-form input {
-      display: block;
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.6rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    .login-form button {
-      padding: 0.7rem 1.5rem;
-      background-color: red;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .login-form button.valid {
-      background-color: #004c99;
-    }
-    .payment-methods img {
-      height: 50px;
-      margin: 10px;
-    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
@@ -115,94 +101,149 @@
   <p>Your all-in-one AI assistant for creativity, productivity, and smart tools.</p>
 </header>
 
-<!-- Logo -->
-<img src="spudy-ai-1.png" alt="Spudy AI Logo" class="logo" />
-
-<!-- Banner -->
-<img src="Spudy-banner.png" alt="Spudy Banner" class="banner" />
-
-<!-- Create Account Form -->
 <section id="account">
   <h2 style="text-align:center;">Create Account</h2>
-  <form class="login-form" onsubmit="return false;">
+  <form class="login-form" id="createAccountForm">
     <input type="text" placeholder="Username" required />
     <input type="email" placeholder="Email" required />
     <input type="password" id="password" placeholder="Password (8+ chars, symbols)" required oninput="checkPassword()" />
+    <small id="passwordHelp" style="color:red;display:none;">Password must be at least 8 characters and include a symbol.</small>
     <button id="loginBtn">Create Account</button>
   </form>
 </section>
 
-<!-- Services -->
 <section>
-  <h2>What We Offer</h2>
-  <div class="services">
-    <div class="card"><h3>Ask Spudy AI</h3><p>Smart responses to your academic or business questions.</p></div>
-    <div class="card"><h3>Remove Plagiarism</h3><p>Clean and refine your content instantly.</p></div>
-    <div class="card"><h3>Create Songs</h3><p>Generate lyrics and melodies with emotion.</p></div>
-    <div class="card"><h3>Image Creation</h3><p>Design AI art from your ideas.</p></div>
-    <div class="card"><h3>Image Enhancement</h3><p>Improve the quality of your visuals fast.</p></div>
+  <h2 style="text-align:center;">Get Started</h2>
+  <div class="animated-section">
+    <div class="animated-card">
+      <i class="fas fa-wallet"></i>
+      <h3>Banking</h3>
+      <p>Personal Banking<br>Corporate Banking</p>
+    </div>
+    <div class="animated-card">
+      <i class="fas fa-shield-alt"></i>
+      <h3>Insurance</h3>
+      <p>Life Assurance<br>Cash Funeral Plan</p>
+    </div>
+    <div class="animated-card">
+      <i class="fas fa-coins"></i>
+      <h3>Investment</h3>
+      <p>Investment Banking<br>Investment Management</p>
+    </div>
+    <div class="animated-card">
+      <i class="fas fa-money-check-alt"></i>
+      <h3>Loans</h3>
+      <p>Personal Loan<br>Qupa Loan</p>
+    </div>
+    <div class="animated-card">
+      <i class="fas fa-lock"></i>
+      <h3>Security</h3>
+      <p>Fraud Awareness</p>
+    </div>
+    <div class="animated-card">
+      <i class="fas fa-chart-line"></i>
+      <h3>Business</h3>
+      <p>Corporate Account<br>Foreign Currency Accounts</p>
+    </div>
   </div>
 </section>
 
-<!-- Plans -->
-<section>
-  <h2>Plans Available</h2>
-  <div class="plans">
-    <div class="card"><h3>Basic</h3><p>$3/month<br>Yearly: $33.12 (8% off)</p></div>
-    <div class="card"><h3>Starter</h3><p>$7/month<br>Yearly: $77.28 (8% off)</p></div>
-    <div class="card"><h3>Advanced</h3><p>$12/month<br>Yearly: $132.48 (8% off)</p></div>
-    <div class="card"><h3>Premium</h3><p>$20/month<br>Yearly: $220.80 (8% off)</p></div>
+<section class="plans">
+  <h2 style="text-align:center;">Choose Your Plan</h2>
+  <div class="services" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;">
+    <div class="card">
+      <h3>Student Plan</h3>
+      <p>$3/month</p>
+      <ul><li>Access Ask Spudy</li><li>Basic Plagiarism Tool</li></ul>
+    </div>
+    <div class="card">
+      <h3>Starter Plan</h3>
+      <p>$7/month</p>
+      <ul><li>Plagiarism Removal</li><li>Song Creator Access</li></ul>
+    </div>
+    <div class="card">
+      <h3>Pro Plan</h3>
+      <p>$12/month</p>
+      <ul><li>All Features + Image Creation</li></ul>
+    </div>
+    <div class="card">
+      <h3>Elite Plan</h3>
+      <p>$20/month</p>
+      <ul><li>Full Suite Access</li><li>Priority Support</li></ul>
+    </div>
   </div>
 </section>
 
-<!-- Free Trial -->
 <section style="text-align:center;">
-  <a href="#payment" class="button">Start Free Trial</a>
+  <select id="planSelect">
+    <option value="">-- Select Plan --</option>
+    <option value="student">Student Plan</option>
+    <option value="starter">Starter Plan</option>
+    <option value="pro">Pro Plan</option>
+    <option value="elite">Elite Plan</option>
+  </select>
+  <a href="#payment" class="start-btn" onclick="proceedToPayment()">Start Free Trial</a>
 </section>
 
-<!-- Payment Methods -->
 <section id="payment">
   <h2 style="text-align:center;">Choose Payment Method</h2>
-  <div class="payment-methods" style="text-align:center;">
-    <img src="ecocash.png" alt="Ecocash" />
-    <img src="visa.png" alt="Visa" />
-    <img src="netone.png" alt="NetOne" />
-    <img src="mastercard.png" alt="Mastercard" />
+  <div style="text-align:center;">
+    <a href="https://www.ecocash.co.zw" target="_blank"><img src="ecocash.png" alt="Ecocash" /></a>
+    <a href="https://www.visa.com" target="_blank"><img src="visa.png" alt="Visa" /></a>
+    <a href="https://www.netone.co.zw" target="_blank"><img src="netone.png" alt="NetOne" /></a>
+    <a href="https://www.mastercard.com" target="_blank"><img src="mastercard.png" alt="Mastercard" /></a>
   </div>
 </section>
 
-<!-- Creator Info -->
 <section style="text-align:center;">
   <h2>Meet the Creator</h2>
-  <img src="creator-owner.png.jpg" alt="Matipaishe Blessing Muduchwa" class="creator" />
-  <p><strong>Matipaishe Blessing Muduchwa</strong> is the visionary behind Spudy AI, a platform built from the heart of Zimbabwe to empower everyone with AI tools.</p>
-  <p>“Spudy AI was born from the belief that every creative and student deserves tools that listen, think, and evolve with them. Whether it's helping you pass your assignment, produce a hit song, or spark your imagination, Spudy is here to make it happen.”</p>
+  <img src="creator-owner.png.jpg" alt="Matipaishe" class="creator" />
+  <p><strong>Matipaishe Blessing Muduchwa</strong> - creator of Spudy AI</p>
+  <p>“Tools that listen, think, and evolve with you.”</p>
 </section>
 
-<!-- Footer -->
 <footer>
   <p>Contact us:</p>
-  <p>Email: <a href="mailto:spudytv14@gmail.com" style="color:lightblue">spudytv14@gmail.com</a></p>
-  <p>Call: <a href="tel:+263776998296" style="color:lightblue">0776998296</a></p>
-  <p>WhatsApp: <a href="https://wa.me/263716669706" target="_blank" style="color:lightblue">0716669706</a></p>
-  <div class="socials">
-    <p>Follow us:</p>
-    <a href="https://www.facebook.com/blessing.muduchwa" target="_blank">Facebook</a> |
-    <a href="https://twitter.com/matipaishe_blessing" target="_blank">Twitter</a> |
-    <a href="https://www.instagram.com/matipaishe_bessing/?hl=en" target="_blank">Instagram</a>
-  </div>
+  <a href="mailto:spudytv14@gmail.com" class="button"><i class="fas fa-envelope"></i> Email</a>
+  <a href="https://wa.me/263716669706" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  <a href="tel:+263776998296" class="button"><i class="fas fa-phone"></i> Call</a>
+  <p>Follow us:</p>
+  <a href="https://facebook.com/blessing.muduchwa" target="_blank"><i class="fab fa-facebook"></i></a>
+  <a href="https://twitter.com/matipaishe_blessing" target="_blank"><i class="fab fa-twitter"></i></a>
+  <a href="https://instagram.com/matipaishe_bessing" target="_blank"><i class="fab fa-instagram"></i></a>
   <p>&copy; 2025 Spudy Intelligence. All rights reserved.</p>
 </footer>
 
 <script>
-  function checkPassword() {
-    const pass = document.getElementById('password').value;
-    const loginBtn = document.getElementById('loginBtn');
-    const valid = pass.length >= 8 && /[!@#$%^&*]/.test(pass);
-    loginBtn.classList.toggle('valid', valid);
+function checkPassword() {
+  const pass = document.getElementById('password').value;
+  const loginBtn = document.getElementById('loginBtn');
+  const helpText = document.getElementById('passwordHelp');
+  const valid = pass.length >= 8 && /[!@#$%^&*]/.test(pass);
+  loginBtn.classList.toggle('valid', valid);
+  helpText.style.display = valid ? 'none' : 'block';
+}
+
+document.getElementById('createAccountForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const password = document.getElementById('password').value;
+  if (password.length >= 8 && /[!@#$%^&*]/.test(password)) {
+    alert('Account Created Successfully!');
+    document.getElementById('account').classList.add('hidden');
+  } else {
+    alert('Please meet password requirements.');
   }
+});
+
+function proceedToPayment() {
+  const selected = document.getElementById('planSelect').value;
+  if (!selected) {
+    alert('Please select a plan first.');
+  } else {
+    location.href = '#payment';
+  }
+}
 </script>
 
 </body>
 </html>
-
