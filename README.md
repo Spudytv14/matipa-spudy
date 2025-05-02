@@ -1,0 +1,2 @@
+# matipa-spudy
+Spudy AI
