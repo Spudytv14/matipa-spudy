@@ -22,7 +22,7 @@
       color: white;
     }
     nav .logo {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: bold;
     }
     nav .nav-links a {
@@ -32,15 +32,27 @@
       font-weight: 500;
     }
     nav .nav-links a:hover {
-      text-decoration: underline;
+      color: #ffcc00;
     }
     header {
       background-image: url('banner.jpg');
       background-size: cover;
       background-position: center;
-      padding: 5rem 1rem;
+      padding: 6rem 1rem 4rem;
       text-align: center;
       color: white;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 4px;
+      background-color: #004c99;
+      border-radius: 2px;
     }
     header h1 {
       font-size: 3rem;
@@ -79,12 +91,16 @@
     .service-block:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      background: #e0f0ff;
+      background: #e6f3ff;
+    }
+    .service-block:hover i {
+      color: #004c99;
     }
     .service-block i {
       font-size: 2.5rem;
       color: #0073e6;
       margin-bottom: 1rem;
+      transition: color 0.3s ease;
     }
     .button {
       background-color: #0073e6;
@@ -126,8 +142,8 @@
 </nav>
 
 <header>
-  <h1>Welcome to Spudy AI</h1>
-  <p>Your all-in-one AI assistant for creativity, productivity, and smart tools.</p>
+  <h1>Discover Spudy AI</h1>
+  <p>Empowering your ideas with intelligent automation and creativity.</p>
 </header>
 
 <section>
