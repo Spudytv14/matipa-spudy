@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spudy AI - Intelligent Solutions</title>
-  <img src="spudy-banner.png" alt="AI Banner" style="width:100%; max-height:400px; object-fit:cover;" />
+    <title>Spudy AI - Premium AI Solutions</title>
     <style>
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            line-height: 1.8;
+            color: #2d3436;
+            background: #f8f9fa;
         }
 
         .container {
@@ -25,193 +25,164 @@
             padding: 20px;
         }
 
+        /* Header Styles */
         header {
             text-align: center;
-            padding: 50px 0;
-            background: #2a2a72;
-            background: linear-gradient(135deg, #2a2a72, #009ffd);
-            color: white;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
-            font-size: 2.8em;
-            margin-bottom: 20px;
+        /* !!! REPLACE THESE IMAGE PATHS !!! */
+        /* RED-STYLE IMAGE PLACEHOLDERS */
+        .header-logo {
+            width: 120px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border: 2px solid red;
+            background: #ff000033;
         }
-
-        h2 {
-            color: #2a2a72;
-            margin: 30px 0 15px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-<img src="spudy-logo.png.jpg" alt="Spudy AI Logo" style="width:200px; border-radius: 8px;" />
-        .pricing-table {
+        
+        .header-banner {
             width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            object-fit: cover;
+            border: 2px solid red;
+            background: #ff000033;
         }
 
-        .pricing-table th,
-        .pricing-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        /* Navigation */
+        .nav {
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .pricing-table th {
-            background-color: #2a2a72;
+        /* Contact Bar */
+        .contact-bar {
+            background: #2a5298;
             color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9em;
         }
 
-        .pricing-table tr:nth-child(even) {
-            background-color: #f8f9fa;
+        .contact-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: opacity 0.3s;
         }
 
-        .features {
+        .contact-bar a:hover {
+            opacity: 0.8;
+        }
+
+        /* ... (keep previous styles from earlier version) ... */
+
+        /* New Features */
+        .testimonials {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .social-links {
+            text-align: center;
             margin: 30px 0;
         }
 
-        .feature-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        .social-links a {
+            margin: 0 15px;
+            color: #2a5298;
+            font-size: 1.5em;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #009ffd;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 20px 0;
-            transition: transform 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-        }
-
-        footer {
-            text-align: center;
+        /* Form Styles */
+        .signup-form {
+            max-width: 500px;
+            margin: 40px auto;
             padding: 30px;
-            background: #2a2a72;
-            color: white;
-            margin-top: 50px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .pricing-table {
-                font-size: 0.9em;
-            }
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
     </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
+    <div class="contact-bar">
+        <a href="tel:+263716669706"><i class="fas fa-phone"></i> +263 71 666 9706</a>
+        <a href="tel:+263776998296"><i class="fas fa-phone"></i> +263 77 699 8296</a>
+        <a href="mailto:spudytv14@gmail.com"><i class="fas fa-envelope"></i> spudytv14@gmail.com</a>
+    </div>
+
+    <nav class="nav">
+        <!-- !!! REPLACE LOGO PATH !!! -->
+        <img src="[spudy-ai-1.png]" alt="Spudy AI Logo" class="header-logo">
         <div class="container">
-            <h1>Welcome to Spudy AI</h1>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <!-- !!! REPLACE BANNER PATH !!! -->
+        <img src="[Spudy-banner.jpg]" alt="AI Technology Banner" class="header-banner">
+        <div class="container">
+            <h1>Transform Your Workflow with Spudy AI</h1>
+            <p class="header-subtitle">Advanced AI Solutions for Modern Challenges</p>
+            <a href="#signup" class="cta-button">Start Free Trial</a>
         </div>
     </header>
 
-    <div class="container">
-        <section>
-            <h2>Who Are We?</h2>
-            <p>Spudy AI is an innovative artificial intelligence platform designed to enhance productivity, creativity, and learning. Our mission is to provide cutting-edge AI tools that simplify tasks, inspire creativity, and deliver accurate, high-quality results.</p>
+    <!-- Add this new section -->
+    <section class="container" id="signup">
+        <h2>Create Your Account</h2>
+        <form class="signup-form">
+            <input type="email" class="form-input" placeholder="Email Address" required>
+            <input type="password" class="form-input" placeholder="Password" required>
+            <input type="tel" class="form-input" placeholder="Phone Number">
+            <button type="submit" class="cta-button">Start Free Trial</button>
+        </form>
+    </section>
 
-            <h3>About the Creator</h3>
-            <p>Founded by <strong>Matipaishe Muduchwa</strong>, a visionary developer passionate about leveraging AI to solve real-world problems. We empower users with intelligent, user-friendly solutions.</p>
-        </section>
-
-        <section>
-            <h2>Our Services</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <h3>1. Ask Spudy AI</h3>
-                    <p>Instant answers and research assistance (3 free prompts)</p>
-                </div>
-                <div class="feature-card">
-                    <h3>2. Check Plagiarism</h3>
-                    <p>Advanced plagiarism detection</p>
-                </div>
-                <div class="feature-card">
-                    <h3>3. Create Songs</h3>
-                    <p>Generate royalty-free music</p>
-                </div>
-                <div class="feature-card">
-                    <h3>4. Content Writing</h3>
-                    <p>AI-powered articles and blogs</p>
-                </div>
-                <div class="feature-card">
-                    <h3>5. Code Generation</h3>
-                    <p>Automated coding solutions</p>
-                </div>
-                <div class="feature-card">
-                    <h3>6. Image Generation</h3>
-                    <p>Create AI artwork & graphics</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Pricing Plans</h2>
-            <table class="pricing-table">
-                <tr>
-                    <th>Plan</th>
-                    <th>Monthly</th>
-                    <th>Yearly (Save 10%)</th>
-                </tr>
-                <tr>
-                    <td>Basic ($3)</td>
-                    <td>$3/mo</td>
-                    <td>$32.40/yr</td>
-                </tr>
-                <tr>
-                    <td>Standard ($8)</td>
-                    <td>$8/mo</td>
-                    <td>$86.40/yr</td>
-                </tr>
-                <tr>
-                    <td>Pro ($15)</td>
-                    <td>$15/mo</td>
-                    <td>$162/yr</td>
-                </tr>
-                <tr>
-                    <td>Premium ($25)</td>
-                    <td>$25/mo</td>
-                    <td>$270/yr</td>
-                </tr>
-            </table>
-        </section>
-
-        <section>
-            <h2>Why Choose Spudy AI?</h2>
-            <ul>
-                <li>✅ Affordable & Flexible Plans</li>
-                <li>✅ Powerful AI Tools</li>
-                <li>✅ User-Friendly Interface</li>
-                <li>✅ Regular Updates</li>
-            </ul>
-            <a href="#" class="cta-button">Start Free Trial</a>
-        </section>
-    </div>
+    <!-- Previous content sections here (keep from earlier version) -->
 
     <footer>
-        <p>© 2024 Spudy AI. All Rights Reserved.</p>
-      <img src="creator-owner.pgn.jpg" alt="Spudy AI Logo" style="width:200px; border-radius: 8px;" />
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p>© 2025 Spudy AI. All Rights Reserved.<br>
+            Harare, Zimbabwe | AI Innovation Hub</p>
+        </div>
     </footer>
 </body>
 </html>
