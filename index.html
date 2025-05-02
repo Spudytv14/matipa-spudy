@@ -1,177 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spudy AI - Welcome</title>
- <img src="spudy-logo.png.jpg" alt="AI Banner" style="width:100%; max-height:400px; object-fit:cover;" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0fff4;
-      color: #1e3d2f;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spudy AI - Intelligent Solutions</title>
+  <img src="spudy-banner.png" alt="AI Banner" style="width:100%; max-height:400px; object-fit:cover;" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    header {
-      background-color: #38a169;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
 
-    section {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    h1, h2, h3 {
-      color: #22543d;
-    }
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: #2a2a72;
+            background: linear-gradient(135deg, #2a2a72, #009ffd);
+            color: white;
+        }
 
-    .button {
-      background-color: #2f855a;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 1rem;
-    }
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
 
-    .card {
-      background: white;
-      border-left: 5px solid #38a169;
-      padding: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
+        h2 {
+            color: #2a2a72;
+            margin: 30px 0 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+<img src="spudy-logo.png.jpg" alt="Spudy AI Logo" style="width:200px; border-radius: 8px;" />
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
 
-    .pricing {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
+        .pricing-table th,
+        .pricing-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
 
-    .price-card {
-      background-color: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-top: 4px solid #48bb78;
-    }
+        .pricing-table th {
+            background-color: #2a2a72;
+            color: white;
+        }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: #22543d;
-      color: white;
-      margin-top: 3rem;
-    }
+        .pricing-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
 
-    a {
-      color: #2f855a;
-    }
-  </style>
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #009ffd;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #2a2a72;
+            color: white;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .pricing-table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>Welcome to Spudy AI</h1>
+        </div>
+    </header>
 
-  <header>
-    <h1>Welcome to Spudy AI</h1>
-    <p>Your intelligent companion for creativity, productivity, and knowledge.</p>
-  </header>
+    <div class="container">
+        <section>
+            <h2>Who Are We?</h2>
+            <p>Spudy AI is an innovative artificial intelligence platform designed to enhance productivity, creativity, and learning. Our mission is to provide cutting-edge AI tools that simplify tasks, inspire creativity, and deliver accurate, high-quality results.</p>
 
-  <section>
-    <h2>Who Are We?</h2>
-    <p>
-      Spudy AI is a powerful digital assistant designed to help individuals, students, and creators get more done faster. 
-      From answering complex questions to generating unique music or checking plagiarism — Spudy AI is your creative partner.
-    </p>
-    <p><strong>Created by:</strong> Matipaishe Muduchwa</p>
-  </section>
+            <h3>About the Creator</h3>
+            <p>Founded by <strong>Matipaishe Muduchwa</strong>, a visionary developer passionate about leveraging AI to solve real-world problems. We empower users with intelligent, user-friendly solutions.</p>
+        </section>
 
-  <section>
-    <h2>Our Services</h2>
+        <section>
+            <h2>Our Services</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>1. Ask Spudy AI</h3>
+                    <p>Instant answers and research assistance (3 free prompts)</p>
+                </div>
+                <div class="feature-card">
+                    <h3>2. Check Plagiarism</h3>
+                    <p>Advanced plagiarism detection</p>
+                </div>
+                <div class="feature-card">
+                    <h3>3. Create Songs</h3>
+                    <p>Generate royalty-free music</p>
+                </div>
+                <div class="feature-card">
+                    <h3>4. Content Writing</h3>
+                    <p>AI-powered articles and blogs</p>
+                </div>
+                <div class="feature-card">
+                    <h3>5. Code Generation</h3>
+                    <p>Automated coding solutions</p>
+                </div>
+                <div class="feature-card">
+                    <h3>6. Image Generation</h3>
+                    <p>Create AI artwork & graphics</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="card">
-      <h3>Ask Spudy AI</h3>
-      <p>Ask anything — from study questions to business advice. First 3 prompts are free!</p>
+        <section>
+            <h2>Pricing Plans</h2>
+            <table class="pricing-table">
+                <tr>
+                    <th>Plan</th>
+                    <th>Monthly</th>
+                    <th>Yearly (Save 10%)</th>
+                </tr>
+                <tr>
+                    <td>Basic ($3)</td>
+                    <td>$3/mo</td>
+                    <td>$32.40/yr</td>
+                </tr>
+                <tr>
+                    <td>Standard ($8)</td>
+                    <td>$8/mo</td>
+                    <td>$86.40/yr</td>
+                </tr>
+                <tr>
+                    <td>Pro ($15)</td>
+                    <td>$15/mo</td>
+                    <td>$162/yr</td>
+                </tr>
+                <tr>
+                    <td>Premium ($25)</td>
+                    <td>$25/mo</td>
+                    <td>$270/yr</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Why Choose Spudy AI?</h2>
+            <ul>
+                <li>✅ Affordable & Flexible Plans</li>
+                <li>✅ Powerful AI Tools</li>
+                <li>✅ User-Friendly Interface</li>
+                <li>✅ Regular Updates</li>
+            </ul>
+            <a href="#" class="cta-button">Start Free Trial</a>
+        </section>
     </div>
 
-    <div class="card">
-      <h3>Check Plagiarism</h3>
-      <p>Ensure your content is 100% original. Instant results with reports.</p>
-    </div>
-
-    <div class="card">
-      <h3>Create Songs</h3>
-      <p>Spudy AI writes lyrics and melody ideas in any genre. Great for music artists and writers.</p>
-    </div>
-
-    <div class="card">
-      <h3>Generate Ideas & Marketing Plans</h3>
-      <p>Need help with campaigns, business strategies, or creative brainstorming? Spudy AI delivers.</p>
-    </div>
-
-    <div class="card">
-      <h3>Custom Projects</h3>
-      <p>From website content to original short stories — Spudy AI adapts to your needs.</p>
-    </div>
-  </section>
-
-  <section>
-    <h2>Subscription Plans</h2>
-
-    <div class="pricing">
-      <div class="price-card">
-        <h3>Basic</h3>
-        <p><strong>$3 / month</strong></p>
-        <p>$32.40 / year <br><small>(10% discount)</small></p>
-      </div>
-
-      <div class="price-card">
-        <h3>Standard</h3>
-        <p><strong>$8 / month</strong></p>
-        <p>$86.40 / year <br><small>(10% discount)</small></p>
-      </div>
-
-      <div class="price-card">
-        <h3>Pro</h3>
-        <p><strong>$15 / month</strong></p>
-        <p>$162.00 / year <br><small>(10% discount)</small></p>
-      </div>
-
-      <div class="price-card">
-        <h3>Premium</h3>
-        <p><strong>$25 / month</strong></p>
-        <p>$270.00 / year <br><small>(10% discount)</small></p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Contact Us</h2>
-    <a href="mailto:spudytv14@gmail.com" class="button">Email Spudy AI</a>
-    <p>Phone: <a href="tel:+263716669706">0716 669 706</a> / <a href="tel:+263776998296">0776 998 296</a></p>
-  </section>
-
-  <section>
-    <h2>External Links</h2>
-    <p>
-      Check out our <a href="https://suno.com" target="_blank">Music Production on Suno</a>
-    </p>
-  </section>
-
-  <footer>
-    &copy; 2025 Spudy AI. Built with 💚 by Matipaishe Muduchwa.
-    <img src="creator-owner.png.jpg" alt="Spudy AI Logo" style="width:200px; border-radius: 8px;" />
-
-  </footer>
-
+    <footer>
+        <p>© 2024 Spudy AI. All Rights Reserved.</p>
+      <img src="creator-owner.pgn.jpg" alt="Spudy AI Logo" style="width:200px; border-radius: 8px;" />
+    </footer>
 </body>
 </html>
-
