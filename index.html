@@ -177,8 +177,6 @@
 </head>
 <body>
 
-  <!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Spudy AI</title>
@@ -282,6 +280,28 @@
       10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
       100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
     }
+
+    #auth-section, #welcome-section {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffffff;
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    #auth-section button, #welcome-section button {
+      padding: 8px 16px;
+      margin: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #auth-section button:hover, #welcome-section button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -298,7 +318,6 @@
             <a href="#" onclick="showPopup('Stay tuned for new launches and community features.')">Featured 2</a>
           </div>
         </li>
-
         <li>
           <a href="#">Products ▾</a>
           <div class="dropdown-content">
@@ -307,7 +326,6 @@
             <a href="#" onclick="showPopup('Scroll down the page to view our subscription packages and pricing.')">Subscription Plans</a>
           </div>
         </li>
-
         <li>
           <a href="#">About ▾</a>
           <div class="dropdown-content">
@@ -316,7 +334,6 @@
             <a href="#" onclick="showInfo('careers')">Careers</a>
           </div>
         </li>
-
         <li>
           <a href="#">Contact ▾</a>
           <div class="dropdown-content">
@@ -332,7 +349,19 @@
   </div>
 </header>
 
-<!-- Info Box Content Below Navbar -->
+<!-- Login/Register Section -->
+<div id="auth-section">
+  <h2>Welcome to Spudy AI</h2>
+  <p>Please <button onclick="loginUser()">Log In</button> or <button onclick="registerUser()">Register</button> to continue.</p>
+</div>
+
+<!-- Welcome Message Section -->
+<div id="welcome-section" style="display: none;">
+  <h2>🎉 Welcome back, Spudy User!</h2>
+  <button onclick="logoutUser()">Logout</button>
+</div>
+
+<!-- Info Sections -->
 <div id="story" class="info-box">
   <strong>Our Story:</strong><br>
   Spudy Intelligence was founded in 2020. It began as just a name, born from passion and creativity.
@@ -356,7 +385,7 @@
   We'd love to hear from passionate minds!
 </div>
 
-<!-- Popup Message Script -->
+<!-- Scripts -->
 <script>
   function showPopup(message) {
     const popup = document.createElement('div');
@@ -374,280 +403,38 @@
     boxes.forEach(box => box.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
   }
+
+  function loginUser() {
+    localStorage.setItem('spudyUserLoggedIn', 'true');
+    updateAuthDisplay();
+    showPopup("✅ Login successful. Welcome to Spudy AI!");
+  }
+
+  function registerUser() {
+    localStorage.setItem('spudyUserLoggedIn', 'true');
+    updateAuthDisplay();
+    showPopup("🎉 Registration complete. Welcome aboard!");
+  }
+
+  function logoutUser() {
+    localStorage.removeItem('spudyUserLoggedIn');
+    updateAuthDisplay();
+    showPopup("You’ve been logged out.");
+  }
+
+  function updateAuthDisplay() {
+    const isLoggedIn = localStorage.getItem('spudyUserLoggedIn') === 'true';
+    document.getElementById('auth-section').style.display = isLoggedIn ? 'none' : 'block';
+    document.getElementById('welcome-section').style.display = isLoggedIn ? 'block' : 'none';
+  }
+
+  // Run on page load
+  updateAuthDisplay();
 </script>
 
 </body>
 </html>
-our all-in-one AI assistant for creativity, productivity, and smart tools.</p>
-    </div>
-  </header>
-
-</body>
-</html>
-
-<!-- Create Account Form -->
-<section id="account" class="account-section">
-  <h2>Create Account</h2>
-  <form class="login-form" onsubmit="return false;">
-    <div class="form-group">
-      <input type="text" id="username" placeholder="Username (min 3 characters)" required />
-    </div>
-    <div class="form-group">
-      <input type="email" id="email" placeholder="Email" required />
-    </div>
-    <div class="form-group">
-      <input type="password" id="password" placeholder="Password (8+ chars incl. symbol)" required />
-    </div>
-    <button id="loginBtn">Create Account</button>
-  </form>
-</section>
-
-<style>
-  .account-section {
-    padding: 60px 20px;
-    background: linear-gradient(135deg, #e3f0ff, #f7fbff);
-    text-align: center;
-    animation: fadeIn 1s ease;
-  }
-
-  .account-section h2 {
-    color: #004c8c;
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-
-  .login-form {
-    max-width: 400px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    animation: slideUp 1s ease;
-  }
-
-  .form-group input {
-    padding: 12px 15px;
-    border: 2px solid #007bff;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    outline: none;
-  }
-
-  .form-group input:focus {
-    border-color: #0056b3;
-    box-shadow: 0 0 5px rgba(0, 91, 187, 0.3);
-  }
-
-  .form-group input.invalid {
-    border-color: red;
-    background: #ffeaea;
-  }
-
-  button#loginBtn {
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  button#loginBtn:hover {
-    background-color: #0056b3;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-</style>
-
-<div id="auth-container" class="auth-box fade-in">
-  <div class="tabs">
-    <button id="register-tab" class="tab active">Register</button>
-    <button id="login-tab" class="tab">Login</button>
-  </div>
-
-  <div class="form-content" id="register-form">
-    <input id="username" type="text" placeholder="Username">
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-    <button id="register-btn">Register</button>
-  </div>
-
-  <div class="form-content hidden" id="login-form">
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
-    <button>Login</button>
-  </div>
-</div>
-
-<style>
-  .auth-box {
-    max-width: 400px;
-    margin: 60px auto;
-    padding: 30px 25px;
-    border-radius: 15px;
-    background: white;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    animation: slideIn 0.6s ease;
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .tabs {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-
-  .tab {
-    background: none;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    padding-bottom: 5px;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
-  }
-
-  .tab.active {
-    color: #007BFF;
-    border-color: #007BFF;
-  }
-
-  .form-content input {
-    width: 100%;
-    padding: 10px 15px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: 0.3s ease;
-  }
-
-  .form-content input.invalid {
-    border-color: red;
-  }
-
-  .form-content button {
-    width: 100%;
-    padding: 10px;
-    font-weight: bold;
-    background: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  .form-content button:hover {
-    background: #0056b3;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .fade-in {
-    animation: fadeIn 0.5s ease;
-  }
-
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-</style>
-
-<script>
-  const username = document.getElementById('username');
-  const email = document.getElementById('email');
-  const password = document.getElementById('password');
-  const registerBtn = document.getElementById('register-btn');
-  const container = document.getElementById('auth-container');
-
-  function validateInputs() {
-    let valid = true;
-
-    if (username.value.trim().length < 3) {
-      username.classList.add('invalid');
-      valid = false;
-    } else {
-      username.classList.remove('invalid');
-    }
-
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if (!email.value.match(emailPattern)) {
-      email.classList.add('invalid');
-      valid = false;
-    } else {
-      email.classList.remove('invalid');
-    }
-
-    const passwordPattern = /^(?=.*[!@#$%^&*])(?=.{8,})/;
-    if (!password.value.match(passwordPattern)) {
-      password.classList.add('invalid');
-      valid = false;
-    } else {
-      password.classList.remove('invalid');
-    }
-
-    return valid;
-  }
-
-  [username, email, password].forEach(input =>
-    input.addEventListener('input', validateInputs)
-  );
-
-  registerBtn.addEventListener('click', () => {
-    if (validateInputs()) {
-      container.style.opacity = '0';
-      container.style.transform = 'translateY(-20px)';
-      setTimeout(() => container.style.display = 'none', 400);
-    }
-  });
-
-  // Tab switch logic
-  const registerTab = document.getElementById('register-tab');
-  const loginTab = document.getElementById('login-tab');
-  const registerForm = document.getElementById('register-form');
-  const loginForm = document.getElementById('login-form');
-
-  registerTab.addEventListener('click', () => {
-    registerTab.classList.add('active');
-    loginTab.classList.remove('active');
-    registerForm.classList.remove('hidden');
-    loginForm.classList.add('hidden');
-  });
-
-  loginTab.addEventListener('click', () => {
-    loginTab.classList.add('active');
-    registerTab.classList.remove('active');
-    loginForm.classList.remove('hidden');
-    registerForm.classList.add('hidden');
-  });
-</script>
-
+  
 <section style="padding: 60px 20px; background: #e8f0fa;">
   <div class="services-container">
     <div class="service-card">
