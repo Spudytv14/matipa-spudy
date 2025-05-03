@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Spudy AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -80,17 +81,22 @@
       top: 100%;
       left: 0;
       z-index: 1001;
+      padding: 0.5rem 0.25rem;
+      text-align: center;
     }
 
     .dropdown-content a {
-      display: block;
-      padding: 0.75rem 1rem;
+      display: inline-block;
       color: #003366;
       text-decoration: none;
+      margin: 0.5rem;
+      font-size: 1.25rem;
+      transition: transform 0.2s;
     }
 
     .dropdown-content a:hover {
-      background-color: #f0f0f0;
+      transform: scale(1.2);
+      color: #004c99;
     }
 
     nav ul li:hover .dropdown-content {
@@ -194,7 +200,16 @@
               <a href="#">Careers</a>
             </div>
           </li>
-          <li><a href="#">Contact</a></li>
+          <li>
+            <a href="#">Contact ▾</a>
+            <div class="dropdown-content">
+              <a href="https://wa.me/263716669706?text=Good%20day%2C%20just%20came%20from%20your%20website%20I%20wanted%20to" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="mailto:spudytv14@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+              <a href="https://www.facebook.com/matipaishe.blessing/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.instagram.com/matipaishe-blessing" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://x.com/matipaishe-blessing" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+            </div>
+          </li>
         </ul>
       </nav>
     </div>
@@ -449,45 +464,65 @@
   <div class="plans-container">
     <div class="plan-card basic">
       <h3>Basic</h3>
-      <p class="price">$3<span>/month</span></p>
-      <p class="yearly">Yearly: $33.12 <span>(8% off)</span></p>
+      <p class="price">$9.99<span>/month</span></p>
+      <p class="yearly">Yearly: $107.89 <span>(10% off)</span></p>
       <ul>
         <li>Ask Spudy AI</li>
         <li>Remove Plagiarism</li>
         <li>Limited Song Generator</li>
       </ul>
+      <button class="select-btn">Select</button>
     </div>
+
     <div class="plan-card starter">
       <h3>Starter</h3>
-      <p class="price">$7<span>/month</span></p>
-      <p class="yearly">Yearly: $77.28 <span>(8% off)</span></p>
+      <p class="price">$14.99<span>/month</span></p>
+      <p class="yearly">Yearly: $158.30 <span>(12% off)</span></p>
       <ul>
         <li>All Basic Features</li>
         <li>Image Creation (Low Res)</li>
         <li>Code Generation</li>
       </ul>
+      <button class="select-btn">Select</button>
     </div>
+
     <div class="plan-card advanced">
       <h3>Advanced</h3>
-      <p class="price">$12<span>/month</span></p>
-      <p class="yearly">Yearly: $132.48 <span>(8% off)</span></p>
+      <p class="price">$29.99<span>/month</span></p>
+      <p class="yearly">Yearly: $305.91 <span>(15% off)</span></p>
       <ul>
         <li>All Starter Features</li>
         <li>Voice Cloning</li>
         <li>Face Swap</li>
         <li>Enhanced Song & Art Tools</li>
       </ul>
+      <button class="select-btn">Select</button>
     </div>
+
     <div class="plan-card premium">
       <h3>Premium</h3>
-      <p class="price">$20<span>/month</span></p>
-      <p class="yearly">Yearly: $220.80 <span>(8% off)</span></p>
+      <p class="price">$39.99<span>/month</span></p>
+      <p class="yearly">Yearly: $393.51 <span>(18% off)</span></p>
       <ul>
         <li>All Advanced Features</li>
         <li>Unlimited Image & Song Creation</li>
         <li>AI Presentation Builder</li>
         <li>High-Res Exports + Priority Support</li>
       </ul>
+      <button class="select-btn">Select</button>
+    </div>
+
+    <div class="plan-card corporate">
+      <h3>Corporate</h3>
+      <p class="price">Custom Pricing</p>
+      <p class="yearly">Tailored enterprise solutions</p>
+      <ul>
+        <li>All Premium Features</li>
+        <li>Team Accounts</li>
+        <li>Priority SLA</li>
+        <li>Dedicated Onboarding</li>
+      </ul>
+      <button class="select-btn quote">Click for a Quotation</button>
     </div>
   </div>
 </section>
@@ -564,6 +599,31 @@
   .plan-card.starter { border-top-color: #28a745; }
   .plan-card.advanced { border-top-color: #17a2b8; }
   .plan-card.premium { border-top-color: #ffc107; }
+  .plan-card.corporate { border-top-color: #6f42c1; }
+
+  .select-btn {
+    margin-top: 20px;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .select-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .select-btn.quote {
+    background-color: #28a745;
+  }
+
+  .select-btn.quote:hover {
+    background-color: #1e7e34;
+  }
 
   @media (max-width: 600px) {
     .plan-card {
