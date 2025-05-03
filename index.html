@@ -15,13 +15,13 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #e8f1fc;
+      background-color: #e6f0ff;
       color: #003366;
       overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(135deg, #004c99 0%, #0066cc 100%);
+      background: linear-gradient(135deg, #004c99, #0066cc);
       padding-bottom: 3rem;
       clip-path: ellipse(100% 100% at 50% 0%);
       color: white;
@@ -50,6 +50,10 @@
       transform: scale(1.05);
     }
 
+    nav {
+      position: relative;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -76,31 +80,37 @@
       display: none;
       position: absolute;
       background-color: white;
-      min-width: 160px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      min-width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       top: 100%;
       left: 0;
-      z-index: 1001;
-      padding: 0.5rem 0.25rem;
-      text-align: center;
+      z-index: 999;
+      padding: 0.5rem 0;
+      border-radius: 6px;
     }
 
     .dropdown-content a {
-      display: inline-block;
+      display: block;
+      padding: 10px 20px;
       color: #003366;
       text-decoration: none;
-      margin: 0.5rem;
-      font-size: 1.25rem;
-      transition: transform 0.2s;
+      font-weight: 500;
+      transition: background 0.3s;
     }
 
     .dropdown-content a:hover {
-      transform: scale(1.2);
-      color: #004c99;
+      background-color: #e6f3ff;
     }
 
     nav ul li:hover .dropdown-content {
       display: block;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
     }
 
     .hero {
@@ -119,146 +129,6 @@
       animation: fadeInUp 2s ease-in-out;
     }
 
-    @keyframes fadeInDown {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    @keyframes slideIn {
-      from {transform: translateY(-100%);}
-      to {transform: translateY(0);}
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        background-color: #004c99;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        display: none;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-        cursor: pointer;
-        font-size: 1.5rem;
-        color: white;
-      }
-    }
-
-    .glow {
-      position: absolute;
-      top: -50px;
-      left: 50%;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
-      transform: translateX(-50%);
-      animation: float 6s ease-in-out infinite;
-      z-index: 0;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(20px); }
-    }
-  </style>
-</head>
-<body>
-
-<head>
-  <meta charset="UTF-8">
-  <title>Spudy AI</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #e6f0ff;
-      margin: 0;
-      padding: 0;
-    }
-
-    .top-bar {
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      height: 50px;
-    }
-
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      display: block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 180px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
-      z-index: 999;
-    }
-
-    nav ul li:hover .dropdown-content {
-      display: block;
-    }
-
-    .dropdown-content a {
-      padding: 12px 16px;
-      display: block;
-      color: #000;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #d6eaff;
-    }
-
-    .info-box {
-      margin: 20px;
-      padding: 15px;
-      background-color: #ffffff;
-      border-left: 4px solid #007bff;
-      border-radius: 5px;
-      display: none;
-    }
-
-    .info-box.active {
-      display: block;
-    }
-
     .popup-msg {
       position: fixed;
       bottom: 30px;
@@ -275,10 +145,17 @@
       font-weight: bold;
     }
 
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
-      10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
-      100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    .info-box {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .info-box.active {
+      display: block;
     }
 
     #auth-section, #welcome-section {
@@ -289,7 +166,7 @@
       border-radius: 10px;
     }
 
-    #auth-section button, #welcome-section button {
+    button {
       padding: 8px 16px;
       margin: 5px;
       background-color: #007bff;
@@ -299,18 +176,110 @@
       cursor: pointer;
     }
 
-    #auth-section button:hover, #welcome-section button:hover {
+    button:hover {
       background-color: #0056b3;
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes slideIn {
+      from {transform: translateY(-100%);}
+      to {transform: translateY(0);}
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(20px); }
+      10%, 90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(20px); }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background-color: #004c99;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        display: none;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="top-bar">
+      <img src="your-logo.png" alt="Spudy AI Logo" class="logo">
+      <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+      <nav>
+        <ul id="nav-links">
+          <li><a href="#">Home</a></li>
+          <li>
+            <a href="#">Services <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-content">
+              <a href="#">Ask Spudy AI</a>
+              <a href="#">Plagiarism Checker</a>
+              <a href="#">Song Creation</a>
+            </div>
+          </li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="hero">
+      <h1>Welcome to Spudy AI</h1>
+      <p>Your all-in-one student AI companion</p>
+    </div>
+  </header>
+
+  <section id="auth-section">
+    <h2>Login or Register</h2>
+    <button>Login</button>
+    <button>Register</button>
+  </section>
+
+  <section id="welcome-section">
+    <h2>Why Choose Spudy AI?</h2>
+    <p>Get instant assistance with assignments, content creation, and AI-powered tools — tailored for students.</p>
+    <button>Learn More</button>
+  </section>
+
+  <div class="popup-msg">Welcome to Spudy AI 🎉</div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
 
 <header>
   <div class="top-bar">
     <img src="spudy-ai-1.png" alt="Spudy AI Logo" class="logo" />
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
     <nav>
-      <ul>
+      <ul id="nav-links">
         <li>
           <a href="#">Home ▾</a>
           <div class="dropdown-content">
@@ -337,11 +306,11 @@
         <li>
           <a href="#">Contact ▾</a>
           <div class="dropdown-content">
-            <a href="https://wa.me/263716669706?text=Good%20day%2C%20just%20came%20from%20your%20website%20I%20wanted%20to" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="mailto:spudytv14@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.facebook.com/matipaishe.blessing/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://www.instagram.com/matipaishe-blessing" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://x.com/matipaishe-blessing" target="_blank" title="X"><i class="fab fa-x-twitter"></i> X</a>
+            <a href="https://wa.me/263716669706?text=Good%20day%2C%20just%20came%20from%20your%20website%20I%20wanted%20to" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="mailto:spudytv14@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://www.facebook.com/matipaishe.blessing/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://www.instagram.com/matipaishe-blessing" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://x.com/matipaishe-blessing" target="_blank"><i class="fab fa-x-twitter"></i> X</a>
           </div>
         </li>
       </ul>
@@ -349,6 +318,32 @@
   </div>
 </header>
 
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('nav-links');
+    nav.classList.toggle('show');
+  }
+
+  function showPopup(message) {
+    const popup = document.createElement('div');
+    popup.className = 'popup-msg';
+    popup.innerText = message;
+    document.body.appendChild(popup);
+    setTimeout(() => {
+      popup.remove();
+    }, 4000);
+  }
+
+  function showInfo(type) {
+    const sections = {
+      story: 'Spudy AI was founded to empower learners with accessible AI-powered educational tools.',
+      team: 'Our team consists of passionate educators, developers, and AI specialists.',
+      careers: 'Join us on our mission. Email your resume to spudytv14@gmail.com.'
+    };
+
+    showPopup(sections[type] || 'Information coming soon!');
+  }
+</script>
 <!-- Login/Register Section -->
 <div id="auth-section">
   <h2>Welcome to Spudy AI</h2>
@@ -429,282 +424,148 @@
   }
 
   // Run on page load
-  updateAuthDisplay();
-</script>
-
-</body>
-</html>
-  
-<section style="padding: 60px 20px; background: #e8f0fa;">
-  <div class="services-container">
-    <div class="service-card">
-      <div class="service-title">Ask Spudy AI</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Smart responses to your academic or business questions.</div>
+ <body>
+  <!-- SERVICES SECTION AT THE TOP -->
+  <section class="services-section">
+    <div class="services-container">
+      <div class="service-card">
+        <div class="service-title">Ask Spudy AI</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Smart responses to your academic or business questions.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Remove Plagiarism</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Clean and refine your content instantly.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Create Songs</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Generate lyrics and melodies with emotion.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Image Creation</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Design AI art from your ideas.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Image Enhancement</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Improve the quality of your visuals fast.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Voice Cloning</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Clone any voice with stunning accuracy.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Face Swap</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Swap faces in images and videos seamlessly.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Code Generation</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Generate working code in various programming languages.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Presentation Builder</div>
+        <div class="service-separator"></div>
+        <div class="service-description">Automatically create stunning slides from text or topics.</div>
+      </div>
     </div>
-    <div class="service-card">
-      <div class="service-title">Remove Plagiarism</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Clean and refine your content instantly.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-title">Create Songs</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Generate lyrics and melodies with emotion.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-title">Image Creation</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Design AI art from your ideas.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-title">Image Enhancement</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Improve the quality of your visuals fast.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-title">Voice Cloning</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Clone any voice with stunning accuracy.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-title">Face Swap</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Swap faces in images and videos seamlessly.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-title">Code Generation</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Generate working code in various programming languages.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-title">Presentation Builder</div>
-      <div class="service-separator"></div>
-      <div class="service-description">Automatically create stunning slides from text or topics.</div>
-    </div>
-  </div>
-</section>
+  </section>
 
 <style>
-  .services-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+  section#pricing {
+    background: linear-gradient(to right, #f4f8fc, #eaf2fb);
+    padding: 80px 20px;
+  }
+
+  #pricing h2 {
     text-align: center;
-    animation: fadeIn 1.5s ease-in;
+    font-size: 40px;
+    font-weight: 800;
+    color: #0d1a2d;
+    margin-bottom: 60px;
   }
 
-  .service-card {
-    background: white;
-    padding: 25px 20px;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-    border: 2px solid transparent;
-  }
-
-  .service-card:hover {
-    background-color: #007BFF;
-    color: white;
-    border-color: #0056b3;
-    transform: translateY(-8px);
-  }
-
-  .service-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .service-separator {
-    width: 40px;
-    height: 3px;
-    background-color: #007BFF;
-    margin: 0 auto 12px;
-  }
-
-  .service-description {
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (max-width: 600px) {
-    .service-card {
-      padding: 20px 15px;
-    }
-
-    .service-title {
-      font-size: 18px;
-    }
-
-    .service-description {
-      font-size: 14px;
-    }
-  }
-</style>
-
-<section style="background-color:#f8f9fc; padding: 60px 20px;">
-  <h2 style="text-align: center; font-size: 36px; font-weight: 700; color: #0d1a2d; margin-bottom: 50px;">Plans Available</h2>
-  <div class="plans-container">
-    
-    <div class="plan-card basic">
-      <h3>Basic</h3>
-      <p class="price">$5.49<span>/month</span></p>
-      <p class="yearly">Yearly: $59.29 <span>(10% off)</span></p>
-      <ul>
-        <li>Ask Spudy AI</li>
-        <li>Remove Plagiarism</li>
-        <li>Limited Song Generator</li>
-        <li><strong>3-Day Free Trial</strong></li>
-      </ul>
-      <button class="select-btn">Select</button>
-    </div>
-
-    <div class="plan-card starter">
-      <h3>Starter</h3>
-      <p class="price">$12.99<span>/month</span></p>
-      <p class="yearly">Yearly: $137.50 <span>(12% off)</span></p>
-      <ul>
-        <li>All Basic Features</li>
-        <li>Image Creation (Low Res)</li>
-        <li>Code Generation</li>
-        <li><strong>3-Day Free Trial</strong></li>
-      </ul>
-      <button class="select-btn">Select</button>
-    </div>
-
-    <div class="plan-card advanced">
-      <h3>Advanced</h3>
-      <p class="price">$21.99<span>/month</span></p>
-      <p class="yearly">Yearly: $224.11 <span>(15% off)</span></p>
-      <ul>
-        <li>All Starter Features</li>
-        <li>Voice Cloning</li>
-        <li>Face Swap</li>
-        <li>Enhanced Song & Art Tools</li>
-        <li><strong>3-Day Free Trial</strong></li>
-      </ul>
-      <button class="select-btn">Select</button>
-    </div>
-
-    <div class="plan-card premium">
-      <h3>Premium</h3>
-      <p class="price">$32.99<span>/month</span></p>
-      <p class="yearly">Yearly: $324.51 <span>(18% off)</span></p>
-      <ul>
-        <li>All Advanced Features</li>
-        <li>Unlimited Image & Song Creation</li>
-        <li>AI Presentation Builder</li>
-        <li>High-Res Exports + Priority Support</li>
-        <li><strong>3-Day Free Trial</strong></li>
-      </ul>
-      <button class="select-btn">Select</button>
-    </div>
-
-    <div class="plan-card corporate">
-      <h3>Enterprise</h3>
-      <p class="price">Custom Pricing</p>
-      <p class="yearly">Tailored enterprise solutions</p>
-      <ul>
-        <li>All Premium Features</li>
-        <li>Team Accounts</li>
-        <li>Priority SLA</li>
-        <li>Dedicated Onboarding</li>
-      </ul>
-      <button class="select-btn quote">Click for a Quotation</button>
-    </div>
-  </div>
-</section>
-
-<style>
   .plans-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
   }
 
   .plan-card {
     background: white;
-    border-radius: 18px;
-    padding: 30px 20px;
+    border-radius: 24px;
+    padding: 35px 25px;
     text-align: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-top: 5px solid #007BFF;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+    border-top: 6px solid #007BFF;
+    transition: all 0.3s ease;
   }
 
   .plan-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    transform: translateY(-10px);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.1);
   }
 
   .plan-card h3 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 700;
     color: #007BFF;
+    margin-bottom: 12px;
   }
 
   .plan-card .price {
-    font-size: 28px;
-    font-weight: bold;
-    margin: 10px 0;
+    font-size: 32px;
+    font-weight: 700;
     color: #0d1a2d;
+    margin: 12px 0;
   }
 
   .plan-card .price span {
     font-size: 16px;
-    font-weight: normal;
+    font-weight: 500;
     color: #555;
   }
 
   .plan-card .yearly {
     font-size: 14px;
-    color: #666;
+    color: #6c757d;
+    margin-bottom: 20px;
   }
 
   .plan-card .yearly span {
-    color: green;
-    font-weight: bold;
+    color: #28a745;
+    font-weight: 600;
   }
 
   .plan-card ul {
     list-style: none;
     padding: 0;
-    margin-top: 20px;
     text-align: left;
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
+    margin-bottom: 25px;
   }
 
   .plan-card ul li {
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px dashed #e0e0e0;
   }
 
-  .plan-card.basic { border-top-color: #6c757d; }
-  .plan-card.starter { border-top-color: #28a745; }
-  .plan-card.advanced { border-top-color: #17a2b8; }
-  .plan-card.premium { border-top-color: #ffc107; }
-  .plan-card.corporate { border-top-color: #6f42c1; }
-
   .select-btn {
-    margin-top: 20px;
     background-color: #007BFF;
-    border: none;
     color: white;
-    padding: 10px 20px;
-    font-weight: bold;
-    border-radius: 25px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
@@ -721,9 +582,20 @@
     background-color: #1e7e34;
   }
 
+  /* Color-coded top borders */
+  .plan-card.basic { border-top-color: #6c757d; }
+  .plan-card.starter { border-top-color: #28a745; }
+  .plan-card.advanced { border-top-color: #17a2b8; }
+  .plan-card.premium { border-top-color: #ffc107; }
+  .plan-card.corporate { border-top-color: #6f42c1; }
+
   @media (max-width: 600px) {
+    #pricing h2 {
+      font-size: 28px;
+    }
+
     .plan-card {
-      padding: 24px 16px;
+      padding: 28px 20px;
     }
 
     .plan-card h3 {
@@ -731,14 +603,20 @@
     }
 
     .plan-card .price {
-      font-size: 24px;
+      font-size: 26px;
     }
 
     .plan-card ul li {
-      font-size: 13px;
+      font-size: 14px;
     }
   }
 </style>
+<section id="pricing">
+  <h2>Plans Available</h2>
+  <div class="plans-container">
+    <!-- your .plan-card blocks go here -->
+  </div>
+</section>
 
 <!-- Free Trial -->
 <section style="text-align:center; margin: 80px 0;">
