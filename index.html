@@ -156,16 +156,118 @@
 </section>
 
 <!-- Services -->
-<section>
-  <h2>What We Offer</h2>
-  <div class="services">
-    <div class="card"><h3>Ask Spudy AI</h3><p>Smart responses to your academic or business questions.</p></div>
-    <div class="card"><h3>Remove Plagiarism</h3><p>Clean and refine your content instantly.</p></div>
-    <div class="card"><h3>Create Songs</h3><p>Generate lyrics and melodies with emotion.</p></div>
-    <div class="card"><h3>Image Creation</h3><p>Design AI art from your ideas.</p></div>
-    <div class="card"><h3>Image Enhancement</h3><p>Improve the quality of your visuals fast.</p></div>
-  </div>
-</section>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8f0fa;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .service-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .service-card:hover {
+      background-color: #007BFF;
+      color: white;
+      border-color: #0056b3;
+      transform: translateY(-5px);
+    }
+
+    .service-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .service-separator {
+      width: 40px;
+      height: 3px;
+      background-color: #007BFF;
+      margin: 0 auto 10px;
+    }
+
+    .service-description {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="services-container">
+    <div class="service-card">
+      <div class="service-title">Ask Spudy AI</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Smart responses to your academic or business questions.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-title">Remove Plagiarism</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Clean and refine your content instantly.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-title">Create Songs</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Generate lyrics and melodies with emotion.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-title">Image Creation</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Design AI art from your ideas.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-title">Image Enhancement</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Improve the quality of your visuals fast.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-title">Voice Cloning</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Clone any voice with stunning accuracy.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-title">Face Swap</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Swap faces in images and videos seamlessly.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-title">Code Generation</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Generate working code in various programming languages.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-title">Presentation Builder</div>
+      <div class="service-separator"></div>
+      <div class="service-description">Automatically create stunning slides from text or topics.</div>
+    </div>
 
 <!-- Plans -->
 <section>
