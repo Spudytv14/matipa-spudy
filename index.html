@@ -308,41 +308,183 @@
   }
 </style>
 
+<div id="auth-container" class="auth-box fade-in">
+  <div class="tabs">
+    <button id="register-tab" class="tab active">Register</button>
+    <button id="login-tab" class="tab">Login</button>
+  </div>
+
+  <div class="form-content" id="register-form">
+    <input id="username" type="text" placeholder="Username">
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button id="register-btn">Register</button>
+  </div>
+
+  <div class="form-content hidden" id="login-form">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
+  </div>
+</div>
+
+<style>
+  .auth-box {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px 25px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    animation: slideIn 0.6s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  .tab {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .tab.active {
+    color: #007BFF;
+    border-color: #007BFF;
+  }
+
+  .form-content input {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s ease;
+  }
+
+  .form-content input.invalid {
+    border-color: red;
+  }
+
+  .form-content button {
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .form-content button:hover {
+    background: #0056b3;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+</style>
+
 <script>
   const username = document.getElementById('username');
   const email = document.getElementById('email');
   const password = document.getElementById('password');
+  const registerBtn = document.getElementById('register-btn');
+  const container = document.getElementById('auth-container');
 
   function validateInputs() {
-    // Username validation
+    let valid = true;
+
     if (username.value.trim().length < 3) {
       username.classList.add('invalid');
+      valid = false;
     } else {
       username.classList.remove('invalid');
     }
 
-    // Email validation
     const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
     if (!email.value.match(emailPattern)) {
       email.classList.add('invalid');
+      valid = false;
     } else {
       email.classList.remove('invalid');
     }
 
-    // Password validation
     const passwordPattern = /^(?=.*[!@#$%^&*])(?=.{8,})/;
     if (!password.value.match(passwordPattern)) {
       password.classList.add('invalid');
+      valid = false;
     } else {
       password.classList.remove('invalid');
     }
+
+    return valid;
   }
 
-  username.addEventListener('input', validateInputs);
-  email.addEventListener('input', validateInputs);
-  password.addEventListener('input', validateInputs);
-</script>
+  [username, email, password].forEach(input =>
+    input.addEventListener('input', validateInputs)
+  );
 
+  registerBtn.addEventListener('click', () => {
+    if (validateInputs()) {
+      container.style.opacity = '0';
+      container.style.transform = 'translateY(-20px)';
+      setTimeout(() => container.style.display = 'none', 400);
+    }
+  });
+
+  // Tab switch logic
+  const registerTab = document.getElementById('register-tab');
+  const loginTab = document.getElementById('login-tab');
+  const registerForm = document.getElementById('register-form');
+  const loginForm = document.getElementById('login-form');
+
+  registerTab.addEventListener('click', () => {
+    registerTab.classList.add('active');
+    loginTab.classList.remove('active');
+    registerForm.classList.remove('hidden');
+    loginForm.classList.add('hidden');
+  });
+
+  loginTab.addEventListener('click', () => {
+    loginTab.classList.add('active');
+    registerTab.classList.remove('active');
+    loginForm.classList.remove('hidden');
+    registerForm.classList.add('hidden');
+  });
+</script>
 
 <section style="padding: 60px 20px; background: #e8f0fa;">
   <div class="services-container">
@@ -834,7 +976,7 @@
   <div class="creator-card no-image">
     <div class="creator-content">
       <h2>Meet the Creator</h2>
-      <p>Hello! I’m <strong>Alex Morgan</strong>, the mind behind Spudy AI. I created this platform to empower creators, students, and professionals with AI tools that are both intuitive and powerful. My goal is to make your creative journey smoother, smarter, and more enjoyable.</p>
+      <p>Hello! I’m <strong>Matipaishe_Blessing</strong>, the mind behind Spudy Intelligence. I created this platform to empower creators, students, and professionals with AI tools that are both intuitive and powerful. My goal is to make your creative journey smoother, smarter, and more enjoyable.</p>
       <p>Thank you for being here and exploring the future of AI-powered productivity with me.</p>
     </div>
   </div>
