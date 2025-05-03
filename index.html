@@ -177,95 +177,198 @@
 </head>
 <body>
 
-  <header>
-    <div class="glow"></div>
-    <div class="top-bar">
-      <img src="spudy-ai-1.png" alt="Spudy AI Logo" class="logo" />
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li>
-            <a href="#">Products ▾</a>
-            <div class="dropdown-content">
-              <a href="#">AI Tutoring</a>
-              <a href="#">Exam Prep</a>
-              <a href="#">Subscription Plans</a>
-            </div>
-          </li>
-          <li>
-            <style>
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spudy AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      margin: 0;
+      padding: 0;
+    }
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
+    .top-bar {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
+    .logo {
+      height: 50px;
+    }
 
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    display: block;
-    text-decoration: none;
-  }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
 
-  .dropdown-content a:hover {
-    background-color: #f1f1f1;
-  }
+    nav ul li {
+      position: relative;
+    }
 
-  .info-box {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #eaeaea;
-    border-radius: 10px;
-    display: none;
-  }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      display: block;
+    }
 
-  .info-box.active {
-    display: block;
-  }
-</style>
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 180px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+      z-index: 999;
+    }
 
-<div class="dropdown">
-  <a href="#">About ▾</a>
-  <div class="dropdown-content">
-    <a href="#" onclick="showInfo('story')">Our Story</a>
-    <a href="#" onclick="showInfo('team')">Team</a>
-    <a href="#" onclick="showInfo('careers')">Careers</a>
+    nav ul li:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      padding: 12px 16px;
+      display: block;
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #d6eaff;
+    }
+
+    .info-box {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ffffff;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .info-box.active {
+      display: block;
+    }
+
+    .popup-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      animation: fadeInOut 4s forwards;
+      z-index: 999;
+      font-weight: bold;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">
+    <img src="spudy-ai-1.png" alt="Spudy AI Logo" class="logo" />
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Home ▾</a>
+          <div class="dropdown-content">
+            <a href="#" onclick="showPopup('Spudy AI is here to revolutionize learning. Explore what we offer!')">Featured 1</a>
+            <a href="#" onclick="showPopup('Stay tuned for new launches and community features.')">Featured 2</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">Products ▾</a>
+          <div class="dropdown-content">
+            <a href="#" onclick="showPopup('To create a great prompt, start with a goal, provide context, and be specific!')">AI Tutoring</a>
+            <a href="#" onclick="showPopup('We help you prep with quizzes, summaries, and study tips. Let\'s get started!')">Exam Prep</a>
+            <a href="#" onclick="showPopup('Scroll down the page to view our subscription packages and pricing.')">Subscription Plans</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">About ▾</a>
+          <div class="dropdown-content">
+            <a href="#" onclick="showInfo('story')">Our Story</a>
+            <a href="#" onclick="showInfo('team')">Team</a>
+            <a href="#" onclick="showInfo('careers')">Careers</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">Contact ▾</a>
+          <div class="dropdown-content">
+            <a href="https://wa.me/263716669706?text=Good%20day%2C%20just%20came%20from%20your%20website%20I%20wanted%20to" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="mailto:spudytv14@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://www.facebook.com/matipaishe.blessing/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://www.instagram.com/matipaishe-blessing" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://x.com/matipaishe-blessing" target="_blank" title="X"><i class="fab fa-x-twitter"></i> X</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
   </div>
-</div>
+</header>
 
+<!-- Info Box Content Below Navbar -->
 <div id="story" class="info-box">
-  <strong>Our Story:</strong> <br>
-  Spudy Intelligence was founded in 2020. It began as just a name, born from passion and creativity. Over time, that spark developed into a vision — to build something meaningful and innovative. Behind this idea is Matipaishe, the founder and visionary behind the Spudy Intelligence Unit.
+  <strong>Our Story:</strong><br>
+  Spudy Intelligence was founded in 2020. It began as just a name, born from passion and creativity.
+  Over time, that spark developed into a vision — to build something meaningful and innovative.
+  Behind this idea is Matipaishe, the founder and visionary behind the Spudy Intelligence Unit.
 </div>
 
 <div id="team" class="info-box">
-  <strong>Team:</strong> <br>
-  Meet some of the amazing contributors to Spudy Intelligence: <br>
-  - Spudy (you), the driving force and innovator. <br>
-  - Myta Zedy, the supporter and motivator. <br>
-  - Indra Whande, your mom and a core pillar of support. <br>
-  - The Final Product Inspector (role in progress!) ensuring quality and completeness. <br>
+  <strong>Team:</strong><br>
+  Meet some of the amazing contributors to Spudy Intelligence:<br>
+  - Matipaishe (Spudy), the driving force and innovator.<br>
+  - Myta Zedy, the supporter and motivator.<br>
+  - Indra Whande, your mom and a core pillar of support.<br>
+  - The Final Product Inspector (role in progress!) ensuring quality and completeness.<br>
   ...and more contributors behind the scenes.
 </div>
 
 <div id="careers" class="info-box">
-  <strong>Careers:</strong> <br>
-  Interested in joining Spudy Intelligence? Contact us through our social platforms or phone numbers. We'd love to hear from passionate minds!
+  <strong>Careers:</strong><br>
+  Interested in joining Spudy Intelligence? Contact us through our social platforms or phone numbers.
+  We'd love to hear from passionate minds!
 </div>
 
+<!-- Popup Message Script -->
 <script>
+  function showPopup(message) {
+    const popup = document.createElement('div');
+    popup.className = 'popup-msg';
+    popup.innerText = message;
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+      popup.remove();
+    }, 4000);
+  }
+
   function showInfo(sectionId) {
     const boxes = document.querySelectorAll('.info-box');
     boxes.forEach(box => box.classList.remove('active'));
@@ -273,25 +376,9 @@
   }
 </script>
 
-            </div>
-          </li>
-          <li>
-            <a href="#">Contact ▾</a>
-            <div class="dropdown-content">
-              <a href="https://wa.me/263716669706?text=Good%20day%2C%20just%20came%20from%20your%20website%20I%20wanted%20to" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-              <a href="mailto:spudytv14@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-              <a href="https://www.facebook.com/matipaishe.blessing/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-              <a href="https://www.instagram.com/matipaishe-blessing" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-              <a href="https://x.com/matipaishe-blessing" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </div>
-
-    <div class="hero">
-      <h1>Welcome to Spudy AI</h1>
-      <p>Your all-in-one AI assistant for creativity, productivity, and smart tools.</p>
+</body>
+</html>
+our all-in-one AI assistant for creativity, productivity, and smart tools.</p>
     </div>
   </header>
 
