@@ -390,9 +390,79 @@
 
 
 <!-- Free Trial -->
-<section style="text-align:center;">
-  <a href="#payment" class="button">Start Free Trial</a>
+<section style="text-align:center; margin-top: 50px;">
+  <a href="#" id="freeTrialBtn" class="trial-button">Start Free Trial</a>
+  <div id="popupMessage" class="popup">
+    <p>Please select a plan first</p>
+    <div class="arrow-down"></div>
+  </div>
 </section>
+
+<style>
+  .trial-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    background: linear-gradient(135deg, #007BFF, #00C6FF);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .trial-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #0056b3, #00aaff);
+  }
+
+  .popup {
+    margin-top: 20px;
+    display: none;
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: 1px solid #ffeeba;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    animation: fadeDown 0.5s ease;
+  }
+
+  .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #fff3cd;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  document.getElementById("freeTrialBtn").addEventListener("click", function (e) {
+    e.preventDefault();
+    const popup = document.getElementById("popupMessage");
+    popup.style.display = "block";
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 3000); // Hide after 3 seconds
+  });
+</script>
+
 
 <!-- Payment Methods -->
 <section id="payment">
