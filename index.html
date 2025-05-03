@@ -193,11 +193,86 @@
             </div>
           </li>
           <li>
-            <a href="#">About ▾</a>
-            <div class="dropdown-content">
-              <a href="#">Our Story</a>
-              <a href="#">Team</a>
-              <a href="#">Careers</a>
+            <style>
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .info-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    display: none;
+  }
+
+  .info-box.active {
+    display: block;
+  }
+</style>
+
+<div class="dropdown">
+  <a href="#">About ▾</a>
+  <div class="dropdown-content">
+    <a href="#" onclick="showInfo('story')">Our Story</a>
+    <a href="#" onclick="showInfo('team')">Team</a>
+    <a href="#" onclick="showInfo('careers')">Careers</a>
+  </div>
+</div>
+
+<div id="story" class="info-box">
+  <strong>Our Story:</strong> <br>
+  Spudy Intelligence was founded in 2020. It began as just a name, born from passion and creativity. Over time, that spark developed into a vision — to build something meaningful and innovative. Behind this idea is Matipaishe, the founder and visionary behind the Spudy Intelligence Unit.
+</div>
+
+<div id="team" class="info-box">
+  <strong>Team:</strong> <br>
+  Meet some of the amazing contributors to Spudy Intelligence: <br>
+  - Spudy (you), the driving force and innovator. <br>
+  - Myta Zedy, the supporter and motivator. <br>
+  - Indra Whande, your mom and a core pillar of support. <br>
+  - The Final Product Inspector (role in progress!) ensuring quality and completeness. <br>
+  ...and more contributors behind the scenes.
+</div>
+
+<div id="careers" class="info-box">
+  <strong>Careers:</strong> <br>
+  Interested in joining Spudy Intelligence? Contact us through our social platforms or phone numbers. We'd love to hear from passionate minds!
+</div>
+
+<script>
+  function showInfo(sectionId) {
+    const boxes = document.querySelectorAll('.info-box');
+    boxes.forEach(box => box.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+  }
+</script>
+
             </div>
           </li>
           <li>
