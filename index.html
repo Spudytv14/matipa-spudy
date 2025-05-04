@@ -2,283 +2,253 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Spudy Intelligence Unit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spudy Intelligence Unit</title>
   <style>
     :root {
-      --primary-blue: #003366;
-      --hover-green: #00cc66;
-      --white: #ffffff;
-      --header-bg: #002b5c;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --main-blue: #002e5d;
+      --hover-green: #28a745;
+      --light-bg: #e8f1fa;
+      --white: #fff;
     }
 
     body {
-      background-color: var(--white);
-      color: var(--primary-blue);
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light-bg);
+      color: #002e5d;
     }
 
+    /* HEADER */
     header {
-      background-color: var(--header-bg);
-      color: var(--white);
+      background-color: var(--main-blue);
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 20px 40px;
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      align-items: center;
+      height: 80px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
-    /* Logo */
-    .logo {
+    .logo-section {
       display: flex;
       align-items: center;
-      gap: 10px;
     }
-    .logo img {
+
+    .logo-section img {
       height: 50px;
-    }
-    .logo-text {
-      font-size: 1.2rem;
-      font-weight: bold;
-      letter-spacing: 1px;
+      margin-right: 10px;
     }
 
-    /* Animated Brand Name */
-    .brand-center {
-      font-size: 2.2rem;
-      font-weight: bold;
-      position: relative;
-      animation: dropIn 1.5s ease forwards;
-    }
-    @keyframes dropIn {
-      0% {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .logo-section span {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
     }
 
-    .brand-center::before {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 8px;
-      background: var(--hover-green);
-      border-radius: 50% 50% 0 0;
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        width: 0;
-        opacity: 0;
-      }
-      50% {
-        width: 80px;
-        opacity: 0.4;
-      }
-    }
-
-    /* Nav Menu */
-    nav {
+    .nav-links {
       display: flex;
       gap: 20px;
+      position: relative;
     }
 
     .nav-item {
-      position: relative;
-    }
-
-    .nav-link {
-      background: transparent;
       color: var(--white);
+      text-decoration: none;
       padding: 10px 15px;
-      font-size: 1rem;
-      border: none;
+      position: relative;
+      transition: color 0.3s ease;
       cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
     }
 
-    .nav-link:hover {
-      background-color: var(--hover-green);
-      border-radius: 5px;
-      color: var(--white);
+    .nav-item:hover {
+      color: var(--hover-green);
     }
 
-    /* Dropdown */
     .dropdown {
       display: none;
       position: absolute;
-      top: 120%;
-      right: 0;
       background-color: var(--white);
-      color: var(--primary-blue);
-      min-width: 180px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-      border-radius: 5px;
-      overflow: hidden;
-      animation: fadeSlide 0.4s ease forwards;
-    }
-
-    @keyframes fadeSlide {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .dropdown a {
-      display: block;
-      padding: 12px 15px;
-      color: var(--primary-blue);
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .dropdown a:hover {
-      background-color: var(--hover-green);
-      color: var(--white);
+      top: 60px;
+      left: 0;
+      padding: 10px;
+      border-radius: 10px 10px 40px 40px;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+      animation: dropDown 0.4s ease-out;
+      z-index: 10;
     }
 
     .nav-item:hover .dropdown {
       display: block;
     }
 
-    @media screen and (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
+    .dropdown a {
+      display: block;
+      color: var(--main-blue);
+      padding: 5px 0;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .dropdown a:hover {
+      color: var(--hover-green);
+    }
+
+    @keyframes dropDown {
+      from {
+        transform: translateY(-10px);
+        opacity: 0;
       }
-      nav {
-        flex-direction: column;
-        width: 100%;
-        padding-top: 10px;
+      to {
+        transform: translateY(0);
+        opacity: 1;
       }
-      .brand-center {
-        margin-top: 10px;
-      }
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .services h2 {
+      text-align: center;
+      color: var(--main-blue);
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .service-item {
+      margin-bottom: 20px;
+    }
+
+    .service-item strong {
+      display: block;
+      font-size: 18px;
+      color: var(--main-blue);
+      margin-bottom: 5px;
+    }
+
+    .service-item p {
+      margin: 0;
+      color: #333;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <!-- Logo Area -->
-  <div class="logo">
-    <img src="spudy-ai-1.png" alt="SIU Logo">
-    <div class="logo-text">SIU</div>
-  </div>
+  <!-- HEADER -->
+  <header>
+    <div class="logo-section">
+      <img src="spudy-ai-1.png" alt="SIU Logo">
+      <span>SIU</span>
+    </div>
+    <nav class="nav-links">
+      <div class="nav-item">
+        Home
+        <div class="dropdown">
+          <a href="#">Spudy AI</a>
+          <a href="#">AI Spudy Music</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        Services
+        <div class="dropdown">
+          <a href="#services">Scroll down to services</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        About
+        <div class="dropdown">
+          <a href="#team">Meet the Creator</a>
+          <a href="#">About the Company</a>
+          <div style="padding-top: 8px; font-size: 13px; color: #555;">
+            Started as a nickname... grew from passion into an idea, then in 2020 it began coming to life.
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        Contact Us
+        <div class="dropdown">
+          <a href="https://www.facebook.com/matipaishe-blessing" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/matipaishe-blessing" target="_blank">Instagram</a>
+          <a href="https://twitter.com/matipaishe-blessing" target="_blank">Twitter (X)</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-  <!-- Animated Company Name -->
-  <div class="brand-center">Spudy Intelligence Unit</div>
-
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-item">
-      <button class="nav-link">Home</button>
-      <div class="dropdown">
-        <a href="#">Spudy AI</a>
-        <a href="#">AI Spudy Music</a>
-      </div>
+  <!-- SERVICES SECTION -->
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    
+    <div class="service-item">
+      <strong>Spudy AI</strong>
+      <p>Ask anything and get intelligent, accurate responses instantly.</p>
     </div>
-    <div class="nav-item">
-      <button class="nav-link">Services</button>
-      <div class="dropdown">
-        <a href="#services">Explore Our Services</a>
-      </div>
+    
+    <div class="service-item">
+      <strong>Spudy Advanced Reasoning</strong>
+      <p>Powerful logic for complex, high-level problem solving.</p>
     </div>
-    <div class="nav-item">
-      <button class="nav-link">About</button>
-      <div class="dropdown">
-        <a href="#creator">Meet the Creator</a>
-        <a href="#about-company">About the Company</a>
-      </div>
+    
+    <div class="service-item">
+      <strong>Spudy Music AI</strong>
+      <p>Create custom beats, lyrics, or full tracks with AI.</p>
     </div>
-    <div class="nav-item">
-      <button class="nav-link">Contact</button>
-      <div class="dropdown">
-        <a href="https://www.facebook.com/matipaishe-blessing" target="_blank">Facebook</a>
-        <a href="https://www.instagram.com/matipaishe-blessing" target="_blank">Instagram</a>
-        <a href="https://twitter.com/matipaishe-blessing" target="_blank">X (Twitter)</a>
-      </div>
+    
+    <div class="service-item">
+      <strong>Spudy Video Generator</strong>
+      <p>Generate explainer, promo, or creative videos from your ideas.</p>
     </div>
-  </nav>
-</header>
+    
+    <div class="service-item">
+      <strong>Spudy Image Generator</strong>
+      <p>Create original images from text prompts or style inputs.</p>
+    </div>
+    
+    <div class="service-item">
+      <strong>Spudy Code Generator</strong>
+      <p>Turn requirements into working code across many languages.</p>
+    </div>
+    
+    <div class="service-item">
+      <strong>Spudy App Builder</strong>
+      <p>AI-assisted creation of mobile and web apps—no coding needed.</p>
+    </div>
+    
+    <div class="service-item">
+      <strong>Spudy Graphic Design</strong>
+      <p>Design flyers, posters, and brand kits in minutes.</p>
+    </div>
+    
+    <div class="service-item">
+      <strong>Spudy Presentation Maker</strong>
+      <p>Create full slide decks with AI-driven content and layout.</p>
+    </div>
+    
+    <div class="service-item">
+      <strong>Spudy Text-to-Speech</strong>
+      <p>Convert written text into natural, human-like speech.</p>
+    </div>
+    
+    <div class="service-item">
+      <strong>Spudy Voice Cloner</strong>
+      <p>Clone your voice or use custom voices for media creation.</p>
+    </div>
+    
+    <div class="service-item">
+      <strong>Spudy Resume Builder</strong>
+      <p>Generate professional CVs tailored to any field or job.</p>
+    </div>
+  </section>
 
 </body>
 </html>
-
-  <section id="services" class="services-section">
-    <h2 class="section-title">Our Services</h2>
-    <div class="services-grid">
-      <div class="service-box">
-        <h3>Spudy AI</h3>
-        <p>Ask anything and get intelligent, accurate responses instantly.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Advanced Reasoning</h3>
-        <p>Powerful logic for complex, high-level problem solving.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Music AI</h3>
-        <p>Create custom beats, lyrics, or even complete tracks with AI.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Video Generator</h3>
-        <p>Generate explainer, promo, or creative videos from your ideas.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Image Generator</h3>
-        <p>Create original images from text prompts or style inputs.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Code Generator</h3>
-        <p>Turn requirements into working code across many languages.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy App Builder</h3>
-        <p>AI-assisted creation of mobile and web apps, no coding needed.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Graphic Design</h3>
-        <p>Design flyers, posters, and brand kits in minutes.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Presentation Maker</h3>
-        <p>Create full slide decks with AI-driven content and layout.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Text-to-Speech</h3>
-        <p>Convert written text into natural, human-like speech.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Voice Cloner</h3>
-        <p>Clone your voice or use custom voices for media creation.</p>
-      </div>
-      <div class="service-box">
-        <h3>Spudy Resume Builder</h3>
-        <p>Create professional CVs tailored to specific job markets.</p>
-      </div>
-    </div>
-  </section>
 
 </body>
 </html>
