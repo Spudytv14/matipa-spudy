@@ -13,29 +13,35 @@
       color: white;
     }
 
-    .half-moon {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 100px;
-      border-bottom-left-radius: 100px;
-      border-bottom-right-radius: 100px;
+    .full-moon {
+      width: 100%;
+      height: 180px;
+      border-bottom-left-radius: 100% 80px;
+      border-bottom-right-radius: 100% 80px;
       background: #00ff88;
-      animation: dropIn 1s ease forwards;
+      animation: moonDrop 1s ease-out forwards;
       opacity: 0;
     }
 
-    @keyframes dropIn {
-      0% {
-        transform: translate(-50%, -200%);
+    @keyframes moonDrop {
+      from {
+        transform: translateY(-100%);
         opacity: 0;
       }
-      100% {
-        transform: translate(-50%, 0%);
+      to {
+        transform: translateY(0%);
         opacity: 1;
       }
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-6px);
+      border-color: #00ff88;
+      box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
     }
 
     .dropdown:hover .dropdown-menu {
@@ -48,17 +54,9 @@
       top: 100%;
       right: 0;
       background: rgba(0, 31, 63, 0.95);
-      backdrop-filter: blur(6px);
       border-radius: 0.5rem;
       padding: 0.5rem;
       z-index: 50;
-    }
-
-    .dropdown-menu a, .dropdown-menu p {
-      color: white;
-      padding: 0.25rem 0.75rem;
-      display: block;
-      transition: background 0.3s;
     }
 
     .dropdown-menu a:hover {
@@ -73,26 +71,26 @@
   </style>
 </head>
 <body class="relative">
-  <!-- Half-Moon Animation -->
-  <div class="half-moon"></div>
+
+  <!-- Full-width Half-Moon -->
+  <div class="full-moon absolute top-0 left-0 z-0"></div>
 
   <!-- Header -->
-  <header class="flex justify-between items-center px-6 py-4">
-    <!-- Left: Logo -->
+  <header class="relative z-10 flex justify-between items-center px-6 py-6">
+    <!-- Left Logo -->
     <div class="flex items-center gap-3">
       <img src="spudy-ai-1.png" alt="SUI Logo" class="w-12 h-12 rounded-full border-2 border-green-400" />
       <span class="text-xl font-bold text-green-400">Spudy Intelligence Unit</span>
     </div>
 
-    <!-- Center: Title & Tagline -->
-    <div class="absolute top-16 left-1/2 transform -translate-x-1/2 text-center">
-      <h1 class="text-5xl text-white font-bold drop-shadow-lg">SUI</h1>
-      <p class="text-green-400 text-sm mt-1 italic">Where Curiosity Becomes Code.</p>
+    <!-- Center -->
+    <div class="absolute top-24 left-1/2 transform -translate-x-1/2 text-center">
+      <h1 class="text-6xl font-bold text-white drop-shadow-lg">SUI</h1>
+      <p class="text-green-400 text-md mt-2 italic">Where Curiosity Becomes Code.</p>
     </div>
 
-    <!-- Right: Navigation -->
-    <nav class="flex items-center gap-6">
-      <!-- Home Dropdown -->
+    <!-- Right Nav -->
+    <nav class="flex items-center gap-6 z-10">
       <div class="relative dropdown">
         <button class="text-white hover:text-green-400">Home</button>
         <div class="dropdown-menu">
@@ -101,7 +99,6 @@
         </div>
       </div>
 
-      <!-- Services -->
       <div class="relative dropdown">
         <button class="text-white hover:text-green-400">Services</button>
         <div class="dropdown-menu">
@@ -109,148 +106,100 @@
         </div>
       </div>
 
-      <!-- About -->
       <div class="relative dropdown">
         <button class="text-white hover:text-green-400">About</button>
         <div class="dropdown-menu">
           <a href="#" onclick="alert('Scroll down to meet the visionary behind SUI')">Meet the Creator</a>
-          <div class="mt-2">
-            <p class="text-xs text-gray-300 mb-1">About the Company:</p>
-            <p class="text-sm text-white">Started as a nickname and grew through passion — until 2020, when it came to life.</p>
-          </div>
+          <p class="text-sm mt-1">Started as a nickname and grew into a dream — made real in 2020.</p>
         </div>
       </div>
 
-      <!-- Contact -->
       <div class="relative dropdown">
         <button class="text-white hover:text-green-400">Contact</button>
-        <div class="dropdown-menu flex gap-3 items-center justify-center">
+        <div class="dropdown-menu flex gap-3 items-center">
           <a href="https://www.facebook.com/matipaishe-blessing" target="_blank" class="icon-hover">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" class="w-5 h-5" alt="Facebook" />
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" class="w-5 h-5" />
           </a>
           <a href="https://www.instagram.com/matipaishe-blessing" target="_blank" class="icon-hover">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="w-5 h-5" alt="Instagram" />
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="w-5 h-5" />
           </a>
           <a href="https://twitter.com/matipaishe-blessing" target="_blank" class="icon-hover">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" class="w-5 h-5" alt="Twitter" />
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" class="w-5 h-5" />
           </a>
         </div>
       </div>
     </nav>
   </header>
+
+  <!-- Our Services -->
+  <section class="pt-56 px-4 md:px-16 pb-20">
+    <h2 class="text-4xl font-bold text-white mb-10">Our Services</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Service Card -->
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy AI</h3>
+        <p>Ask anything and get intelligent, accurate responses instantly.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Advanced Reasoning</h3>
+        <p>Powerful logic for complex, high-level problem solving.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Music AI</h3>
+        <p>Create custom beats, lyrics, or full tracks with AI.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Video Generator</h3>
+        <p>Generate promo, explainer or creative videos from your ideas.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Image Generator</h3>
+        <p>Create original images from prompts or style inputs.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Code Generator</h3>
+        <p>Turn requirements into working code across many languages.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy App Builder</h3>
+        <p>AI-assisted creation of web & mobile apps without coding.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Graphic Design</h3>
+        <p>Design flyers, posters, and brand kits in minutes.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Presentation Maker</h3>
+        <p>Generate AI-powered full decks with layout and content.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Text-to-Speech</h3>
+        <p>Turn written text into realistic voiceovers.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Voice Cloner</h3>
+        <p>Clone your voice or create custom voices.</p>
+      </div>
+
+      <div class="bg-blue-900 border border-blue-700 p-6 rounded-xl card-hover">
+        <h3 class="text-xl font-semibold mb-2 text-green-400">Spudy Resume Builder</h3>
+        <p>AI-powered resume builder with expert suggestions.</p>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
-
-  <!-- SERVICES SECTION -->
- <section id="services" class="services-section">
-  <h2 class="section-title">Our Services</h2>
-  <div class="services-grid">
-    <div class="service-box">
-      <h3>Spudy AI</h3>
-      <p>Ask anything and get intelligent, accurate responses instantly.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Advanced Reasoning</h3>
-      <p>Powerful logic for complex, high-level problem solving.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Music AI</h3>
-      <p>Create custom beats, lyrics, or even complete tracks with AI.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Video Generator</h3>
-      <p>Generate explainer, promo, or creative videos from your ideas.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Image Generator</h3>
-      <p>Create original images from text prompts or style inputs.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Code Generator</h3>
-      <p>Turn requirements into working code across many languages.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy App Builder</h3>
-      <p>AI-assisted creation of mobile and web apps, no coding needed.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Graphic Design</h3>
-      <p>Design flyers, posters, and brand kits in minutes.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Presentation Maker</h3>
-      <p>Create full slide decks with AI-driven content and layout.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Text-to-Speech</h3>
-      <p>Convert written text into natural, human-like speech.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Voice Cloner</h3>
-      <p>Clone your voice or use custom voices for media creation.</p>
-    </div>
-    <div class="service-box">
-      <h3>Spudy Resume Builder</h3>
-      <p>Create professional CVs tailored to specific job markets.</p>
-    </div>
-  </div>
-</section>
----
-  <section class="plans-section">
-    <h2 class="plans-title">Available Plans</h2>
-    <div class="plans-grid">
-      <div class="plan-box">
-        <div class="trial-badge">3-Day Free Trial</div>
-        <h3>Free Plan</h3>
-        <p class="plan-price">$0.00</p>
-        <p class="plan-features">Access Spudy AI, limited daily use, basic research & music tools.</p>
-        <button class="select-button" onclick="scrollToPayment()">Select Plan</button>
-      </div>
-
-      <div class="plan-box">
-        <div class="trial-badge">3-Day Free Trial</div>
-        <h3>Basic Plan</h3>
-        <p class="plan-price">$4.99/mo</p>
-        <p class="plan-discount">10% off per year</p>
-        <p class="plan-features">Includes advanced AI, music, image generation, and more.</p>
-        <button class="select-button" onclick="scrollToPayment()">Select Plan</button>
-      </div>
-
-      <div class="plan-box">
-        <div class="trial-badge">3-Day Free Trial</div>
-        <h3>Starter</h3>
-        <p class="plan-price">$9.99/mo</p>
-        <p class="plan-discount">13% off per year</p>
-        <p class="plan-features">Unlock Spudy video, voice, and code generation.</p>
-        <button class="select-button" onclick="scrollToPayment()">Select Plan</button>
-      </div>
-
-      <div class="plan-box">
-        <div class="trial-badge">3-Day Free Trial</div>
-        <h3>Premium</h3>
-        <p class="plan-price">$19.99/mo</p>
-        <p class="plan-discount">17% off per year</p>
-        <p class="plan-features">Full suite of AI tools, priority access & support.</p>
-        <button class="select-button" onclick="scrollToPayment()">Select Plan</button>
-      </div>
-
-      <div class="plan-box">
-        <div class="trial-badge">3-Day Free Trial</div>
-        <h3>Premium+</h3>
-        <p class="plan-price">$29.99/mo</p>
-        <p class="plan-discount">25% off per year</p>
-        <p class="plan-features">All features + custom AI tools + collaboration options.</p>
-        <button class="select-button" onclick="scrollToPayment()">Select Plan</button>
-      </div>
-
-      <div class="plan-box">
-        <div class="trial-badge">3-Day Free Trial</div>
-        <h3>Enterprise</h3>
-        <p class="plan-price">Custom Quote</p>
-        <p class="plan-features">Tailored AI infrastructure for teams and organizations.</p>
-        <button class="select-button" onclick="scrollToPayment()">Select Plan</button>
-      </div>
-    </div>
 
     <!-- Standalone Free Trial -->
     <button class="free-trial-btn" onclick="showPopup()">Start Free Trial</button>
