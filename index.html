@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spudy Intelligence Unit</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Orbitron', sans-serif;
       background-color: #001f3f;
       color: white;
     }
 
+    header {
+      position: relative;
+      overflow: hidden;
+    }
+
     .full-moon {
       width: 100%;
-      height: 180px;
-      border-bottom-left-radius: 100% 80px;
-      border-bottom-right-radius: 100% 80px;
-      background: #00ff88;
+      height: 200px;
+      background: #0044cc; /* Blue arc */
+      border-bottom-left-radius: 100% 100px;
+      border-bottom-right-radius: 100% 100px;
       animation: moonDrop 1s ease-out forwards;
       opacity: 0;
     }
@@ -34,18 +45,54 @@
       }
     }
 
-    .card-hover {
-      transition: all 0.3s ease;
+    .header-content {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .card-hover:hover {
-      transform: translateY(-6px);
-      border-color: #00ff88;
-      box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+    .logo-area {
+      display: flex;
+      align-items: center;
     }
 
-    .dropdown:hover .dropdown-menu {
-      display: block;
+    .logo-area img {
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    .logo-area h1 {
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav .dropdown {
+      position: relative;
+    }
+
+    nav button,
+    nav a {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    nav button:hover,
+    nav a:hover {
+      color: #00ff88;
     }
 
     .dropdown-menu {
@@ -53,10 +100,23 @@
       position: absolute;
       top: 100%;
       right: 0;
-      background: rgba(0, 31, 63, 0.95);
+      background-color: white;
+      color: #001f3f;
       border-radius: 0.5rem;
-      padding: 0.5rem;
-      z-index: 50;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 100;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.4rem 0;
+      text-decoration: none;
+      color: #001f3f;
     }
 
     .dropdown-menu a:hover {
@@ -65,71 +125,91 @@
       border-radius: 0.25rem;
     }
 
-    .icon-hover:hover {
-      filter: brightness(150%);
+    .main-title {
+      position: absolute;
+      top: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: white;
+    }
+
+    .main-title h2 {
+      font-size: 2.5rem;
+    }
+
+    .main-title p {
+      font-size: 0.9rem;
+      color: #c0ffdf;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      color: white;
+      margin: 0 5px;
+      font-size: 1.2rem;
+    }
+
+    .social-icons a:hover {
+      color: #00ff88;
     }
   </style>
 </head>
-<body class="relative">
+<body>
 
-  <!-- Full-width Half-Moon -->
-  <div class="full-moon absolute top-0 left-0 z-0"></div>
-
-  <!-- Header -->
-  <header class="relative z-10 flex justify-between items-center px-6 py-6">
-    <!-- Left Logo -->
-    <div class="flex items-center gap-3">
-      <img src="spudy-ai-1.png" alt="SUI Logo" class="w-12 h-12 rounded-full border-2 border-green-400" />
-      <span class="text-xl font-bold text-green-400">Spudy Intelligence Unit</span>
+<header>
+  <div class="full-moon"></div>
+  <div class="header-content">
+    <div class="logo-area">
+      <img src="spudy-ai-1.png" alt="Spudy AI Logo">
+      <h1>Spudy Intelligence Unit</h1>
     </div>
-
-    <!-- Center -->
-    <div class="absolute top-24 left-1/2 transform -translate-x-1/2 text-center">
-      <h1 class="text-6xl font-bold text-white drop-shadow-lg">SUI</h1>
-      <p class="text-green-400 text-md mt-2 italic">Where Curiosity Becomes Code.</p>
-    </div>
-
-    <!-- Right Nav -->
-    <nav class="flex items-center gap-6 z-10">
-      <div class="relative dropdown">
-        <button class="text-white hover:text-green-400">Home</button>
+    <nav>
+      <div class="dropdown">
+        <button>Home</button>
         <div class="dropdown-menu">
-          <a href="#">Spudy AI</a>
-          <a href="#">AI Spudy Music</a>
+          <a href="#spudy-ai">Spudy AI - Research</a>
+          <a href="#spudy-music">AI Spudy Music</a>
         </div>
       </div>
-
-      <div class="relative dropdown">
-        <button class="text-white hover:text-green-400">Services</button>
+      <div class="dropdown">
+        <button>Services</button>
         <div class="dropdown-menu">
-          <p class="text-sm italic">Scroll down to discover our services</p>
+          <p>Scroll down to explore our services</p>
         </div>
       </div>
-
-      <div class="relative dropdown">
-        <button class="text-white hover:text-green-400">About</button>
+      <div class="dropdown">
+        <button>About</button>
         <div class="dropdown-menu">
-          <a href="#" onclick="alert('Scroll down to meet the visionary behind SUI')">Meet the Creator</a>
-          <p class="text-sm mt-1">Started as a nickname and grew into a dream — made real in 2020.</p>
+          <a href="#creator">Meet the Creator</a>
+          <a href="#about-company">About the Company</a>
+          <div style="font-size: 0.75rem; margin-top: 0.5rem;">
+            Started as a nickname, born from an idea and passion.
+            In 2020, it began to come alive.
+          </div>
         </div>
       </div>
-
-      <div class="relative dropdown">
-        <button class="text-white hover:text-green-400">Contact</button>
-        <div class="dropdown-menu flex gap-3 items-center">
-          <a href="https://www.facebook.com/matipaishe-blessing" target="_blank" class="icon-hover">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" class="w-5 h-5" />
-          </a>
-          <a href="https://www.instagram.com/matipaishe-blessing" target="_blank" class="icon-hover">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="w-5 h-5" />
-          </a>
-          <a href="https://twitter.com/matipaishe-blessing" target="_blank" class="icon-hover">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" class="w-5 h-5" />
-          </a>
+      <div class="dropdown">
+        <button>Contact</button>
+        <div class="dropdown-menu social-icons">
+          <a href="https://www.facebook.com/matipaishe-blessing" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/matipaishe-blessing" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com/matipaishe-blessing" target="_blank"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
     </nav>
-  </header>
+  </div>
+  <div class="main-title">
+    <h2>SUI</h2>
+    <p>Where Curiosity Becomes Code.</p>
+  </div>
+</header>
+
+</body>
+</html>
 
   <!-- Our Services -->
   <section class="pt-56 px-4 md:px-16 pb-20">
