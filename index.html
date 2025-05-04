@@ -6,12 +6,12 @@
   <title>Spudy Intelligence Unit</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       font-family: 'Inter', sans-serif;
     }
 
-    /* Dropdown animation */
     .dropdown-menu {
       display: none;
       opacity: 0;
@@ -23,6 +23,32 @@
       display: block;
       opacity: 1;
       transform: translateY(0px);
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .animate-fadeInRight {
+      animation: fadeInRight 1s ease-out forwards;
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
   </style>
 </head>
@@ -51,52 +77,25 @@
       <h1 class="text-5xl md:text-6xl font-bold text-[#b3ccff] leading-tight animate-fadeInUp">
         SPUDY<br />INTELLIGENCE<br />UNIT
       </h1>
-      <div class="mt-6 text-sm">
-        <p class="opacity-70 mb-2">Visit Us</p>
-        <a href="https://spudytv14.github.io/matipa-spudy/?#spudy-music" class="text-[#00ff88] hover:underline break-all">
-          https://spudytv14.github.io/matipa-spudy/?#spudy-music
-        </a>
+
+      <!-- Social Media Icons -->
+      <div class="mt-6 flex space-x-6 text-xl">
+        <a href="https://twitter.com/" target="_blank" class="hover:text-[#00ff88]"><i class="fab fa-twitter"></i></a>
+        <a href="https://github.com/" target="_blank" class="hover:text-[#00ff88]"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/" target="_blank" class="hover:text-[#00ff88]"><i class="fab fa-linkedin"></i></a>
+        <a href="https://facebook.com/" target="_blank" class="hover:text-[#00ff88]"><i class="fab fa-facebook"></i></a>
       </div>
     </div>
 
-    <!-- Right Image -->
+    <!-- Logo Image (replacing robot hand) -->
     <div class="mt-12 lg:mt-0 relative z-10 w-full lg:w-1/2 flex justify-center animate-fadeInRight">
-      <img src="https://i.ibb.co/p2RPCKJ/robot-hand.png" alt="Robot Hand" class="max-w-sm md:max-w-md lg:max-w-lg" />
+      <img src="spudy-ai-1.png" alt="Spudy AI Logo" class="max-w-sm md:max-w-md lg:max-w-lg" />
     </div>
 
     <!-- Background Gradient Panel -->
     <div class="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-b from-[#421bff] to-[#9f6bff] opacity-60 z-0"></div>
 
   </section>
-
-  <!-- Simple fade animations -->
-  <style>
-    .animate-fadeInUp {
-      animation: fadeInUp 1s ease-out forwards;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    .animate-fadeInRight {
-      animation: fadeInRight 1s ease-out forwards;
-      opacity: 0;
-      transform: translateX(20px);
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInRight {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-  </style>
 
 </body>
 </html>
