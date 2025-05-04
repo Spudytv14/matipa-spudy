@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Spudy Intelligence Unit</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .box-hover:hover {
-      transform: scale(1.03);
-      transition: transform 0.3s ease-in-out;
-    }
-    .box-hover:active {
-      background-color: #db2777; /* rose-600 */
-    }
-  </style>
-</head>
-<body class="bg-gradient-to-r from-purple-800 via-pink-600 to-purple-800 text-white font-sans">
+<!-- HEADER -->
+<header class="relative text-center py-10">
+  <!-- Blue Arch Background -->
+  <div class="absolute inset-0 w-full h-full bg-blue-800 rounded-b-full z-0"></div>
 
-  <!-- HEADER -->
-  <header class="text-center py-10">
+  <!-- Title Content (on top of arch) -->
+  <div class="relative z-10">
     <h1 class="text-4xl font-bold tracking-wide animate-pulse">SPUDY INTELLIGENCE UNIT</h1>
     <p class="mt-2 text-lg italic">Driven by Innovation | Powered by Passion</p>
-  </header>
+  </div>
+
+  <!-- Header Buttons -->
+  <div class="absolute top-4 right-6 space-x-4 z-10">
+    <button onclick="alert('You are on the Home tab')" class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg shadow transition">Home</button>
+    <button onclick="alert('Contact us at: spudytv14@gmail.com \nWhatsApp: 0716669706')" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg shadow transition">Contact Us</button>
+    <button onclick="alert('Scroll down to discover our amazing services')" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg shadow transition">Our Services</button>
+  </div>
+</header>
 
   <!-- INTRODUCTION | VISION | MISSION -->
   <section class="flex flex-wrap justify-center gap-6 px-6 pb-12">
