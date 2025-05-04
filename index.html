@@ -212,102 +212,108 @@
 </html>
 
   <!-- Our Services -->
-<section class="pt-56 px-4 md:px-16 pb-20 bg-[#001f3f] text-white">
-  <h2 class="text-4xl font-bold mb-12 text-center animate-fade-in">Our Services</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Our Services Section -->
+<section class="pt-36 px-4 md:px-16 pb-20 bg-[#001f3f] font-[Inter,sans-serif]">
+  <h2 class="text-4xl font-bold text-white mb-12 text-center animate-fade-in">Our Services</h2>
+  <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
     
-    <!-- Service Card -->
-    <div class="service-card">
+    <!-- Example Service Card -->
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy AI</h3>
-      <p>Ask anything and get intelligent, accurate responses instantly.</p>
+      <p class="text-white/90">Ask anything and get intelligent, accurate responses instantly.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Advanced Reasoning</h3>
-      <p>Powerful logic for complex, high-level problem solving.</p>
+      <p class="text-white/90">Powerful logic for complex, high-level problem solving.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Music AI</h3>
-      <p>Create custom beats, lyrics, or full tracks with AI.</p>
+      <p class="text-white/90">Create custom beats, lyrics, or full tracks with AI.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Video Generator</h3>
-      <p>Generate promo, explainer or creative videos from your ideas.</p>
+      <p class="text-white/90">Generate promo, explainer or creative videos from your ideas.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Image Generator</h3>
-      <p>Create original images from prompts or style inputs.</p>
+      <p class="text-white/90">Create original images from prompts or style inputs.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Code Generator</h3>
-      <p>Turn requirements into working code across many languages.</p>
+      <p class="text-white/90">Turn requirements into working code across many languages.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy App Builder</h3>
-      <p>AI-assisted creation of web & mobile apps without coding.</p>
+      <p class="text-white/90">AI-assisted creation of web & mobile apps without coding.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Graphic Design</h3>
-      <p>Design flyers, posters, and brand kits in minutes.</p>
+      <p class="text-white/90">Design flyers, posters, and brand kits in minutes.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Presentation Maker</h3>
-      <p>Generate AI-powered full decks with layout and content.</p>
+      <p class="text-white/90">Generate AI-powered full decks with layout and content.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Text-to-Speech</h3>
-      <p>Turn written text into realistic voiceovers.</p>
+      <p class="text-white/90">Turn written text into realistic voiceovers.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Voice Cloner</h3>
-      <p>Clone your voice or create custom voices.</p>
+      <p class="text-white/90">Clone your voice or create custom voices.</p>
     </div>
 
-    <div class="service-card">
+    <div class="service-box">
       <h3 class="text-xl font-semibold text-[#00ff88] mb-2">Spudy Resume Builder</h3>
-      <p>AI-powered resume builder with expert suggestions.</p>
+      <p class="text-white/90">AI-powered resume builder with expert suggestions.</p>
     </div>
   </div>
 </section>
 
-<!-- Add this style or tailwind plugins -->
+<!-- Styles -->
 <style>
-  .service-card {
-    background: linear-gradient(145deg, #011a3b, #022c5c);
-    padding: 1.5rem;
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+  .service-box {
+    background-color: #022b4e;
     border-radius: 1rem;
-    border: 1px solid #00ff88;
+    padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeInUp 0.8s ease both;
+    border: 1px solid transparent;
+    opacity: 0;
+    animation: fadeInCard 0.8s ease forwards;
+    animation-delay: 0.1s;
   }
 
-  .service-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 25px rgba(0, 255, 136, 0.2);
+  .service-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+    border-color: #00ff88;
   }
 
-  @keyframes fadeInUp {
-    from {
+  @keyframes fadeInCard {
+    0% {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
     }
-    to {
+    100% {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
   .animate-fade-in {
-    animation: fadeInUp 1s ease forwards;
+    animation: fadeInCard 1s ease forwards;
   }
 </style>
 
