@@ -1,212 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spudy Intelligence Unit</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Orbitron', sans-serif;
-      background-color: #001f3f;
-      color: white;
+      font-family: 'Inter', sans-serif;
     }
 
-    header {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .full-moon {
-      width: 100%;
-      height: 200px;
-      background: #0044cc; /* Blue arc */
-      border-bottom-left-radius: 100% 100px;
-      border-bottom-right-radius: 100% 100px;
-      animation: moonDrop 1s ease-out forwards;
-      opacity: 0;
-    }
-
-    @keyframes moonDrop {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0%);
-        opacity: 1;
-      }
-    }
-
-    .header-content {
-      position: absolute;
-      top: 20px;
-      left: 0;
-      width: 100%;
-      padding: 0 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-area img {
-      height: 50px;
-      margin-right: 15px;
-    }
-
-    .logo-area h1 {
-      font-size: 1.5rem;
-      color: white;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    nav .dropdown {
-      position: relative;
-    }
-
-    nav button,
-    nav a {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    nav button:hover,
-    nav a:hover {
-      color: #00ff88;
-    }
-
+    /* Dropdown animation */
     .dropdown-menu {
       display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background-color: white;
-      color: #001f3f;
-      border-radius: 0.5rem;
-      padding: 0.5rem 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      z-index: 100;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .dropdown:hover .dropdown-menu {
       display: block;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 0.4rem 0;
-      text-decoration: none;
-      color: #001f3f;
-    }
-
-    .dropdown-menu a:hover {
-      background-color: #00ff88;
-      color: #001f3f;
-      border-radius: 0.25rem;
-    }
-
-    .main-title {
-      position: absolute;
-      top: 110px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: white;
-    }
-
-    .main-title h2 {
-      font-size: 2.5rem;
-    }
-
-    .main-title p {
-      font-size: 0.9rem;
-      color: #c0ffdf;
-    }
-
-    .social-icons {
-      margin-top: 10px;
-    }
-
-    .social-icons a {
-      color: white;
-      margin: 0 5px;
-      font-size: 1.2rem;
-    }
-
-    .social-icons a:hover {
-      color: #00ff88;
+      opacity: 1;
+      transform: translateY(0px);
     }
   </style>
 </head>
-<body>
+<body class="bg-[#0c0032] text-white min-h-screen flex flex-col">
 
-<header>
-  <div class="full-moon"></div>
-  <div class="header-content">
-    <div class="logo-area">
-      <img src="spudy-ai-1.png" alt="Spudy AI Logo">
-      <h1>Spudy Intelligence Unit</h1>
+  <!-- Header Section -->
+  <section class="relative flex flex-col lg:flex-row items-center justify-between px-6 lg:px-20 py-16 lg:py-28 overflow-hidden">
+
+    <!-- Top Bar: Brand + Dropdown -->
+    <div class="absolute top-6 left-6 z-20">
+      <p class="text-sm opacity-80">Spudy Intelligence Unit</p>
     </div>
-    <nav>
-      <div class="dropdown">
-        <button>Home</button>
-        <div class="dropdown-menu">
-          <a href="#spudy-ai">Spudy AI - Research</a>
-          <a href="#spudy-music">AI Spudy Music</a>
-        </div>
+
+    <!-- Dropdown Menu Top Right -->
+    <div class="absolute top-6 right-6 z-20 dropdown">
+      <button class="text-3xl font-bold focus:outline-none">⋮</button>
+      <div class="dropdown-menu absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg py-2">
+        <a href="#services" class="block px-4 py-2 hover:bg-[#00ff88] hover:text-black">Services</a>
+        <a href="#about" class="block px-4 py-2 hover:bg-[#00ff88] hover:text-black">About</a>
+        <a href="#contact" class="block px-4 py-2 hover:bg-[#00ff88] hover:text-black">Contact</a>
       </div>
-      <div class="dropdown">
-        <button>Services</button>
-        <div class="dropdown-menu">
-          <p>Scroll down to explore our services</p>
-        </div>
+    </div>
+
+    <!-- Left Content -->
+    <div class="z-10 max-w-xl space-y-6">
+      <h1 class="text-5xl md:text-6xl font-bold text-[#b3ccff] leading-tight animate-fadeInUp">
+        SPUDY<br />INTELLIGENCE<br />UNIT
+      </h1>
+      <div class="mt-6 text-sm">
+        <p class="opacity-70 mb-2">Visit Us</p>
+        <a href="https://spudytv14.github.io/matipa-spudy/?#spudy-music" class="text-[#00ff88] hover:underline break-all">
+          https://spudytv14.github.io/matipa-spudy/?#spudy-music
+        </a>
       </div>
-      <div class="dropdown">
-        <button>About</button>
-        <div class="dropdown-menu">
-          <a href="#creator">Meet the Creator</a>
-          <a href="#about-company">About the Company</a>
-          <div style="font-size: 0.75rem; margin-top: 0.5rem;">
-            Started as a nickname, born from an idea and passion.
-            In 2020, it began to come alive.
-          </div>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button>Contact</button>
-        <div class="dropdown-menu social-icons">
-          <a href="https://www.facebook.com/matipaishe-blessing" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.instagram.com/matipaishe-blessing" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://twitter.com/matipaishe-blessing" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <div class="main-title">
-    <h2>Spudy Intelligence Unit</h2>
-    <p>The Intelligent Edge in Technology</p>
-  </div>
-</header>
+    </div>
+
+    <!-- Right Image -->
+    <div class="mt-12 lg:mt-0 relative z-10 w-full lg:w-1/2 flex justify-center animate-fadeInRight">
+      <img src="https://i.ibb.co/p2RPCKJ/robot-hand.png" alt="Robot Hand" class="max-w-sm md:max-w-md lg:max-w-lg" />
+    </div>
+
+    <!-- Background Gradient Panel -->
+    <div class="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-b from-[#421bff] to-[#9f6bff] opacity-60 z-0"></div>
+
+  </section>
+
+  <!-- Simple fade animations -->
+  <style>
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .animate-fadeInRight {
+      animation: fadeInRight 1s ease-out forwards;
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
 
 </body>
 </html>
