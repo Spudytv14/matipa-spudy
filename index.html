@@ -20,22 +20,10 @@
             overflow-x: hidden;
         }
 
-        /* Notification Banner */
-        .notification {
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            text-align: center;
-            padding: 15px;
-            font-size: 1rem;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1001;
-        }
-
         /* Navigation Bar */
         .navbar {
             position: fixed;
-            top: 50px;
+            top: 0;
             width: 100%;
             padding: 20px 50px;
             display: flex;
@@ -179,7 +167,6 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            margin-top: 50px;
         }
 
         #particles-js {
@@ -279,7 +266,42 @@
             margin-bottom: 1rem;
         }
 
-        .service-card .try-now-btn {
+        .service-card .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            z-index: 10;
+            padding: 10px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card .dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: #d1e7ff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .service-card .dropdown a:hover {
+            background: rgba(0, 123, 255, 0.3);
+            color: #00c6ff;
+        }
+
+        .service-card.active .dropdown {
+            display: block;
+            animation: slideIn 0.3s ease-in;
+        }
+
+        .service-card .open-library-btn,
+        .service-card .explore-games-btn {
             display: inline-block;
             padding: 10px 20px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
@@ -290,7 +312,8 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .service-card .try-now-btn:hover {
+        .service-card .open-library-btn:hover,
+        .service-card .explore-games-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
         }
@@ -736,8 +759,8 @@
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Footer */
@@ -809,15 +832,14 @@
                 width: 100%;
                 border-radius: 0 0 20px 20px;
             }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Notification Banner -->
-    <div class="notification">
-        Our services are to be launched soon. Stay tuned for updates!
-    </div>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">Spudy Intelligence</div>
@@ -874,69 +896,33 @@
     <section id="services" class="services">
         <h2>Our Cutting-Edge Services</h2>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card spudy-ai-card">
                 <h3>Spudy AI</h3>
-                <p>Ask anything and get intelligent, accurate responses instantly.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
+                <p>Access a suite of AI-powered tools for creativity, productivity, and innovation.</p>
+                <div class="dropdown">
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy AI</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Advanced Reasoning</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Music AI</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Video Generator</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Image Generator</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Code Generator</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy App Builder</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Graphic Design</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Presentation Maker</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Text-to-Speech</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Voice Cloner</a>
+                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Resume Builder</a>
+                </div>
             </div>
             <div class="service-card">
-                <h3>Spudy Advanced Reasoning</h3>
-                <p>Powerful logic for complex, high-level problem solving.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
+                <h3>Spudy Library</h3>
+                <p>Discover a vast digital library with our insightful books and Open Library access.</p>
+                <a href="https://spudytv14.github.io/Spudy-Production/" class="open-library-btn" target="_blank">Open Library</a>
             </div>
             <div class="service-card">
-                <h3>Spudy Music AI</h3>
-                <p>Create custom beats, lyrics, or full tracks with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Video Generator</h3>
-                <p>Generate promo, explainer, or creative videos from your ideas.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Image Generator</h3>
-                <p>Create original images from prompts or style inputs.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Code Generator</h3>
-                <p>Turn requirements into working code across many languages.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy App Builder</h3>
-                <p>AI-assisted creation of web & mobile apps without coding.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Graphic Design</h3>
-                <p>Design flyers, posters, and brand kits in minutes.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Presentation Maker</h3>
-                <p>Generate AI-powered full decks with layout and content.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Text-to-Speech</h3>
-                <p>Turn written text into realistic voiceovers.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Voice Cloner</h3>
-                <p>Clone your voice or create custom voices.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Resume Builder</h3>
-                <p>AI-powered resume builder with expert suggestions.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
-            </div>
-            <div class="service-card" onclick="window.location.href='https://spudytv14.github.io/Spudy-Production/#auth-section'">
-                <h3>Spudy Books</h3>
-                <p>Explore our collection of insightful books and access the Open Library for a vast digital library.</p>
+                <h3>Spudy Games</h3>
+                <p>Dive into exciting AI-powered games and interactive experiences.</p>
+                <a href="https://spudytv14.github.io/PLAY.GAMES/" class="explore-games-btn" target="_blank">Explore Games</a>
             </div>
         </div>
     </section>
@@ -1160,7 +1146,7 @@
                 <button>Subscribe</button>
             </div>
             <div class="contact-links">
-                <a href="#terms">Terms of Service</a> |
+                <a href="https://spudytv14.github.io/Legai-Services/" target="_blank">Terms of Service</a> |
                 <a href="#privacy">Privacy Centre</a> |
                 <a href="mailto:spudytv14@gmail.com">Have feedback? Let us know</a>
             </div>
@@ -1202,7 +1188,6 @@
             // Simple validation (for demo purposes)
             if (email.includes('@') && password.length >= 6) {
                 closeModal('login');
-                // Simulate successful login
                 alert('Login successful!');
             } else {
                 error.style.display = 'block';
@@ -1218,7 +1203,6 @@
             // Simple validation (for demo purposes)
             if (email.includes('@') && password.length >= 6 && password === confirmPassword) {
                 closeModal('register');
-                // Simulate successful registration
                 alert('Registration successful!');
             } else {
                 error.style.display = 'block';
@@ -1269,17 +1253,13 @@
             const selectBtn = card.querySelector('.select-btn');
             selectBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                // Remove active class from all pricing cards
                 pricingCards.forEach(c => c.classList.remove('active'));
-                // Add active class to clicked card
                 card.classList.add('active');
-                // Auto-hide messages after 5 seconds
                 setTimeout(() => {
                     card.classList.remove('active');
                 }, 5000);
             });
 
-            // Confirm button to scroll to payment methods
             const confirmBtn = card.querySelector('.confirm-btn');
             confirmBtn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1287,6 +1267,21 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Spudy AI card dropdown toggle
+        const spudyAICard = document.querySelector('.spudy-ai-card');
+        spudyAICard.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                spudyAICard.classList.toggle('active');
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!spudyAICard.contains(e.target)) {
+                spudyAICard.classList.remove('active');
+            }
         });
     </script>
 </body>
