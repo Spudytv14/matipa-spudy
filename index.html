@@ -1,56 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Spudy Intelligence Unit</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .box-hover:hover {
-      transform: scale(1.03);
-      transition: transform 0.3s ease-in-out;
-    }
-    .box-hover:active {
-      background-color: #db2777; /* rose-600 */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spudy Intelligence Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .header {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(9, 23, 47, 0.9), rgba(9, 23, 47, 0.7)),
+                        url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        .content h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: slideRight 1s ease;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            animation: slideUp 1s ease;
+        }
+
+        .action-buttons {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: rgba(42, 117, 255, 0.9);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(42, 117, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: #2a75ff;
+            transform: translateX(-10px);
+            box-shadow: 0 8px 25px rgba(42, 117, 255, 0.5);
+        }
+
+        .social-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: rgba(9, 23, 47, 0.9);
+            min-width: 250px;
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .social-content a:hover {
+            background: rgba(42, 117, 255, 0.3);
+        }
+
+        .show {display: block;}
+
+        .about-section {
+            padding: 100px 10%;
+            background: linear-gradient(rgba(9, 23, 47, 0.95), rgba(9, 23, 47, 0.98));
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-card {
+            background: rgba(42, 117, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid rgba(42, 117, 255, 0.3);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+        }
+
+        .section-card:nth-child(1) { animation-delay: 0.2s; }
+        .section-card:nth-child(2) { animation-delay: 0.4s; }
+        .section-card:nth-child(3) { animation-delay: 0.6s; }
+
+        .section-card h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2a75ff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-card p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #d3e3ff;
+        }
+
+        @keyframes slideRight {
+            from {transform: translateX(-100px); opacity: 0;}
+            to {transform: translateX(0); opacity: 1;}
+        }
+
+        @keyframes slideUp {
+            from {transform: translateY(50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(42, 117, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {transform: translate(0, 0) rotate(0deg);}
+            100% {transform: translate(500px, 500px) rotate(360deg);}
+        }
+
+        @media (max-width: 768px) {
+            .content h1 { font-size: 3em; }
+            .section-card { padding: 30px; }
+            .section-card h2 { font-size: 2em; }
+            .action-buttons { right: 15px; }
+            .btn { padding: 12px 25px; }
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-r from-purple-800 via-pink-600 to-purple-800 text-white font-sans">
+<body>
+    <header class="header">
+        <div class="floating-element" style="width: 200px; height: 200px; top: 20%; left: 5%;"></div>
+        <div class="content">
+            <h1>Spudy Intelligence Technology</h1>
+            <p>Innovating the future with AI-driven solutions and cutting-edge technology development.</p>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn" onclick="window.location.href='https://spudytv14.github.io/Spudy-Production/#auth-section'">
+                <i class="fas fa-book"></i> Spudy Books
+            </button>
+            
+            <div class="social-dropdown">
+                <button class="btn" onclick="toggleSocial()">
+                    <i class="fas fa-phone-alt"></i> Contact Us
+                </button>
+                <div id="socialLinks" class="social-content">
+                    <a href="https://wa.me/+263716669706"><i class="fab fa-whatsapp"></i> +263 71 666 9706</a>
+                    <a href="tel:+263776998296"><i class="fas fa-phone"></i> +263 776 998 296</a>
+                    <a href="https://youtube.com/@SpudyAI"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://facebook.com/matipaishe_blessing"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://x.com/matipaishe_blessing"><i class="fab fa-twitter"></i> X (Twitter)</a>
+                    <a href="https://instagram.com/matipaishe_blessing"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <!-- HEADER -->
-  <header class="text-center py-10">
-    <h1 class="text-4xl font-bold tracking-wide animate-pulse">SPUDY INTELLIGENCE UNIT</h1>
-    <p class="mt-2 text-lg italic">Driven by Innovation | Powered by Passion</p>
-  </header>
+    <section class="about-section">
+        <div class="section-card">
+            <h2><i class="fas fa-fire"></i>Introduction</h2>
+            <p>Forged from a simple nickname, Spudy Intelligence Unit has blossomed into a dynamic tech company focused on tackling intricate challenges in AI, music, image creation, and voice technology.</p>
+        </div>
 
-  <!-- INTRODUCTION | VISION | MISSION -->
-  <section class="flex flex-wrap justify-center gap-6 px-6 pb-12">
-    
-    <!-- INTRODUCTION -->
-    <div class="w-full md:w-1/3 p-6 bg-purple-700 rounded-2xl shadow-lg box-hover">
-      <h2 class="text-2xl font-semibold mb-4 underline decoration-pink-500">Introduction</h2>
-      <p class="text-sm leading-relaxed">
-        Forged from a simple nickname, Spudy Intelligence Unit has blossomed into a dynamic tech company focused on tackling intricate challenges in AI, music, image creation, and voice technology.
-      </p>
-    </div>
+        <div class="section-card">
+            <h2><i class="fas fa-eye"></i>Vision</h2>
+            <p>To be a pioneering force in AI and creative technologies, empowering individuals with groundbreaking solutions that redefine the boundaries of possibility and amplify human potential.</p>
+        </div>
 
-    <!-- VISION -->
-    <div class="w-full md:w-1/3 p-6 bg-pink-700 rounded-2xl shadow-lg box-hover">
-      <h2 class="text-2xl font-semibold mb-4 underline decoration-purple-400">Vision</h2>
-      <p class="text-sm leading-relaxed">
-        To be a pioneering force in AI and creative technologies, empowering individuals with groundbreaking solutions that redefine the boundaries of possibility and amplify human potential.
-      </p>
-    </div>
+        <div class="section-card">
+            <h2><i class="fas fa-bullseye"></i>Mission</h2>
+            <p>To passionately develop user-centric technologies in AI, music, image, and voice. We're solving complex challenges and fostering creativity with ethical, impactful solutions.</p>
+        </div>
+    </section>
 
-    <!-- MISSION -->
-    <div class="w-full md:w-1/3 p-6 bg-purple-700 rounded-2xl shadow-lg box-hover">
-      <h2 class="text-2xl font-semibold mb-4 underline decoration-pink-500">Mission</h2>
-      <p class="text-sm leading-relaxed">
-        To passionately develop user-centric technologies in AI, music, image, and voice. We're solving complex challenges and fostering creativity with ethical, impactful solutions.
-      </p>
-    </div>
+    <script>
+        function toggleSocial() {
+            document.getElementById("socialLinks").classList.toggle("show");
+        }
 
-  </section>
+        window.onclick = function(event) {
+            if (!event.target.matches('.btn')) {
+                var dropdowns = document.getElementsByClassName("social-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
 
+        // Create floating elements
+        for (let i = 0; i < 5; i++) {
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.style.width = Math.random() * 100 + 50 + 'px';
+            element.style.height = element.style.width;
+            element.style.top = Math.random() * 100 + '%';
+            element.style.left = Math.random() * 100 + '%';
+            element.style.animationDuration = Math.random() * 20 + 10 + 's';
+            document.querySelector('.header').appendChild(element);
+        }
+    </script>
 </body>
 </html>
 <!-- SERVICES SECTION -->
