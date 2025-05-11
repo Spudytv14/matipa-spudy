@@ -4,576 +4,1058 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spudy Intelligence Technology</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            background: #0a1a2e;
             overflow-x: hidden;
         }
 
-        .header {
-            height: 100vh;
-            width: 100%;
-            background: linear-gradient(rgba(9, 23, 47, 0.9), rgba(9, 23, 47, 0.7)),
-                        url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1') center/cover;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .content {
-            position: absolute;
-            top: 50%;
-            left: 10%;
-            transform: translateY(-50%);
-            color: white;
-            max-width: 600px;
-            z-index: 1;
-        }
-
-        .content h1 {
-            font-size: 4em;
-            margin-bottom: 20px;
-            animation: slideRight 1s ease;
-        }
-
-        .content p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            animation: slideUp 1s ease;
-        }
-
-        .action-buttons {
+        /* Notification Banner */
+        .notification {
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            text-align: center;
+            padding: 15px;
+            font-size: 1rem;
             position: fixed;
-            right: 30px;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 50px;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 51, 102, 0.2);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #00c6ff;
+        }
+
+        .navbar .auth-btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .navbar .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1a2e, #1e3a8a);
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-in;
+        }
+
+        .hero-content .typing {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #00c6ff;
+            height: 2.2rem;
+        }
+
+        .cta-button {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.6);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            z-index: 100;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px 0 0 15px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
         }
 
-        .btn {
-            padding: 15px 30px;
-            background: rgba(42, 117, 255, 0.9);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
+        .sidebar-btn {
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(42, 117, 255, 0.3);
+            gap: 12px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .btn:hover {
-            background: #2a75ff;
+        .sidebar-btn:hover {
             transform: translateX(-10px);
-            box-shadow: 0 8px 25px rgba(42, 117, 255, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
         }
 
-        .social-dropdown {
+        .sidebar-btn i {
+            font-size: 1.4rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+        }
+
+        .services h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
             position: relative;
-            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
-        .social-content {
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #00c6ff;
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+            color: #d1e7ff;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+        }
+
+        .pricing h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #00c6ff;
+        }
+
+        .pricing-card .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #d1e7ff;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .pricing-card ul li {
+            font-size: 1rem;
+            color: #d1e7ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card ul li.included::before {
+            content: '✔';
+            color: #00c6ff;
+            margin-right: 10px;
+        }
+
+        .pricing-card ul li.excluded::before {
+            content: '✖';
+            color: #ff4d4d;
+            margin-right: 10px;
+        }
+
+        .pricing-card .discount {
+            font-size: 0.9rem;
+            color: #00c6ff;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card .select-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pricing-card .select-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Payment Methods Section */
+        .payment-methods {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+        }
+
+        .payment-methods h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .payment-methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .payment-method {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .payment-method:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .payment-method img {
+            width: 100%;
+            max-width: 120px;
+            border-radius: 10px;
+        }
+
+        /* Data Processing Section */
+        .data-processing {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+        }
+
+        .data-processing h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .data-processing p {
+            font-size: 1.2rem;
+            color: #d1e7ff;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+
+        .data-processing .quote {
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #00c6ff;
+            margin-top: 2rem;
+        }
+
+        /* Model Development Section */
+        .model-development {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+        }
+
+        .model-development h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .model-development-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .model-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .model-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .model-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #00c6ff;
+        }
+
+        .model-card p {
+            font-size: 1.1rem;
+            color: #d1e7ff;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+        }
+
+        .team h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .team-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #00c6ff;
+        }
+
+        .team-card .role {
+            font-size: 1.2rem;
+            color: #d1e7ff;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
+            font-size: 1rem;
+            color: #d1e7ff;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: #d1e7ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: #00c6ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #007bff;
+        }
+
+        .contact img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 10px;
+            margin: 1rem auto;
+            display: block;
+        }
+
+        .contact .subscribe {
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .contact .subscribe input {
+            padding: 12px;
+            width: 70%;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .contact .subscribe button {
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #fff;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact .subscribe button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .contact .links {
+            margin-top: 2rem;
+        }
+
+        .contact .links a {
+            color: #00c6ff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .contact .links a:hover {
+            color: #007bff;
+        }
+
+        /* Dropdown Message */
+        .dropdown-message {
             display: none;
             position: absolute;
-            right: 0;
-            background: rgba(9, 23, 47, 0.9);
-            min-width: 250px;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 123, 255, 0.9);
+            color: #fff;
+            padding: 10px 20px;
             border-radius: 10px;
-            padding: 15px;
-            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10;
         }
 
-        .social-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
+        .service-card.active .dropdown-message,
+        .pricing-card.active .dropdown-message {
             display: block;
-            transition: 0.3s;
-            border-radius: 5px;
+            animation: slideIn 0.3s ease-in;
         }
 
-        .social-content a:hover {
-            background: rgba(42, 117, 255, 0.3);
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        .show {display: block;}
-
-        .about-section {
-            padding: 100px 10%;
-            background: linear-gradient(rgba(9, 23, 47, 0.95), rgba(9, 23, 47, 0.98));
-            color: white;
-            position: relative;
-            z-index: 2;
+        /* Footer */
+        .footer {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #0a1a2e, #1e3a8a);
+            text-align: center;
         }
 
-        .section-card {
-            background: rgba(42, 117, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 40px 0;
-            border: 1px solid rgba(42, 117, 255, 0.3);
-            transform: translateY(50px);
-            opacity: 0;
-            animation: slideUp 1s ease forwards;
-        }
-
-        .section-card:nth-child(1) { animation-delay: 0.2s; }
-        .section-card:nth-child(2) { animation-delay: 0.4s; }
-        .section-card:nth-child(3) { animation-delay: 0.6s; }
-
-        .section-card h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #2a75ff;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-card p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #d3e3ff;
-        }
-
-        @keyframes slideRight {
-            from {transform: translateX(-100px); opacity: 0;}
-            to {transform: translateX(0); opacity: 1;}
-        }
-
-        @keyframes slideUp {
-            from {transform: translateY(50px); opacity: 0;}
-            to {transform: translateY(0); opacity: 1;}
-        }
-
-        .floating-element {
-            position: absolute;
-            background: rgba(42, 117, 255, 0.1);
-            border-radius: 50%;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% {transform: translate(0, 0) rotate(0deg);}
-            100% {transform: translate(500px, 500px) rotate(360deg);}
-        }
-
-        @media (max-width: 768px) {
-            .content h1 { font-size: 3em; }
-            .section-card { padding: 30px; }
-            .section-card h2 { font-size: 2em; }
-            .action-buttons { right: 15px; }
-            .btn { padding: 12px 25px; }
+        .footer p {
+            font-size: 1rem;
+            color: #d1e7ff;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="floating-element" style="width: 200px; height: 200px; top: 20%; left: 5%;"></div>
-        <div class="content">
+    <!-- Notification Banner -->
+    <div class="notification">
+        Our services are to be launched soon. Stay tuned for updates!
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Spudy Intelligence</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#payment-methods">Payment Methods</a>
+            <a href="#data-processing">Data Processing</a>
+            <a href="#model-development">Model Development</a>
+            <a href="#team">Team</a>
+            <a href="#contact">Contact</a>
+            <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" class="auth-btn">Log In / Register</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
             <h1>Spudy Intelligence Technology</h1>
-            <p>Innovating the future with AI-driven solutions and cutting-edge technology development.</p>
-        </div>
-        
-        <div class="action-buttons">
-            <button class="btn" onclick="window.location.href='https://spudytv14.github.io/Spudy-Production/#auth-section'">
-                <i class="fas fa-book"></i> Spudy Books
-            </button>
-            
-            <div class="social-dropdown">
-                <button class="btn" onclick="toggleSocial()">
-                    <i class="fas fa-phone-alt"></i> Contact Us
-                </button>
-                <div id="socialLinks" class="social-content">
-                    <a href="https://wa.me/+263716669706"><i class="fab fa-whatsapp"></i> +263 71 666 9706</a>
-                    <a href="tel:+263776998296"><i class="fas fa-phone"></i> +263 776 998 296</a>
-                    <a href="https://youtube.com/@SpudyAI"><i class="fab fa-youtube"></i> YouTube</a>
-                    <a href="https://facebook.com/matipaishe_blessing"><i class="fab fa-facebook"></i> Facebook</a>
-                    <a href="https://x.com/matipaishe_blessing"><i class="fab fa-twitter"></i> X (Twitter)</a>
-                    <a href="https://instagram.com/matipaishe_blessing"><i class="fab fa-instagram"></i> Instagram</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section class="about-section">
-        <div class="section-card">
-            <h2><i class="fas fa-fire"></i>Introduction</h2>
-            <p>Forged from a simple nickname, Spudy Intelligence Unit has blossomed into a dynamic tech company focused on tackling intricate challenges in AI, music, image creation, and voice technology.</p>
-        </div>
-
-        <div class="section-card">
-            <h2><i class="fas fa-eye"></i>Vision</h2>
-            <p>To be a pioneering force in AI and creative technologies, empowering individuals with groundbreaking solutions that redefine the boundaries of possibility and amplify human potential.</p>
-        </div>
-
-        <div class="section-card">
-            <h2><i class="fas fa-bullseye"></i>Mission</h2>
-            <p>To passionately develop user-centric technologies in AI, music, image, and voice. We're solving complex challenges and fostering creativity with ethical, impactful solutions.</p>
+            <div class="typing"></div>
+            <a href="#services" class="cta-button">Discover Our Solutions</a>
         </div>
     </section>
 
+    <!-- Sidebar with Contact and Social Media -->
+    <div class="sidebar">
+        <a href="https://wa.me/+263716669706" class="sidebar-btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="tel:+263776998296" class="sidebar-btn call">
+            <i class="fas fa-phone"></i> Call Us
+        </a>
+        <a href="https://www.youtube.com/@SpudyAI" class="sidebar-btn youtube" target="_blank">
+            <i class="fab fa-youtube"></i> YouTube
+        </a>
+        <a href="https://www.facebook.com/matipaishe_blessing" class="sidebar-btn facebook" target="_blank">
+            <i class="fab fa-facebook"></i> Facebook
+        </a>
+        <a href="https://x.com/matipaishe_blessing" class="sidebar-btn x" target="_blank">
+            <i class="fab fa-x-twitter"></i> X
+        </a>
+        <a href="https://www.instagram.com/matipaishe_blessing" class="sidebar-btn instagram" target="_blank">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" class="sidebar-btn books" target="_blank">
+            <i class="fas fa-book"></i> Spudy Books
+        </a>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>Our Cutting-Edge Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Spudy AI</h3>
+                <p>Ask anything and get intelligent, accurate responses instantly.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Advanced Reasoning</h3>
+                <p>Powerful logic for complex, high-level problem solving.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Music AI</h3>
+                <p>Create custom beats, lyrics, or full tracks with AI.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Video Generator</h3>
+                <p>Generate promo, explainer, or creative videos from your ideas.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Image Generator</h3>
+                <p>Create original images from prompts or style inputs.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Code Generator</h3>
+                <p>Turn requirements into working code across many languages.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy App Builder</h3>
+                <p>AI-assisted creation of web & mobile apps without coding.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Graphic Design</h3>
+                <p>Design flyers, posters, and brand kits in minutes.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Presentation Maker</h3>
+                <p>Generate AI-powered full decks with layout and content.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Text-to-Speech</h3>
+                <p>Turn written text into realistic voiceovers.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Voice Cloner</h3>
+                <p>Clone your voice or create custom voices.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card">
+                <h3>Spudy Resume Builder</h3>
+                <p>AI-powered resume builder with expert suggestions.</p>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="service-card" onclick="window.location.href='https://spudytv14.github.io/Spudy-Production/#auth-section'">
+                <h3>Spudy Books</h3>
+                <p>Explore our collection of insightful and innovative books.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <h2>Choose Your Plan</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter Spark</h3>
+                <div class="price">FREE - Limited Access</div>
+                <ul>
+                    <li class="included">Spudy AI</li>
+                    <li class="included">Text-to-Speech</li>
+                    <li class="excluded">Advanced Reasoning</li>
+                    <li class="excluded">Code Generator</li>
+                    <li class="excluded">App Builder</li>
+                </ul>
+                <div class="discount">10% off for yearly billing</div>
+                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="pricing-card">
+                <h3>Creative Core</h3>
+                <div class="price">$4.99 / month</div>
+                <ul>
+                    <li class="included">Spudy AI</li>
+                    <li class="included">Video Generator</li>
+                    <li class="included">Text-to-Speech</li>
+                    <li class="included">Graphic Design</li>
+                    <li class="excluded">App Builder</li>
+                </ul>
+                <div class="discount">10% off for yearly billing</div>
+                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="pricing-card">
+                <h3>Pro Vision</h3>
+                <div class="price">$9.99 / month</div>
+                <ul>
+                    <li class="included">Everything in Core</li>
+                    <li class="included">Image Generator</li>
+                    <li class="included">Music AI</li>
+                    <li class="included">Resume Builder</li>
+                    <li class="excluded">Voice Cloner</li>
+                </ul>
+                <div class="discount">10% off for yearly billing</div>
+                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="pricing-card">
+                <h3>Ultimate Brain</h3>
+                <div class="price">$19.99 / month</div>
+                <ul>
+                    <li class="included">All Pro Vision Features</li>
+                    <li class="included">Code Generator</li>
+                    <li class="included">Presentation Maker</li>
+                    <li class="included">Voice Cloner</li>
+                    <li class="excluded">App Builder</li>
+                </ul>
+                <div class="discount">10% off for yearly billing</div>
+                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="pricing-card">
+                <h3>Infinity Pro+</h3>
+                <div class="price">$29.99 / month</div>
+                <ul>
+                    <li class="included">Everything in Ultimate Brain</li>
+                    <li class="included">App Builder</li>
+                    <li class="included">Unlimited Access</li>
+                    <li class="included">Priority Support</li>
+                    <li class="included">Beta Features Access</li>
+                </ul>
+                <div class="discount">10% off for yearly billing</div>
+                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise Masterplan</h3>
+                <div class="price">Custom Pricing</div>
+                <ul>
+                    <li class="included">Full Suite Access</li>
+                    <li class="included">Dedicated Account Manager</li>
+                    <li class="included">Custom Integrations</li>
+                    <li class="included">API Access</li>
+                    <li class="included">Staff Training & SLA</li>
+                </ul>
+                <div class="discount">Request a quote for annual billing</div>
+                <a href="#" class="select-btn" onclick="alertPlan()">Request Quote</a>
+                <div class="dropdown-message">Log in or register first</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section id="payment-methods" class="payment-methods">
+        <h2>We Accept the Following Payment Methods</h2>
+        <div class="payment-methods-grid">
+            <a href="https://www.visa.com" target="_blank" class="payment-method">
+                <img src="visa.png" alt="Visa">
+            </a>
+            <a href="https://www.mastercard.com" target="_blank" class="payment-method">
+                <img src="mastercard.png" alt="Mastercard">
+            </a>
+            <a href="https://www.econet.co.zw/ecocash" target="_blank" class="payment-method">
+                <img src="ecocash.png" alt="Ecocash">
+            </a>
+            <a href="https://www.netone.co.zw/onemoney" target="_blank" class="payment-method">
+                <img src="1money.png" alt="OneMoney">
+            </a>
+        </div>
+    </section>
+
+    <!-- Data Processing Section -->
+    <section id="data-processing" class="data-processing">
+        <h2>Data Processing</h2>
+        <p>We collect, clean, and annotate datasets from multiple verified sources to ensure high-quality AI training data.</p>
+        <p>Our data pipelines are designed for real-time processing, privacy compliance, and optimized formatting for model readiness.</p>
+        <p class="quote">"Only the cleanest data trains the smartest AI."</p>
+    </section>
+
+    <!-- Model Development Section -->
+    <section id="model-development" class="model-development">
+        <h2>Model Development</h2>
+        <div class="model-development-grid">
+            <div class="model-card">
+                <h3>Planning & Architecture</h3>
+                <p>We design robust model architectures tailored to the tasks — from GPT-like transformers to custom generative pipelines.</p>
+            </div>
+            <div class="model-card">
+                <h3>Training & Tuning</h3>
+                <p>We fine-tune models with real-world datasets and evaluate across hundreds of benchmarks to ensure performance.</p>
+            </div>
+            <div class="model-card">
+                <h3>Deployment & Monitoring</h3>
+                <p>All models are containerized, scalable, and continuously monitored post-deployment for real-time updates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <h2>Meet the Team</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3>Matipaishe Blessing (Spudy)</h3>
+                <div class="role">Founder & Lead Developer</div>
+                <p>Visionary behind Spudy Intelligence Unit. Leads innovation, coding, design, and future development.</p>
+            </div>
+            <div class="team-card">
+                <h3>I. Whande</h3>
+                <div class="role">Final Inspector</div>
+                <p>Ensures perfection in every line of code, UI layout, and system functionality before release.</p>
+            </div>
+            <div class="team-card">
+                <h3>Myta Zedy</h3>
+                <div class="role">Creative Support & Idea Source</div>
+                <p>Brings heart, encouragement, and inspirational creativity that shaped SIU's growth.</p>
+            </div>
+            <div class="team-card">
+                <h3>Matipaishe Blessing</h3>
+                <div class="role">UI/UX Designer</div>
+                <p>Crafts visually intuitive and user-focused interfaces across all Spudy platforms.</p>
+            </div>
+            <div class="team-card">
+                <h3>Dean</h3>
+                <div class="role">Marketer</div>
+                <p>Drives the promotion and success of our services through strategic marketing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <p><strong>Call:</strong> <a href="tel:+263776998296">0776998296</a></p>
+                <p><strong>WhatsApp:</strong> <a href="https://wa.me/+263716669706">0716669706</a></p>
+                <p><strong>Email:</strong> <a href="mailto:spudytv14@gmail.com">spudytv14@gmail.com</a></p>
+            </div>
+            <div class="contact-info">
+                <p>Scan to chat on WhatsApp:</p>
+                <img src="whatsapp-qr.png" alt="WhatsApp QR Code">
+            </div>
+            <div class="contact-info">
+                <p>Download my Spudy AI APK today!</p>
+                <a href="https://play.google.com/store" target="_blank">
+                    <img src="google-play.png" alt="Get it on Google Play">
+                </a>
+            </div>
+        </div>
+        <div class="subscribe">
+            <input type="email" placeholder="Enter your email">
+            <button>Subscribe</button>
+        </div>
+        <div class="links">
+            <a href="#terms">Terms of Service</a> | 
+            <a href="#privacy">Privacy Centre</a> | 
+            <a href="mailto:spudytv14@gmail.com">Have feedback? Let us know</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Spudy Intelligence Technology. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
     <script>
-        function toggleSocial() {
-            document.getElementById("socialLinks").classList.toggle("show");
+        // Alert Script
+        function alertPlan() {
+            alert("Please select one of the plans below to proceed with payment.");
         }
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.btn')) {
-                var dropdowns = document.getElementsByClassName("social-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
+        // Particles.js initialization
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#00c6ff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#00c6ff', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out' }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
 
-        // Create floating elements
-        for (let i = 0; i < 5; i++) {
-            const element = document.createElement('div');
-            element.className = 'floating-element';
-            element.style.width = Math.random() * 100 + 50 + 'px';
-            element.style.height = element.style.width;
-            element.style.top = Math.random() * 100 + '%';
-            element.style.left = Math.random() * 100 + '%';
-            element.style.animationDuration = Math.random() * 20 + 10 + 's';
-            document.querySelector('.header').appendChild(element);
-        }
+        // Typed.js for typing effect
+        new Typed('.typing', {
+            strings: ['Innovate the Future', 'Transform with AI', 'Succeed with Spudy'],
+            typeSpeed: 50,
+            backSpeed: 25,
+            backDelay: 1500,
+            loop: true
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-links a, .cta-button').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate sidebar buttons
+        const sidebarButtons = document.querySelectorAll('.sidebar-btn');
+        sidebarButtons.forEach((btn, index) => {
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateX(50px)';
+            setTimeout(() => {
+                btn.style.transition = 'all 0.5s ease';
+                btn.style.opacity = '1';
+                btn.style.transform = 'translateX(0)';
+            }, index * 150);
+        });
+
+        // Service and pricing card dropdown toggle
+        const cards = document.querySelectorAll('.service-card, .pricing-card');
+        cards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Prevent dropdown for Spudy Books card
+                if (this.querySelector('h3').textContent === 'Spudy Books') return;
+                // Remove active class from all cards
+                cards.forEach(c => c.classList.remove('active'));
+                // Add active class to clicked card
+                this.classList.add('active');
+                // Auto-hide dropdown after 2 seconds
+                setTimeout(() => {
+                    this.classList.remove('active');
+                }, 2000);
+            });
+        });
     </script>
 </body>
 </html>
-<!-- SERVICES SECTION -->
-<section class="bg-[#001f3f] py-16 px-6 text-white">
-  <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-
-    <!-- Card Template -->
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy AI</h3>
-      <p>Ask anything and get intelligent, accurate responses instantly.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Advanced Reasoning</h3>
-      <p>Powerful logic for complex, high-level problem solving.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Music AI</h3>
-      <p>Create custom beats, lyrics, or full tracks with AI.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Video Generator</h3>
-      <p>Generate promo, explainer or creative videos from your ideas.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Image Generator</h3>
-      <p>Create original images from prompts or style inputs.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Code Generator</h3>
-      <p>Turn requirements into working code across many languages.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy App Builder</h3>
-      <p>AI-assisted creation of web & mobile apps without coding.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Graphic Design</h3>
-      <p>Design flyers, posters, and brand kits in minutes.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Presentation Maker</h3>
-      <p>Generate AI-powered full decks with layout and content.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Text-to-Speech</h3>
-      <p>Turn written text into realistic voiceovers.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Voice Cloner</h3>
-      <p>Clone your voice or create custom voices.</p>
-    </div>
-
-    <div class="bg-[#012b50] p-6 rounded-xl shadow-md transition-all duration-300 hover:ring-2 hover:ring-green-400 hover:scale-105">
-      <h3 class="text-green-400 text-xl font-semibold mb-2">Spudy Resume Builder</h3>
-      <p>AI-powered resume builder with expert suggestions.</p>
-    </div>
-
-  </div>
-</section>
-<!-- PRICING PLANS SECTION -->
-<section class="bg-[#0a0f24] text-white py-16 px-6">
-  <h2 class="text-3xl font-bold text-center mb-10">Choose Your Plan</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-
-    <!-- FREE PLAN -->
-    <div class="bg-[#1a1f3c] p-8 rounded-xl shadow-lg transition-all hover:scale-105 hover:ring-2 ring-blue-500">
-      <h3 class="text-xl font-bold text-blue-400 mb-2">Starter Spark</h3>
-      <p class="text-sm mb-4 text-gray-300">FREE - Limited Access</p>
-      <ul class="space-y-2 text-sm text-gray-300 mb-6">
-        <li>✔ Spudy AI</li>
-        <li>✔ Text-to-Speech</li>
-        <li>✖ Advanced Reasoning</li>
-        <li>✖ Code Generator</li>
-        <li>✖ App Builder</li>
-      </ul>
-      <p class="text-green-400 text-sm mb-3">10% off for yearly billing</p>
-      <button onclick="alertPlan()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">Select</button>
-    </div>
-
-    <!-- PLAN 2 -->
-    <div class="bg-[#1a1f3c] p-8 rounded-xl shadow-lg transition-all hover:scale-105 hover:ring-2 ring-purple-500">
-      <h3 class="text-xl font-bold text-purple-400 mb-2">Creative Core</h3>
-      <p class="text-sm mb-4">$4.99 / month</p>
-      <ul class="space-y-2 text-sm text-gray-300 mb-6">
-        <li>✔ Spudy AI</li>
-        <li>✔ Video Generator</li>
-        <li>✔ Text-to-Speech</li>
-        <li>✔ Graphic Design</li>
-        <li>✖ App Builder</li>
-      </ul>
-      <p class="text-green-400 text-sm mb-3">10% off for yearly billing</p>
-      <button onclick="alertPlan()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-md">Select</button>
-    </div>
-
-    <!-- PLAN 3 -->
-    <div class="bg-[#1a1f3c] p-8 rounded-xl shadow-lg transition-all hover:scale-105 hover:ring-2 ring-pink-500">
-      <h3 class="text-xl font-bold text-pink-400 mb-2">Pro Vision</h3>
-      <p class="text-sm mb-4">$9.99 / month</p>
-      <ul class="space-y-2 text-sm text-gray-300 mb-6">
-        <li>✔ Everything in Core</li>
-        <li>✔ Image Generator</li>
-        <li>✔ Music AI</li>
-        <li>✔ Resume Builder</li>
-        <li>✖ Voice Cloner</li>
-      </ul>
-      <p class="text-green-400 text-sm mb-3">10% off for yearly billing</p>
-      <button onclick="alertPlan()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-md">Select</button>
-    </div>
-
-    <!-- PLAN 4 -->
-    <div class="bg-[#1a1f3c] p-8 rounded-xl shadow-lg transition-all hover:scale-105 hover:ring-2 ring-yellow-500">
-      <h3 class="text-xl font-bold text-yellow-400 mb-2">Ultimate Brain</h3>
-      <p class="text-sm mb-4">$19.99 / month</p>
-      <ul class="space-y-2 text-sm text-gray-300 mb-6">
-        <li>✔ All Pro Vision Features</li>
-        <li>✔ Code Generator</li>
-        <li>✔ Presentation Maker</li>
-        <li>✔ Voice Cloner</li>
-        <li>✖ App Builder</li>
-      </ul>
-      <p class="text-green-400 text-sm mb-3">10% off for yearly billing</p>
-      <button onclick="alertPlan()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-md">Select</button>
-    </div>
-
-    <!-- PLAN 5 -->
-    <div class="bg-[#1a1f3c] p-8 rounded-xl shadow-lg transition-all hover:scale-105 hover:ring-2 ring-red-500">
-      <h3 class="text-xl font-bold text-red-400 mb-2">Infinity Pro+</h3>
-      <p class="text-sm mb-4">$29.99 / month</p>
-      <ul class="space-y-2 text-sm text-gray-300 mb-6">
-        <li>✔ Everything in Ultimate Brain</li>
-        <li>✔ App Builder</li>
-        <li>✔ Unlimited Access</li>
-        <li>✔ Priority Support</li>
-        <li>✔ Beta Features Access</li>
-      </ul>
-      <p class="text-green-400 text-sm mb-3">10% off for yearly billing</p>
-      <button onclick="alertPlan()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md">Select</button>
-    </div>
-
-    <!-- COOPERATE PLAN -->
-    <div class="bg-gradient-to-br from-[#4b0082] to-[#1a0033] p-8 rounded-xl shadow-lg border border-purple-700 transition-all hover:scale-105">
-      <h3 class="text-xl font-bold text-white mb-2">Enterprise Masterplan</h3>
-      <p class="text-sm mb-4">Custom Pricing</p>
-      <ul class="space-y-2 text-sm text-gray-300 mb-6">
-        <li>✔ Full Suite Access</li>
-        <li>✔ Dedicated Account Manager</li>
-        <li>✔ Custom Integrations</li>
-        <li>✔ API Access</li>
-        <li>✔ Staff Training & SLA</li>
-      </ul>
-      <p class="text-green-400 text-sm mb-3">Request a quote for annual billing</p>
-      <button onclick="alertPlan()" class="w-full bg-white text-purple-800 font-semibold hover:bg-purple-100 py-2 px-4 rounded-md">Request Quote</button>
-    </div>
-
-  </div>
-</section>
-
-<!-- ALERT SCRIPT -->
-<script>
-  function alertPlan() {
-    alert("Please select one of the plans below to proceed with payment.");
-  }
-</script>
-<!-- PAYMENT METHODS SECTION -->
-<!-- Payment Methods Section -->
-<section class="bg-[#0a0f24] text-white py-12 px-6">
-  <div class="max-w-5xl mx-auto text-center space-y-8">
-    <h2 class="text-2xl sm:text-3xl font-bold">We Accept the Following Payment Methods</h2>
-
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center mt-6">
-      <!-- Visa -->
-      <a href="https://www.visa.com" target="_blank" class="transform transition hover:scale-110">
-        <img src="visa.png" alt="Visa" class="mx-auto w-24 sm:w-28 rounded-lg shadow-md hover:shadow-green-500/50 transition-shadow duration-300">
-      </a>
-
-      <!-- Mastercard -->
-      <a href="https://www.mastercard.com" target="_blank" class="transform transition hover:scale-110">
-        <img src="mastercard.png" alt="Mastercard" class="mx-auto w-24 sm:w-28 rounded-lg shadow-md hover:shadow-green-500/50 transition-shadow duration-300">
-      </a>
-
-      <!-- Ecocash -->
-      <a href="https://www.econet.co.zw/ecocash" target="_blank" class="transform transition hover:scale-110">
-        <img src="ecocash.png" alt="Ecocash" class="mx-auto w-24 sm:w-28 rounded-lg shadow-md hover:shadow-green-500/50 transition-shadow duration-300">
-      </a>
-
-      <!-- OneMoney -->
-      <a href="https://www.netone.co.zw/onemoney" target="_blank" class="transform transition hover:scale-110">
-        <img src="1money.png" alt="OneMoney" class="mx-auto w-24 sm:w-28 rounded-lg shadow-md hover:shadow-green-500/50 transition-shadow duration-300">
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- DATA PROCESSING SECTION -->
-<section class="bg-[#0a0f24] text-white py-16 px-6">
-  <h2 class="text-3xl font-bold text-center mb-10">Data Processing</h2>
-  <div class="max-w-5xl mx-auto text-center space-y-4 text-lg leading-relaxed">
-    <p>We collect, clean, and annotate datasets from multiple verified sources to ensure high-quality AI training data.</p>
-    <p>Our data pipelines are designed for real-time processing, privacy compliance, and optimized formatting for model readiness.</p>
-    <p class="text-green-400 font-semibold">"Only the cleanest data trains the smartest AI."</p>
-  </div>
-</section>
-
-<!-- MODEL DEVELOPMENT SECTION -->
-<section class="bg-[#0f1b36] text-white py-16 px-6">
-  <h2 class="text-3xl font-bold text-center mb-10">Model Development</h2>
-  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-center">
-    <div class="bg-[#112240] rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-transform">
-      <h3 class="text-xl font-semibold mb-2">Planning & Architecture</h3>
-      <p>We design robust model architectures tailored to the tasks — from GPT-like transformers to custom generative pipelines.</p>
-    </div>
-    <div class="bg-[#112240] rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-transform">
-      <h3 class="text-xl font-semibold mb-2">Training & Tuning</h3>
-      <p>We fine-tune models with real-world datasets and evaluate across hundreds of benchmarks to ensure performance.</p>
-    </div>
-    <div class="bg-[#112240] rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-transform">
-      <h3 class="text-xl font-semibold mb-2">Deployment & Monitoring</h3>
-      <p>All models are containerized, scalable, and continuously monitored post-deployment for real-time updates.</p>
-    </div>
-  </div>
-</section>
-
-<!-- MEET THE TEAM SECTION -->
-<section class="bg-[#0a0f24] text-white py-16 px-6">
-  <h2 class="text-3xl font-bold text-center mb-12">Meet the Team</h2>
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-
-    <div class="bg-[#092c5e] p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform">
-      <h3 class="text-xl font-semibold">Matipaishe Blessing (Spudy)</h3>
-      <p class="italic text-sm text-blue-200 mb-2">Founder & Lead Developer</p>
-      <p>Visionary behind Spudy Intelligence Unit. Leads innovation, coding, design, and future development.</p>
-    </div>
-
-    <div class="bg-[#092c5e] p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform">
-      <h3 class="text-xl font-semibold">I. Whande</h3>
-      <p class="italic text-sm text-blue-200 mb-2">Final Inspector</p>
-      <p>Ensures perfection in every line of code, UI layout, and system functionality before release.</p>
-    </div>
-
-    <div class="bg-[#092c5e] p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform">
-      <h3 class="text-xl font-semibold">Myta Zedy</h3>
-      <p class="italic text-sm text-blue-200 mb-2">Creative Support & Idea Source</p>
-      <p>Brings heart, encouragement, and inspirational creativity that shaped SIU's growth.</p>
-    </div>
-
-    <div class="bg-[#092c5e] p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform md:col-span-2 md:mx-auto">
-      <h3 class="text-xl font-semibold">Matipaishe Blessing</h3>
-      <p class="italic text-sm text-blue-200 mb-2">UI/UX Designer</p>
-      <p>Crafts visually intuitive and user-focused interfaces across all Spudy platforms.</p>
-    </div>
-
-  </div>
-</section>
-<!-- Footer Section -->
-<footer class="bg-[#0a0f24] text-white py-12 px-6 text-center">
-  <div class="max-w-6xl mx-auto space-y-8">
-
-    <!-- Social Media Icons -->
-    <div class="flex justify-center space-x-6 text-2xl">
-      <a href="https://www.facebook.com/matipaishe-blessing" target="_blank" class="hover:text-green-400 transition"><i class="fa fa-facebook"></i></a>
-      <a href="https://www.instagram.com/matipaishe-blessing" target="_blank" class="hover:text-pink-400 transition"><i class="fa fa-instagram"></i></a>
-      <a href="https://twitter.com/matipaishe-blessing" target="_blank" class="hover:text-blue-400 transition"><i class="fa fa-twitter"></i></a>
-    </div>
-
-    <!-- Contact Information -->
-    <div class="space-y-2 text-base">
-      <p><i class="fa fa-phone mr-2"></i><a href="tel:+263776998296" class="hover:underline">Call: 0776998296</a></p>
-      <p><i class="fa fa-whatsapp mr-2"></i><a href="https://wa.me/263716669706" target="_blank" class="hover:underline">WhatsApp: 0716669706</a></p>
-      <p><i class="fa fa-envelope mr-2"></i><a href="mailto:spudytv14@gmail.com" class="hover:underline">Email: spudytv14@gmail.com</a></p>
-    </div>
-
-    <!-- Terms and Privacy -->
-    <div class="text-sm space-x-4">
-      <a href="https://drive.google.com/your-terms-link" target="_blank" class="hover:underline">Terms of Service</a>
-      <span>|</span>
-      <a href="https://drive.google.com/your-privacy-link" target="_blank" class="hover:underline">Privacy Centre</a>
-    </div>
-
-    <!-- Subscription Form -->
-    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-      <input type="email" id="subscriber-email" placeholder="Enter your email"
-             class="px-4 py-2 rounded-md w-72 text-black focus:outline-none">
-      <button onclick="subscribe()"
-              class="bg-green-700 hover:bg-green-500 text-white px-6 py-2 rounded-md transition">Subscribe</button>
-    </div>
-
-    <!-- Feedback -->
-    <div class="text-sm">
-      <p>Have feedback? <a href="mailto:spudytv14@gmail.com" class="underline hover:text-green-400">Let us know</a></p>
-    </div>
-
-    <!-- QR Code -->
-    <div>
-      <p class="mb-2 font-semibold">Scan to chat on WhatsApp:</p>
-      <img src="whatsapp-qr.png" alt="WhatsApp QR Code" class="mx-auto w-36">
-    </div>
-
-    <!-- APK Download -->
-    <div>
-      <p class="font-bold text-lg">Download my Spudy AI APK today!</p>
-      <a href="https://play.google.com/store/apps/details?id=yourapp" target="_blank"
-         class="inline-block mt-2 px-6 py-2 bg-blue-700 hover:bg-green-600 text-white rounded-md transition">
-        Get it on Google Play
-      </a>
-    </div>
-  </div>
-</footer>
-
-<!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
