@@ -217,45 +217,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Sidebar Styles */
-        .sidebar {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px 0 0 15px;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
-
-        .sidebar-btn {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .sidebar-btn:hover {
-            transform: translateX(-10px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-        }
-
-        .sidebar-btn i {
-            font-size: 1.4rem;
-        }
-
         /* Services Section */
         .services {
             padding: 100px 50px;
@@ -305,6 +266,23 @@
         .service-card p {
             font-size: 1.1rem;
             color: #d1e7ff;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .try-now-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card .try-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
         }
 
         /* Pricing Section */
@@ -404,6 +382,66 @@
         .pricing-card .select-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .pricing-card .dropdown-message {
+            display: none;
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 123, 255, 0.9);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .pricing-card .confirmation-message {
+            display: none;
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 123, 255, 0.9);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            width: 90%;
+            max-width: 300px;
+        }
+
+        .pricing-card .confirmation-message p {
+            margin-bottom: 10px;
+        }
+
+        .pricing-card .confirm-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pricing-card .confirm-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .pricing-card.active .dropdown-message,
+        .pricing-card.active .confirmation-message {
+            display: block;
+            animation: slideIn 0.3s ease-in;
         }
 
         /* Payment Methods Section */
@@ -685,29 +723,6 @@
             color: #007bff;
         }
 
-        /* Dropdown Message */
-        .dropdown-message {
-            display: none;
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 123, 255, 0.9);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-        }
-
-        .service-card.active .dropdown-message,
-        .pricing-card.active .dropdown-message {
-            display: block;
-            animation: slideIn 0.3s ease-in;
-        }
-
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(-50%) translateY(10px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -720,9 +735,61 @@
             text-align: center;
         }
 
-        .footer p {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-contact, .footer-social {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-contact h3, .footer-social h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00c6ff;
+        }
+
+        .footer-contact p, .footer-social a {
             font-size: 1rem;
             color: #d1e7ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #00c6ff;
+        }
+
+        .footer-social i {
+            font-size: 1.2rem;
+        }
+
+        .footer p.copyright {
+            font-size: 1rem;
+            color: #d1e7ff;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -752,7 +819,7 @@
     <!-- Login Modal -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('login')">&times;</span>
+            <span class="close" onclick="closeModal('login')">×</span>
             <h2>Log In</h2>
             <input type="email" id="login-email" placeholder="Email" required>
             <input type="password" id="login-password" placeholder="Password" required>
@@ -764,7 +831,7 @@
     <!-- Register Modal -->
     <div id="register-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('register')">&times;</span>
+            <span class="close" onclick="closeModal('register')">×</span>
             <h2>Register</h2>
             <input type="email" id="register-email" placeholder="Email" required>
             <input type="password" id="register-password" placeholder="Password" required>
@@ -784,31 +851,6 @@
         </div>
     </section>
 
-    <!-- Sidebar with Contact and Social Media -->
-    <div class="sidebar">
-        <a href="https://wa.me/+263716669706" class="sidebar-btn whatsapp" target="_blank">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="tel:+263776998296" class="sidebar-btn call">
-            <i class="fas fa-phone"></i> Call Us
-        </a>
-        <a href="https://www.youtube.com/@SpudyAI" class="sidebar-btn youtube" target="_blank">
-            <i class="fab fa-youtube"></i> YouTube
-        </a>
-        <a href="https://www.facebook.com/matipaishe_blessing" class="sidebar-btn facebook" target="_blank">
-            <i class="fab fa-facebook"></i> Facebook
-        </a>
-        <a href="https://x.com/matipaishe_blessing" class="sidebar-btn twitter" target="_blank">
-            <i class="fab fa-x-twitter"></i> Twitter
-        </a>
-        <a href="https://www.instagram.com/matipaishe_blessing" class="sidebar-btn instagram" target="_blank">
-            <i class="fab fa-instagram"></i> Instagram
-        </a>
-        <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" class="sidebar-btn books" target="_blank">
-            <i class="fas fa-book"></i> Spudy Books
-        </a>
-    </div>
-
     <!-- Services Section -->
     <section id="services" class="services">
         <h2>Our Cutting-Edge Services</h2>
@@ -816,66 +858,66 @@
             <div class="service-card">
                 <h3>Spudy AI</h3>
                 <p>Ask anything and get intelligent, accurate responses instantly.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Advanced Reasoning</h3>
                 <p>Powerful logic for complex, high-level problem solving.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Music AI</h3>
                 <p>Create custom beats, lyrics, or full tracks with AI.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Video Generator</h3>
                 <p>Generate promo, explainer, or creative videos from your ideas.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Image Generator</h3>
                 <p>Create original images from prompts or style inputs.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Code Generator</h3>
                 <p>Turn requirements into working code across many languages.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy App Builder</h3>
                 <p>AI-assisted creation of web & mobile apps without coding.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Graphic Design</h3>
                 <p>Design flyers, posters, and brand kits in minutes.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Presentation Maker</h3>
                 <p>Generate AI-powered full decks with layout and content.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Text-to-Speech</h3>
                 <p>Turn written text into realistic voiceovers.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Voice Cloner</h3>
                 <p>Clone your voice or create custom voices.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Resume Builder</h3>
                 <p>AI-powered resume builder with expert suggestions.</p>
-                <div class="dropdown-message">Log in or register first</div>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="try-now-btn" target="_blank">Try Now</a>
             </div>
             <div class="service-card" onclick="window.location.href='https://spudytv14.github.io/Spudy-Production/#auth-section'">
                 <h3>Spudy Books</h3>
-                <p>Explore our collection of insightful and innovative books.</p>
+                <p>Explore our collection of insightful books and access the Open Library for a vast digital library.</p>
             </div>
         </div>
     </section>
@@ -895,8 +937,12 @@
                     <li class="excluded">App Builder</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
+                <div class="confirmation-message">
+                    <p>You have selected Starter Spark. Please confirm to pay FREE - Limited Access.</p>
+                    <a href="#" class="confirm-btn">Confirm</a>
+                </div>
             </div>
             <div class="pricing-card">
                 <h3>Creative Core</h3>
@@ -909,8 +955,12 @@
                     <li class="excluded">App Builder</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
+                <div class="confirmation-message">
+                    <p>You have selected Creative Core. Please confirm to pay $3.49 / month.</p>
+                    <a href="#" class="confirm-btn">Confirm</a>
+                </div>
             </div>
             <div class="pricing-card">
                 <h3>Pro Vision</h3>
@@ -923,8 +973,12 @@
                     <li class="excluded">Voice Cloner</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
+                <div class="confirmation-message">
+                    <p>You have selected Pro Vision. Please confirm to pay $6.99 / month.</p>
+                    <a href="#" class="confirm-btn">Confirm</a>
+                </div>
             </div>
             <div class="pricing-card">
                 <h3>Ultimate Brain</h3>
@@ -937,8 +991,12 @@
                     <li class="excluded">App Builder</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
+                <div class="confirmation-message">
+                    <p>You have selected Ultimate Brain. Please confirm to pay $13.99 / month.</p>
+                    <a href="#" class="confirm-btn">Confirm</a>
+                </div>
             </div>
             <div class="pricing-card">
                 <h3>Infinity Pro+</h3>
@@ -951,8 +1009,12 @@
                     <li class="included">Beta Features Access</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" onclick="alertPlan()">Select</a>
+                <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
+                <div class="confirmation-message">
+                    <p>You have selected Infinity Pro+. Please confirm to pay $20.99 / month.</p>
+                    <a href="#" class="confirm-btn">Confirm</a>
+                </div>
             </div>
             <div class="pricing-card">
                 <h3>Enterprise Masterplan</h3>
@@ -965,8 +1027,12 @@
                     <li class="included">Staff Training & SLA</li>
                 </ul>
                 <div class="discount">Request a quote for annual billing</div>
-                <a href="#" class="select-btn" onclick="alertPlan()">Request Quote</a>
+                <a href="#" class="select-btn">Request Quote</a>
                 <div class="dropdown-message">Log in or register first</div>
+                <div class="confirmation-message">
+                    <p>You have selected Enterprise Masterplan. Please confirm to pay Custom Pricing.</p>
+                    <a href="#" class="confirm-btn">Confirm</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1082,18 +1148,29 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>© 2025 Spudy Intelligence Technology. All Rights Reserved.</p>
+        <div class="footer-grid">
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><strong>Call:</strong> <a href="tel:+263776998296">0776998296</a></p>
+                <p><strong>WhatsApp:</strong> <a href="https://wa.me/+263716669706">0716669706</a></p>
+                <p><strong>Email:</strong> <a href="mailto:spudytv14@gmail.com">spudytv14@gmail.com</a></p>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <a href="https://www.youtube.com/@SpudyAI" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://www.facebook.com/matipaishe_blessing" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://x.com/matipaishe_blessing" target="_blank"><i class="fab fa-x-twitter"></i> Twitter</a>
+                <a href="https://www.instagram.com/matipaishe_blessing" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank"><i class="fas fa-book"></i> Spudy Books</a>
+            </div>
+        </div>
+        <p class="copyright">© 2025 Spudy Intelligence Technology. All Rights Reserved.</p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
     <script>
-        // Alert Script
-        function alertPlan() {
-            alert("Please select one of the plans below to proceed with payment.");
-        }
-
         // Modal Functions
         function showModal(type) {
             document.getElementById(`${type}-modal`).style.display = 'flex';
@@ -1173,32 +1250,29 @@
             });
         });
 
-        // Animate sidebar buttons
-        const sidebarButtons = document.querySelectorAll('.sidebar-btn');
-        sidebarButtons.forEach((btn, index) => {
-            btn.style.opacity = '0';
-            btn.style.transform = 'translateX(50px)';
-            setTimeout(() => {
-                btn.style.transition = 'all 0.5s ease';
-                btn.style.opacity = '1';
-                btn.style.transform = 'translateX(0)';
-            }, index * 150);
-        });
-
-        // Service and pricing card dropdown toggle
-        const cards = document.querySelectorAll('.service-card, .pricing-card');
-        cards.forEach(card => {
-            card.addEventListener('click', function(e) {
-                // Prevent dropdown for Spudy Books card
-                if (this.querySelector('h3').textContent === 'Spudy Books') return;
-                // Remove active class from all cards
-                cards.forEach(c => c.classList.remove('active'));
+        // Pricing card selection and confirmation
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        pricingCards.forEach(card => {
+            const selectBtn = card.querySelector('.select-btn');
+            selectBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Remove active class from all pricing cards
+                pricingCards.forEach(c => c.classList.remove('active'));
                 // Add active class to clicked card
-                this.classList.add('active');
-                // Auto-hide dropdown after 2 seconds
+                card.classList.add('active');
+                // Auto-hide messages after 2 seconds
                 setTimeout(() => {
-                    this.classList.remove('active');
+                    card.classList.remove('active');
                 }, 2000);
+            });
+
+            // Confirm button to scroll to payment methods
+            const confirmBtn = card.querySelector('.confirm-btn');
+            confirmBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('#payment-methods').scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
