@@ -47,7 +47,7 @@
             gap: 20px;
         }
 
-        .navbar .nav-links a:not(.auth-btn) {
+        .navbar .nav-links a:not(.account-btn) {
             color: #fff;
             text-decoration: none;
             font-size: 1rem;
@@ -57,30 +57,75 @@
             transition: all 0.3s ease;
         }
 
-        .navbar .nav-links a:not(.auth-btn):hover {
+        .navbar .nav-links a:not(.account-btn):hover {
             transform: scale(1.05);
             background: linear-gradient(45deg, #007bff, #00c6ff);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
         }
 
-        .navbar .nav-links a:not(.auth-btn):active {
+        .navbar .nav-links a:not(.account-btn):active {
             transform: translateY(-2px);
             background: linear-gradient(45deg, #00c6ff, #007bff);
         }
 
-        .navbar .auth-btn {
+        .navbar .account-btn {
+            position: relative;
             padding: 10px 20px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
+            background: linear-gradient(45deg, #003087, #007bff);
             color: #fff;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 25px;
             font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .navbar .auth-btn:hover {
+        .navbar .account-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+        }
+
+        .navbar .account-btn i {
+            font-size: 0.8rem;
+        }
+
+        .navbar .account-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            border-radius: 10px;
+            z-index: 10;
+            padding: 10px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            min-width: 120px;
+        }
+
+        .navbar .account-btn.active .account-dropdown {
+            display: block;
+            animation: slideIn 0.3s ease-in;
+        }
+
+        .navbar .account-dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: #d1e7ff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .navbar .account-dropdown a:hover {
+            background: rgba(0, 123, 255, 0.3);
+            color: #00c6ff;
+            transform: translateX(5px);
         }
 
         /* Modal Styles */
@@ -270,36 +315,45 @@
             display: none;
             position: absolute;
             top: 100%;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 123, 255, 0.3);
             border-radius: 10px;
             z-index: 10;
-            padding: 10px 0;
+            padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
         .service-card .dropdown a {
             display: block;
-            padding: 10px 20px;
+            padding: 10px;
             color: #d1e7ff;
             text-decoration: none;
-            font-size: 1rem;
-            transition: background 0.3s;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            border-radius: 5px;
         }
 
         .service-card .dropdown a:hover {
             background: rgba(0, 123, 255, 0.3);
             color: #00c6ff;
+            transform: scale(1.05);
         }
 
         .service-card.active .dropdown {
-            display: block;
+            display: grid;
             animation: slideIn 0.3s ease-in;
         }
 
+        .service-card .explore-btn,
         .service-card .open-library-btn,
         .service-card .explore-games-btn {
             display: inline-block;
@@ -312,6 +366,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
+        .service-card .explore-btn:hover,
         .service-card .open-library-btn:hover,
         .service-card .explore-games-btn:hover {
             transform: translateY(-3px);
@@ -608,23 +663,67 @@
             padding: 100px 50px;
             text-align: center;
             background: #0a1a2e;
+            position: relative;
         }
 
         .team h2 {
             font-size: 3rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .team-grid {
+        .team p {
+            font-size: 1.2rem;
+            color: #d1e7ff;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+
+        .team .meet-team-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team .meet-team-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .team .team-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            border-radius: 10px;
+            z-index: 10;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 1400px;
+        }
+
+        .team.active .team-dropdown {
+            display: block;
+            animation: slideIn 0.3s ease-in;
+        }
+
+        .team .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
         .team-card {
@@ -836,6 +935,23 @@
             .services-grid {
                 grid-template-columns: 1fr;
             }
+
+            .service-card .dropdown {
+                width: 100%;
+                grid-template-columns: 1fr;
+            }
+
+            .navbar .account-dropdown {
+                right: 10px;
+            }
+
+            .team .team-dropdown {
+                width: 100%;
+            }
+
+            .team .team-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -852,8 +968,12 @@
             <a href="#model-development">Model Development</a>
             <a href="#team">Team</a>
             <a href="#contact">Contact</a>
-            <a href="#" class="auth-btn" onclick="showModal('login')">Log In</a>
-            <a href="#" class="auth-btn" onclick="showModal('register')">Register</a>
+            <div class="account-btn">Account <i class="fas fa-chevron-down"></i>
+                <div class="account-dropdown">
+                    <a onclick="showModal('login')">Log In</a>
+                    <a onclick="showModal('register')">Register</a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -899,6 +1019,7 @@
             <div class="service-card spudy-ai-card">
                 <h3>Spudy AI</h3>
                 <p>Access a suite of AI-powered tools for creativity, productivity, and innovation.</p>
+                <a href="#" class="explore-btn">Explore</a>
                 <div class="dropdown">
                     <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy AI</a>
                     <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Spudy Advanced Reasoning</a>
@@ -1032,12 +1153,8 @@
                     <li class="included">Staff Training & SLA</li>
                 </ul>
                 <div class="discount">Request a quote for annual billing</div>
-                <a href="#" class="select-btn">Request Quote</a>
+                <a href="mailto:spudytv14@gmail.com" class="select-btn">Contact Us</a>
                 <div class="dropdown-message">Log in or register first</div>
-                <div class="confirmation-message">
-                    <p>You have selected Enterprise Masterplan. Please confirm to pay Custom Pricing.</p>
-                    <a href="#" class="confirm-btn">Confirm</a>
-                </div>
             </div>
         </div>
     </section>
@@ -1091,31 +1208,35 @@
     <!-- Team Section -->
     <section id="team" class="team">
         <h2>Meet the Team</h2>
-        <div class="team-grid">
-            <div class="team-card">
-                <h3>Matipaishe Blessing (Spudy)</h3>
-                <div class="role">Founder & Lead Developer</div>
-                <p>Visionary behind Spudy Intelligence Unit. Leads innovation, coding, design, and future development.</p>
-            </div>
-            <div class="team-card">
-                <h3>I. Whande</h3>
-                <div class="role">Final Inspector</div>
-                <p>Ensures perfection in every line of code, UI layout, and system functionality before release.</p>
-            </div>
-            <div class="team-card">
-                <h3>Myta Zedy</h3>
-                <div class="role">Creative Support & Idea Source</div>
-                <p>Brings heart, encouragement, and inspirational creativity that shaped SIU's growth.</p>
-            </div>
-            <div class="team-card">
-                <h3>Matipaishe Blessing</h3>
-                <div class="role">UI/UX Designer</div>
-                <p>Crafts visually intuitive and user-focused interfaces across all Spudy platforms.</p>
-            </div>
-            <div class="team-card">
-                <h3>Dean</h3>
-                <div class="role">Marketer</div>
-                <p>Drives the promotion and success of our services through strategic marketing.</p>
+        <p>Our talented team drives innovation at Spudy Intelligence Technology.</p>
+        <a href="#" class="meet-team-btn">Meet the Team</a>
+        <div class="team-dropdown">
+            <div class="team-grid">
+                <div class="team-card">
+                    <h3>Matipaishe Blessing (Spudy)</h3>
+                    <div class="role">Founder & Lead Developer</div>
+                    <p>Visionary behind Spudy Intelligence Unit. Leads innovation, coding, design, and future development.</p>
+                </div>
+                <div class="team-card">
+                    <h3>I. Whande</h3>
+                    <div class="role">Final Inspector</div>
+                    <p>Ensures perfection in every line of code, UI layout, and system functionality before release.</p>
+                </div>
+                <div class="team-card">
+                    <h3>Myta Zedy</h3>
+                    <div class="role">Creative Support & Idea Source</div>
+                    <p>Brings heart, encouragement, and inspirational creativity that shaped SIU's growth.</p>
+                </div>
+                <div class="team-card">
+                    <h3>Matipaishe Blessing</h3>
+                    <div class="role">UI/UX Designer</div>
+                    <p>Crafts visually intuitive and user-focused interfaces across all Spudy platforms.</p>
+                </div>
+                <div class="team-card">
+                    <h3>Dean</h3>
+                    <div class="role">Marketer</div>
+                    <p>Drives the promotion and success of our services through strategic marketing.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1238,7 +1359,7 @@
         });
 
         // Smooth scrolling for navigation
-        document.querySelectorAll('.nav-links a:not(.auth-btn), .cta-button').forEach(anchor => {
+        document.querySelectorAll('.nav-links a:not(.account-btn, .account-dropdown a), .cta-button').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -1252,6 +1373,9 @@
         pricingCards.forEach(card => {
             const selectBtn = card.querySelector('.select-btn');
             selectBtn.addEventListener('click', function(e) {
+                if (selectBtn.getAttribute('href') === 'mailto:spudytv14@gmail.com') {
+                    return; // Allow email link to proceed
+                }
                 e.preventDefault();
                 pricingCards.forEach(c => c.classList.remove('active'));
                 card.classList.add('active');
@@ -1261,26 +1385,95 @@
             });
 
             const confirmBtn = card.querySelector('.confirm-btn');
-            confirmBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector('#payment-methods').scrollIntoView({
-                    behavior: 'smooth'
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector('#payment-methods').scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
-            });
-        });
-
-        // Spudy AI card dropdown toggle
-        const spudyAICard = document.querySelector('.spudy-ai-card');
-        spudyAICard.addEventListener('click', function(e) {
-            if (!e.target.closest('.dropdown')) {
-                spudyAICard.classList.toggle('active');
             }
         });
 
-        // Close dropdown when clicking outside
+        // Spudy AI card dropdown toggle with auto-hide
+        const spudyAICard = document.querySelector('.spudy-ai-card');
+        const exploreBtn = spudyAICard.querySelector('.explore-btn');
+        let spudyAITimer;
+        exploreBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            spudyAICard.classList.toggle('active');
+            if (spudyAICard.classList.contains('active')) {
+                clearTimeout(spudyAITimer);
+                spudyAITimer = setTimeout(() => spudyAICard.classList.remove('active'), 10000);
+            } else {
+                clearTimeout(spudyAITimer);
+            }
+        });
+
+        spudyAICard.addEventListener('mousemove', () => {
+            if (spudyAICard.classList.contains('active')) {
+                clearTimeout(spudyAITimer);
+                spudyAITimer = setTimeout(() => spudyAICard.classList.remove('active'), 10000);
+            }
+        });
+
+        document.querySelector('.spudy-ai-card .dropdown').addEventListener('mousemove', () => {
+            if (spudyAICard.classList.contains('active')) {
+                clearTimeout(spudyAITimer);
+                spudyAITimer = setTimeout(() => spudyAICard.classList.remove('active'), 10000);
+            }
+        });
+
+        // Close Spudy AI dropdown when clicking outside
         document.addEventListener('click', function(e) {
-            if (!spudyAICard.contains(e.target)) {
+            if (!spudyAICard.contains(e.target) && !e.target.closest('.dropdown')) {
                 spudyAICard.classList.remove('active');
+                clearTimeout(spudyAITimer);
+            }
+        });
+
+        // Team section dropdown toggle with auto-hide
+        const teamSection = document.querySelector('.team');
+        const meetTeamBtn = teamSection.querySelector('.meet-team-btn');
+        let teamTimer;
+        meetTeamBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            teamSection.classList.toggle('active');
+            if (teamSection.classList.contains('active')) {
+                clearTimeout(teamTimer);
+                teamTimer = setTimeout(() => teamSection.classList.remove('active'), 10000);
+            } else {
+                clearTimeout(teamTimer);
+            }
+        });
+
+        const teamDropdown = teamSection.querySelector('.team-dropdown');
+        teamDropdown.addEventListener('mousemove', () => {
+            if (teamSection.classList.contains('active')) {
+                clearTimeout(teamTimer);
+                teamTimer = setTimeout(() => teamSection.classList.remove('active'), 10000);
+            }
+        });
+
+        // Close team dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!teamSection.contains(e.target) && !e.target.closest('.team-dropdown')) {
+                teamSection.classList.remove('active');
+                clearTimeout(teamTimer);
+            }
+        });
+
+        // Account button dropdown toggle
+        const accountBtn = document.querySelector('.account-btn');
+        accountBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            accountBtn.classList.toggle('active');
+        });
+
+        // Close account dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!accountBtn.contains(e.target) && !e.target.closest('.account-dropdown')) {
+                accountBtn.classList.remove('active');
             }
         });
     </script>
