@@ -51,6 +51,12 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             animation: fadeInUp 1s ease;
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .navbar .logo {
@@ -358,70 +364,6 @@
             margin-bottom: 1.5rem;
         }
 
-        .service-card .dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 123, 255, 0.3);
-            border-radius: 15px;
-            z-index: 1001;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            width: 450px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .service-card.active .dropdown {
-            display: grid;
-            animation: slideIn 0.3s ease-in;
-        }
-
-        .service-card .dropdown a {
-            display: block;
-            padding: 12px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: background 0.3s, transform 0.3s;
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .service-card .dropdown a:hover {
-            background: rgba(0, 123, 255, 0.3);
-            color: #00c6ff;
-            transform: scale(1.05);
-        }
-
-        .service-card .dropdown a::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 123, 255, 0.9);
-            color: #ffffff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 1002;
-        }
-
-        .service-card .dropdown a:hover::after {
-            opacity: 1;
-        }
-
         .service-card .explore-btn,
         .service-card .open-library-btn,
         .service-card .explore-games-btn {
@@ -438,6 +380,77 @@
         .service-card .explore-btn:hover,
         .service-card .open-library-btn:hover,
         .service-card .explore-games-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+            animation: glow 1.5s infinite;
+        }
+
+        /* Spudy AI Tools Section */
+        .spudy-ai-tools {
+            padding: 120px 50px;
+            text-align: center;
+            background: #0a1a2e;
+            animation: fadeInUp 1s ease;
+        }
+
+        .spudy-ai-tools h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 3.5rem;
+            color: #ffffff;
+        }
+
+        .spudy-ai-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .spudy-ai-tool-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 35px;
+            border-radius: 25px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .spudy-ai-tool-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+            animation: glow 1.5s infinite;
+        }
+
+        .spudy-ai-tool-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            color: #ffffff;
+        }
+
+        .spudy-ai-tool-card p {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .spudy-ai-tool-card a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .spudy-ai-tool-card a:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
             animation: glow 1.5s infinite;
@@ -987,12 +1000,7 @@
         }
 
         .footer-social {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto 2.5rem;
         }
 
@@ -1003,23 +1011,53 @@
             color: #ffffff;
         }
 
-        .footer-social a {
+        .footer-social-grid {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-social-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 10;
+        }
+
+        .footer-social-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.4);
+            animation: glow 1.5s infinite;
+        }
+
+        .footer-social-card.youtube:hover {
+            background: linear-gradient(45deg, #ff0000, #ff5555);
+        }
+
+        .footer-social-card.facebook:hover {
+            background: linear-gradient(45deg, #3b5998, #4b70b8);
+        }
+
+        .footer-social-card.twitter:hover {
+            background: linear-gradient(45deg, #1da1f2, #4bb2ff);
+        }
+
+        .footer-social-card.instagram:hover {
+            background: linear-gradient(45deg, #833ab4, #e1306c);
+        }
+
+        .footer-social-card.spudy-books:hover {
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+        }
+
+        .footer-social-card a {
             color: #ffffff;
-            margin-bottom: 0.8rem;
+            font-size: 2.5rem;
             text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-social a:hover {
-            color: #00c6ff;
-        }
-
-        .footer-social i {
-            font-size: 1.4rem;
         }
 
         .footer p.copyright {
@@ -1030,7 +1068,8 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .contact-icons {
+            .contact-icons,
+            .footer-social-grid {
                 flex-direction: column;
                 align-items: center;
             }
@@ -1050,12 +1089,8 @@
                 border-radius: 0 0 25px 25px;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-card .dropdown {
-                width: 100%;
+            .services-grid,
+            .spudy-ai-tools-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1091,6 +1126,7 @@
         <div class="nav-card">
             <a href="#home">Home</a>
             <a href="#services">Services</a>
+            <a href="#spudy-ai-tools">Spudy AI Tools</a>
             <a href="#pricing">Pricing</a>
             <a href="#payment-methods">Payment Methods</a>
             <a href="#data-processing">Data Processing</a>
@@ -1145,24 +1181,10 @@
     <section id="services" class="services">
         <h2>Our Cutting-Edge Services</h2>
         <div class="services-grid">
-            <div class="service-card spudy-ai-card">
+            <div class="service-card">
                 <h3>Spudy AI</h3>
                 <p>Access a suite of AI-powered tools for creativity, productivity, and innovation.</p>
-                <a href="#" class="explore-btn">Explore</a>
-                <div class="dropdown">
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="General AI Assistant">Spudy AI</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Enhanced Logic & Problem Solving">Spudy Advanced Reasoning</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Create Original Music">Spudy Music AI</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Generate Stunning Videos">Spudy Video Generator</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Create High-Quality Images">Spudy Image Generator</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Write Code Effortlessly">Spudy Code Generator</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Build Custom Applications">Spudy App Builder</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Design Professional Graphics">Spudy Graphic Design</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Create Engaging Slides">Spudy Presentation Maker</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Convert Text to Natural Speech">Spudy Text-to-Speech</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Replicate Voices Accurately">Spudy Voice Cloner</a>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" data-tooltip="Craft Professional Resumes">Spudy Resume Builder</a>
-                </div>
+                <a href="#spudy-ai-tools" class="explore-btn">Explore Tools</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Library</h3>
@@ -1173,6 +1195,73 @@
                 <h3>Spudy Games</h3>
                 <p>Dive into exciting AI-powered games and interactive experiences.</p>
                 <a href="https://spudytv14.github.io/PLAY.GAMES/" class="explore-games-btn" target="_blank">Explore Games</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spudy AI Tools Section -->
+    <section id="spudy-ai-tools" class="spudy-ai-tools">
+        <h2>Spudy AI Tools</h2>
+        <div class="spudy-ai-tools-grid">
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy AI</h3>
+                <p>General AI Assistant for various tasks.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Advanced Reasoning</h3>
+                <p>Enhanced Logic & Problem Solving capabilities.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Music AI</h3>
+                <p>Create Original Music with AI.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Video Generator</h3>
+                <p>Generate Stunning Videos effortlessly.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Image Generator</h3>
+                <p>Create High-Quality Images with AI.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Code Generator</h3>
+                <p>Write Code Effortlessly with AI assistance.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy App Builder</h3>
+                <p>Build Custom Applications with ease.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Graphic Design</h3>
+                <p>Design Professional Graphics using AI.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Presentation Maker</h3>
+                <p>Create Engaging Slides with AI support.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Text-to-Speech</h3>
+                <p>Convert Text to Natural Speech.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Voice Cloner</h3>
+                <p>Replicate Voices Accurately with AI.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+            </div>
+            <div class="spudy-ai-tool-card">
+                <h3>Spudy Resume Builder</h3>
+                <p>Craft Professional Resumes with AI.</p>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
             </div>
         </div>
     </section>
@@ -1371,7 +1460,7 @@
     </section>
 
     <!-- Contact Us Section (Integrated with Footer) -->
-    <section id="contact" class="contact'">
+    <section id="contact" class="contact">
         <h2>Contact Us</h2>
         <div class="contact-content">
             <div class="contact-icons">
@@ -1407,11 +1496,33 @@
     <footer class="footer">
         <div class="footer-social">
             <h3>Follow Us</h3>
-            <a href="https://www.youtube.com/@SpudyAI" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-            <a href="https://www.facebook.com/matipaishe_blessing" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://x.com/matipaishe_blessing" target="_blank"><i class="fab fa-x-twitter"></i> Twitter</a>
-            <a href="https://www.instagram.com/matipaishe_blessing" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank"><i class="fas fa-book"></i> Spudy Books</a>
+            <div class="footer-social-grid">
+                <div class="footer-social-card youtube">
+                    <a href="https://www.youtube.com/@SpudyAI" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <div class="footer-social-card facebook">
+                    <a href="https://www.facebook.com/matipaishe.blessing" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+                <div class="footer-social-card twitter">
+                    <a href="https://x.com/matipaishe_b" target="_blank">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                </div>
+                <div class="footer-social-card instagram">
+                    <a href="https://www.instagram.com/matipaishe_blessing" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="footer-social-card spudy-books">
+                    <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank">
+                        <i class="fas fa-book"></i>
+                    </a>
+                </div>
+            </div>
         </div>
         <p class="copyright">© 2025 Spudy Intelligence Technology. All Rights Reserved.</p>
     </footer>
@@ -1486,13 +1597,30 @@
         });
 
         // Smooth scrolling for navigation
-        document.querySelectorAll('.nav-card a:not(.account-btn, .account-dropdown a), .cta-button').forEach(anchor => {
+        document.querySelectorAll('.nav-card a:not(.account-btn, .account-dropdown a), .cta-button, .service-card .explore-btn').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Navbar fade on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            const navbar = document.querySelector('.navbar');
+
+            if (currentScroll <= 100) {
+                navbar.classList.remove('hidden');
+            } else if (currentScroll > lastScrollTop) {
+                navbar.classList.add('hidden');
+            } else {
+                navbar.classList.remove('hidden');
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
 
         // Pricing card selection and confirmation
@@ -1530,42 +1658,6 @@
             });
         });
 
-        // Spudy AI card dropdown toggle with auto-hide
-        const spudyAICard = document.querySelector('.spudy-ai-card');
-        const exploreBtn = spudyAICard.querySelector('.explore-btn');
-        let spudyAITimer;
-        exploreBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            spudyAICard.classList.toggle('active');
-            if (spudyAICard.classList.contains('active')) {
-                clearTimeout(spudyAITimer);
-                spudyAITimer = setTimeout(() => spudyAICard.classList.remove('active'), 10000);
-            } else {
-                clearTimeout(spudyAITimer);
-            }
-        });
-
-        spudyAICard.addEventListener('mousemove', () => {
-            if (spudyAICard.classList.contains('active')) {
-                clearTimeout(spudyAITimer);
-                spudyAITimer = setTimeout(() => spudyAICard.classList.remove('active'), 10000);
-            }
-        });
-
-        document.querySelector('.spudy-ai-card .dropdown').addEventListener('mousemove', () => {
-            if (spudyAICard.classList.contains('active')) {
-                clearTimeout(spudyAITimer);
-                spudyAITimer = setTimeout(() => spudyAICard.classList.remove('active'), 10000);
-            }
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!spudyAICard.contains(e.target) && !e.target.closest('.dropdown')) {
-                spudyAICard.classList.remove('active');
-                clearTimeout(spudyAITimer);
-            }
-        });
-
         // Team section dropdown toggle with auto-hide
         const teamSection = document.querySelector('.team');
         const meetTeamBtn = teamSection.querySelector('.meet-team-btn');
@@ -1598,6 +1690,7 @@
 
         // Account button dropdown toggle with auto-hide
         const accountBtn = document.querySelector('.account-btn');
+        const accountDropdown = document.querySelector('.account-dropdown');
         let accountTimer;
         accountBtn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1610,7 +1703,6 @@
             }
         });
 
-        const accountDropdown = document.querySelector('.account-dropdown');
         accountDropdown.addEventListener('mousemove', () => {
             if (accountBtn.classList.contains('active')) {
                 clearTimeout(accountTimer);
