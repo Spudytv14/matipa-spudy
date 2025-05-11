@@ -56,18 +56,28 @@
         .navbar .nav-links {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
         }
 
-        .navbar .nav-links a {
+        .navbar .nav-links a:not(.auth-btn) {
             color: #fff;
             text-decoration: none;
             font-size: 1rem;
-            transition: color 0.3s;
+            padding: 8px 15px;
+            background: linear-gradient(45deg, #003087, #007bff);
+            border-radius: 25px;
+            transition: all 0.3s ease;
         }
 
-        .navbar .nav-links a:hover {
-            color: #00c6ff;
+        .navbar .nav-links a:not(.auth-btn):hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .navbar .nav-links a:not(.auth-btn):active {
+            transform: translateY(-2px);
+            background: linear-gradient(45deg, #00c6ff, #007bff);
         }
 
         .navbar .auth-btn {
@@ -318,11 +328,16 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            overflow: visible;
         }
 
         .pricing-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .pricing-card.active {
+            z-index: 20;
         }
 
         .pricing-card h3 {
@@ -387,7 +402,7 @@
         .pricing-card .dropdown-message {
             display: none;
             position: absolute;
-            bottom: -60px;
+            bottom: -70px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 123, 255, 0.9);
@@ -403,7 +418,7 @@
         .pricing-card .confirmation-message {
             display: none;
             position: absolute;
-            bottom: -100px;
+            bottom: -120px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 123, 255, 0.9);
@@ -620,11 +635,11 @@
             color: #d1e7ff;
         }
 
-        /* Contact Section */
+        /* Contact Us Section (Integrated with Footer) */
         .contact {
             padding: 100px 50px;
             text-align: center;
-            background: #0a1a2e;
+            background: linear-gradient(135deg, #0a1a2e, #1e3a8a);
         }
 
         .contact h2 {
@@ -636,82 +651,79 @@
             color: transparent;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
+        .contact-content {
+            max-width: 800px;
             margin: 0 auto;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
             margin-bottom: 2rem;
         }
 
-        .contact-info {
+        .contact-icon-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .contact-info p {
-            font-size: 1.1rem;
-            color: #d1e7ff;
-            margin-bottom: 0.5rem;
+        .contact-icon-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.4);
+            background: linear-gradient(45deg, #007bff, #00c6ff);
         }
 
-        .contact-info a {
-            color: #00c6ff;
+        .contact-icon-card a {
+            color: #fff;
+            font-size: 2rem;
             text-decoration: none;
-            transition: color 0.3s;
         }
 
-        .contact-info a:hover {
-            color: #007bff;
-        }
-
-        .contact img {
-            width: 100%;
-            max-width: 200px;
-            border-radius: 10px;
-            margin: 1rem auto;
-            display: block;
-        }
-
-        .contact .subscribe {
+        .contact-subscribe {
             margin: 2rem auto;
             max-width: 600px;
+            display: flex;
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #007bff, #00c6ff) 1;
+            border-radius: 50px;
+            overflow: hidden;
         }
 
-        .contact .subscribe input {
-            padding: 12px;
+        .contact-subscribe input {
+            padding: 14px;
             width: 70%;
             border: none;
-            border-radius: 50px 0 0 50px;
             font-size: 1rem;
             outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
         }
 
-        .contact .subscribe button {
-            padding: 12px 20px;
+        .contact-subscribe button {
+            padding: 14px 20px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #fff;
             border: none;
-            border-radius: 0 50px 50px 0;
             font-size: 1rem;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .contact .subscribe button:hover {
+        .contact-subscribe button:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
         }
 
-        .contact .links {
+        .contact-links {
             margin-top: 2rem;
         }
 
-        .contact .links a {
+        .contact-links a {
             color: #00c6ff;
             text-decoration: none;
             margin: 0 10px;
@@ -719,7 +731,7 @@
             transition: color 0.3s;
         }
 
-        .contact .links a:hover {
+        .contact-links a:hover {
             color: #007bff;
         }
 
@@ -735,38 +747,29 @@
             text-align: center;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1400px;
-            margin: 0 auto 2rem;
-        }
-
-        .footer-contact, .footer-social {
+        .footer-social {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            margin: 0 auto 2rem;
         }
 
-        .footer-contact h3, .footer-social h3 {
+        .footer-social h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: #00c6ff;
-        }
-
-        .footer-contact p, .footer-social a {
-            font-size: 1rem;
-            color: #d1e7ff;
-            margin-bottom: 0.5rem;
         }
 
         .footer-social a {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 1rem;
+            color: #d1e7ff;
+            margin-bottom: 0.5rem;
             text-decoration: none;
             transition: color 0.3s;
         }
@@ -787,8 +790,24 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
+            .contact-icons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-subscribe {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+
+            .contact-subscribe input {
+                width: 100%;
+                border-radius: 20px 20px 0 0;
+            }
+
+            .contact-subscribe button {
+                width: 100%;
+                border-radius: 0 0 20px 20px;
             }
         }
     </style>
@@ -1115,54 +1134,48 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Us Section (Integrated with Footer) -->
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <p><strong>Call:</strong> <a href="tel:+263776998296">0776998296</a></p>
-                <p><strong>WhatsApp:</strong> <a href="https://wa.me/+263716669706">0716669706</a></p>
-                <p><strong>Email:</strong> <a href="mailto:spudytv14@gmail.com">spudytv14@gmail.com</a></p>
+        <div class="contact-content">
+            <div class="contact-icons">
+                <div class="contact-icon-card">
+                    <a href="https://wa.me/+263716669706" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <div class="contact-icon-card">
+                    <a href="mailto:spudytv14@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <div class="contact-icon-card">
+                    <a href="https://play.google.com/store" target="_blank">
+                        <i class="fab fa-google-play"></i>
+                    </a>
+                </div>
             </div>
-            <div class="contact-info">
-                <p>Scan to chat on WhatsApp:</p>
-                <img src="whatsapp-qr.png" alt="WhatsApp QR Code">
+            <div class="contact-subscribe">
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
             </div>
-            <div class="contact-info">
-                <p>Download my Spudy AI APK today!</p>
-                <a href="https://play.google.com/store" target="_blank">
-                    <img src="google-play.png" alt="Get it on Google Play">
-                </a>
+            <div class="contact-links">
+                <a href="#terms">Terms of Service</a> |
+                <a href="#privacy">Privacy Centre</a> |
+                <a href="mailto:spudytv14@gmail.com">Have feedback? Let us know</a>
             </div>
-        </div>
-        <div class="subscribe">
-            <input type="email" placeholder="Enter your email">
-            <button>Subscribe</button>
-        </div>
-        <div class="links">
-            <a href="#terms">Terms of Service</a> | 
-            <a href="#privacy">Privacy Centre</a> | 
-            <a href="mailto:spudytv14@gmail.com">Have feedback? Let us know</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-contact">
-                <h3>Contact Us</h3>
-                <p><strong>Call:</strong> <a href="tel:+263776998296">0776998296</a></p>
-                <p><strong>WhatsApp:</strong> <a href="https://wa.me/+263716669706">0716669706</a></p>
-                <p><strong>Email:</strong> <a href="mailto:spudytv14@gmail.com">spudytv14@gmail.com</a></p>
-            </div>
-            <div class="footer-social">
-                <h3>Follow Us</h3>
-                <a href="https://www.youtube.com/@SpudyAI" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-                <a href="https://www.facebook.com/matipaishe_blessing" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="https://x.com/matipaishe_blessing" target="_blank"><i class="fab fa-x-twitter"></i> Twitter</a>
-                <a href="https://www.instagram.com/matipaishe_blessing" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank"><i class="fas fa-book"></i> Spudy Books</a>
-            </div>
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+            <a href="https://www.youtube.com/@SpudyAI" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.facebook.com/matipaishe_blessing" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://x.com/matipaishe_blessing" target="_blank"><i class="fab fa-x-twitter"></i> Twitter</a>
+            <a href="https://www.instagram.com/matipaishe_blessing" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank"><i class="fas fa-book"></i> Spudy Books</a>
         </div>
         <p class="copyright">© 2025 Spudy Intelligence Technology. All Rights Reserved.</p>
     </footer>
@@ -1260,10 +1273,10 @@
                 pricingCards.forEach(c => c.classList.remove('active'));
                 // Add active class to clicked card
                 card.classList.add('active');
-                // Auto-hide messages after 2 seconds
+                // Auto-hide messages after 5 seconds
                 setTimeout(() => {
                     card.classList.remove('active');
-                }, 2000);
+                }, 5000);
             });
 
             // Confirm button to scroll to payment methods
