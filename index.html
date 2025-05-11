@@ -582,6 +582,187 @@
             color: #d1e7ff;
         }
 
+        /* Trusted by Thousands Section */
+        .trusted {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .trusted:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .trusted h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .trusted p.description {
+            font-size: 1.2rem;
+            color: #d1e7ff;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .testimonial.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .testimonial p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #00c6ff;
+        }
+
+        .testimonial .author {
+            font-size: 1rem;
+            color: #d1e7ff;
+            margin-top: 0.5rem;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .carousel-nav button {
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            border: none;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .carousel-nav button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .trusted .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 2rem;
+        }
+
+        .trusted .stat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .trusted .stat h3 {
+            font-size: 2rem;
+            color: #00c6ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .trusted .stat p {
+            font-size: 1rem;
+            color: #d1e7ff;
+        }
+
+        .trusted .tagline {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #00c6ff;
+            margin-top: 2rem;
+        }
+
+        /* Careers Section */
+        .careers {
+            padding: 100px 50px;
+            text-align: center;
+            background: #0a1a2e;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .careers:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .careers h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .careers p.description {
+            font-size: 1.2rem;
+            color: #d1e7ff;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .careers .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .careers .role {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .careers .role i {
+            font-size: 1.5rem;
+            color: #00c6ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .careers .role p {
+            font-size: 1.1rem;
+            color: #d1e7ff;
+        }
+
         /* Contact Section */
         .contact {
             padding: 100px 50px;
@@ -743,6 +924,8 @@
             <a href="#data-processing">Data Processing</a>
             <a href="#model-development">Model Development</a>
             <a href="#team">Team</a>
+            <a href="#trusted">Trusted</a>
+            <a href="#careers">Careers</a>
             <a href="#contact">Contact</a>
             <a href="#" class="auth-btn" onclick="showModal('login')">Log In</a>
             <a href="#" class="auth-btn" onclick="showModal('register')">Register</a>
@@ -752,7 +935,7 @@
     <!-- Login Modal -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('login')">&times;</span>
+            <span class="close" onclick="closeModal('login')">×</span>
             <h2>Log In</h2>
             <input type="email" id="login-email" placeholder="Email" required>
             <input type="password" id="login-password" placeholder="Password" required>
@@ -764,7 +947,7 @@
     <!-- Register Modal -->
     <div id="register-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('register')">&times;</span>
+            <span class="close" onclick="closeModal('register')">×</span>
             <h2>Register</h2>
             <input type="email" id="register-email" placeholder="Email" required>
             <input type="password" id="register-password" placeholder="Password" required>
@@ -1049,6 +1232,69 @@
         </div>
     </section>
 
+    <!-- Trusted by Thousands Section -->
+    <section id="trusted" class="trusted" onclick="window.location.href='https://spudytv14.github.io/Spudy-Production/#auth-section'">
+        <h2>Trusted by Thousands</h2>
+        <p class="description">Spudy’s growing network of readers, learners, and innovators is changing the game.</p>
+        <div class="testimonial-carousel">
+            <div class="testimonial active">
+                <p>"Spudy AI made learning coding fun and accessible!"</p>
+                <p class="author">Tinashe K., University Student</p>
+            </div>
+            <div class="testimonial">
+                <p>"The resume builder helped me land my dream job!"</p>
+                <p class="author">Shamiso R., Recent Graduate</p>
+            </div>
+            <div class="testimonial">
+                <p>"Spudy’s books are a hit with my students!"</p>
+                <p class="author">Mr. Chuma, High School Teacher</p>
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <button onclick="prevTestimonial()">←</button>
+            <button onclick="nextTestimonial()">→</button>
+        </div>
+        <div class="stats-grid">
+            <div class="stat">
+                <h3>5,000</h3>
+                <p>Book Downloads</p>
+            </div>
+            <div class="stat">
+                <h3>1,200</h3>
+                <p>Students Enrolled</p>
+            </div>
+            <div class="stat">
+                <h3>10,000</h3>
+                <p>Website Visits</p>
+            </div>
+        </div>
+        <p class="tagline">Spudy Intelligence: Empowering Africa’s young minds through tech, learning & humor.</p>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="careers" onclick="window.location.href='mailto:spudytv14@gmail.com'">
+        <h2>Careers at Spudy</h2>
+        <p class="description">Send us your CV — we’re hiring!</p>
+        <div class="roles-grid">
+            <div class="role">
+                <i class="fas fa-laptop-code"></i>
+                <p>Technical Specialist</p>
+            </div>
+            <div class="role">
+                <i class="fas fa-bullhorn"></i>
+                <p>Marketing Expert</p>
+            </div>
+            <div class="role">
+                <i class="fas fa-code"></i>
+                <p>Coder</p>
+            </div>
+            <div class="role">
+                <i class="fas fa-brain"></i>
+                <p>Brainstormer</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
@@ -1112,7 +1358,6 @@
             // Simple validation (for demo purposes)
             if (email.includes('@') && password.length >= 6) {
                 closeModal('login');
-                // Simulate successful login
                 alert('Login successful!');
             } else {
                 error.style.display = 'block';
@@ -1128,12 +1373,40 @@
             // Simple validation (for demo purposes)
             if (email.includes('@') && password.length >= 6 && password === confirmPassword) {
                 closeModal('register');
-                // Simulate successful registration
                 alert('Registration successful!');
             } else {
                 error.style.display = 'block';
             }
         }
+
+        // Testimonial Carousel
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.classList.remove('active');
+                if (i === index) {
+                    testimonial.classList.add('active');
+                }
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        // Auto-rotate testimonials every 5 seconds
+        setInterval(nextTestimonial, 5000);
+
+        // Initialize first testimonial
+        showTestimonial(currentTestimonial);
 
         // Particles.js initialization
         particlesJS('particles-js', {
@@ -1189,13 +1462,9 @@
         const cards = document.querySelectorAll('.service-card, .pricing-card');
         cards.forEach(card => {
             card.addEventListener('click', function(e) {
-                // Prevent dropdown for Spudy Books card
                 if (this.querySelector('h3').textContent === 'Spudy Books') return;
-                // Remove active class from all cards
                 cards.forEach(c => c.classList.remove('active'));
-                // Add active class to clicked card
                 this.classList.add('active');
-                // Auto-hide dropdown after 2 seconds
                 setTimeout(() => {
                     this.classList.remove('active');
                 }, 2000);
