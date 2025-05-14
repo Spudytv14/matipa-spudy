@@ -42,7 +42,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
+            padding: 15px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -51,62 +51,44 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             animation: fadeInUp 1s ease;
-            transition: opacity 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .navbar.hidden {
-            opacity: 0;
-            pointer-events: none;
+            transform: translateY(-100%);
         }
 
         .navbar .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: #ffffff;
         }
 
         .nav-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            padding: 15px 25px;
+            padding: 10px 20px;
             border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
-        }
-
-        .nav-card a:not(.account-btn) {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1rem;
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #003087, #007bff);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-card a:not(.account-btn):hover {
-            transform: scale(1.05);
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-            animation: glow 1.5s infinite;
         }
 
         .navbar .account-btn {
-            padding: 12px 25px;
+            padding: 10px 20px;
             background: linear-gradient(45deg, #003087, #007bff);
             color: #ffffff;
             text-decoration: none;
             border-radius: 25px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -117,7 +99,7 @@
         }
 
         .navbar .account-btn i {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .navbar .account-dropdown {
@@ -130,10 +112,10 @@
             border: 1px solid rgba(0, 123, 255, 0.3);
             border-radius: 15px;
             z-index: 1001;
-            padding: 15px 0;
+            padding: 12px 0;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            min-width: 150px;
-            margin-top: 10px;
+            min-width: 140px;
+            margin-top: 8px;
         }
 
         .navbar .account-btn.active .account-dropdown {
@@ -143,10 +125,10 @@
 
         .navbar .account-dropdown a {
             display: block;
-            padding: 12px 25px;
+            padding: 10px 20px;
             color: #ffffff;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: background 0.3s, transform 0.3s;
         }
 
@@ -173,11 +155,11 @@
         .modal-content {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 25px;
+            padding: 30px;
+            border-radius: 20px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             width: 90%;
-            max-width: 450px;
+            max-width: 400px;
             text-align: center;
             animation: fadeInUp 0.5s ease;
             z-index: 1003;
@@ -185,18 +167,18 @@
 
         .modal-content h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
             color: #ffffff;
         }
 
         .modal-content input {
             width: 100%;
-            padding: 14px;
-            margin: 12px 0;
+            padding: 12px;
+            margin: 10px 0;
             border: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             outline: none;
             background: rgba(255, 255, 255, 0.2);
             color: #ffffff;
@@ -208,12 +190,12 @@
         }
 
         .modal-content button {
-            padding: 14px 35px;
+            padding: 12px 30px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -225,9 +207,9 @@
 
         .modal-content .close {
             position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 1.8rem;
+            top: 12px;
+            right: 20px;
+            font-size: 1.5rem;
             cursor: pointer;
             color: #ffffff;
             transition: color 0.3s;
@@ -239,8 +221,8 @@
 
         .modal-content .error {
             color: #ff4d4d;
-            font-size: 0.9rem;
-            margin-top: 12px;
+            font-size: 0.8rem;
+            margin-top: 10px;
             display: none;
         }
 
@@ -253,7 +235,7 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            background: url('https://images.unsplash.com/photo-1666875750991-02d6992da94f?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            background: url('https://images.unsplash.com/photo-1518709268805-4e9042af592e?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
         }
 
         .hero::before {
@@ -281,25 +263,25 @@
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
+            font-size: 4rem;
+            margin-bottom: 1.2rem;
             color: #ffffff;
         }
 
         .hero-content .typing {
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
             color: #00c6ff;
-            height: 2.5rem;
+            height: 2.2rem;
         }
 
         .cta-button {
-            padding: 1.5rem 4rem;
+            padding: 1.2rem 3.5rem;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -312,7 +294,7 @@
 
         /* Services Section */
         .services {
-            padding: 120px 50px;
+            padding: 100px 50px;
             text-align: center;
             background: #0a1a2e;
             animation: fadeInUp 1s ease;
@@ -320,16 +302,16 @@
 
         .services h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 3.5rem;
+            font-size: 3rem;
+            margin-bottom: 3rem;
             color: #ffffff;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -337,8 +319,8 @@
             position: relative;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 25px;
+            padding: 25px;
+            border-radius: 20px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
@@ -346,34 +328,34 @@
         }
 
         .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
             animation: glow 1.5s infinite;
         }
 
         .service-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
         .service-card p {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             color: #ffffff;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .service-card .explore-btn,
         .service-card .open-library-btn,
         .service-card .explore-games-btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 10px 20px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -387,7 +369,7 @@
 
         /* Spudy AI Tools Section */
         .spudy-ai-tools {
-            padding: 120px 50px;
+            padding: 100px 50px;
             text-align: center;
             background: #0a1a2e;
             animation: fadeInUp 1s ease;
@@ -395,16 +377,16 @@
 
         .spudy-ai-tools h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 3.5rem;
+            font-size: 3rem;
+            margin-bottom: 3rem;
             color: #ffffff;
         }
 
         .spudy-ai-tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -412,8 +394,8 @@
             position: relative;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 25px;
+            padding: 25px;
+            border-radius: 20px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
@@ -421,32 +403,32 @@
         }
 
         .spudy-ai-tool-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
             animation: glow 1.5s infinite;
         }
 
         .spudy-ai-tool-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
         .spudy-ai-tool-card p {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             color: #ffffff;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .spudy-ai-tool-card a {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 10px 20px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -458,7 +440,7 @@
 
         /* Pricing Section */
         .pricing {
-            padding: 120px 50px;
+            padding: 100px 50px;
             text-align: center;
             background: #0a1a2e;
             animation: fadeInUp 1s ease;
@@ -466,16 +448,16 @@
 
         .pricing h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 3.5rem;
+            font-size: 3rem;
+            margin-bottom: 3rem;
             color: #ffffff;
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -483,8 +465,8 @@
             position: relative;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 25px;
+            padding: 25px;
+            border-radius: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             animation: fadeInUp 1s ease;
@@ -492,8 +474,8 @@
         }
 
         .pricing-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
             animation: glow 1.5s infinite;
         }
 
@@ -503,55 +485,55 @@
 
         .pricing-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
         .pricing-card .price {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
         .pricing-card ul {
             list-style: none;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
             text-align: left;
         }
 
         .pricing-card ul li {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: #ffffff;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
         }
 
         .pricing-card ul li.included::before {
             content: '✔';
             color: #00c6ff;
-            margin-right: 12px;
+            margin-right: 10px;
         }
 
         .pricing-card ul li.excluded::before {
             content: '✖';
             color: #ff4d4d;
-            margin-right: 12px;
+            margin-right: 10px;
         }
 
         .pricing-card .discount {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #ffffff;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .pricing-card .select-btn {
             display: inline-block;
-            padding: 14px 30px;
+            padding: 12px 25px;
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -564,51 +546,51 @@
         .pricing-card .dropdown-message {
             display: none;
             position: absolute;
-            bottom: -90px;
+            bottom: -80px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 123, 255, 0.9);
             color: #ffffff;
-            padding: 12px 25px;
-            border-radius: 12px;
-            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
             white-space: nowrap;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
             z-index: 1001;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .pricing-card .confirmation-message {
             display: none;
             position: absolute;
-            bottom: -160px;
+            bottom: -140px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 123, 255, 0.9);
             color: #ffffff;
-            padding: 20px 25px;
-            border-radius: 12px;
-            font-size: 1rem;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
             z-index: 1001;
             width: 90%;
-            max-width: 350px;
-            margin-bottom: 10px;
+            max-width: 320px;
+            margin-bottom: 8px;
         }
 
         .pricing-card .confirmation-message p {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .pricing-card .confirm-btn {
             display: inline-block;
-            padding: 10px 25px;
+            padding: 8px 20px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -663,7 +645,7 @@
 
         /* Payment Methods Section */
         .payment-methods {
-            padding: 120px 50px;
+            padding: 100px 50px;
             text-align: center;
             background: #0a1a2e;
             animation: fadeInUp 1s ease;
@@ -671,42 +653,42 @@
 
         .payment-methods h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 3.5rem;
+            font-size: 3rem;
+            margin-bottom: 3rem;
             color: #ffffff;
         }
 
         .payment-methods-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 50px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .payment-method {
             background: #ffffff;
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 15px;
             transition: transform 0.3s, box-shadow 0.3s;
             z-index: 10;
         }
 
         .payment-method:hover {
             transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
             animation: glow 1.5s infinite;
         }
 
         .payment-method img {
             width: 100%;
-            max-width: 140px;
-            border-radius: 12px;
+            max-width: 120px;
+            border-radius: 10px;
         }
 
         /* Data Processing Section */
         .data-processing {
-            padding: 120px 50px;
+            padding: 100px 50px;
             text-align: center;
             background: #0a1a2e;
             animation: fadeInUp 1s ease;
@@ -714,28 +696,28 @@
 
         .data-processing h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 2.5rem;
+            font-size: 3rem;
+            margin-bottom: 2rem;
             color: #ffffff;
         }
 
         .data-processing p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #ffffff;
-            max-width: 900px;
-            margin: 0 auto 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 1.2rem;
         }
 
         .data-processing .quote {
             font-style: italic;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #00c6ff;
-            margin-top: 2.5rem;
+            margin-top: 2rem;
         }
 
         /* Model Development Section */
         .model-development {
-            padding: 120px 50px;
+            padding: 100px 50px;
             text-align: center;
             background: #0a1a2e;
             animation: fadeInUp 1s ease;
@@ -743,24 +725,24 @@
 
         .model-development h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 3.5rem;
+            font-size: 3rem;
+            margin-bottom: 3rem;
             color: #ffffff;
         }
 
         .model-development-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .model-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 25px;
+            padding: 25px;
+            border-radius: 20px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             animation: fadeInUp 1s ease;
@@ -768,26 +750,26 @@
         }
 
         .model-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
             animation: glow 1.5s infinite;
         }
 
         .model-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
         .model-card p {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             color: #ffffff;
         }
 
         /* Team Section */
         .team {
-            padding: 120px 50px;
+            padding: 100px 50px;
             text-align: center;
             background: #0a1a2e;
             position: relative;
@@ -796,26 +778,26 @@
 
         .team h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
             color: #ffffff;
         }
 
         .team p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #ffffff;
-            max-width: 900px;
-            margin: 0 auto 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 1.2rem;
         }
 
         .team .meet-team-btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 10px 20px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -836,11 +818,11 @@
             border: 1px solid rgba(0, 123, 255, 0.3);
             border-radius: 15px;
             z-index: 1001;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
             width: 90%;
-            max-width: 1400px;
-            margin-top: 10px;
+            max-width: 1200px;
+            margin-top: 8px;
         }
 
         .team.active .team-dropdown {
@@ -850,15 +832,15 @@
 
         .team .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
         }
 
         .team-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 25px;
+            padding: 25px;
+            border-radius: 20px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             animation: fadeInUp 1s ease;
@@ -866,32 +848,32 @@
         }
 
         .team-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
             animation: glow 1.5s infinite;
         }
 
         .team-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
             color: #ffffff;
         }
 
         .team-card .role {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #ffffff;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .team-card p {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: #ffffff;
         }
 
         /* Contact Us Section (Integrated with Footer) */
         .contact {
-            padding: 120px 50px;
+            padding: 100px 50px;
             text-align: center;
             background: linear-gradient(135deg, #0a1a2e, #1e3a8a);
             animation: fadeInUp 1s ease;
@@ -899,28 +881,28 @@
 
         .contact h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 2.5rem;
+            font-size: 3rem;
+            margin-bottom: 2rem;
             color: #ffffff;
         }
 
         .contact-content {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .contact-icons {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-bottom: 2.5rem;
+            gap: 20px;
+            margin-bottom: 2rem;
         }
 
         .contact-icon-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 15px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             z-index: 10;
@@ -928,20 +910,20 @@
 
         .contact-icon-card:hover {
             transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.4);
+            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
             background: linear-gradient(45deg, #007bff, #00c6ff);
             animation: glow 1.5s infinite;
         }
 
         .contact-icon-card a {
             color: #ffffff;
-            font-size: 2.5rem;
+            font-size: 2rem;
             text-decoration: none;
         }
 
         .contact-subscribe {
-            margin: 2.5rem auto;
-            max-width: 700px;
+            margin: 2rem auto;
+            max-width: 600px;
             display: flex;
             border: 2px solid transparent;
             border-image: linear-gradient(45deg, #007bff, #00c6ff) 1;
@@ -950,21 +932,21 @@
         }
 
         .contact-subscribe input {
-            padding: 16px;
+            padding: 14px;
             width: 70%;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             outline: none;
             background: rgba(255, 255, 255, 0.2);
             color: #ffffff;
         }
 
         .contact-subscribe button {
-            padding: 16px 25px;
+            padding: 14px 20px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -976,14 +958,14 @@
         }
 
         .contact-links {
-            margin-top: 2.5rem;
+            margin-top: 2rem;
         }
 
         .contact-links a {
             color: #00c6ff;
             text-decoration: none;
-            margin: 0 12px;
-            font-size: 1.1rem;
+            margin: 0 10px;
+            font-size: 1rem;
             transition: color 0.3s;
         }
 
@@ -993,36 +975,36 @@
 
         /* Footer */
         .footer {
-            padding: 60px 20px;
+            padding: 50px 20px;
             background: linear-gradient(135deg, #0a1a2e, #1e3a8a);
             text-align: center;
             animation: fadeInUp 1s ease;
         }
 
         .footer-social {
-            max-width: 900px;
-            margin: 0 auto 2.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
         }
 
         .footer-social h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
         .footer-social-grid {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         .footer-social-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 15px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             z-index: 10;
@@ -1030,7 +1012,7 @@
 
         .footer-social-card:hover {
             transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.4);
+            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
             animation: glow 1.5s infinite;
         }
 
@@ -1056,14 +1038,14 @@
 
         .footer-social-card a {
             color: #ffffff;
-            font-size: 2.5rem;
+            font-size: 2rem;
             text-decoration: none;
         }
 
         .footer p.copyright {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #ffffff;
-            margin-top: 2.5rem;
+            margin-top: 2rem;
         }
 
         /* Responsive Design */
@@ -1076,17 +1058,17 @@
 
             .contact-subscribe {
                 flex-direction: column;
-                border-radius: 25px;
+                border-radius: 20px;
             }
 
             .contact-subscribe input {
                 width: 100%;
-                border-radius: 25px 25px 0 0;
+                border-radius: 20px 20px 0 0;
             }
 
             .contact-subscribe button {
                 width: 100%;
-                border-radius: 0 0 25px 25px;
+                border-radius: 0 0 20px 20px;
             }
 
             .services-grid,
@@ -1095,7 +1077,7 @@
             }
 
             .navbar .account-dropdown {
-                right: 15px;
+                right: 10px;
             }
 
             .team .team-dropdown {
@@ -1105,34 +1087,14 @@
             .team .team-grid {
                 grid-template-columns: 1fr;
             }
-
-            .nav-card {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
-            }
-
-            .nav-card a:not(.account-btn) {
-                width: 100%;
-                text-align: center;
-            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="logo">Spudy Intelligence</div>
+        <div class="logo">Spudy Intelligence Technology</div>
         <div class="nav-card">
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#spudy-ai-tools">Spudy AI Tools</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#payment-methods">Payment Methods</a>
-            <a href="#data-processing">Data Processing</a>
-            <a href="#model-development">Model Development</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
             <div class="account-btn">Account <i class="fas fa-chevron-down"></i>
                 <div class="account-dropdown">
                     <a onclick="showModal('login')">Log In</a>
@@ -1206,62 +1168,62 @@
             <div class="spudy-ai-tool-card">
                 <h3>Spudy AI</h3>
                 <p>General AI Assistant for various tasks.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Advanced Reasoning</h3>
                 <p>Enhanced Logic & Problem Solving capabilities.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Music AI</h3>
                 <p>Create Original Music with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Video Generator</h3>
                 <p>Generate Stunning Videos effortlessly.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Image Generator</h3>
                 <p>Create High-Quality Images with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Code Generator</h3>
                 <p>Write Code Effortlessly with AI assistance.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy App Builder</h3>
                 <p>Build Custom Applications with ease.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Graphic Design</h3>
                 <p>Design Professional Graphics using AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Presentation Maker</h3>
                 <p>Create Engaging Slides with AI support.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Text-to-Speech</h3>
                 <p>Convert Text to Natural Speech.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Voice Cloner</h3>
                 <p>Replicate Voices Accurately with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Resume Builder</h3>
                 <p>Craft Professional Resumes with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Use Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
             </div>
         </div>
     </section>
@@ -1290,7 +1252,7 @@
             </div>
             <div class="pricing-card">
                 <h3>Creative Core</h3>
-                <div class="price">$3.49 / month</div>
+                <div class="price">$3.14 / month</div>
                 <ul>
                     <li class="included">Spudy AI</li>
                     <li class="included">Video Generator</li>
@@ -1302,13 +1264,13 @@
                 <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
-                    <p>You have selected Creative Core. Please confirm to pay $3.49 / month.</p>
+                    <p>You have selected Creative Core. Please confirm to pay $3.14 / month.</p>
                     <a href="#" class="confirm-btn">Confirm</a>
                 </div>
             </div>
             <div class="pricing-card">
                 <h3>Pro Vision</h3>
-                <div class="price">$6.99 / month</div>
+                <div class="price">$6.29 / month</div>
                 <ul>
                     <li class="included">Everything in Core</li>
                     <li class="included">Image Generator</li>
@@ -1320,13 +1282,13 @@
                 <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
-                    <p>You have selected Pro Vision. Please confirm to pay $6.99 / month.</p>
+                    <p>You have selected Pro Vision. Please confirm to pay $6.29 / month.</p>
                     <a href="#" class="confirm-btn">Confirm</a>
                 </div>
             </div>
             <div class="pricing-card">
                 <h3>Ultimate Brain</h3>
-                <div class="price">$13.99 / month</div>
+                <div class="price">$12.59 / month</div>
                 <ul>
                     <li class="included">All Pro Vision Features</li>
                     <li class="included">Code Generator</li>
@@ -1338,13 +1300,13 @@
                 <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
-                    <p>You have selected Ultimate Brain. Please confirm to pay $13.99 / month.</p>
+                    <p>You have selected Ultimate Brain. Please confirm to pay $12.59 / month.</p>
                     <a href="#" class="confirm-btn">Confirm</a>
                 </div>
             </div>
             <div class="pricing-card">
                 <h3>Infinity Pro+</h3>
-                <div class="price">$20.99 / month</div>
+                <div class="price">$18.89 / month</div>
                 <ul>
                     <li class="included">Everything in Ultimate Brain</li>
                     <li class="included">App Builder</li>
@@ -1356,7 +1318,7 @@
                 <a href="#" class="select-btn">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
-                    <p>You have selected Infinity Pro+. Please confirm to pay $20.99 / month.</p>
+                    <p>You have selected Infinity Pro+. Please confirm to pay $18.89 / month.</p>
                     <a href="#" class="confirm-btn">Confirm</a>
                 </div>
             </div>
@@ -1418,7 +1380,7 @@
             </div>
             <div class="model-card">
                 <h3>Deployment & Monitoring</h3>
-                <p>All models are containerized, scalable, and continuously monitored post-deployment for real-time updates.</p>
+                <p>All models are containerized, scalable, and continuously monitored post-deployment for real-time updates.</                </p>
             </div>
         </div>
     </section>
@@ -1508,7 +1470,7 @@
                     </a>
                 </div>
                 <div class="footer-social-card twitter">
-                    <a href="https://x.com/matipaishe_b" target="_blank">
+                    <a href="https://x.com/spudyproduction" target="_blank">
                         <i class="fab fa-x-twitter"></i>
                     </a>
                 </div>
@@ -1597,7 +1559,7 @@
         });
 
         // Smooth scrolling for navigation
-        document.querySelectorAll('.nav-card a:not(.account-btn, .account-dropdown a), .cta-button, .service-card .explore-btn').forEach(anchor => {
+        document.querySelectorAll('.cta-button, .service-card .explore-btn').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -1606,7 +1568,7 @@
             });
         });
 
-        // Navbar fade on scroll
+        // Navbar hide on scroll
         let lastScrollTop = 0;
         window.addEventListener('scroll', function() {
             let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -1614,10 +1576,8 @@
 
             if (currentScroll <= 100) {
                 navbar.classList.remove('hidden');
-            } else if (currentScroll > lastScrollTop) {
-                navbar.classList.add('hidden');
             } else {
-                navbar.classList.remove('hidden');
+                navbar.classList.add('hidden');
             }
 
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
