@@ -23,7 +23,7 @@
         body {
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
-            background: #0a1a2e url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1920 1080"><defs><filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g fill="none" stroke="#00c6ff" stroke-width="2" filter="url(#glow)"><path d="M50 100 H300 V300 H500 V500 H700 V700 H900 V900 H1100 V700 H1300 V500 H1500 V300 H1700" opacity="0.3"/><path d="M100 150 H350 V350 H550 V550 H750 V750 H950 V950 H1150" opacity="0.2"/><path d="M200 200 H400 V400 H600 V600 H800 V800 H1000" opacity="0.2"/><text x="50" y="100" font-family="Montserrat, sans-serif" font-size="60" fill="none" stroke="#00c6ff" stroke-width="1.5" filter="url(#glow)" class="neon-text">Spudy Intelligence Technology</text></g><circle cx="100" cy="100" r="5" fill="#00c6ff"/><circle cx="300" cy="300" r="5" fill="#00c6ff"/><circle cx="500" cy="500" r="5" fill="#00c6ff"/><circle cx="700" cy="700" r="5" fill="#00c6ff"/><circle cx="900" cy="900" r="5" fill="#00c6ff"/></svg>') no-repeat center center/cover;
+            background: #0a1a2e url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1920 1080"><defs><filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g fill="none" stroke="#00c6ff" stroke-width="2" filter="url(#glow)"><path d="M50 100 H300 V300 H500 V500 H700 V700 H900 V900 H1100 V700 H1300 V500 H1500 V300 H1700" opacity="0.3"/><path d="M100 150 H350 V350 H550 V550 H750 V750 H950 V950 H1150" opacity="0.2"/><path d="M200 200 H400 V400 H600 V600 H800 V800 H1000" opacity="0.2"/><text x="50" y="100" font-family="Montserrat, sans-serif" font-size="60" fill="none" stroke="#00c6ff" stroke-width="1.5" filter="url(#glow)" class="neon-text">Spudy támogatja a technológiát</text></g><circle cx="100" cy="100" r="5" fill="#00c6ff"/><circle cx="300" cy="300" r="5" fill="#00c6ff"/><circle cx="500" cy="500" r="5" fill="#00c6ff"/><circle cx="700" cy="700" r="5" fill="#00c6ff"/><circle cx="900" cy="900" r="5" fill="#00c6ff"/></svg>') no-repeat center center/cover;
             background-attachment: fixed;
             overflow-x: hidden;
         }
@@ -783,28 +783,37 @@
             overflow: hidden;
         }
 
+        .testimonial-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
         .testimonial-card {
+            flex: 0 0 100%;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
             padding: 25px;
             border-radius: 20px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             opacity: 0;
-            position: absolute;
-            width: 100%;
             transition: opacity 0.5s ease;
         }
 
         .testimonial-card.active {
             opacity: 1;
-            position: relative;
         }
 
-        .testimonial-card p {
+        .testimonial-card .quote {
             font-size: 1rem;
             color: #ffffff;
             margin-bottom: 1rem;
             font-style: italic;
+        }
+
+        .testimonial-card .quote.shona {
+            font-size: 0.95rem;
+            color: #00c6ff;
+            margin-bottom: 1rem;
         }
 
         .testimonial-card .author {
@@ -816,6 +825,33 @@
         .testimonial-card .role {
             font-size: 0.9rem;
             color: #ffffff;
+        }
+
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 123, 255, 0.7);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carousel-prev:hover, .carousel-next:hover {
+            background: #00c6ff;
+        }
+
+        .carousel-prev {
+            left: -50px;
+        }
+
+        .carousel-next {
+            right: -50px;
         }
 
         .testimonial-dots {
@@ -843,14 +879,13 @@
             padding: 100px 50px;
             text-align: center;
             background: transparent;
-            position: relative;
             animation: fadeInUp 1s ease;
         }
 
         .team h2 {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             color: #ffffff;
         }
 
@@ -858,12 +893,12 @@
             font-size: 1.1rem;
             color: #ffffff;
             max-width: 800px;
-            margin: 0 auto 1.2rem;
+            margin: 0 auto 2rem;
         }
 
-        .team .meet-team-btn {
+        .meet-team-btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 30px;
             background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             text-decoration: none;
@@ -872,36 +907,24 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .team .meet-team-btn:hover {
+        .meet-team-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
             animation: glow 1.5s infinite;
         }
 
-        .team .team-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 123, 255, 0.3);
-            border-radius: 15px;
-            z-index: 1001;
-            padding: 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            width: 90%;
+        .team-dropdown {
             max-width: 1200px;
-            margin-top: 8px;
+            margin: 2rem auto;
+            display: none;
+            animation: fadeInUp 0.5s ease;
         }
 
-        .team.active .team-dropdown {
+        .team-dropdown.active {
             display: block;
-            animation: slideIn 0.3s ease-in;
         }
 
-        .team .team-grid {
+        .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
@@ -914,7 +937,7 @@
             border-radius: 20px;
             border: 1px solid rgba(0, 123, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease;
+            cursor: pointer;
             z-index: 10;
         }
 
@@ -927,12 +950,12 @@
         .team-card h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
-            margin-bottom: 0.6rem;
-            color: #ffffff;
+            margin-bottom: 0.5rem;
+            color: #00c6ff;
         }
 
         .team-card .role {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #ffffff;
             margin-bottom: 1rem;
         }
@@ -942,7 +965,7 @@
             color: #ffffff;
         }
 
-        /* Contact Us Section */
+        /* Contact Section */
         .contact {
             padding: 100px 50px;
             text-align: center;
@@ -965,7 +988,7 @@
         .contact-icons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             margin-bottom: 2rem;
         }
 
@@ -1026,6 +1049,13 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
             animation: glow 1.5s infinite;
+        }
+
+        .contact-subscribe .error {
+            color: #ff4d4d;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: none;
         }
 
         .contact-links {
@@ -1125,6 +1155,7 @@
             .footer-social-grid {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
 
             .contact-subscribe {
@@ -1170,6 +1201,40 @@
             #pricing-chart {
                 width: 100%;
                 height: auto;
+            }
+
+            .carousel-prev, .carousel-next {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+
+            .carousel-prev {
+                left: 10px;
+            }
+
+            .carousel-next {
+                right: 10px;
+            }
+
+            .team {
+                padding: 50px 20px;
+            }
+
+            .testimonials {
+                padding: 50px 20px;
+            }
+
+            .testimonial-carousel {
+                max-width: 100%;
+            }
+
+            .testimonial-card .quote {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-card .quote.shona {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -1457,34 +1522,43 @@
     <section id="testimonials" class="testimonials">
         <h2>What Our Users Say</h2>
         <div class="testimonial-carousel">
-            <div class="testimonial-card" data-index="0">
-                <p>"Spudy AI transformed my workflow! The tools are intuitive and save me hours every week."</p>
-                <div class="author">Sarah Johnson</div>
-                <div class="role">Freelance Graphic Designer</div>
+            <div class="testimonial-container">
+                <div class="testimonial-card" data-index="0">
+                    <p class="quote">"Spudy AI transformed my workflow! The tools are intuitive and save me hours every week."</p>
+                    <p class="quote shona">"Spudy AI yakashandura nzira yangu yekushanda! Zvishandiso zviri nyore uye zvinondichengetera maawa vhiki yega yega."</p>
+                    <div class="author">Tariro Mufambi</div>
+                    <div class="role">Freelance Graphic Designer</div>
+                </div>
+                <div class="testimonial-card" data-index="1">
+                    <p class="quote">"The resume builder helped me land my dream job. Professional and easy to use!"</p>
+                    <p class="quote shona">"Muvaki wezvinyorwa wakandibatsira kuwana basa rangu rekurota. Nyanzvi uye nyore kushandisa!"</p>
+                    <div class="author">Tinashe Chidhakwa</div>
+                    <div class="role">Software Engineer</div>
+                </div>
+                <div class="testimonial-card" data-index="2">
+                    <p class="quote">"Spudy's music AI created tracks that wowed my clients. A game-changer for my studio."</p>
+                    <p class="quote shona">"Spudy's music AI yakagadzira mabhii akashamisa vatengi vangu. Shanduko yemutambo westudio yangu."</p>
+                    <div class="author">Rumbidzai Muzenda</div>
+                    <div class="role">Music Producer</div>
+                </div>
+                <div class="testimonial-card" data-index="3">
+                    <p class="quote">"The app builder allowed our startup to launch quickly without breaking the bank."</p>
+                    <p class="quote shona">"Muvaki weapp wakabvumira kutanga kwedu kutanga nekukurumidza pasina kutyora bank."</p>
+                    <div class="author">Kudakwashe Marufu</div>
+                    <div class="role">Startup Founder</div>
+                </div>
+                <div class="testimonial-card" data-index="4">
+                    <p class="quote">"Spudy's support team is amazing. They guided us through custom integrations seamlessly."</p>
+                    <p class="quote shona">"Chikwata chekutsigira cheSpudy chinoshamisa. Vakatitungamira kuburikidza nekubatanidza kwetsika zvisina musono."</p>
+                    <div class="author">Nyasha Chikwava</div>
+                    <div class="role">IT Manager</div>
+                </div>
             </div>
-            <div class="testimonial-card" data-index="1">
-                <p>"The resume builder helped me land my dream job. Professional and easy to use!"</p>
-                <div class="author">Michael Chen</div>
-                <div class="role">Software Engineer</div>
-            </div>
-            <div class="testimonial-card" data-index="2">
-                <p>"Spudy's music AI created tracks that wowed my clients. A game-changer for my studio."</p>
-                <div class="author">Aisha Patel</div>
-                <div class="role">Music Producer</div>
-            </div>
-            <div class="testimonial-card" data-index="3">
-                <p>"The app builder allowed our startup to launch quickly without breaking the bank."</p>
-                <div class="author">David Okonkwo</div>
-                <div class="role">Startup Founder</div>
-            </div>
-            <div class="testimonial-card" data-index="4">
-                <p>"Spudy's support team is amazing. They guided us through custom integrations seamlessly."</p>
-                <div class="author">Emma Rodriguez</div>
-                <div class="role">IT Manager</div>
-            </div>
+            <button class="carousel-prev" aria-label="Previous testimonial">❮</button>
+            <button class="carousel-next" aria-label="Next testimonial">❯</button>
         </div>
         <div class="testimonial-dots">
-            <div class="testimonial-dot" data-index="0" aria-label="View testimonial 1"></div>
+            <div class="testimonial-dot active" data-index="0" aria-label="View testimonial 1"></div>
             <div class="testimonial-dot" data-index="1" aria-label="View testimonial 2"></div>
             <div class="testimonial-dot" data-index="2" aria-label="View testimonial 3"></div>
             <div class="testimonial-dot" data-index="3" aria-label="View testimonial 4"></div>
@@ -1505,7 +1579,7 @@
                     <p>Visionary behind Spudy Intelligence Unit. Leads innovation, coding, design, and future development.</p>
                 </div>
                 <div class="team-card">
-                    <h3>I. Whande</h3>
+                    <h3>Itai Whande</h3>
                     <div class="role">Final Inspector</div>
                     <p>Ensures perfection in every line of code, UI layout, and system functionality before release.</p>
                 </div>
@@ -1520,7 +1594,7 @@
                     <p>Crafts visually intuitive and user-focused interfaces across all Spudy platforms.</p>
                 </div>
                 <div class="team-card">
-                    <h3>Dean</h3>
+                    <h3>Dinhi</h3>
                     <div class="role">Marketer</div>
                     <p>Drives the promotion and success of our services through strategic marketing.</p>
                 </div>
@@ -1534,7 +1608,7 @@
         <div class="contact-content">
             <div class="contact-icons">
                 <div class="contact-icon-card">
-                    <a href="https://wa.me/+263716669706" target="_blank" rel="noopener noreferrer" data-tooltip="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+                    <a href="https://api.whatsapp.com/send?phone=263716669706" target="_blank" rel="noopener noreferrer" data-tooltip="Chat on WhatsApp" aria-label="Chat on WhatsApp">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
@@ -1549,10 +1623,11 @@
                     </a>
                 </div>
             </div>
-            <div class="contact-subscribe">
-                <input type="email" placeholder="Enter your email" aria-label="Enter your email for subscription">
-                <button data-tooltip="Subscribe to updates" aria-label="Subscribe to updates">Subscribe</button>
-            </div>
+            <form class="contact-subscribe" onsubmit="submitSubscribe(event)">
+                <input type="email" id="subscribe-email" placeholder="Enter your email" aria-label="Enter your email for subscription" required>
+                <button type="submit" data-tooltip="Subscribe to updates" aria-label="Subscribe to updates">Subscribe</button>
+                <div id="subscribe-error" class="error">Please enter a valid email address</div>
+            </form>
             <div class="contact-links">
                 <a href="https://spudytv14.github.io/Legai-Services/" target="_blank" rel="noopener noreferrer" data-tooltip="View Terms" aria-label="View Terms of Service">Terms of Service</a> |
                 <a href="#privacy" data-tooltip="Privacy Information" aria-label="View Privacy Information">Privacy Centre</a> |
@@ -1599,7 +1674,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
     <script>
         // Modal Functions
         function showModal(type) {
@@ -1651,6 +1726,23 @@
             }
         }
 
+        // Subscribe Form Function
+        function submitSubscribe(event) {
+            event.preventDefault();
+            const email = document.getElementById('subscribe-email').value;
+            const error = document.getElementById('subscribe-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                error.textContent = 'Please enter a valid email address';
+                error.style.display = 'block';
+            } else {
+                error.style.display = 'none';
+                document.getElementById('subscribe-email').value = '';
+                alert('Thank you for subscribing!');
+            }
+        }
+
         // Particles.js initialization with mobile optimization
         particlesJS('particles-js', {
             particles: {
@@ -1663,114 +1755,4 @@
                 move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out' }
             },
             interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
-                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-            },
-            retina_detect: true
-        });
-
-        // Typed.js for typing effect
-        new Typed('.typing', {
-            strings: ['Innovate the Future', 'Transform with AI', 'Succeed with Spudy'],
-            typeSpeed: 50,
-            backSpeed: 25,
-            backDelay: 1500,
-            loop: true
-        });
-
-        // Chart.js initialization for pricing features
-        const ctx = document.getElementById('pricing-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Starter Spark', 'Creative Core', 'Pro Vision', 'Ultimate Brain', 'Infinity Pro+', 'Enterprise Masterplan'],
-                datasets: [{
-                    label: 'Number of Features',
-                    data: [2, 4, 7, 8, 10, 12],
-                    backgroundColor: ['#003087', '#005b99', '#007bff', '#0099ff', '#00b7ff', '#00c6ff'],
-                    borderColor: ['#ffffff'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Number of Features', color: '#ffffff', font: { size: 16 } }
-                    },
-                    x: {
-                        title: { display: true, text: 'Pricing Plans', color: '#ffffff', font: { size: 16 } },
-                        ticks: { color: '#ffffff' }
-                    }
-                },
-                plugins: {
-                    legend: { display: false },
-                    title: {
-                        display: true,
-                        text: 'Features by Pricing Plan',
-                        color: '#ffffff',
-                        font: { size: 20, family: 'Playfair Display' },
-                        padding: { bottom: 20 }
-                    }
-                }
-            }
-        });
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('.cta-button, .service-card .explore-btn').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Navbar hide/show on scroll
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', function() {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            const navbar = document.querySelector('.navbar');
-
-            if (currentScroll <= 100 || currentScroll < lastScrollTop) {
-                navbar.classList.remove('hidden');
-            } else {
-                navbar.classList.add('hidden');
-            }
-
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        });
-
-        // Pricing card selection and confirmation
-        const pricingCards = document.querySelectorAll('.pricing-card');
-        pricingCards.forEach(card => {
-            const selectBtn = card.querySelector('.select-btn');
-            let timer;
-            selectBtn.addEventListener('click', function(e) {
-                if (selectBtn.getAttribute('href').includes('mailto')) return;
-                e.preventDefault();
-                pricingCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-                clearTimeout(timer);
-                timer = setTimeout(() => card.classList.remove('active'), 15000);
-            });
-
-            card.addEventListener('click', function(e) {
-                if (e.target.classList.contains('confirm-btn')) {
-                    alert(`Confirmed: ${card.querySelector('h3').textContent} selected!`);
-                    card.classList.remove('active');
-                }
-            });
-        });
-
-        // Testimonials carousel
-        const testimonialCards = document.querySelectorAll('.testimonial-card');
-        const testimonialDots = document.querySelectorAll('.testimonial-dot');
-        let currentTestimonial = 0;
-        let testimonialInterval;
-
-        function showTestimonial(index) {
-            try
+                detect_on: '
