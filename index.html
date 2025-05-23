@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spudy Intelligence Technology</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Spudy Intelligence Technology offers AI-powered tools, digital libraries, and interactive games for creativity and productivity.">
+    <meta name="keywords" content="AI, Spudy AI, technology, digital library, AI tools">
+    <meta property="og:title" content="Spudy Intelligence Technology">
+    <meta property="og:description" content="Explore AI-powered solutions for innovation and productivity.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spudytv14.github.io/Spudy-Intelligence-Technology/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -16,7 +23,8 @@
         body {
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
-            background: #0a1a2e;
+            background: #0a1a2e url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1920 1080"><defs><filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g fill="none" stroke="#00c6ff" stroke-width="2" filter="url(#glow)"><path d="M50 100 H300 V300 H500 V500 H700 V700 H900 V900 H1100 V700 H1300 V500 H1500 V300 H1700" opacity="0.3"/><path d="M100 150 H350 V350 H550 V550 H750 V750 H950 V950 H1150" opacity="0.2"/><path d="M200 200 H400 V400 H600 V600 H800 V800 H1000" opacity="0.2"/><text x="50" y="100" font-family="Montserrat, sans-serif" font-size="60" fill="none" stroke="#00c6ff" stroke-width="1.5" filter="url(#glow)" class="neon-text">Spudy Intelligence Technology</text></g><circle cx="100" cy="100" r="5" fill="#00c6ff"/><circle cx="300" cy="300" r="5" fill="#00c6ff"/><circle cx="500" cy="500" r="5" fill="#00c6ff"/><circle cx="700" cy="700" r="5" fill="#00c6ff"/><circle cx="900" cy="900" r="5" fill="#00c6ff"/></svg>') no-repeat center center/cover;
+            background-attachment: fixed;
             overflow-x: hidden;
         }
 
@@ -27,9 +35,35 @@
         }
 
         @keyframes glow {
-            0% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(0, 123, 255, 0.6); }
-            100% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); }
+            0% { filter: url(#glow); stroke-opacity: 0.5; }
+            50% { filter: url(#glow); stroke-opacity: 1; box-shadow: 0 0 15px #00c6ff; }
+            100% { filter: url(#glow); stroke-opacity: 0.5; }
+        }
+
+        .neon-text {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        /* Tooltip Styles */
+        [data-tooltip] {
+            position: relative;
+            cursor: pointer;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 123, 255, 0.9);
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 1001;
+            animation: slideIn 0.3s ease-in;
         }
 
         @keyframes slideIn {
@@ -235,7 +269,7 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            background: url('https://images.unsplash.com/photo-1518709268805-4e9042af592e?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            background: transparent;
         }
 
         .hero::before {
@@ -296,7 +330,7 @@
         .services {
             padding: 100px 50px;
             text-align: center;
-            background: #0a1a2e;
+            background: transparent;
             animation: fadeInUp 1s ease;
         }
 
@@ -371,7 +405,7 @@
         .spudy-ai-tools {
             padding: 100px 50px;
             text-align: center;
-            background: #0a1a2e;
+            background: transparent;
             animation: fadeInUp 1s ease;
         }
 
@@ -442,7 +476,7 @@
         .pricing {
             padding: 100px 50px;
             text-align: center;
-            background: #0a1a2e;
+            background: transparent;
             animation: fadeInUp 1s ease;
         }
 
@@ -459,6 +493,17 @@
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .pricing-chart-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            max-width: 800px;
+            margin: 2rem auto;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
         }
 
         .pricing-card {
@@ -529,11 +574,12 @@
 
         .pricing-card .select-btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -647,7 +693,7 @@
         .payment-methods {
             padding: 100px 50px;
             text-align: center;
-            background: #0a1a2e;
+            background: transparent;
             animation: fadeInUp 1s ease;
         }
 
@@ -690,7 +736,7 @@
         .data-processing {
             padding: 100px 50px;
             text-align: center;
-            background: #0a1a2e;
+            background: transparent;
             animation: fadeInUp 1s ease;
         }
 
@@ -715,63 +761,88 @@
             margin-top: 2rem;
         }
 
-        /* Model Development Section */
-        .model-development {
+        /* Testimonials Section */
+        .testimonials {
             padding: 100px 50px;
             text-align: center;
-            background: #0a1a2e;
+            background: transparent;
             animation: fadeInUp 1s ease;
         }
 
-        .model-development h2 {
+        .testimonials h2 {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             margin-bottom: 3rem;
             color: #ffffff;
         }
 
-        .model-development-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
+        .testimonial-carousel {
+            position: relative;
+            max-width: 800px;
             margin: 0 auto;
+            overflow: hidden;
         }
 
-        .model-card {
+        .testimonial-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
             padding: 25px;
             border-radius: 20px;
             border: 1px solid rgba(0, 123, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease;
-            z-index: 10;
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            transition: opacity 0.5s ease;
         }
 
-        .model-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
-            animation: glow 1.5s infinite;
+        .testimonial-card.active {
+            opacity: 1;
+            position: relative;
         }
 
-        .model-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
+        .testimonial-card p {
+            font-size: 1rem;
             color: #ffffff;
+            margin-bottom: 1rem;
+            font-style: italic;
         }
 
-        .model-card p {
+        .testimonial-card .author {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #00c6ff;
+        }
+
+        .testimonial-card .role {
             font-size: 0.9rem;
             color: #ffffff;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .testimonial-dot.active {
+            background: #00c6ff;
         }
 
         /* Team Section */
         .team {
             padding: 100px 50px;
             text-align: center;
-            background: #0a1a2e;
+            background: transparent;
             position: relative;
             animation: fadeInUp 1s ease;
         }
@@ -871,11 +942,11 @@
             color: #ffffff;
         }
 
-        /* Contact Us Section (Integrated with Footer) */
+        /* Contact Us Section */
         .contact {
             padding: 100px 50px;
             text-align: center;
-            background: linear-gradient(135deg, #0a1a2e, #1e3a8a);
+            background: transparent;
             animation: fadeInUp 1s ease;
         }
 
@@ -976,7 +1047,7 @@
         /* Footer */
         .footer {
             padding: 50px 20px;
-            background: linear-gradient(135deg, #0a1a2e, #1e3a8a);
+            background: transparent;
             text-align: center;
             animation: fadeInUp 1s ease;
         }
@@ -1087,6 +1158,19 @@
             .team .team-grid {
                 grid-template-columns: 1fr;
             }
+
+            body {
+                background: #0a1a2e;
+            }
+
+            .pricing-chart-container {
+                padding: 10px;
+            }
+
+            #pricing-chart {
+                width: 100%;
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -1095,10 +1179,10 @@
     <nav class="navbar">
         <div class="logo">Spudy Intelligence Technology</div>
         <div class="nav-card">
-            <div class="account-btn">Account <i class="fas fa-chevron-down"></i>
+            <div class="account-btn" data-tooltip="Manage your account" aria-label="Manage your account">Account <i class="fas fa-chevron-down"></i>
                 <div class="account-dropdown">
-                    <a onclick="showModal('login')">Log In</a>
-                    <a onclick="showModal('register')">Register</a>
+                    <a onclick="showModal('login')" aria-label="Log in to your account">Log In</a>
+                    <a onclick="showModal('register')" aria-label="Register a new account">Register</a>
                 </div>
             </div>
         </div>
@@ -1107,11 +1191,11 @@
     <!-- Login Modal -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('login')">×</span>
+            <span class="close" onclick="closeModal('login')" aria-label="Close login modal">×</span>
             <h2>Log In</h2>
-            <input type="email" id="login-email" placeholder="Email" required>
-            <input type="password" id="login-password" placeholder="Password" required>
-            <button onclick="submitLogin()">Log In</button>
+            <input type="email" id="login-email" placeholder="Email" required aria-label="Enter your email">
+            <input type="password" id="login-password" placeholder="Password" required aria-label="Enter your password">
+            <button onclick="submitLogin()" data-tooltip="Log in to your account" aria-label="Log in">Log In</button>
             <div id="login-error" class="error">Invalid email or password</div>
         </div>
     </div>
@@ -1119,12 +1203,12 @@
     <!-- Register Modal -->
     <div id="register-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('register')">×</span>
+            <span class="close" onclick="closeModal('register')" aria-label="Close register modal">×</span>
             <h2>Register</h2>
-            <input type="email" id="register-email" placeholder="Email" required>
-            <input type="password" id="register-password" placeholder="Password" required>
-            <input type="password" id="register-confirm-password" placeholder="Confirm Password" required>
-            <button onclick="submitRegister()">Register</button>
+            <input type="email" id="register-email" placeholder="Email" required aria-label="Enter your email">
+            <input type="password" id="register-password" placeholder="Password" required aria-label="Enter your password">
+            <input type="password" id="register-confirm-password" placeholder="Confirm Password" required aria-label="Confirm your password">
+            <button onclick="submitRegister()" data-tooltip="Create a new account" aria-label="Register">Register</button>
             <div id="register-error" class="error">Registration failed. Please check your inputs.</div>
         </div>
     </div>
@@ -1135,7 +1219,7 @@
         <div class="hero-content">
             <h1>Spudy Intelligence Technology</h1>
             <div class="typing"></div>
-            <a href="#services" class="cta-button">Discover Our Solutions</a>
+            <a href="#services" class="cta-button" data-tooltip="Explore our services" aria-label="Explore our services">Discover Our Solutions</a>
         </div>
     </section>
 
@@ -1146,17 +1230,17 @@
             <div class="service-card">
                 <h3>Spudy AI</h3>
                 <p>Access a suite of AI-powered tools for creativity, productivity, and innovation.</p>
-                <a href="#spudy-ai-tools" class="explore-btn">Explore Tools</a>
+                <a href="#spudy-ai-tools" class="explore-btn" data-tooltip="View AI tools" aria-label="View AI tools">Explore Tools</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Library</h3>
                 <p>Discover a vast digital library with our insightful books and Open Library access.</p>
-                <a href="https://spudytv14.github.io/Spudy-Production/" class="open-library-btn" target="_blank">Open Library</a>
+                <a href="https://spudytv14.github.io/Spudy-Production/" class="open-library-btn" target="_blank" rel="noopener noreferrer" data-tooltip="Visit Spudy Library" aria-label="Visit Spudy Library">Open Library</a>
             </div>
             <div class="service-card">
                 <h3>Spudy Games</h3>
                 <p>Dive into exciting AI-powered games and interactive experiences.</p>
-                <a href="https://spudytv14.github.io/PLAY.GAMES/" class="explore-games-btn" target="_blank">Explore Games</a>
+                <a href="https://spudytv14.github.io/PLAY.GAMES/" class="explore-games-btn" target="_blank" rel="noopener noreferrer" data-tooltip="Play Spudy Games" aria-label="Play Spudy Games">Explore Games</a>
             </div>
         </div>
     </section>
@@ -1168,62 +1252,62 @@
             <div class="spudy-ai-tool-card">
                 <h3>Spudy AI</h3>
                 <p>General AI Assistant for various tasks.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Try Spudy AI" aria-label="Try Spudy AI">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Advanced Reasoning</h3>
                 <p>Enhanced Logic & Problem Solving capabilities.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Try Advanced Reasoning" aria-label="Try Advanced Reasoning">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Music AI</h3>
                 <p>Create Original Music with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Create Music" aria-label="Create Music">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Video Generator</h3>
                 <p>Generate Stunning Videos effortlessly.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Generate Videos" aria-label="Generate Videos">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Image Generator</h3>
                 <p>Create High-Quality Images with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Generate Images" aria-label="Generate Images">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Code Generator</h3>
                 <p>Write Code Effortlessly with AI assistance.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Generate Code" aria-label="Generate Code">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy App Builder</h3>
                 <p>Build Custom Applications with ease.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Build Apps" aria-label="Build Apps">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Graphic Design</h3>
                 <p>Design Professional Graphics using AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Design Graphics" aria-label="Design Graphics">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Presentation Maker</h3>
                 <p>Create Engaging Slides with AI support.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Create Presentations" aria-label="Create Presentations">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Text-to-Speech</h3>
                 <p>Convert Text to Natural Speech.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Try Text-to-Speech" aria-label="Try Text-to-Speech">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Voice Cloner</h3>
                 <p>Replicate Voices Accurately with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Clone Voices" aria-label="Clone Voices">Try Now</a>
             </div>
             <div class="spudy-ai-tool-card">
                 <h3>Spudy Resume Builder</h3>
                 <p>Craft Professional Resumes with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank">Try Now</a>
+                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Build Resumes" aria-label="Build Resumes">Try Now</a>
             </div>
         </div>
     </section>
@@ -1231,6 +1315,9 @@
     <!-- Pricing Section -->
     <section id="pricing" class="pricing">
         <h2>Choose Your Plan</h2>
+        <div class="pricing-chart-container">
+            <canvas id="pricing-chart" width="800" height="400"></canvas>
+        </div>
         <div class="pricing-grid">
             <div class="pricing-card">
                 <h3>Starter Spark</h3>
@@ -1243,11 +1330,11 @@
                     <li class="excluded">App Builder</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn">Select</a>
+                <a href="#" class="select-btn" data-tooltip="Select Starter Spark" aria-label="Select Starter Spark">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
                     <p>You have selected Starter Spark. Please confirm to pay FREE - Limited Access.</p>
-                    <a href="#" class="confirm-btn">Confirm</a>
+                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Starter Spark">Confirm</a>
                 </div>
             </div>
             <div class="pricing-card">
@@ -1261,11 +1348,11 @@
                     <li class="excluded">App Builder</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn">Select</a>
+                <a href="#" class="select-btn" data-tooltip="Select Creative Core" aria-label="Select Creative Core">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
                     <p>You have selected Creative Core. Please confirm to pay $3.14 / month.</p>
-                    <a href="#" class="confirm-btn">Confirm</a>
+                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Creative Core">Confirm</a>
                 </div>
             </div>
             <div class="pricing-card">
@@ -1279,11 +1366,11 @@
                     <li class="excluded">Voice Cloner</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn">Select</a>
+                <a href="#" class="select-btn" data-tooltip="Select Pro Vision" aria-label="Select Pro Vision">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
                     <p>You have selected Pro Vision. Please confirm to pay $6.29 / month.</p>
-                    <a href="#" class="confirm-btn">Confirm</a>
+                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Pro Vision">Confirm</a>
                 </div>
             </div>
             <div class="pricing-card">
@@ -1297,11 +1384,11 @@
                     <li class="excluded">App Builder</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn">Select</a>
+                <a href="#" class="select-btn" data-tooltip="Select Ultimate Brain" aria-label="Select Ultimate Brain">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
                     <p>You have selected Ultimate Brain. Please confirm to pay $12.59 / month.</p>
-                    <a href="#" class="confirm-btn">Confirm</a>
+                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Ultimate Brain">Confirm</a>
                 </div>
             </div>
             <div class="pricing-card">
@@ -1315,11 +1402,11 @@
                     <li class="included">Beta Features Access</li>
                 </ul>
                 <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn">Select</a>
+                <a href="#" class="select-btn" data-tooltip="Select Infinity Pro+" aria-label="Select Infinity Pro+">Select</a>
                 <div class="dropdown-message">Log in or register first</div>
                 <div class="confirmation-message">
                     <p>You have selected Infinity Pro+. Please confirm to pay $18.89 / month.</p>
-                    <a href="#" class="confirm-btn">Confirm</a>
+                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Infinity Pro+">Confirm</a>
                 </div>
             </div>
             <div class="pricing-card">
@@ -1333,7 +1420,7 @@
                     <li class="included">Staff Training & SLA</li>
                 </ul>
                 <div class="discount">Request a quote for annual billing</div>
-                <a href="mailto:spudytv14@gmail.com" class="select-btn">Contact Us</a>
+                <a href="mailto:spudytv14@gmail.com" class="select-btn" data-tooltip="Contact for Custom Plan" aria-label="Contact for Enterprise Masterplan">Contact Us</a>
                 <div class="dropdown-message">Log in or register first</div>
             </div>
         </div>
@@ -1343,17 +1430,17 @@
     <section id="payment-methods" class="payment-methods">
         <h2>We Accept the Following Payment Methods</h2>
         <div class="payment-methods-grid">
-            <a href="https://www.visa.com" target="_blank" class="payment-method">
-                <img src="visa.png" alt="Visa">
+            <a href="https://www.visa.com" target="_blank" rel="noopener noreferrer" class="payment-method" data-tooltip="Pay with Visa" aria-label="Pay with Visa">
+                <img src="https://via.placeholder.com/120x60?text=Visa" alt="Visa">
             </a>
-            <a href="https://www.mastercard.com" target="_blank" class="payment-method">
-                <img src="mastercard.png" alt="Mastercard">
+            <a href="https://www.mastercard.com" target="_blank" rel="noopener noreferrer" class="payment-method" data-tooltip="Pay with Mastercard" aria-label="Pay with Mastercard">
+                <img src="https://via.placeholder.com/120x60?text=Mastercard" alt="Mastercard">
             </a>
-            <a href="https://www.econet.co.zw/ecocash" target="_blank" class="payment-method">
-                <img src="ecocash.png" alt="Ecocash">
+            <a href="https://www.econet.co.zw/ecocash" target="_blank" rel="noopener noreferrer" class="payment-method" data-tooltip="Pay with Ecocash" aria-label="Pay with Ecocash">
+                <img src="https://via.placeholder.com/120x60?text=Ecocash" alt="Ecocash">
             </a>
-            <a href="https://www.netone.co.zw/onemoney" target="_blank" class="payment-method">
-                <img src="1money.png" alt="OneMoney">
+            <a href="https://www.netone.co.zw/onemoney" target="_blank" rel="noopener noreferrer" class="payment-method" data-tooltip="Pay with OneMoney" aria-label="Pay with OneMoney">
+                <img src="https://via.placeholder.com/120x60?text=OneMoney" alt="OneMoney">
             </a>
         </div>
     </section>
@@ -1366,22 +1453,42 @@
         <p class="quote">"Only the cleanest data trains the smartest AI."</p>
     </section>
 
-    <!-- Model Development Section -->
-    <section id="model-development" class="model-development">
-        <h2>Model Development</h2>
-        <div class="model-development-grid">
-            <div class="model-card">
-                <h3>Planning & Architecture</h3>
-                <p>We design robust model architectures tailored to the tasks — from GPT-like transformers to custom generative pipelines.</p>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial-card" data-index="0">
+                <p>"Spudy AI transformed my workflow! The tools are intuitive and save me hours every week."</p>
+                <div class="author">Sarah Johnson</div>
+                <div class="role">Freelance Graphic Designer</div>
             </div>
-            <div class="model-card">
-                <h3>Training & Tuning</h3>
-                <p>We fine-tune models with real-world datasets and evaluate across hundreds of benchmarks to ensure performance.</p>
+            <div class="testimonial-card" data-index="1">
+                <p>"The resume builder helped me land my dream job. Professional and easy to use!"</p>
+                <div class="author">Michael Chen</div>
+                <div class="role">Software Engineer</div>
             </div>
-            <div class="model-card">
-                <h3>Deployment & Monitoring</h3>
-                <p>All models are containerized, scalable, and continuously monitored post-deployment for real-time updates.</p>
+            <div class="testimonial-card" data-index="2">
+                <p>"Spudy's music AI created tracks that wowed my clients. A game-changer for my studio."</p>
+                <div class="author">Aisha Patel</div>
+                <div class="role">Music Producer</div>
             </div>
+            <div class="testimonial-card" data-index="3">
+                <p>"The app builder allowed our startup to launch quickly without breaking the bank."</p>
+                <div class="author">David Okonkwo</div>
+                <div class="role">Startup Founder</div>
+            </div>
+            <div class="testimonial-card" data-index="4">
+                <p>"Spudy's support team is amazing. They guided us through custom integrations seamlessly."</p>
+                <div class="author">Emma Rodriguez</div>
+                <div class="role">IT Manager</div>
+            </div>
+        </div>
+        <div class="testimonial-dots">
+            <div class="testimonial-dot" data-index="0" aria-label="View testimonial 1"></div>
+            <div class="testimonial-dot" data-index="1" aria-label="View testimonial 2"></div>
+            <div class="testimonial-dot" data-index="2" aria-label="View testimonial 3"></div>
+            <div class="testimonial-dot" data-index="3" aria-label="View testimonial 4"></div>
+            <div class="testimonial-dot" data-index="4" aria-label="View testimonial 5"></div>
         </div>
     </section>
 
@@ -1389,7 +1496,7 @@
     <section id="team" class="team">
         <h2>Meet the Team</h2>
         <p>Our talented team drives innovation at Spudy Intelligence Technology.</p>
-        <a href="#" class="meet-team-btn">Meet the Team</a>
+        <a href="#" class="meet-team-btn" data-tooltip="View our team" aria-label="View our team">Meet the Team</a>
         <div class="team-dropdown">
             <div class="team-grid">
                 <div class="team-card">
@@ -1421,35 +1528,35 @@
         </div>
     </section>
 
-    <!-- Contact Us Section (Integrated with Footer) -->
+    <!-- Contact Us Section -->
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
         <div class="contact-content">
             <div class="contact-icons">
                 <div class="contact-icon-card">
-                    <a href="https://wa.me/+263716669706" target="_blank">
+                    <a href="https://wa.me/+263716669706" target="_blank" rel="noopener noreferrer" data-tooltip="Chat on WhatsApp" aria-label="Chat on WhatsApp">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
                 <div class="contact-icon-card">
-                    <a href="mailto:spudytv14@gmail.com">
+                    <a href="mailto:spudytv14@gmail.com" data-tooltip="Send us an Email" aria-label="Send us an Email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
                 <div class="contact-icon-card">
-                    <a href="https://play.google.com/store" target="_blank">
+                    <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" data-tooltip="Visit Google Play" aria-label="Visit Google Play">
                         <i class="fab fa-google-play"></i>
                     </a>
                 </div>
             </div>
             <div class="contact-subscribe">
-                <input type="email" placeholder="Enter your email">
-                <button>Subscribe</button>
+                <input type="email" placeholder="Enter your email" aria-label="Enter your email for subscription">
+                <button data-tooltip="Subscribe to updates" aria-label="Subscribe to updates">Subscribe</button>
             </div>
             <div class="contact-links">
-                <a href="https://spudytv14.github.io/Legai-Services/" target="_blank">Terms of Service</a> |
-                <a href="#privacy">Privacy Centre</a> |
-                <a href="mailto:spudytv14@gmail.com">Have feedback? Let us know</a>
+                <a href="https://spudytv14.github.io/Legai-Services/" target="_blank" rel="noopener noreferrer" data-tooltip="View Terms" aria-label="View Terms of Service">Terms of Service</a> |
+                <a href="#privacy" data-tooltip="Privacy Information" aria-label="View Privacy Information">Privacy Centre</a> |
+                <a href="mailto:spudytv14@gmail.com" data-tooltip="Share Feedback" aria-label="Share Feedback">Have feedback? Let us know</a>
             </div>
         </div>
     </section>
@@ -1460,27 +1567,27 @@
             <h3>Follow Us</h3>
             <div class="footer-social-grid">
                 <div class="footer-social-card youtube">
-                    <a href="https://www.youtube.com/@SpudyAI" target="_blank">
+                    <a href="https://www.youtube.com/@SpudyAI" target="_blank" rel="noopener noreferrer" data-tooltip="Visit our YouTube" aria-label="Visit our YouTube">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
                 <div class="footer-social-card facebook">
-                    <a href="https://www.facebook.com/blessing.muduchwa" target="_blank">
+                    <a href="https://www.facebook.com/blessing.muduchwa" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on Facebook" aria-label="Follow on Facebook">
                         <i class="fab fa-facebook"></i>
                     </a>
                 </div>
                 <div class="footer-social-card twitter">
-                    <a href="https://x.com/spudyproduction" target="_blank">
+                    <a href="https://x.com/spudyproduction" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on X" aria-label="Follow on X">
                         <i class="fab fa-x-twitter"></i>
                     </a>
                 </div>
                 <div class="footer-social-card instagram">
-                    <a href="https://www.instagram.com/matipaishe_bessing/" target="_blank">
+                    <a href="https://www.instagram.com/matipaishe_bessing/" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on Instagram" aria-label="Follow on Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
                 <div class="footer-social-card spudy-books">
-                    <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank">
+                    <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" rel="noopener noreferrer" data-tooltip="Explore Spudy Books" aria-label="Explore Spudy Books">
                         <i class="fas fa-book"></i>
                     </a>
                 </div>
@@ -1492,6 +1599,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Modal Functions
         function showModal(type) {
@@ -1507,12 +1615,17 @@
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             const error = document.getElementById('login-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (email.includes('@') && password.length >= 6) {
+            if (!emailRegex.test(email)) {
+                error.textContent = 'Please enter a valid email address';
+                error.style.display = 'block';
+            } else if (password.length < 6) {
+                error.textContent = 'Password must be at least 6 characters';
+                error.style.display = 'block';
+            } else {
                 closeModal('login');
                 alert('Login successful!');
-            } else {
-                error.style.display = 'block';
             }
         }
 
@@ -1521,19 +1634,27 @@
             const password = document.getElementById('register-password').value;
             const confirmPassword = document.getElementById('register-confirm-password').value;
             const error = document.getElementById('register-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (email.includes('@') && password.length >= 6 && password === confirmPassword) {
+            if (!emailRegex.test(email)) {
+                error.textContent = 'Please enter a valid email address';
+                error.style.display = 'block';
+            } else if (password.length < 6) {
+                error.textContent = 'Password must be at least 6 characters';
+                error.style.display = 'block';
+            } else if (password !== confirmPassword) {
+                error.textContent = 'Passwords do not match';
+                error.style.display = 'block';
+            } else {
                 closeModal('register');
                 alert('Registration successful!');
-            } else {
-                error.style.display = 'block';
             }
         }
 
-        // Particles.js initialization
+        // Particles.js initialization with mobile optimization
         particlesJS('particles-js', {
             particles: {
-                number: { value: 100, density: { enable: true, value_area: 800 } },
+                number: { value: window.innerWidth <= 768 ? 50 : 100, density: { enable: true, value_area: 800 } },
                 color: { value: '#00c6ff' },
                 shape: { type: 'circle' },
                 opacity: { value: 0.6, random: true },
@@ -1558,6 +1679,46 @@
             loop: true
         });
 
+        // Chart.js initialization for pricing features
+        const ctx = document.getElementById('pricing-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Starter Spark', 'Creative Core', 'Pro Vision', 'Ultimate Brain', 'Infinity Pro+', 'Enterprise Masterplan'],
+                datasets: [{
+                    label: 'Number of Features',
+                    data: [2, 4, 7, 8, 10, 12],
+                    backgroundColor: ['#003087', '#005b99', '#007bff', '#0099ff', '#00b7ff', '#00c6ff'],
+                    borderColor: ['#ffffff'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Number of Features', color: '#ffffff', font: { size: 16 } }
+                    },
+                    x: {
+                        title: { display: true, text: 'Pricing Plans', color: '#ffffff', font: { size: 16 } },
+                        ticks: { color: '#ffffff' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Features by Pricing Plan',
+                        color: '#ffffff',
+                        font: { size: 20, family: 'Playfair Display' },
+                        padding: { bottom: 20 }
+                    }
+                }
+            }
+        });
+
         // Smooth scrolling for navigation
         document.querySelectorAll('.cta-button, .service-card .explore-btn').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1568,13 +1729,13 @@
             });
         });
 
-        // Navbar hide on scroll
+        // Navbar hide/show on scroll
         let lastScrollTop = 0;
         window.addEventListener('scroll', function() {
             let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             const navbar = document.querySelector('.navbar');
 
-            if (currentScroll <= 100) {
+            if (currentScroll <= 100 || currentScroll < lastScrollTop) {
                 navbar.classList.remove('hidden');
             } else {
                 navbar.classList.add('hidden');
@@ -1589,93 +1750,27 @@
             const selectBtn = card.querySelector('.select-btn');
             let timer;
             selectBtn.addEventListener('click', function(e) {
-                if (selectBtn.getAttribute('href').includes('mailto')) {
-                    return;
-                }
+                if (selectBtn.getAttribute('href').includes('mailto')) return;
                 e.preventDefault();
                 pricingCards.forEach(c => c.classList.remove('active'));
                 card.classList.add('active');
                 clearTimeout(timer);
-                timer = setTimeout(() => card.classList.remove('active'), 10000);
+                timer = setTimeout(() => card.classList.remove('active'), 15000);
             });
 
-            const confirmBtn = card.querySelector('.confirm-btn');
-            if (confirmBtn) {
-                confirmBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.querySelector('#payment-methods').scrollIntoView({
-                        behavior: 'smooth'
-                    });
+            card.addEventListener('click', function(e) {
+                if (e.target.classList.contains('confirm-btn')) {
+                    alert(`Confirmed: ${card.querySelector('h3').textContent} selected!`);
                     card.classList.remove('active');
-                });
-            }
-
-            card.addEventListener('mousemove', () => {
-                if (card.classList.contains('active')) {
-                    clearTimeout(timer);
-                    timer = setTimeout(() => card.classList.remove('active'), 10000);
                 }
             });
         });
 
-        // Team section dropdown toggle with auto-hide
-        const teamSection = document.querySelector('.team');
-        const meetTeamBtn = teamSection.querySelector('.meet-team-btn');
-        let teamTimer;
-        meetTeamBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            teamSection.classList.toggle('active');
-            if (teamSection.classList.contains('active')) {
-                clearTimeout(teamTimer);
-                teamTimer = setTimeout(() => teamSection.classList.remove('active'), 10000);
-            } else {
-                clearTimeout(teamTimer);
-            }
-        });
+        // Testimonials carousel
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        let currentTestimonial = 0;
+        let testimonialInterval;
 
-        const teamDropdown = teamSection.querySelector('.team-dropdown');
-        teamDropdown.addEventListener('mousemove', () => {
-            if (teamSection.classList.contains('active')) {
-                clearTimeout(teamTimer);
-                teamTimer = setTimeout(() => teamSection.classList.remove('active'), 10000);
-            }
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!teamSection.contains(e.target) && !e.target.closest('.team-dropdown')) {
-                teamSection.classList.remove('active');
-                clearTimeout(teamTimer);
-            }
-        });
-
-        // Account button dropdown toggle with auto-hide
-        const accountBtn = document.querySelector('.account-btn');
-        const accountDropdown = document.querySelector('.account-dropdown');
-        let accountTimer;
-        accountBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            accountBtn.classList.toggle('active');
-            if (accountBtn.classList.contains('active')) {
-                clearTimeout(accountTimer);
-                accountTimer = setTimeout(() => accountBtn.classList.remove('active'), 10000);
-            } else {
-                clearTimeout(accountTimer);
-            }
-        });
-
-        accountDropdown.addEventListener('mousemove', () => {
-            if (accountBtn.classList.contains('active')) {
-                clearTimeout(accountTimer);
-                accountTimer = setTimeout(() => accountBtn.classList.remove('active'), 10000);
-            }
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!accountBtn.contains(e.target) && !e.target.closest('.account-dropdown')) {
-                accountBtn.classList.remove('active');
-                clearTimeout(accountTimer);
-            }
-        });
-    </script>
-</body>
-</html>
+        function showTestimonial(index) {
+            try
