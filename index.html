@@ -4,1755 +4,626 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spudy Intelligence Technology</title>
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Spudy Intelligence Technology offers AI-powered tools, digital libraries, and interactive games for creativity and productivity.">
-    <meta name="keywords" content="AI, Spudy AI, technology, digital library, AI tools">
-    <meta property="og:title" content="Spudy Intelligence Technology">
-    <meta property="og:description" content="Explore AI-powered solutions for innovation and productivity.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://spudytv14.github.io/Spudy-Intelligence-Technology/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: #ffffff;
-            background: #0a1a2e url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1920 1080"><defs><filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g fill="none" stroke="#00c6ff" stroke-width="2" filter="url(#glow)"><path d="M50 100 H300 V300 H500 V500 H700 V700 H900 V900 H1100 V700 H1300 V500 H1500 V300 H1700" opacity="0.3"/><path d="M100 150 H350 V350 H550 V550 H750 V750 H950 V950 H1150" opacity="0.2"/><path d="M200 200 H400 V400 H600 V600 H800 V800 H1000" opacity="0.2"/><text x="50" y="100" font-family="Montserrat, sans-serif" font-size="60" fill="none" stroke="#00c6ff" stroke-width="1.5" filter="url(#glow)" class="neon-text">Spudy támogatja a technológiát</text></g><circle cx="100" cy="100" r="5" fill="#00c6ff"/><circle cx="300" cy="300" r="5" fill="#00c6ff"/><circle cx="500" cy="500" r="5" fill="#00c6ff"/><circle cx="700" cy="700" r="5" fill="#00c6ff"/><circle cx="900" cy="900" r="5" fill="#00c6ff"/></svg>') no-repeat center center/cover;
-            background-attachment: fixed;
-            overflow-x: hidden;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes glow {
-            0% { filter: url(#glow); stroke-opacity: 0.5; }
-            50% { filter: url(#glow); stroke-opacity: 1; box-shadow: 0 0 15px #00c6ff; }
-            100% { filter: url(#glow); stroke-opacity: 0.5; }
-        }
-
-        .neon-text {
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        /* Tooltip Styles */
-        [data-tooltip] {
-            position: relative;
-            cursor: pointer;
-        }
-
-        [data-tooltip]:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 123, 255, 0.9);
-            color: #ffffff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            z-index: 1001;
-            animation: slideIn 0.3s ease-in;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 51, 102, 0.3);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1000;
-            animation: fadeInUp 1s ease;
-            transition: transform 0.3s ease;
-        }
-
-        .navbar.hidden {
-            transform: translateY(-100%);
-        }
-
-        .navbar .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ffffff;
-        }
-
-        .nav-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .navbar .account-btn {
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #003087, #007bff);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .navbar .account-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-        }
-
-        .navbar .account-btn i {
-            font-size: 0.8rem;
-        }
-
-        .navbar .account-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 123, 255, 0.3);
-            border-radius: 15px;
-            z-index: 1001;
-            padding: 12px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            min-width: 140px;
-            margin-top: 8px;
-        }
-
-        .navbar .account-btn.active .account-dropdown {
-            display: block;
-            animation: slideIn 0.3s ease-in;
-        }
-
-        .navbar .account-dropdown a {
-            display: block;
-            padding: 10px 20px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .navbar .account-dropdown a:hover {
-            background: rgba(0, 123, 255, 0.3);
-            color: #00c6ff;
-            transform: translateX(5px);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1002;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            animation: fadeInUp 0.5s ease;
-            z-index: 1003;
-        }
-
-        .modal-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1.2rem;
-            color: #ffffff;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            transition: box-shadow 0.3s;
-        }
-
-        .modal-content input:focus {
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-        }
-
-        .modal-content button {
-            padding: 12px 30px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #ffffff;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .modal-content button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-        }
-
-        .modal-content .close {
-            position: absolute;
-            top: 12px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #ffffff;
-            transition: color 0.3s;
-        }
-
-        .modal-content .close:hover {
-            color: #00c6ff;
-        }
-
-        .modal-content .error {
-            color: #ff4d4d;
-            font-size: 0.8rem;
-            margin-top: 10px;
-            display: none;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            background: transparent;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 26, 46, 0.7);
-            z-index: 1;
-        }
-
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-
-        .hero-content {
-            z-index: 3;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin-bottom: 1.2rem;
-            color: #ffffff;
-        }
-
-        .hero-content .typing {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: #00c6ff;
-            height: 2.2rem;
-        }
-
-        .cta-button {
-            padding: 1.2rem 3.5rem;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.6);
-            animation: glow 1.5s infinite;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 50px;
-            text-align: center;
-            background: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .services h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
-            animation: glow 1.5s infinite;
-        }
-
-        .service-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .service-card p {
-            font-size: 0.9rem;
-            color: #ffffff;
-            margin-bottom: 1.2rem;
-        }
-
-        .service-card .explore-btn,
-        .service-card .open-library-btn,
-        .service-card .explore-games-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .service-card .explore-btn:hover,
-        .service-card .open-library-btn:hover,
-        .service-card .explore-games-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-            animation: glow 1.5s infinite;
-        }
-
-        /* Spudy AI Tools Section */
-        .spudy-ai-tools {
-            padding: 100px 50px;
-            text-align: center;
-            background: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .spudy-ai-tools h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .spudy-ai-tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .spudy-ai-tool-card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .spudy-ai-tool-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
-            animation: glow 1.5s infinite;
-        }
-
-        .spudy-ai-tool-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .spudy-ai-tool-card p {
-            font-size: 0.9rem;
-            color: #ffffff;
-            margin-bottom: 1.2rem;
-        }
-
-        .spudy-ai-tool-card a {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .spudy-ai-tool-card a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-            animation: glow 1.5s infinite;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 100px 50px;
-            text-align: center;
-            background: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .pricing h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .pricing-chart-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            max-width: 800px;
-            margin: 2rem auto;
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
-        }
-
-        .pricing-card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            animation: fadeInUp 1s ease;
-            z-index: 10;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
-            animation: glow 1.5s infinite;
-        }
-
-        .pricing-card.active {
-            z-index: 20;
-        }
-
-        .pricing-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .pricing-card .price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .pricing-card ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .pricing-card ul li {
-            font-size: 0.9rem;
-            color: #ffffff;
-            margin-bottom: 0.6rem;
-        }
-
-        .pricing-card ul li.included::before {
-            content: '✔';
-            color: #00c6ff;
-            margin-right: 10px;
-        }
-
-        .pricing-card ul li.excluded::before {
-            content: '✖';
-            color: #ff4d4d;
-            margin-right: 10px;
-        }
-
-        .pricing-card .discount {
-            font-size: 0.9rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        .pricing-card .select-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .pricing-card .select-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-            animation: glow 1.5s infinite;
-        }
-
-        .pricing-card .dropdown-message {
-            display: none;
-            position: absolute;
-            bottom: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 123, 255, 0.9);
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
-            margin-bottom: 8px;
-        }
-
-        .pricing-card .confirmation-message {
-            display: none;
-            position: absolute;
-            bottom: -140px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 123, 255, 0.9);
-            color: #ffffff;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
-            width: 90%;
-            max-width: 320px;
-            margin-bottom: 8px;
-        }
-
-        .pricing-card .confirmation-message p {
-            margin-bottom: 10px;
-        }
-
-        .pricing-card .confirm-btn {
-            display: inline-block;
-            padding: 8px 20px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .pricing-card .confirm-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-        }
-
-        .pricing-card.active .dropdown-message,
-        .pricing-card.active .confirmation-message {
-            display: block;
-            animation: slideIn 0.3s ease-in;
-        }
-
-        /* Pricing Plan Colors */
-        .pricing-card:nth-child(1) {
-            border: 2px solid #003087;
-        }
-        .pricing-card:nth-child(1) .select-btn {
-            background: linear-gradient(45deg, #003087, #005b99);
-        }
-        .pricing-card:nth-child(2) {
-            border: 2px solid #005b99;
-        }
-        .pricing-card:nth-child(2) .select-btn {
-            background: linear-gradient(45deg, #005b99, #007bff);
-        }
-        .pricing-card:nth-child(3) {
-            border: 2px solid #007bff;
-        }
-        .pricing-card:nth-child(3) .select-btn {
-            background: linear-gradient(45deg, #007bff, #0099ff);
-        }
-        .pricing-card:nth-child(4) {
-            border: 2px solid #0099ff;
-        }
-        .pricing-card:nth-child(4) .select-btn {
-            background: linear-gradient(45deg, #0099ff, #00b7ff);
-        }
-        .pricing-card:nth-child(5) {
-            border: 2px solid #00b7ff;
-        }
-        .pricing-card:nth-child(5) .select-btn {
-            background: linear-gradient(45deg, #00b7ff, #00c6ff);
-        }
-        .pricing-card:nth-child(6) {
-            border: 2px solid #00c6ff;
-        }
-        .pricing-card:nth-child(6) .select-btn {
-            background: linear-gradient(45deg, #00c6ff, #00e1ff);
-        }
-
-        /* Payment Methods Section */
-        .payment-methods {
-            padding: 100px 50px;
-            text-align: center;
-            background: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .payment-methods h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .payment-methods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .payment-method {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            z-index: 10;
-        }
-
-        .payment-method:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
-            animation: glow 1.5s infinite;
-        }
-
-        .payment-method img {
-            width: 100%;
-            max-width: 120px;
-            border-radius: 10px;
-        }
-
-        /* Data Processing Section */
-        .data-processing {
-            padding: 100px 50px;
-            text-align: center;
-            background: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .data-processing h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #ffffff;
-        }
-
-        .data-processing p {
-            font-size: 1.1rem;
-            color: #ffffff;
-            max-width: 800px;
-            margin: 0 auto 1.2rem;
-        }
-
-        .data-processing .quote {
-            font-style: italic;
-            font-size: 1.4rem;
-            color: #00c6ff;
-            margin-top: 2rem;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 100px 50px;
-            text-align: center;
-            background: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .testimonials h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .testimonial-carousel {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .testimonial-container {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .testimonial-card {
-            flex: 0 0 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .testimonial-card.active {
-            opacity: 1;
-        }
-
-        .testimonial-card .quote {
-            font-size: 1rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .testimonial-card .quote.shona {
-            font-size: 0.95rem;
-            color: #00c6ff;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-card .author {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: #00c6ff;
-        }
-
-        .testimonial-card .role {
-            font-size: 0.9rem;
-            color: #ffffff;
-        }
-
-        .carousel-prev, .carousel-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 123, 255, 0.7);
-            color: #ffffff;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .carousel-prev:hover, .carousel-next:hover {
-            background: #00c6ff;
-        }
-
-        .carousel-prev {
-            left: -50px;
-        }
-
-        .carousel-next {
-            right: -50px;
-        }
-
-        .testimonial-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .testimonial-dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .testimonial-dot.active {
-            background: #00c6ff;
-        }
-
-        /* Team Section */
-        .team {
-            padding: 100px 50px;
-            text-align: center;
-            background: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .team h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-        }
-
-        .team p {
-            font-size: 1.1rem;
-            color: #ffffff;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-
-        .meet-team-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .meet-team-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-            animation: glow 1.5s infinite;
-        }
-
-        .team-dropdown {
-            max-width: 1200px;
-            margin: 2rem auto;
-            display: none;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        .team-dropdown.active {
-            display: block;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .team-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
-            animation: glow 1.5s infinite;
-        }
-
-        .team-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: #00c6ff;
-        }
-
-        .team-card .role {
-            font-size: 1rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        .team-card p {
-            font-size: 0.9rem;
-            color: #ffffff;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 100px 50px;
-            text-align: center;
-            background: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .contact h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #ffffff;
-        }
-
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-icons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 2rem;
-        }
-
-        .contact-icon-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            z-index: 10;
-        }
-
-        .contact-icon-card:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            animation: glow 1.5s infinite;
-        }
-
-        .contact-icon-card a {
-            color: #ffffff;
-            font-size: 2rem;
-            text-decoration: none;
-        }
-
-        .contact-subscribe {
-            margin: 2rem auto;
-            max-width: 600px;
-            display: flex;
-            border: 2px solid transparent;
-            border-image: linear-gradient(45deg, #007bff, #00c6ff) 1;
-            border-radius: 50px;
-            overflow: hidden;
-        }
-
-        .contact-subscribe input {
-            padding: 14px;
-            width: 70%;
-            border: none;
-            font-size: 1rem;
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-        }
-
-        .contact-subscribe button {
-            padding: 14px 20px;
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-            color: #ffffff;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .contact-subscribe button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-            animation: glow 1.5s infinite;
-        }
-
-        .contact-subscribe .error {
-            color: #ff4d4d;
-            font-size: 0.8rem;
-            margin-top: 10px;
-            display: none;
-        }
-
-        .contact-links {
-            margin-top: 2rem;
-        }
-
-        .contact-links a {
-            color: #00c6ff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        .contact-links a:hover {
-            color: #007bff;
-        }
-
-        /* Footer */
-        .footer {
-            padding: 50px 20px;
-            background: transparent;
-            text-align: center;
-            animation: fadeInUp 1s ease;
-        }
-
-        .footer-social {
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-
-        .footer-social h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .footer-social-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-social-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            z-index: 10;
-        }
-
-        .footer-social-card:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
-            animation: glow 1.5s infinite;
-        }
-
-        .footer-social-card.youtube:hover {
-            background: linear-gradient(45deg, #ff0000, #ff5555);
-        }
-
-        .footer-social-card.facebook:hover {
-            background: linear-gradient(45deg, #3b5998, #4b70b8);
-        }
-
-        .footer-social-card.twitter:hover {
-            background: linear-gradient(45deg, #1da1f2, #4bb2ff);
-        }
-
-        .footer-social-card.instagram:hover {
-            background: linear-gradient(45deg, #833ab4, #e1306c);
-        }
-
-        .footer-social-card.spudy-books:hover {
-            background: linear-gradient(45deg, #007bff, #00c6ff);
-        }
-
-        .footer-social-card a {
-            color: #ffffff;
-            font-size: 2rem;
-            text-decoration: none;
-        }
-
-        .footer p.copyright {
-            font-size: 1rem;
-            color: #ffffff;
-            margin-top: 2rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .contact-icons,
-            .footer-social-grid {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-
-            .contact-subscribe {
-                flex-direction: column;
-                border-radius: 20px;
-            }
-
-            .contact-subscribe input {
-                width: 100%;
-                border-radius: 20px 20px 0 0;
-            }
-
-            .contact-subscribe button {
-                width: 100%;
-                border-radius: 0 0 20px 20px;
-            }
-
-            .services-grid,
-            .spudy-ai-tools-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .navbar .account-dropdown {
-                right: 10px;
-            }
-
-            .team .team-dropdown {
-                width: 100%;
-            }
-
-            .team .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            body {
-                background: #0a1a2e;
-            }
-
-            .pricing-chart-container {
-                padding: 10px;
-            }
-
-            #pricing-chart {
-                width: 100%;
-                height: auto;
-            }
-
-            .carousel-prev, .carousel-next {
-                width: 30px;
-                height: 30px;
-                font-size: 1rem;
-            }
-
-            .carousel-prev {
-                left: 10px;
-            }
-
-            .carousel-next {
-                right: 10px;
-            }
-
-            .team {
-                padding: 50px 20px;
-            }
-
-            .testimonials {
-                padding: 50px 20px;
-            }
-
-            .testimonial-carousel {
-                max-width: 100%;
-            }
-
-            .testimonial-card .quote {
-                font-size: 0.9rem;
-            }
-
-            .testimonial-card .quote.shona {
-                font-size: 0.85rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">Spudy Intelligence Technology</div>
-        <div class="nav-card">
-            <div class="account-btn" data-tooltip="Manage your account" aria-label="Manage your account">Account <i class="fas fa-chevron-down"></i>
-                <div class="account-dropdown">
-                    <a onclick="showModal('login')" aria-label="Log in to your account">Log In</a>
-                    <a onclick="showModal('register')" aria-label="Register a new account">Register</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Login Modal -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('login')" aria-label="Close login modal">×</span>
-            <h2>Log In</h2>
-            <input type="email" id="login-email" placeholder="Email" required aria-label="Enter your email">
-            <input type="password" id="login-password" placeholder="Password" required aria-label="Enter your password">
-            <button onclick="submitLogin()" data-tooltip="Log in to your account" aria-label="Log in">Log In</button>
-            <div id="login-error" class="error">Invalid email or password</div>
-        </div>
-    </div>
-
-    <!-- Register Modal -->
-    <div id="register-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('register')" aria-label="Close register modal">×</span>
-            <h2>Register</h2>
-            <input type="email" id="register-email" placeholder="Email" required aria-label="Enter your email">
-            <input type="password" id="register-password" placeholder="Password" required aria-label="Enter your password">
-            <input type="password" id="register-confirm-password" placeholder="Confirm Password" required aria-label="Confirm your password">
-            <button onclick="submitRegister()" data-tooltip="Create a new account" aria-label="Register">Register</button>
-            <div id="register-error" class="error">Registration failed. Please check your inputs.</div>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div id="particles-js"></div>
-        <div class="hero-content">
-            <h1>Spudy Intelligence Technology</h1>
-            <div class="typing"></div>
-            <a href="#services" class="cta-button" data-tooltip="Explore our services" aria-label="Explore our services">Discover Our Solutions</a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2>Our Cutting-Edge Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Spudy AI</h3>
-                <p>Access a suite of AI-powered tools for creativity, productivity, and innovation.</p>
-                <a href="#spudy-ai-tools" class="explore-btn" data-tooltip="View AI tools" aria-label="View AI tools">Explore Tools</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Library</h3>
-                <p>Discover a vast digital library with our insightful books and Open Library access.</p>
-                <a href="https://spudytv14.github.io/Spudy-Production/" class="open-library-btn" target="_blank" rel="noopener noreferrer" data-tooltip="Visit Spudy Library" aria-label="Visit Spudy Library">Open Library</a>
-            </div>
-            <div class="service-card">
-                <h3>Spudy Games</h3>
-                <p>Dive into exciting AI-powered games and interactive experiences.</p>
-                <a href="https://spudytv14.github.io/PLAY.GAMES/" class="explore-games-btn" target="_blank" rel="noopener noreferrer" data-tooltip="Play Spudy Games" aria-label="Play Spudy Games">Explore Games</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Spudy AI Tools Section -->
-    <section id="spudy-ai-tools" class="spudy-ai-tools">
-        <h2>Spudy AI Tools</h2>
-        <div class="spudy-ai-tools-grid">
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy AI</h3>
-                <p>General AI Assistant for various tasks.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Try Spudy AI" aria-label="Try Spudy AI">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Advanced Reasoning</h3>
-                <p>Enhanced Logic & Problem Solving capabilities.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Try Advanced Reasoning" aria-label="Try Advanced Reasoning">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Music AI</h3>
-                <p>Create Original Music with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Create Music" aria-label="Create Music">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Video Generator</h3>
-                <p>Generate Stunning Videos effortlessly.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Generate Videos" aria-label="Generate Videos">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Image Generator</h3>
-                <p>Create High-Quality Images with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Generate Images" aria-label="Generate Images">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Code Generator</h3>
-                <p>Write Code Effortlessly with AI assistance.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Generate Code" aria-label="Generate Code">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy App Builder</h3>
-                <p>Build Custom Applications with ease.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Build Apps" aria-label="Build Apps">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Graphic Design</h3>
-                <p>Design Professional Graphics using AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Design Graphics" aria-label="Design Graphics">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Presentation Maker</h3>
-                <p>Create Engaging Slides with AI support.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Create Presentations" aria-label="Create Presentations">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Text-to-Speech</h3>
-                <p>Convert Text to Natural Speech.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Try Text-to-Speech" aria-label="Try Text-to-Speech">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Voice Cloner</h3>
-                <p>Replicate Voices Accurately with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Clone Voices" aria-label="Clone Voices">Try Now</a>
-            </div>
-            <div class="spudy-ai-tool-card">
-                <h3>Spudy Resume Builder</h3>
-                <p>Craft Professional Resumes with AI.</p>
-                <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" target="_blank" rel="noopener noreferrer" data-tooltip="Build Resumes" aria-label="Build Resumes">Try Now</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <h2>Choose Your Plan</h2>
-        <div class="pricing-chart-container">
-            <canvas id="pricing-chart" width="800" height="400"></canvas>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Starter Spark</h3>
-                <div class="price">FREE - Limited Access</div>
-                <ul>
-                    <li class="included">Spudy AI</li>
-                    <li class="included">Text-to-Speech</li>
-                    <li class="excluded">Advanced Reasoning</li>
-                    <li class="excluded">Code Generator</li>
-                    <li class="excluded">App Builder</li>
-                </ul>
-                <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" data-tooltip="Select Starter Spark" aria-label="Select Starter Spark">Select</a>
-                <div class="dropdown-message">Log in or register first</div>
-                <div class="confirmation-message">
-                    <p>You have selected Starter Spark. Please confirm to pay FREE - Limited Access.</p>
-                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Starter Spark">Confirm</a>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <h3>Creative Core</h3>
-                <div class="price">$3.14 / month</div>
-                <ul>
-                    <li class="included">Spudy AI</li>
-                    <li class="included">Video Generator</li>
-                    <li class="included">Text-to-Speech</li>
-                    <li class="included">Graphic Design</li>
-                    <li class="excluded">App Builder</li>
-                </ul>
-                <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" data-tooltip="Select Creative Core" aria-label="Select Creative Core">Select</a>
-                <div class="dropdown-message">Log in or register first</div>
-                <div class="confirmation-message">
-                    <p>You have selected Creative Core. Please confirm to pay $3.14 / month.</p>
-                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Creative Core">Confirm</a>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <h3>Pro Vision</h3>
-                <div class="price">$6.29 / month</div>
-                <ul>
-                    <li class="included">Everything in Core</li>
-                    <li class="included">Image Generator</li>
-                    <li class="included">Music AI</li>
-                    <li class="included">Resume Builder</li>
-                    <li class="excluded">Voice Cloner</li>
-                </ul>
-                <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" data-tooltip="Select Pro Vision" aria-label="Select Pro Vision">Select</a>
-                <div class="dropdown-message">Log in or register first</div>
-                <div class="confirmation-message">
-                    <p>You have selected Pro Vision. Please confirm to pay $6.29 / month.</p>
-                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Pro Vision">Confirm</a>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <h3>Ultimate Brain</h3>
-                <div class="price">$12.59 / month</div>
-                <ul>
-                    <li class="included">All Pro Vision Features</li>
-                    <li class="included">Code Generator</li>
-                    <li class="included">Presentation Maker</li>
-                    <li class="included">Voice Cloner</li>
-                    <li class="excluded">App Builder</li>
-                </ul>
-                <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" data-tooltip="Select Ultimate Brain" aria-label="Select Ultimate Brain">Select</a>
-                <div class="dropdown-message">Log in or register first</div>
-                <div class="confirmation-message">
-                    <p>You have selected Ultimate Brain. Please confirm to pay $12.59 / month.</p>
-                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Ultimate Brain">Confirm</a>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <h3>Infinity Pro+</h3>
-                <div class="price">$18.89 / month</div>
-                <ul>
-                    <li class="included">Everything in Ultimate Brain</li>
-                    <li class="included">App Builder</li>
-                    <li class="included">Unlimited Access</li>
-                    <li class="included">Priority Support</li>
-                    <li class="included">Beta Features Access</li>
-                </ul>
-                <div class="discount">10% off for yearly billing</div>
-                <a href="#" class="select-btn" data-tooltip="Select Infinity Pro+" aria-label="Select Infinity Pro+">Select</a>
-                <div class="dropdown-message">Log in or register first</div>
-                <div class="confirmation-message">
-                    <p>You have selected Infinity Pro+. Please confirm to pay $18.89 / month.</p>
-                    <a href="#" class="confirm-btn" data-tooltip="Confirm Selection" aria-label="Confirm Infinity Pro+">Confirm</a>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <h3>Enterprise Masterplan</h3>
-                <div class="price">Custom Pricing</div>
-                <ul>
-                    <li class="included">Full Suite Access</li>
-                    <li class="included">Dedicated Account Manager</li>
-                    <li class="included">Custom Integrations</li>
-                    <li class="included">API Access</li>
-                    <li class="included">Staff Training & SLA</li>
-                </ul>
-                <div class="discount">Request a quote for annual billing</div>
-                <a href="mailto:spudytv14@gmail.com" class="select-btn" data-tooltip="Contact for Custom Plan" aria-label="Contact for Enterprise Masterplan">Contact Us</a>
-                <div class="dropdown-message">Log in or register first</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Payment Methods Section -->
-    <section id="payment-methods" class="payment-methods">
-        <h2>We Accept the Following Payment Methods</h2>
-        <div class="payment-methods-grid">
-            <a href="https://www.visa.com" target="_blank" rel="noopener noreferrer" class="payment-method" data-tooltip="Pay with Visa" aria-label="Pay with Visa">
-                <img src="https://via.placeholder.com/120x60?text=Visa" alt="Visa">
-            </a>
-            <a href="https://www.mastercard.com" target="_blank" rel="noopener noreferrer" class="payment-method" data-tooltip="Pay with Mastercard" aria-label="Pay with Mastercard">
-                <img src="https://via.placeholder.com/120x60?text=Mastercard" alt="Mastercard">
-            </a>
-            <a href="https://www.econet.co.zw/ecocash" target="_blank" rel="noopener noreferrer" class="payment-method" data-tooltip="Pay with Ecocash" aria-label="Pay with Ecocash">
-                <img src="https://via.placeholder.com/120x60?text=Ecocash" alt="Ecocash">
-            </a>
-            <a href="https://www.netone.co.zw/onemoney" target="_blank" rel="noopener noreferrer" class="payment-method" data-tooltip="Pay with OneMoney" aria-label="Pay with OneMoney">
-                <img src="https://via.placeholder.com/120x60?text=OneMoney" alt="OneMoney">
-            </a>
-        </div>
-    </section>
-
-    <!-- Data Processing Section -->
-    <section id="data-processing" class="data-processing">
-        <h2>Data Processing</h2>
-        <p>We collect, clean, and annotate datasets from multiple verified sources to ensure high-quality AI training data.</p>
-        <p>Our data pipelines are designed for real-time processing, privacy compliance, and optimized formatting for model readiness.</p>
-        <p class="quote">"Only the cleanest data trains the smartest AI."</p>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <h2>What Our Users Say</h2>
-        <div class="testimonial-carousel">
-            <div class="testimonial-container">
-                <div class="testimonial-card" data-index="0">
-                    <p class="quote">"Spudy AI transformed my workflow! The tools are intuitive and save me hours every week."</p>
-                    <p class="quote shona">"Spudy AI yakashandura nzira yangu yekushanda! Zvishandiso zviri nyore uye zvinondichengetera maawa vhiki yega yega."</p>
-                    <div class="author">Tariro Mufambi</div>
-                    <div class="role">Freelance Graphic Designer</div>
-                </div>
-                <div class="testimonial-card" data-index="1">
-                    <p class="quote">"The resume builder helped me land my dream job. Professional and easy to use!"</p>
-                    <p class="quote shona">"Muvaki wezvinyorwa wakandibatsira kuwana basa rangu rekurota. Nyanzvi uye nyore kushandisa!"</p>
-                    <div class="author">Tinashe Chidhakwa</div>
-                    <div class="role">Software Engineer</div>
-                </div>
-                <div class="testimonial-card" data-index="2">
-                    <p class="quote">"Spudy's music AI created tracks that wowed my clients. A game-changer for my studio."</p>
-                    <p class="quote shona">"Spudy's music AI yakagadzira mabhii akashamisa vatengi vangu. Shanduko yemutambo westudio yangu."</p>
-                    <div class="author">Rumbidzai Muzenda</div>
-                    <div class="role">Music Producer</div>
-                </div>
-                <div class="testimonial-card" data-index="3">
-                    <p class="quote">"The app builder allowed our startup to launch quickly without breaking the bank."</p>
-                    <p class="quote shona">"Muvaki weapp wakabvumira kutanga kwedu kutanga nekukurumidza pasina kutyora bank."</p>
-                    <div class="author">Kudakwashe Marufu</div>
-                    <div class="role">Startup Founder</div>
-                </div>
-                <div class="testimonial-card" data-index="4">
-                    <p class="quote">"Spudy's support team is amazing. They guided us through custom integrations seamlessly."</p>
-                    <p class="quote shona">"Chikwata chekutsigira cheSpudy chinoshamisa. Vakatitungamira kuburikidza nekubatanidza kwetsika zvisina musono."</p>
-                    <div class="author">Nyasha Chikwava</div>
-                    <div class="role">IT Manager</div>
-                </div>
-            </div>
-            <button class="carousel-prev" aria-label="Previous testimonial">❮</button>
-            <button class="carousel-next" aria-label="Next testimonial">❯</button>
-        </div>
-        <div class="testimonial-dots">
-            <div class="testimonial-dot active" data-index="0" aria-label="View testimonial 1"></div>
-            <div class="testimonial-dot" data-index="1" aria-label="View testimonial 2"></div>
-            <div class="testimonial-dot" data-index="2" aria-label="View testimonial 3"></div>
-            <div class="testimonial-dot" data-index="3" aria-label="View testimonial 4"></div>
-            <div class="testimonial-dot" data-index="4" aria-label="View testimonial 5"></div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="team">
-        <h2>Meet the Team</h2>
-        <p>Our talented team drives innovation at Spudy Intelligence Technology.</p>
-        <a href="#" class="meet-team-btn" data-tooltip="View our team" aria-label="View our team">Meet the Team</a>
-        <div class="team-dropdown">
-            <div class="team-grid">
-                <div class="team-card">
-                    <h3>Matipaishe Blessing (Spudy)</h3>
-                    <div class="role">Founder & Lead Developer</div>
-                    <p>Visionary behind Spudy Intelligence Unit. Leads innovation, coding, design, and future development.</p>
-                </div>
-                <div class="team-card">
-                    <h3>Itai Whande</h3>
-                    <div class="role">Final Inspector</div>
-                    <p>Ensures perfection in every line of code, UI layout, and system functionality before release.</p>
-                </div>
-                <div class="team-card">
-                    <h3>Myta Zedy</h3>
-                    <div class="role">Creative Support & Idea Source</div>
-                    <p>Brings heart, encouragement, and inspirational creativity that shaped SIU's growth.</p>
-                </div>
-                <div class="team-card">
-                    <h3>Matipaishe Blessing</h3>
-                    <div class="role">UI/UX Designer</div>
-                    <p>Crafts visually intuitive and user-focused interfaces across all Spudy platforms.</p>
-                </div>
-                <div class="team-card">
-                    <h3>Dinhi</h3>
-                    <div class="role">Marketer</div>
-                    <p>Drives the promotion and success of our services through strategic marketing.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Us Section -->
-    <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <div class="contact-content">
-            <div class="contact-icons">
-                <div class="contact-icon-card">
-                    <a href="https://api.whatsapp.com/send?phone=263716669706" target="_blank" rel="noopener noreferrer" data-tooltip="Chat on WhatsApp" aria-label="Chat on WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </div>
-                <div class="contact-icon-card">
-                    <a href="mailto:spudytv14@gmail.com" data-tooltip="Send us an Email" aria-label="Send us an Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-                <div class="contact-icon-card">
-                    <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" data-tooltip="Visit Google Play" aria-label="Visit Google Play">
-                        <i class="fab fa-google-play"></i>
-                    </a>
-                </div>
-            </div>
-            <form class="contact-subscribe" onsubmit="submitSubscribe(event)">
-                <input type="email" id="subscribe-email" placeholder="Enter your email" aria-label="Enter your email for subscription" required>
-                <button type="submit" data-tooltip="Subscribe to updates" aria-label="Subscribe to updates">Subscribe</button>
-                <div id="subscribe-error" class="error">Please enter a valid email address</div>
-            </form>
-            <div class="contact-links">
-                <a href="https://spudytv14.github.io/Legai-Services/" target="_blank" rel="noopener noreferrer" data-tooltip="View Terms" aria-label="View Terms of Service">Terms of Service</a> |
-                <a href="#privacy" data-tooltip="Privacy Information" aria-label="View Privacy Information">Privacy Centre</a> |
-                <a href="mailto:spudytv14@gmail.com" data-tooltip="Share Feedback" aria-label="Share Feedback">Have feedback? Let us know</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-social">
-            <h3>Follow Us</h3>
-            <div class="footer-social-grid">
-                <div class="footer-social-card youtube">
-                    <a href="https://www.youtube.com/@SpudyAI" target="_blank" rel="noopener noreferrer" data-tooltip="Visit our YouTube" aria-label="Visit our YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-                <div class="footer-social-card facebook">
-                    <a href="https://www.facebook.com/blessing.muduchwa" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on Facebook" aria-label="Follow on Facebook">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                </div>
-                <div class="footer-social-card twitter">
-                    <a href="https://x.com/spudyproduction" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on X" aria-label="Follow on X">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                </div>
-                <div class="footer-social-card instagram">
-                    <a href="https://www.instagram.com/matipaishe_bessing/" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on Instagram" aria-label="Follow on Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                <div class="footer-social-card spudy-books">
-                    <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" rel="noopener noreferrer" data-tooltip="Explore Spudy Books" aria-label="Explore Spudy Books">
-                        <i class="fas fa-book"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <p class="copyright">© 2025 Spudy Intelligence Technology. All Rights Reserved.</p>
-    </footer>
-
-    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <style>
+        body { margin: 0; background: #0a0a0a; }
+        #canvas { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: -1; }
+        .content { position: relative; z-index: 10; color: white; }
+        .glow { text-shadow: 0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(59, 130, 246, 0.6); }
+        .nav-link:hover { color: #3b82f6; transition: color 0.3s ease; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        #dynamic-text { transition: opacity 0.5s ease; }
+        #team-section { display: none; transition: opacity 0.5s ease; }
+        .testimonial { display: none; opacity: 0; transition: opacity 0.5s ease; }
+        .testimonial.active { display: block; opacity: 1; }
+        .contact-icons { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+        .contact-icon-card { background: #1a202c; padding: 1rem; border-radius: 0.5rem; }
+        .contact-icon-card a { color: #3b82f6; font-size: 1.5rem; }
+        .contact-subscribe { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+        .contact-subscribe input { width: 100%; max-width: 300px; padding: 0.5rem; background: #2d3748; color: white; border-radius: 0.25rem; border: none; }
+        .contact-subscribe button { background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 0.25rem; border: none; cursor: pointer; }
+        .contact-subscribe button:hover { background: #2563eb; }
+        .contact-links { display: flex; gap: 0.5rem; justify-content: center; }
+        .contact-links a { color: #3b82f6; }
+        .contact-links a:hover { color: #2563eb; }
+        .footer-social { text-align: center; margin-bottom: 1rem; }
+        .footer-social-grid { display: flex; justify-content: center; gap: 1rem; }
+        .footer-social-card { background: #1a202c; padding: 0.75rem; border-radius: 0.5rem; }
+        .footer-social-card a { color: #3b82f6; font-size: 1.25rem; }
+        .error { color: #ef4444; display: none; font-size: 0.875rem; }
+        .stars { color: #f59e0b; margin-bottom: 0.5rem; }
+        section { padding: 2rem 1rem; min-height: 60vh; } /* Reduced section height and padding */
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="content font-sans">
+        <!-- Navigation -->
+        <nav class="flex justify-between items-center p-6 bg-black bg-opacity-50 sticky top-0 z-20">
+            <div class="text-2xl font-bold glow">Spudy Intelligence Technology</div>
+            <div class="space-x-6">
+                <a href="#home" class="nav-link text-lg">Home</a>
+                <a href="#services" class="nav-link text-lg">Services</a>
+                <a href="#pricing" class="nav-link text-lg">Pricing</a>
+                <a href="#team" class="nav-link text-lg">Team</a>
+                <a href="#contact" class="nav-link text-lg">Contact</a>
+                <div class="relative inline-block">
+                    <button id="account-btn" class="nav-link text-lg">Account</button>
+                    <div id="account-dropdown" class="hidden absolute bg-gray-900 text-white rounded shadow-lg mt-2">
+                        <a href="#login" class="block px-4 py-2 hover:bg-blue-600">Log In</a>
+                        <a href="#register" class="block px-4 py-2 hover:bg-blue-600">Register</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Login Modal -->
+        <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-30">
+            <div class="bg-gray-900 p-6 rounded-lg text-white max-w-md w-full">
+                <button id="close-login" class="text-2xl float-right">×</button>
+                <h2 class="text-2xl font-bold glow mb-4">Log In</h2>
+                <div class="mb-4">
+                    <input type="email" placeholder="Email" class="w-full p-2 bg-gray-800 rounded text-white">
+                </div>
+                <div class="mb-4">
+                    <input type="password" placeholder="Password" class="w-full p-2 bg-gray-800 rounded text-white">
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Log In</button>
+                <p class="text-red-500 text-sm mt-2 hidden">Invalid email or password</p>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div id="register-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-30">
+            <div class="bg-gray-900 p-6 rounded-lg text-white max-w-md w-full">
+                <button id="close-register" class="text-2xl float-right">×</button>
+                <h2 class="text-2xl font-bold glow mb-4">Register</h2>
+                <div class="mb-4">
+                    <input type="email" placeholder="Email" class="w-full p-2 bg-gray-800 rounded text-white">
+                </div>
+                <div class="mb-4">
+                    <input type="password" placeholder="Password" class="w-full p-2 bg-gray-800 rounded text-white">
+                </div>
+                <div class="mb-4">
+                    <input type="password" placeholder="Confirm Password" class="w-full p-2 bg-gray-800 rounded text-white">
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Register</button>
+                <p class="text-red-500 text-sm mt-2 hidden">Registration failed. Please check your inputs.</p>
+            </div>
+        </div>
+
+        <!-- Home Section -->
+        <section id="home" class="flex flex-col justify-center items-center text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-extrabold glow animate-float mb-4">Spudy Intelligence Technology</h1>
+            <p id="dynamic-text" class="text-xl md:text-2xl max-w-2xl mb-6">Engage with Spudy IT</p>
+            <p class="text-xl md:text-2xl max-w-2xl mb-6">Discover Our Solutions</p>
+            <a href="#services" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Explore Now</a>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="flex flex-col justify-center items-center text-center px-4 bg-black bg-opacity-50">
+            <h2 class="text-4xl font-bold glow mb-6">Our Cutting-Edge Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy AI</h3>
+                    <p>Access a suite of AI-powered tools for creativity, productivity, and innovation.</p>
+                    <a href="#spudy-ai" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Explore Tools</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Library</h3>
+                    <p>Discover a vast digital library with our insightful books and Open Library access.</p>
+                    <a href="#library" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Open Library</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Games</h3>
+                    <p>Dive into exciting AI-powered games and interactive experiences.</p>
+                    <a href="#games" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Explore Games</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spudy AI Tools Section -->
+        <section id="spudy-ai" class="flex flex-col justify-center items-center text-center px-4">
+            <h2 class="text-4xl font-bold glow mb-6">Spudy AI Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl">
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy AI</h3>
+                    <p>General AI Assistant for various tasks.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Advanced Reasoning</h3>
+                    <p>Enhanced Logic & Problem Solving capabilities.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Music AI</h3>
+                    <p>Create Original Music with AI.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Video Generator</h3>
+                    <p>Generate Stunning Videos effortlessly.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Image Generator</h3>
+                    <p>Create High-Quality Images with AI.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Code Generator</h3>
+                    <p>Write Code Effortlessly with AI assistance.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy App Builder</h3>
+                    <p>Build Custom Applications with ease.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Graphic Design</h3>
+                    <p>Design Professional Graphics using AI.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Presentation Maker</h3>
+                    <p>Create Engaging Slides with AI support.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Text-to-Speech</h3>
+                    <p>Convert Text to Natural Speech.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Voice Cloner</h3>
+                    <p>Replicate Voices Accurately with AI.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Resume Builder</h3>
+                    <p>Craft Professional Resumes with AI.</p>
+                    <a href="#login" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="flex flex-col justify-center items-center text-center px-4 bg-black bg-opacity-50">
+            <h2 class="text-4xl font-bold glow mb-6">Choose Your Plan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl">
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Starter Spark</h3>
+                    <p class="text-lg mb-4">FREE - Limited Access</p>
+                    <ul class="text-left mb-4">
+                        <li>Spudy AI</li>
+                        <li>Text-to-Speech</li>
+                        <li>Advanced Reasoning</li>
+                        <li>Code Generator</li>
+                        <li>App Builder</li>
+                    </ul>
+                    <p class="text-sm mb-4">10% off for yearly billing</p>
+                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Starter Spark">Select</button>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Creative Core</h3>
+                    <p class="text-lg mb-4">$2.51 / month</p>
+                    <ul class="text-left mb-4">
+                        <li>Spudy AI</li>
+                        <li>Video Generator</li>
+                        <li>Text-to-Speech</li>
+                        <li>Graphic Design</li>
+                        <li>App Builder</li>
+                    </ul>
+                    <p class="text-sm mb-4">10% off for yearly billing</p>
+                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Creative Core">Select</button>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Pro Vision</h3>
+                    <p class="text-lg mb-4">$5.03 / month</p>
+                    <ul class="text-left mb-4">
+                        <li>Everything in Core</li>
+                        <li>Image Generator</li>
+                        <li>Music AI</li>
+                        <li>Resume Builder</li>
+                        <li>Voice Cloner</li>
+                    </ul>
+                    <p class="text-sm mb-4">10% off for yearly billing</p>
+                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Pro Vision">Select</button>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Ultimate Brain</h3>
+                    <p class="text-lg mb-4">$10.07 / month</p>
+                    <ul class="text-left mb-4">
+                        <li>All Pro Vision Features</li>
+                        <li>Code Generator</li>
+                        <li>Presentation Maker</li>
+                        <li>Voice Cloner</li>
+                        <li>App Builder</li>
+                    </ul>
+                    <p class="text-sm mb-4">10% off for yearly billing</p>
+                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Ultimate Brain">Select</button>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Infinity Pro+</h3>
+                    <p class="text-lg mb-4">$15.11 / month</p>
+                    <ul class="text-left mb-4">
+                        <li>Everything in Ultimate Brain</li>
+                        <li>App Builder</li>
+                        <li>Unlimited Access</li>
+                        <li>Priority Support</li>
+                        <li>Beta Features Access</li>
+                    </ul>
+                    <p class="text-sm mb-4">10% off for yearly billing</p>
+                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Infinity Pro+">Select</button>
+                </div>
+                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <h3 class="text-2xl font-semibold glow mb-4">Enterprise Masterplan</h3>
+                    <p class="text-lg mb-4">Custom Pricing</p>
+                    <ul class="text-left mb-4">
+                        <li>Full Suite Access</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>Custom Integrations</li>
+                        <li>API Access</li>
+                        <li>Staff Training & SLA</li>
+                    </ul>
+                    <p class="text-sm mb-4">Request a quote for annual billing</p>
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full inline-block text-center">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Processing Section -->
+        <section id="data-processing" class="flex flex-col justify-center items-center text-center px-4">
+            <h2 class="text-4xl font-bold glow mb-6">Data Processing</h2>
+            <p class="text-lg max-w-3xl mb-4">We collect, clean, and annotate datasets from multiple verified sources to ensure high-quality AI training data.</p>
+            <p class="text-lg max-w-3xl mb-4">Our data pipelines are designed for real-time processing, privacy compliance, and optimized formatting for model readiness.</p>
+            <p class="text-xl font-semibold glow mb-6">"Only the cleanest data trains the smartest AI."</p>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="flex flex-col justify-center items-center text-center px-4 bg-black bg-opacity-50">
+            <h2 class="text-4xl font-bold glow mb-6">What Our Users Say</h2>
+            <div class="max-w-2xl w-full">
+                <div class="testimonial p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-lg mb-4">"Spudy AI transformed my workflow! The tools are intuitive and save me hours every week."</p>
+                    <p class="text-sm">Tariro Mufambi, Freelance Graphic Designer</p>
+                </div>
+                <div class="testimonial p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-lg mb-4">"The resume builder helped me land my dream job. Professional and easy to use!"</p>
+                    <p class="text-sm">Tinashe Chidhakwa, Software Engineer</p>
+                </div>
+                <div class="testimonial p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-lg mb-4">"Spudy's music AI created tracks that wowed my clients. A game-changer for my studio."</p>
+                    <p class="text-sm">Rumbidzai Muzenda, Music Producer</p>
+                </div>
+                <div class="testimonial p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-lg mb-4">"The app builder allowed our startup to launch quickly without breaking the bank."</p>
+                    <p class="text-sm">Kudakwashe Marufu, Startup Founder</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="flex flex-col justify-center items-center text-center px-4">
+            <h2 class="text-4xl font-bold glow mb-6">Meet the Team</h2>
+            <button id="toggle-team" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-6">Show Our Team</button>
+            <div id="team-section" class="w-full max-w-5xl">
+                <p class="text-lg max-w-3xl mb-6 mx-auto">Our talented team drives innovation at Spudy Intelligence Technology.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                        <h3 class="text-2xl font-semibold glow mb-4">Matipaishe Blessing (Spudy)</h3>
+                        <p class="text-lg mb-4">Founder & Lead Developer</p>
+                        <p>Visionary behind Spudy Intelligence Unit. Leads innovation, coding, design, and future development.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                        <h3 class="text-2xl font-semibold glow mb-4">Itai Whande</h3>
+                        <p class="text-lg mb-4">Final Inspector</p>
+                        <p>Ensures perfection in every line of code, UI layout, and system functionality before release.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                        <h3 class="text-2xl font-semibold glow mb-4">Myta Zedy</h3>
+                        <p class="text-lg mb-4">Creative Support & Idea Source</p>
+                        <p>Brings heart, encouragement, and inspirational creativity that shaped SIU's growth.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                        <h3 class="text-2xl font-semibold glow mb-4">Matipaishe Blessing</h3>
+                        <p class="text-lg mb-4">UI/UX Designer</p>
+                        <p>Crafts visually intuitive and user-focused interfaces across all Spudy platforms.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
+                        <h3 class="text-2xl font-semibold glow mb-4">Dinhi</h3>
+                        <p class="text-lg mb-4">Marketer</p>
+                        <p>Drives the promotion and success of our services through strategic marketing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact" class="flex flex-col justify-center items-center text-center px-4 bg-black bg-opacity-50">
+            <h2 class="text-4xl font-bold glow mb-6">Contact Us</h2>
+            <div class="contact-content max-w-2xl w-full">
+                <div class="contact-icons">
+                    <div class="contact-icon-card">
+                        <a href="https://api.whatsapp.com/send?phone=263716669706" target="_blank" rel="noopener noreferrer" data-tooltip="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                    <div class="contact-icon-card">
+                        <a href="mailto:spudytv14@gmail.com" data-tooltip="Send us an Email" aria-label="Send us an Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                    <div class="contact-icon-card">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" data-tooltip="Visit Google Play" aria-label="Visit Google Play">
+                            <i class="fab fa-google-play"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-subscribe">
+                    <input type="email" id="subscribe-email" placeholder="Enter your email" aria-label="Enter your email for subscription" required>
+                    <button type="submit" data-tooltip="Subscribe to updates" aria-label="Subscribe to updates">Subscribe</button>
+                    <div id="subscribe-error" class="error">Please enter a valid email address</div>
+                </div>
+                <div class="contact-links">
+                    <a href="https://spudytv14.github.io/Legai-Services/" target="_blank" rel="noopener noreferrer" data-tooltip="View Terms" aria-label="View Terms of Service">Terms of Service</a> |
+                    <a href="#privacy" data-tooltip="Privacy Information" aria-label="View Privacy Information">Privacy Centre</a> |
+                    <a href="mailto:spudytv14@gmail.com" data-tooltip="Share Feedback" aria-label="Share Feedback">Have feedback? Let us know</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-6 text-center bg-black bg-opacity-50">
+            <div class="footer-social">
+                <h3 class="text-2xl font-bold glow mb-4">Follow Us</h3>
+                <div class="footer-social-grid">
+                    <div class="footer-social-card youtube">
+                        <a href="https://www.youtube.com/@SpudyAI" target="_blank" rel="noopener noreferrer" data-tooltip="Visit our YouTube" aria-label="Visit our YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="footer-social-card facebook">
+                        <a href="https://www.facebook.com/blessing.muduchwa" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on Facebook" aria-label="Follow on Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                    <div class="footer-social-card twitter">
+                        <a href="https://x.com/spudyproduction" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on X" aria-label="Follow on X">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                    <div class="footer-social-card instagram">
+                        <a href="https://www.instagram.com/matipaishe_bessing/" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on Instagram" aria-label="Follow on Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div class="footer-social-card spudy-books">
+                        <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" rel="noopener noreferrer" data-tooltip="Explore Spudy Books" aria-label="Explore Spudy Books">
+                            <i class="fas fa-book"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-sm">© 2025 Spudy Intelligence Technology. All Rights Reserved.</p>
+        </footer>
+    </div>
+
     <script>
-        // Modal Functions
-        function showModal(type) {
-            document.getElementById(`${type}-modal`).style.display = 'flex';
-            document.getElementById(`${type}-error`).style.display = 'none';
+        // Three.js 3D Tech Background - Circuit Board
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Create circuit board plane
+        const boardGeometry = new THREE.PlaneGeometry(40, 40, 40, 40);
+        const boardMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.3 });
+        const circuitBoard = new THREE.Mesh(boardGeometry, boardMaterial);
+        circuitBoard.rotation.x = -Math.PI / 3;
+        circuitBoard.position.set(0, -5, -10);
+        scene.add(circuitBoard);
+
+        // Create glowing nodes
+        const nodeCount = 30;
+        const nodes = new THREE.Group();
+        const nodeGeometry = new THREE.SphereGeometry(0.2, 16, 16);
+        const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
+        const nodePositions = [];
+
+        for (let i = 0; i < nodeCount; i++) {
+            const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
+            node.position.set(
+                (Math.random() - 0.5) * 30,
+                Math.random() * 5,
+                (Math.random() - 0.5) * 30
+            );
+            nodePositions.push(node.position.clone());
+            nodes.add(node);
+        }
+        scene.add(nodes);
+
+        // Create pulsating connections
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.5 });
+        const lines = new THREE.Group();
+        for (let i = 0; i < nodeCount - 1; i += 2) {
+            const geometry = new THREE.BufferGeometry().setFromPoints([
+                nodePositions[i],
+                nodePositions[i + 1]
+            ]);
+            const line = new THREE.Line(geometry, lineMaterial);
+            lines.add(line);
+        }
+        scene.add(lines);
+
+        camera.position.set(0, 10, 20);
+        camera.lookAt(0, 0, 0);
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate circuit board
+            circuitBoard.rotation.z += 0.002;
+
+            // Animate nodes with pulsating effect
+            nodes.children.forEach((node, i) => {
+                node.scale.setScalar(1 + 0.2 * Math.sin(Date.now() * 0.002 + i));
+                node.position.y = nodePositions[i].y + Math.sin(Date.now() * 0.001 + i) * 0.5;
+            });
+
+            // Update connections
+            lines.children.forEach((line, i) => {
+                const idx = i * 2;
+                const positions = line.geometry.attributes.position.array;
+                positions[0] = nodes.children[idx].position.x;
+                positions[1] = nodes.children[idx].position.y;
+                positions[2] = nodes.children[idx].position.z;
+                positions[3] = nodes.children[idx + 1].position.x;
+                positions[4] = nodes.children[idx + 1].position.y;
+                positions[5] = nodes.children[idx + 1].position.z;
+                line.geometry.attributes.position.needsUpdate = true;
+                line.material.opacity = 0.5 + 0.3 * Math.sin(Date.now() * 0.002 + i);
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Handle modal opening
+                    if (targetId === 'login') {
+                        document.getElementById('login-modal').classList.remove('hidden');
+                    } else if (targetId === 'register') {
+                        document.getElementById('register-modal').classList.remove('hidden');
+                    }
+                }
+            });
+        });
+
+        // Account dropdown toggle
+        const accountBtn = document.getElementById('account-btn');
+        const accountDropdown = document.getElementById('account-dropdown');
+        accountBtn.addEventListener('click', () => {
+            accountDropdown.classList.toggle('hidden');
+        });
+
+        // Close modals
+        document.getElementById('close-login').addEventListener('click', () => {
+            document.getElementById('login-modal').classList.add('hidden');
+        });
+        document.getElementById('close-register').addEventListener('click', () => {
+            document.getElementById('register-modal').classList.add('hidden');
+        });
+
+        // Dynamic text cycling
+        const phrases = [
+            "Engage with Spudy IT",
+            "Innovate with Spudy IT",
+            "Transform with Spudy IT",
+            "Build with Spudy IT"
+        ];
+        let currentPhraseIndex = 0;
+        const dynamicText = document.getElementById('dynamic-text');
+
+        function changeText() {
+            dynamicText.style.opacity = 0;
+            setTimeout(() => {
+                dynamicText.textContent = phrases[currentPhraseIndex];
+                dynamicText.style.opacity = 1;
+                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+            }, 500);
         }
 
-        function closeModal(type) {
-            document.getElementById(`${type}-modal`).style.display = 'none';
-        }
+        setInterval(changeText, 3000);
+        changeText();
 
-        function submitLogin() {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            const error = document.getElementById('login-error');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!emailRegex.test(email)) {
-                error.textContent = 'Please enter a valid email address';
-                error.style.display = 'block';
-            } else if (password.length < 6) {
-                error.textContent = 'Password must be at least 6 characters';
-                error.style.display = 'block';
+        // Toggle team section
+        const toggleTeamBtn = document.getElementById('toggle-team');
+        const teamSection = document.getElementById('team-section');
+        toggleTeamBtn.addEventListener('click', () => {
+            if (teamSection.style.display === 'none') {
+                teamSection.style.display = 'block';
+                teamSection.style.opacity = 0;
+                setTimeout(() => { teamSection.style.opacity = 1; }, 10);
+                toggleTeamBtn.textContent = 'Hide Our Team';
             } else {
-                closeModal('login');
-                alert('Login successful!');
+                teamSection.style.opacity = 0;
+                setTimeout(() => {
+                    teamSection.style.display = 'none';
+                    toggleTeamBtn.textContent = 'Show Our Team';
+                }, 500);
             }
+        });
+
+        // Cycle testimonials
+        const testimonials = document.querySelectorAll('.testimonial');
+        let currentTestimonialIndex = 0;
+
+        function cycleTestimonials() {
+            testimonials[currentTestimonialIndex].classList.remove('active');
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            testimonials[currentTestimonialIndex].classList.add('active');
         }
 
-        function submitRegister() {
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-            const confirmPassword = document.getElementById('register-confirm-password').value;
-            const error = document.getElementById('register-error');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        testimonials[currentTestimonialIndex].classList.add('active');
+        setInterval(cycleTestimonials, 5000);
 
-            if (!emailRegex.test(email)) {
-                error.textContent = 'Please enter a valid email address';
-                error.style.display = 'block';
-            } else if (password.length < 6) {
-                error.textContent = 'Password must be at least 6 characters';
-                error.style.display = 'block';
-            } else if (password !== confirmPassword) {
-                error.textContent = 'Passwords do not match';
-                error.style.display = 'block';
-            } else {
-                closeModal('register');
-                alert('Registration successful!');
-            }
-        }
-
-        // Subscribe Form Function
+        // Subscribe form validation
         function submitSubscribe(event) {
             event.preventDefault();
-            const email = document.getElementById('subscribe-email').value;
-            const error = document.getElementById('subscribe-error');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailInput = document.getElementById('subscribe-email');
+            const errorMsg = document.getElementById('subscribe-error');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (!emailRegex.test(email)) {
-                error.textContent = 'Please enter a valid email address';
-                error.style.display = 'block';
+            if (emailPattern.test(emailInput.value)) {
+                errorMsg.style.display = 'none';
+                alert('Subscribed successfully!');
+                emailInput.value = '';
             } else {
-                error.style.display = 'none';
-                document.getElementById('subscribe-email').value = '';
-                alert('Thank you for subscribing!');
+                errorMsg.style.display = 'block';
             }
         }
 
-        // Particles.js initialization with mobile optimization
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: window.innerWidth <= 768 ? 50 : 100, density: { enable: true, value_area: 800 } },
-                color: { value: '#00c6ff' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.6, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: '#00c6ff', opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out' }
-            },
-            interactivity: {
-                detect_on: '
+        // Handle plan selection
+        document.querySelectorAll('.select-plan').forEach(button => {
+            button.addEventListener('click', () => {
+                const plan = button.getAttribute('data-plan');
+                alert(`Please log in or register to proceed with the ${plan} plan.`);
+                document.getElementById('login-modal').classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
