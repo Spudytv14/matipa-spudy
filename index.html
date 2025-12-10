@@ -27,11 +27,11 @@
 <body class="text-white">
     <canvas id="canvas"></canvas>
 
-    <!-- Navigation - Smaller buttons, Login stays inline -->
+    <!-- Compact Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-90 backdrop-blur-lg border-b border-blue-900">
         <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
             <h1 class="text-2xl font-bold glow">Spudy Intelligence</h1>
-            <div class="flex items-center gap-3 text-sm md:text-base flex-wrap">
+            <div class="flex items-center gap-3 text-sm flex-wrap">
                 <a href="#home" class="hover:text-blue-400 px-3 py-2 rounded transition">Home</a>
                 <a href="#services" class="hover:text-blue-400 px-3 py-2 rounded transition">Services</a>
                 <a href="#tools" class="hover:text-blue-400 px-3 py-2 rounded transition">AI Tools</a>
@@ -43,9 +43,6 @@
         </div>
     </nav>
 
-    <!-- Rest of your site (unchanged) -->
-    <!-- Hero, Services, AI Tools, Pricing, Testimonials, Footer — all same as last version -->
-
     <!-- Hero -->
     <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-6">
         <h1 class="text-6xl md:text-8xl font-extrabold glow">Spudy Intelligence</h1>
@@ -53,7 +50,7 @@
         <a href="#pricing" class="mt-12 bg-blue-600 hover:bg-blue-500 px-14 py-6 rounded-full text-2xl font-bold shadow-2xl">Get Started Free</a>
     </section>
 
-    <!-- Services: AI + Library + Games -->
+    <!-- Services -->
     <section id="services" class="py-24 px-6 bg-black bg-opacity-40">
         <h2 class="text-5xl font-bold glow text-center mb-16">Our Platforms</h2>
         <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto text-center">
@@ -61,44 +58,113 @@
                 <i class="fas fa-brain text-6xl text-blue-500 mb-6"></i>
                 <h3 class="text-3xl font-bold glow mb-4">Spudy AI</h3>
                 <p class="text-lg opacity-90 mb-6">20+ powerful AI tools</p>
-                <a href="#tools" class="text-blue-400 text-xl hover:underline">Explore →</a>
+                <a href="#tools" class="text-blue-400 text-xl hover:underline">Explore</a>
             </div>
             <div class="p-10 bg-gray-900 bg-opacity-80 rounded-3xl border border-purple-800 hover:border-purple-500 transition">
                 <i class="fas fa-book-open text-6xl text-purple-500 mb-6"></i>
                 <h3 class="text-3xl font-bold glow mb-4">Spudy Library</h3>
                 <p class="text-lg opacity-90 mb-6">Free digital books</p>
-                <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" class="text-purple-400 text-xl hover:underline">Open →</a>
+                <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" class="text-purple-400 text-xl hover:underline">Open</a>
             </div>
             <div class="p-10 bg-gray-900 bg-opacity-80 rounded-3xl border border-green-800 hover:border-green-500 transition">
                 <i class="fas fa-gamepad text-6xl text-green-500 mb-6"></i>
                 <h3 class="text-3xl font-bold glow mb-4">Spudy Games</h3>
-                <p class="text-lg opacity-90 mb-6">AI-powered fun</p>
-                <a href="https://spudytv14.github.io/PLAY.GAMES/" target="_blank" class="text-green-400 text-xl hover:underline">Play →</a>
+                <p class="text-lg opacity-90 mb-6">AI-powered games</p>
+                <a href="https://spudytv14.github.io/PLAY.GAMES/" target="_blank" class="text-green-400 text-xl hover:underline">Play</a>
             </div>
         </div>
     </section>
 
-    <!-- [AI Tools, Pricing, Testimonials, Footer — exactly same as before] -->
-    <!-- Skipped here for brevity — all unchanged -->
+    <!-- All AI Tools -->
+    <section id="tools" class="py-24 px-6 bg-black bg-opacity-40">
+        <h2 class="text-5xl font-bold glow text-center mb-16">All Spudy AI Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Video Generator</h3><p class="mt-3 opacity-80 text-sm">Text-to-Video</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Image Generator</h3><p class="mt-3 opacity-80 text-sm">AI Art</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Music AI</h3><p class="mt-3 opacity-80 text-sm">Create Songs</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Voice Cloner</h3><p class="mt-3 opacity-80 text-sm">Clone Voice</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Code Generator</h3><p class="mt-3 opacity-80 text-sm">Write Code</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">App Builder</h3><p class="mt-3 opacity-80 text-sm">No-Code Apps</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Resume Builder</h3><p class="mt-3 opacity-80 text-sm">Pro CVs</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Presentation AI</h3><p class="mt-3 opacity-80 text-sm">Auto Slides</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Graphic Design</h3><p class="mt-3 opacity-80 text-sm">Logos & Banners</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Advanced Reasoning</h3><p class="mt-3 opacity-80 text-sm">Deep Logic</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-green-700"><h3 class="text-xl font-bold glow text-green-400">Text-to-Speech</h3><p class="mt-3 opacity-80 text-sm">Natural Voices</p><a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-green-400 text-sm mt-3 block">Try Free</a></div>
+            <div class="p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-green-700"><h3 class="text-xl font-bold glow text-green-400">Spudy Chat</h3><p class="mt-3 opacity-80 text-sm">AI Assistant</p><a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-green-400 text-sm mt-3 block">Try Free</a></div>
+        </div>
+    </section>
 
-    <!-- Login Modal with Registration + Strong Password Check -->
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-6">
+        <h2 class="text-5xl font-bold glow text-center mb-16">Choose Your Plan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+            <div class="p-10 bg-gray-900 rounded-2xl border border-gray-700 text-center">
+                <h3 class="text-3xl font-bold glow">Starter Spark</h3>
+                <p class="text-5xl font-bold my-8">Free</p>
+                <ul class="text-left text-sm space-y-3 mb-8"><li>Spudy Chat (limited)</li><li>Text-to-Speech</li><li>Basic Code Help</li><li>Community Support</li></ul>
+                <button class="w-full py-4 bg-gray-700 rounded-xl font-bold">Current Plan</button>
+            </div>
+            <div class="p-12 bg-gradient-to-b from-blue-950 to-black rounded-2xl border-4 border-blue-500 shadow-2xl transform scale-105 relative">
+                <span class="absolute -top-6 left-1/2 -translate-x-1/2 bg-yellow-500 text-black px-8 py-2 rounded-full font-bold">POPULAR</span>
+                <h3 class="text-3xl font-bold glow">Creative Core</h3>
+                <p class="text-5xl font-bold my-8">$2.51 <span class="text-xl">/month</span></p>
+                <ul class="text-left text-sm space-y-3 mb-8"><li>Everything in Free</li><li>Image Generator</li><li>Video Generator</li><li>Music AI</li><li>Graphic Design</li><li>No Limits</li></ul>
+                <button onclick="selectPlan('Creative Core', 2.51)" class="w-full py-5 bg-yellow-500 hover:bg-yellow-400 text-black text-xl font-bold rounded-xl">Upgrade Now</button>
+            </div>
+            <div class="p-10 bg-gray-900 rounded-2xl border border-purple-700 text-center">
+                <h3 class="text-3xl font-bold glow">Pro Vision</h3>
+                <p class="text-5xl font-bold my-8">$5.03 <span class="text-xl">/month</span></p>
+                <ul class="text-left text-sm space-y-3 mb-8"><li>Everything in Core</li><li>Voice Cloner</li><li>App Builder</li><li>Resume & Slides AI</li><li>Advanced Reasoning</li></ul>
+                <button onclick="selectPlan('Pro Vision', 5.03)" class="w-full py-5 bg-purple-600 hover:bg-purple-500 text-xl font-bold rounded-xl">Go Pro</button>
+            </div>
+            <div class="p-10 bg-gradient-to-b from-orange-900 to-black rounded-2xl border-2 border-orange-600 text-center">
+                <h3 class="text-3xl font-bold glow text-orange-400">Enterprise</h3>
+                <p class="text-4xl font-bold my-6">Custom</p>
+                <ul class="text-left text-sm space-y-3 mb-8"><li>Unlimited Everything</li><li>Custom AI Models</li><li>API Access</li><li>On-Premise</li></ul>
+                <a href="https://api.whatsapp.com/send?phone=263716669706&text=Hi Spudy, Enterprise plan" class="block w-full py-5 bg-orange-600 hover:bg-orange-500 text-xl font-bold rounded-xl">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 px-6 bg-black bg-opacity-50">
+        <h2 class="text-5xl font-bold glow text-center mb-16">What Our Users Say</h2>
+        <div class="max-w-4xl mx-auto">
+            <div class="testimonial active p-12 bg-gray-900 rounded-3xl text-center shadow-2xl"><p class="text-2xl mb-6">"Spudy Video Generator saved my channel!"</p><p class="font-bold text-yellow-400 text-xl">— Tatenda</p></div>
+            <div class="testimonial p-12 bg-gray-900 rounded-3xl text-center shadow-2xl"><p class="text-2xl mb-6">"Built my app in 48 hours!"</p><p class="font-bold text-yellow-400 text-xl">— Kudzai</p></div>
+            <div class="testimonial p-12 bg-gray-900 rounded-3xl text-center shadow-2xl"><p class="text-2xl mb-6">"Best AI tools in Zimbabwe!"</p><p class="font-bold text-yellow-400 text-xl">— Rumbidzai</p></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 text-center bg-black">
+        <div class="flex justify-center gap-12 text-5xl mb-10">
+            <a href="https://api.whatsapp.com/send?phone=263716669706" class="text-green-500 hover:scale-110 transition"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:spudytv14@gmail.com" class="text-blue-500 hover:scale-110 transition"><i class="fas fa-envelope"></i></a>
+            <a href="https://facebook.com/matipaishe.blessing.muduchwa" class="text-blue-600 hover:scale-110 transition"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/Matipa_14" class="text-white hover:scale-110 transition"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com/@SpudyAI" class="text-red-500 hover:scale-110 transition"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p class="text-sm opacity-70">© 2026 Spudy Intelligence Technology. All Rights Reserved.</p>
+        <p class="text-xs mt-4 opacity-50">Created by Matipaishe</p>
+    </footer>
+
+    <!-- Login Modal -->
     <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center hidden z-50">
         <div class="bg-gray-900 p-10 rounded-3xl max-w-md w-full relative">
             <button onclick="closeLogin()" class="absolute top-4 right-6 text-4xl">&times;</button>
             <h2 class="text-3xl font-bold glow text-center mb-6" id="modalTitle">Login to Spudy</h2>
-            
             <div id="loginForm">
                 <input type="text" id="loginIdentifier" placeholder="Email or Phone" class="w-full p-4 bg-gray-800 rounded-xl mb-4">
                 <input type="password" id="loginPass" placeholder="Password" class="w-full p-4 bg-gray-800 rounded-xl mb-4">
                 <button onclick="handleLogin()" class="w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold">Login</button>
                 <p class="text-center mt-4 text-sm">No account? <a href="#" onclick="showRegister()" class="text-blue-400">Register</a></p>
             </div>
-
             <div id="registerForm" class="hidden">
                 <input type="text" id="regName" placeholder="Full Name" class="w-full p-4 bg-gray-800 rounded-xl mb-4">
                 <input type="text" id="regEmail" placeholder="Email or Phone" class="w-full p-4 bg-gray-800 rounded-xl mb-4">
                 <input type="password" id="regPass" placeholder="Strong Password" class="w-full p-4 bg-gray-800 rounded-xl mb-2">
-                <p class="text-xs text-gray-400 mb-4">Min 8 chars, include number & symbol</p>
+                <p class="text-xs text-gray-400 mb-4">Min 8 chars, number + symbol</p>
                 <input type="password" id="regConfirm" placeholder="Confirm Password" class="w-full p-4 bg-gray-800 rounded-xl mb-4">
                 <button onclick="handleRegister()" class="w-full py-4 bg-green-600 hover:bg-green-500 rounded-xl font-bold">Create Account</button>
                 <p class="text-center mt-4 text-sm"><a href="#" onclick="showLogin()" class="text-blue-400">Back to Login</a></p>
@@ -106,56 +172,91 @@
         </div>
     </div>
 
-    <!-- Payment Modal & Scripts -->
+    <!-- Payment Modal with Images -->
+    <div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center hidden z-50">
+        <div class="bg-gray-900 p-10 rounded-3xl max-w-4xl w-full text-center relative">
+            <button onclick="closePayment()" class="absolute top-4 right-6 text-4xl text-gray-400 hover:text-white">&times;</button>
+            <h2 class="text-4xl font-bold glow mb-4" id="planName">Creative Core</h2>
+            <p class="text-5xl font-bold mb-10 text-yellow-400" id="planPrice">$2.51/month</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="p-8 bg-gray-800 rounded-2xl hover:bg-gray-700 transition cursor-pointer border border-gray-700">
+                    <img src="ecocash.png" alt="EcoCash" class="w-32 h-32 mx-auto mb-4 object-contain">
+                    <p class="font-bold text-green-400 text-xl">EcoCash</p>
+                    <p class="text-sm opacity-80">071 666 9706</p>
+                </div>
+                <div class="p-8 bg-gray-800 rounded-2xl hover:bg-gray-700 transition cursor-pointer border border-gray-700">
+                    <img src="onemoney.png" alt="OneMoney" class="w-32 h-32 mx-auto mb-4 object-contain">
+                    <p class="font-bold text-blue-400 text-xl">OneMoney</p>
+                    <p class="text-sm opacity-80">071 666 9706</p>
+                </div>
+                <div class="p-8 bg-gray-800 rounded-2xl hover:bg-gray-700 transition cursor-pointer border border-gray-700">
+                    <img src="netone.png" alt="NetOne" class="w-32 h-32 mx-auto mb-4 object-contain">
+                    <p class="font-bold text-red-400 text-xl">NetOne Cash</p>
+                    <p class="text-sm opacity-80">071 666 9706</p>
+                </div>
+                <div class="p-8 bg-gray-800 rounded-2xl hover:bg-gray-700 transition cursor-pointer border border-gray-700">
+                    <img src="visa.png" alt="Visa" class="w-32 h-32 mx-auto mb-4 object-contain">
+                    <p class="font-bold text-blue-600 text-xl">Visa</p>
+                    <p class="text-sm opacity-80">Coming Soon</p>
+                </div>
+                <div class="p-8 bg-gray-800 rounded-2xl hover:bg-gray-700 transition cursor-pointer border border-gray-700">
+                    <img src="mastercard.png" alt="Mastercard" class="w-32 h-32 mx-auto mb-4 object-contain">
+                    <p class="font-bold text-orange-500 text-xl">Mastercard</p>
+                    <p class="text-sm opacity-80">Coming Soon</p>
+                </div>
+                <div class="p-8 bg-gray-800 rounded-2xl hover:bg-gray-700 transition cursor-pointer border border-gray-700">
+                    <div class="w-32 h-32 mx-auto mb-4 bg-gray-600 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-university text-5xl text-gray-400"></i>
+                    </div>
+                    <p class="font-bold text-xl">Bank Transfer</p>
+                    <p class="text-sm opacity-80">Ask on WhatsApp</p>
+                </div>
+            </div>
+
+            <div class="mt-10 bg-yellow-600 text-black p-6 rounded-2xl font-bold text-lg">
+                After payment, send receipt to WhatsApp:<br>
+                <a href="https://api.whatsapp.com/send?phone=263716669706&text=I just paid for Spudy Premium!" 
+                   class="underline text-white text-2xl">Click Here to Send Receipt</a>
+            </div>
+
+            <button onclick="closePayment()" class="mt-8 px-12 py-4 bg-red-600 hover:bg-red-500 rounded-xl text-xl font-bold">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Full Script -->
     <script>
-        // Check if user is already logged in
         if (localStorage.getItem('spudyLoggedIn') === 'true') {
             document.getElementById('authBtn').textContent = 'Account';
-            document.getElementById('authBtn').onclick = () => alert('Welcome back!');
+            document.getElementById('authBtn').onclick = () => alert('Welcome back, ' + localStorage.getItem('spudyUser'));
         }
 
         function openLogin() { document.getElementById('loginModal').classList.remove('hidden'); }
         function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
-        function showRegister() {
-            document.getElementById('modalTitle').textContent = 'Create Account';
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('registerForm').classList.remove('hidden');
-        }
-        function showLogin() {
-            document.getElementById('modalTitle').textContent = 'Login to Spudy';
-            document.getElementById('registerForm').classList.add('hidden');
-            document.getElementById('loginForm').classList.remove('hidden');
-        }
+        function closePayment() { document.getElementById('paymentModal').classList.add('hidden'); }
+        function showRegister() { document.getElementById('modalTitle').textContent = 'Create Account'; document.getElementById('loginForm').classList.add('hidden'); document.getElementById('registerForm').classList.remove('hidden'); }
+        function showLogin() { document.getElementById('modalTitle').textContent = 'Login to Spudy'; document.getElementById('registerForm').classList.add('hidden'); document.getElementById('loginForm').classList.remove('hidden'); }
 
         function handleLogin() {
-            const id = document.getElementById('loginIdentifier').value;
+            const id = document.getElementById('loginIdentifier').value.trim();
             const pass = document.getElementById('loginPass').value;
             if (id && pass) {
                 localStorage.setItem('spudyLoggedIn', 'true');
                 localStorage.setItem('spudyUser', id);
-                alert('Login successful! Welcome back.');
+                alert('Logged in successfully!');
                 document.getElementById('authBtn').textContent = 'Account';
-                document.getElementById('authBtn').onclick = () => alert('Logged in as ' + id);
                 closeLogin();
-            } else {
-                alert('Please fill all fields');
-            }
+            } else alert('Fill all fields');
         }
 
         function handleRegister() {
             const pass = document.getElementById('regPass').value;
             const confirm = document.getElementById('regConfirm').value;
             const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-
-            if (!regex.test(pass)) {
-                alert('Password too weak! Must be 8+ chars with number & symbol');
-                return;
-            }
-            if (pass !== confirm) {
-                alert('Passwords do not match!');
-                return;
-            }
-
+            if (!regex.test(pass)) return alert('Password too weak! Need 8+ chars, number & symbol');
+            if (pass !== confirm) return alert('Passwords do not match');
             localStorage.setItem('spudyLoggedIn', 'true');
             localStorage.setItem('spudyUser', document.getElementById('regEmail').value);
             alert('Account created & logged in!');
@@ -163,17 +264,21 @@
             closeLogin();
         }
 
-        // Rest of your Three.js, Typed.js, testimonials, payment modal — unchanged
+        function checkLogin() { if (localStorage.getItem('spudyLoggedIn') !== 'true') { alert('Login required!'); openLogin(); } }
+        function selectPlan(name, price) {
+            if (localStorage.getItem('spudyLoggedIn') !== 'true') { alert('Please login first'); openLogin(); return; }
+            document.getElementById('planName').textContent = name;
+            document.getElementById('planPrice').textContent = "$" + price + "/month";
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         const grid = new THREE.Mesh(new THREE.PlaneGeometry(120, 120, 100, 100), new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.15 }));
-        grid.rotation.x = -Math.PI / 2.5;
-        scene.add(grid);
-        camera.position.z = 60;
-        function animate() { requestAnimationFrame(animate); grid.rotation.z += 0.001; renderer.render(scene, camera); }
-        animate();
+        grid.rotation.x = -Math.PI / 2.5; scene.add(grid); camera.position.z = 60;
+        function animate() { requestAnimationFrame(animate); grid.rotation.z += 0.001; renderer.render(scene, camera); } animate();
 
         new Typed('#typed', { strings: ["Create Without Limits", "AI for Everyone", "Built in Zimbabwe", "Powered by Spudy"], typeSpeed: 70, backSpeed: 50, loop: true });
 
@@ -185,18 +290,6 @@
             testimonials[current].classList.add('active');
         }, 7000);
 
-        function selectPlan(name, price) {
-            if (localStorage.getItem('spudyLoggedIn') !== 'true') {
-                alert('Please login first!');
-                openLogin();
-                return;
-            }
-            document.getElementById('planName').textContent = name;
-            document.getElementById('planPrice').textContent = "$" + price + "/month";
-            document.getElementById('paymentModal').classList.remove('hidden');
-        }
-
-        function closePayment() { document.getElementById('paymentModal').classList.add('hidden'); }
         window.onclick = e => { if (e.target.id === 'loginModal' || e.target.id === 'paymentModal') e.target.classList.add('hidden'); };
     </script>
 </body>
