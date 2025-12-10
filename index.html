@@ -6,623 +6,225 @@
     <title>Spudy Intelligence Technology</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <style>
-        body { margin: 0; background: #0a0a0a; }
+        body { margin: 0; background: #0a0a0a; overflow-x: hidden; font-family: 'Inter', sans-serif; }
         #canvas { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: -1; }
-        .content { position: relative; z-index: 10; color: white; }
-        .glow { text-shadow: 0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(59, 130, 246, 0.6); }
-        .nav-link:hover { color: #3b82f6; transition: color 0.3s ease; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        .glow { text-shadow: 0 0 15px #3b82f6, 0 0 30px #2563eb; }
+        .premium-badge { 
+            position: absolute; top: 12px; right: 12px; 
+            background: linear-gradient(135deg, #a855f7, #ec4899); 
+            color: white; font-size: 11px; font-weight: bold; 
+            padding: 6px 12px; border-radius: 50px; 
+            display: flex; align-items: center; gap: 6px; 
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
         }
-        #dynamic-text { transition: opacity 0.5s ease; }
-        #team-section { display: none; transition: opacity 0.5s ease; }
-        .testimonial { display: none; opacity: 0; transition: opacity 0.5s ease; }
+        .pricing-card:hover { transform: translateY(-12px); transition: 0.4s; }
+        .testimonial { display: none; opacity: 0; transition: opacity 1s ease; }
         .testimonial.active { display: block; opacity: 1; }
-        .contact-icons { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
-        .contact-icon-card { background: #1a202c; padding: 1rem; border-radius: 0.5rem; }
-        .contact-icon-card a { color: #3b82f6; font-size: 1.5rem; }
-        .contact-subscribe { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-        .contact-subscribe input { width: 100%; max-width: 300px; padding: 0.5rem; background: #2d3748; color: white; border-radius: 0.25rem; border: none; }
-        .contact-subscribe button { background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 0.25rem; border: none; cursor: pointer; }
-        .contact-subscribe button:hover { background: #2563eb; }
-        .contact-links { display: flex; gap: 0.5rem; justify-content: center; }
-        .contact-links a { color: #3b82f6; }
-        .contact-links a:hover { color: #2563eb; }
-        .footer-social { text-align: center; margin-bottom: 1rem; }
-        .footer-social-grid { display: flex; justify-content: center; gap: 1rem; }
-        .footer-social-card { background: #1a202c; padding: 0.75rem; border-radius: 0.5rem; }
-        .footer-social-card a { color: #3b82f6; font-size: 1.25rem; }
-        .error { color: #ef4444; display: none; font-size: 0.875rem; }
-        .stars { color: #f59e0b; margin-bottom: 0.5rem; }
-        section { padding: 2rem 1rem; min-height: 60vh; }
     </style>
 </head>
-<body>
+<body class="text-white">
     <canvas id="canvas"></canvas>
-    <div class="content font-sans">
-        <!-- Navigation -->
-        <nav class="flex justify-between items-center p-6 bg-black bg-opacity-50 sticky top-0 z-20">
-            <div class="text-2xl font-bold glow">Spudy Intelligence Technology</div>
-            <div class="space-x-6">
-                <a href="#home" class="nav-link text-lg">Home</a>
-                <a href="#services" class="nav-link text-lg">Services</a>
-                <a href="#pricing" class="nav-link text-lg">Pricing</a>
-                <a href="#team" class="nav-link text-lg">Team</a>
-                <a href="#contact" class="nav-link text-lg">Contact</a>
-                <div class="relative inline-block">
-                    <button id="account-btn" class="nav-link text-lg">Account</button>
-                    <div id="account-dropdown" class="hidden absolute bg-gray-900 text-white rounded shadow-lg mt-2">
-                        <a href="#login" class="block px-4 py-2 hover:bg-blue-600">Log In</a>
-                        <a href="#register" class="block px-4 py-2 hover:bg-blue-600">Register</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
 
-        <!-- Login Modal -->
-        <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-30">
-            <div class="bg-gray-900 p-6 rounded-lg text-white max-w-md w-full">
-                <button id="close-login" class="text-2xl float-right">×</button>
-                <h2 class="text-2xl font-bold glow mb-4">Log In</h2>
-                <div class="mb-4">
-                    <input type="email" placeholder="Email" class="w-full p-2 bg-gray-800 rounded text-white">
-                </div>
-                <div class="mb-4">
-                    <input type="password" placeholder="Password" class="w-full p-2 bg-gray-800 rounded text-white">
-                </div>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Log In</button>
-                <p class="text-red-500 text-sm mt-2 hidden">Invalid email or password</p>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-90 backdrop-blur-lg border-b border-blue-900">
+        <div class="max-w-7xl mx-auto flex justify-between items-center p-5">
+            <h1 class="text-3xl font-bold glow">Spudy Intelligence</h1>
+            <div class="space-x-8 text-lg">
+                <a href="#home" class="hover:text-blue-400">Home</a>
+                <a href="#tools" class="hover:text-blue-400">Tools</a>
+                <a href="#pricing" class="hover:text-blue-400">Pricing</a>
+                <a href="#testimonials" class="hover:text-blue-400">Reviews</a>
+                <a href="#contact" class="hover:text-blue-400">Contact</a>
+                <button onclick="openLogin()" class="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-full font-bold">Login</button>
             </div>
         </div>
+    </nav>
 
-        <!-- Register Modal -->
-        <div id="register-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-30">
-            <div class="bg-gray-900 p-6 rounded-lg text-white max-w-md w-full">
-                <button id="close-register" class="text-2xl float-right">×</button>
-                <h2 class="text-2xl font-bold glow mb-4">Register</h2>
-                <div class="mb-4">
-                    <input type="email" placeholder="Email" class="w-full p-2 bg-gray-800 rounded text-white">
-                </div>
-                <div class="mb-4">
-                    <input type="password" placeholder="Password" class="w-full p-2 bg-gray-800 rounded text-white">
-                </div>
-                <div class="mb-4">
-                    <input type="password" placeholder="Confirm Password" class="w-full p-2 bg-gray-800 rounded text-white">
-                </div>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Register</button>
-                <p class="text-red-500 text-sm mt-2 hidden">Registration failed. Please check your inputs.</p>
+    <!-- Hero -->
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+        <h1 class="text-6xl md:text-8xl font-extrabold glow">Spudy Intelligence</h1>
+        <p class="text-3xl md:text-5xl mt-6" id="typed"></p>
+        <a href="#pricing" class="mt-12 bg-blue-600 hover:bg-blue-500 px-14 py-6 rounded-full text-2xl font-bold shadow-2xl">Get Started Free</a>
+    </section>
+
+    <!-- ALL AI TOOLS -->
+    <section id="tools" class="py-24 px-6 bg-black bg-opacity-40">
+        <h2 class="text-5xl font-bold glow text-center mb-16">All Spudy AI Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Video Generator</h3><p class="mt-3 opacity-80 text-sm">Text-to-Video</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Image Generator</h3><p class="mt-3 opacity-80 text-sm">AI Art</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Music AI</h3><p class="mt-3 opacity-80 text-sm">Create Songs</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Voice Cloner</h3><p class="mt-3 opacity-80 text-sm">Clone Any Voice</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Code Generator</h3><p class="mt-3 opacity-80 text-sm">Write Code Fast</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">App Builder</h3><p class="mt-3 opacity-80 text-sm">No-Code Apps</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Resume Builder</h3><p class="mt-3 opacity-80 text-sm">Pro CVs</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Presentation AI</h3><p class="mt-3 opacity-80 text-sm">Auto Slides</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Graphic Design</h3><p class="mt-3 opacity-80 text-sm">Logos & Banners</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="relative p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-gray-800 hover:border-blue-500 transition"><div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div><h3 class="text-xl font-bold glow">Advanced Reasoning</h3><p class="mt-3 opacity-80 text-sm">Deep Logic</p><a href="#" onclick="checkLogin()" class="text-blue-400 text-sm mt-3 block">Try Now</a></div>
+            <div class="p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-green-700"><h3 class="text-xl font-bold glow text-green-400">Text-to-Speech</h3><p class="mt-3 opacity-80 text-sm">Natural Voices</p><a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-green-400 text-sm mt-3 block">Try Free</a></div>
+            <div class="p-8 bg-gray-900 bg-opacity-80 rounded-2xl border border-green-700"><h3 class="text-xl font-bold glow text-green-400">Spudy Chat</h3><p class="mt-3 opacity-80 text-sm">AI Assistant</p><a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-green-400 text-sm mt-3 block">Try Free</a></div>
+        </div>
+    </section>
+
+    <!-- Pricing with Full Feature Lists -->
+    <section id="pricing" class="py-24 px-6">
+        <h2 class="text-5xl font-bold glow text-center mb-16">Choose Your Plan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+            <div class="pricing-card p-10 bg-gray-900 rounded-2xl border border-gray-700 text-center">
+                <h3 class="text-3xl font-bold glow">Starter Spark</h3>
+                <p class="text-5xl font-bold my-8">Free</p>
+                <ul class="text-left text-sm space-y-3 mb-8">
+                    <li>✓ Spudy Chat (limited)</li>
+                    <li>✓ Text-to-Speech</li>
+                    <li>✓ Basic Code Help</li>
+                    <li>✓ Community Support</li>
+                    <li class="text-gray-500">✗ Image/Video Generation</li>
+                    <li class="text-gray-500">✗ Voice Cloning</li>
+                </ul>
+                <button class="w-full py-4 bg-gray-700 rounded-xl font-bold">Current Plan</button>
+            </div>
+
+            <div class="pricing-card p-12 bg-gradient-to-b from-blue-950 to-black rounded-2xl border-4 border-blue-500 shadow-2xl transform scale-105 relative">
+                <span class="absolute -top-6 left-1/2 -translate-x-1/2 bg-yellow-500 text-black px-8 py-2 rounded-full font-bold">MOST POPULAR</span>
+                <h3 class="text-3xl font-bold glow">Creative Core</h3>
+                <p class="text-5xl font-bold my-8">$2.51 <span class="text-xl">/month</span></p>
+                <ul class="text-left text-sm space-y-3 mb-8">
+                    <li>✓ Everything in Free</li>
+                    <li>✓ Image Generator</li>
+                    <li>✓ Video Generator</li>
+                    <li>✓ Music AI</li>
+                    <li>✓ Graphic Design</li>
+                    <li>✓ No Usage Limits</li>
+                    <li>✓ Priority Support</li>
+                </ul>
+                <button onclick="selectPlan('Creative Core', 2.51)" class="w-full py-5 bg-yellow-500 hover:bg-yellow-400 text-black text-xl font-bold rounded-xl">Upgrade Now</button>
+            </div>
+
+            <div class="pricing-card p-10 bg-gray-900 rounded-2xl border border-purple-700 text-center">
+                <h3 class="text-3xl font-bold glow">Pro Vision</h3>
+                <p class="text-5xl font-bold my-8">$5.03 <span class="text-xl">/month</span></p>
+                <ul class="text-left text-sm space-y-3 mb-8">
+                    <li>✓ Everything in Core</li>
+                    <li>✓ Voice Cloner</li>
+                    <li>✓ App Builder</li>
+                    <li>✓ Resume & Slides AI</li>
+                    <li>✓ Advanced Reasoning</li>
+                    <li>✓ Faster Generation</li>
+                    <li>✓ Early Beta Access</li>
+                </ul>
+                <button onclick="selectPlan('Pro Vision', 5.03)" class="w-full py-5 bg-purple-600 hover:bg-purple-500 text-xl font-bold rounded-xl">Go Pro</button>
+            </div>
+
+            <div class="pricing-card p-10 bg-gradient-to-b from-orange-900 to-black rounded-2xl border-2 border-orange-600 text-center">
+                <h3 class="text-3xl font-bold glow text-orange-400">Enterprise</h3>
+                <p class="text-4xl font-bold my-6">Custom</p>
+                <ul class="text-left text-sm space-y-3 mb-8">
+                    <li>✓ Unlimited Everything</li>
+                    <li>✓ Custom AI Models</li>
+                    <li>✓ API Access</li>
+                    <li>✓ On-Premise Option</li>
+                    <li>✓ Dedicated Manager</li>
+                    <li>✓ Staff Training</li>
+                </ul>
+                <a href="https://api.whatsapp.com/send?phone=263716669706&text=Hi Spudy, I'm interested in Enterprise plan" class="block w-full py-5 bg-orange-600 hover:bg-orange-500 text-xl font-bold rounded-xl">Contact Sales</a>
             </div>
         </div>
+    </section>
 
-        <!-- Home Section -->
-        <section id="home" class="flex flex-col justify-center items-center text-center px-4">
-            <h1 class="text-5xl md:text-7xl font-extrabold glow animate-float mb-4">Spudy Intelligence Technology</h1>
-            <p id="dynamic-text" class="text-xl md:text-2xl max-w-2xl mb-6">Engage with Spudy IT</p>
-            <p class="text-xl md:text-2xl max-w-2xl mb-6">Discover Our Solutions</p>
-            <a href="#services" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Explore Now</a>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="flex flex-col justify-center items-center text-center px-4 bg-black bg-opacity-50">
-            <h2 class="text-4xl font-bold glow mb-6">Our Cutting-Edge Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy AI</h3>
-                    <p>Access a suite of AI-powered tools for creativity, productivity, and innovation.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Explore Tools</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Library</h3>
-                    <p>Discover a vast digital library with our insightful books and Open Library access.</p>
-                    <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Open Library</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Games</h3>
-                    <p>Dive into exciting AI-powered games and interactive experiences.</p>
-                    <a href="https://spudytv14.github.io/PLAY.GAMES/" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Explore Games</a>
-                </div>
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 px-6 bg-black bg-opacity-50">
+        <h2 class="text-5xl font-bold glow text-center mb-16">What Our Users Say</h2>
+        <div class="max-w-4xl mx-auto">
+            <div class="testimonial active p-12 bg-gray-900 rounded-3xl text-center shadow-2xl">
+                <p class="text-2xl mb-6 leading-relaxed">"Spudy Video Generator saved my YouTube channel — 10 videos in 1 day!"</p>
+                <p class="font-bold text-yellow-400 text-xl">— Tatenda, Content Creator</p>
             </div>
-        </section>
-
-        <!-- Spudy AI Tools Section -->
-        <section id="spudy-ai" class="flex flex-col justify-center items-center text-center px-4">
-            <h2 class="text-4xl font-bold glow mb-6">Spudy AI Tools</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl">
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy AI</h3>
-                    <p>General AI Assistant for various tasks.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Advanced Reasoning</h3>
-                    <p>Enhanced Logic & Problem Solving capabilities.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Music AI</h3>
-                    <p>Create Original Music with AI.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Video Generator</h3>
-                    <p>Generate Stunning Videos effortlessly.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Image Generator</h3>
-                    <p>Create High-Quality Images with AI.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Code Generator</h3>
-                    <p>Write Code Effortlessly with AI assistance.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy App Builder</h3>
-                    <p>Build Custom Applications with ease.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Graphic Design</h3>
-                    <p>Design Professional Graphics using AI.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Presentation Maker</h3>
-                    <p>Create Engaging Slides with AI support.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Text-to-Speech</h3>
-                    <p>Convert Text to Natural Speech.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Voice Cloner</h3>
-                    <p>Replicate Voices Accurately with AI.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Spudy Resume Builder</h3>
-                    <p>Craft Professional Resumes with AI.</p>
-                    <a href="https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html" class="text-blue-500 hover:text-blue-400 mt-4 inline-block">Try Now</a>
-                </div>
+            <div class="testimonial p-12 bg-gray-900 rounded-3xl text-center shadow-2xl">
+                <p class="text-2xl mb-6 leading-relaxed">"Built my startup app in 48 hours using Spudy App Builder. Insane!"</p>
+                <p class="font-bold text-yellow-400 text-xl">— Kudzai, Founder</p>
             </div>
-        </section>
-
-        <!-- Pricing Section -->
-        <section id="pricing" class="flex flex-col justify-center items-center text-center px-4 bg-black bg-opacity-50">
-            <h2 class="text-4xl font-bold glow mb-6">Choose Your Plan</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl">
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Starter Spark</h3>
-                    <p class="text-lg mb-4">FREE - Limited Access</p>
-                    <ul class="text-left mb-4">
-                        <li>Spudy AI</li>
-                        <li>Text-to-Speech</li>
-                        <li>Advanced Reasoning</li>
-                        <li>Code Generator</li>
-                        <li>App Builder</li>
-                    </ul>
-                    <p class="text-sm mb-4">10% off for yearly billing</p>
-                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Starter Spark">Select</button>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Creative Core</h3>
-                    <p class="text-lg mb-4">$2.51 / month</p>
-                    <ul class="text-left mb-4">
-                        <li>Spudy AI</li>
-                        <li>Video Generator</li>
-                        <li>Text-to-Speech</li>
-                        <li>Graphic Design</li>
-                        <li>App Builder</li>
-                    </ul>
-                    <p class="text-sm mb-4">10% off for yearly billing</p>
-                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Creative Core">Select</button>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Pro Vision</h3>
-                    <p class="text-lg mb-4">$5.03 / month</p>
-                    <ul class="text-left mb-4">
-                        <li>Everything in Core</li>
-                        <li>Image Generator</li>
-                        <li>Music AI</li>
-                        <li>Resume Builder</li>
-                        <li>Voice Cloner</li>
-                    </ul>
-                    <p class="text-sm mb-4">10% off for yearly billing</p>
-                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Pro Vision">Select</button>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Ultimate Brain</h3>
-                    <p class="text-lg mb-4">$10.07 / month</p>
-                    <ul class="text-left mb-4">
-                        <li>All Pro Vision Features</li>
-                        <li>Code Generator</li>
-                        <li>Presentation Maker</li>
-                        <li>Voice Cloner</li>
-                        <li>App Builder</li>
-                    </ul>
-                    <p class="text-sm mb-4">10% off for yearly billing</p>
-                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Ultimate Brain">Select</button>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Infinity Pro+</h3>
-                    <p class="text-lg mb-4">$15.11 / month</p>
-                    <ul class="text-left mb-4">
-                        <li>Everything in Ultimate Brain</li>
-                        <li>App Builder</li>
-                        <li>Unlimited Access</li>
-                        <li>Priority Support</li>
-                        <li>Beta Features Access</li>
-                    </ul>
-                    <p class="text-sm mb-4">10% off for yearly billing</p>
-                    <button class="select-plan bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" data-plan="Infinity Pro+">Select</button>
-                </div>
-                <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <h3 class="text-2xl font-semibold glow mb-4">Enterprise Masterplan</h3>
-                    <p class="text-lg mb-4">Custom Pricing</p>
-                    <ul class="text-left mb-4">
-                        <li>Full Suite Access</li>
-                        <li>Dedicated Account Manager</li>
-                        <li>Custom Integrations</li>
-                        <li>API Access</li>
-                        <li>Staff Training & SLA</li>
-                    </ul>
-                    <p class="text-sm mb-4">Request a quote for annual billing</p>
-                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full inline-block text-center">Contact Us</a>
-                </div>
+            <div class="testimonial p-12 bg-gray-900 rounded-3xl text-center shadow-2xl">
+                <p class="text-2xl mb-6 leading-relaxed">"Best AI tools in Zimbabwe. Period."</p>
+                <p class="font-bold text-yellow-400 text-xl">— Rumbidzai, Designer</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Data Processing Section -->
-        <section id="data-processing" class="flex flex-col justify-center items-center text-center px-4">
-            <h2 class="text-4xl font-bold glow mb-6">Data Processing</h2>
-            <p class="text-lg max-w-3xl mb-4">We collect, clean, and annotate datasets from multiple verified sources to ensure high-quality AI training data.</p>
-            <p class="text-lg max-w-3xl mb-4">Our data pipelines are designed for real-time processing, privacy compliance, and optimized formatting for model readiness.</p>
-            <p class="text-xl font-semibold glow mb-6">"Only the cleanest data trains the smartest AI."</p>
-        </section>
+    <!-- Footer -->
+    <footer class="py-16 text-center bg-black">
+        <div class="flex justify-center gap-12 text-5xl mb-10">
+            <a href="https://api.whatsapp.com/send?phone=263716669706" class="text-green-500 hover:scale-110 transition" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:spudytv14@gmail.com" class="text-blue-500 hover:scale-110 transition" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://facebook.com/matipaishe.blessing.muduchwa" class="text-blue-600 hover:scale-110 transition" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/Matipa_14" class="text-white hover:scale-110 transition" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com/@SpudyAI" class="text-red-500 hover:scale-110 transition" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p class="text-sm opacity-70">© 2026 Spudy Intelligence Technology. All Rights Reserved.</p>
+        <p class="text-xs mt-4 opacity-50">Created by Matipaishe</p>
+    </footer>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="flex flex-col justify-center items-center text-center px-4 bg-black bg-opacity-50">
-            <h2 class="text-4xl font-bold glow mb-6">What Our Users Say</h2>
-            <div class="max-w-2xl w-full">
-                <div class="testimonial p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-lg mb-4">"Spudy AI transformed my workflow! The tools are intuitive and save me hours every week."</p>
-                    <p class="text-sm">Tariro Mufambi, Freelance Graphic Designer</p>
-                </div>
-                <div class="testimonial p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-lg mb-4">"The resume builder helped me land my dream job. Professional and easy to use!"</p>
-                    <p class="text-sm">Tinashe Chidhakwa, Software Engineer</p>
-                </div>
-                <div class="testimonial p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-lg mb-4">"Spudy's music AI created tracks that wowed my clients. A game-changer for my studio."</p>
-                    <p class="text-sm">Rumbidzai Muzenda, Music Producer</p>
-                </div>
-                <div class="testimonial p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-lg mb-4">"The app builder allowed our startup to launch quickly without breaking the bank."</p>
-                    <p class="text-sm">Kudakwashe Marufu, Startup Founder</p>
-                </div>
+    <!-- Modals (Login & Payment) -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center hidden z-50">
+        <div class="bg-gray-900 p-10 rounded-3xl max-w-md w-full relative">
+            <button onclick="closeLogin()" class="absolute top-4 right-6 text-4xl">&times;</button>
+            <h2 class="text-3xl font-bold glow text-center mb-8">Login to Spudy</h2>
+            <input type="text" placeholder="Email or Phone" class="w-full p-4 bg-gray-800 rounded-xl mb-4">
+            <input type="password" placeholder="Password" class="w-full p-4 bg-gray-800 rounded-xl mb-6">
+            <button onclick="closeLogin(); alert('Logged in!')" class="w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold">Login</button>
+        </div>
+    </div>
+
+    <div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center hidden z-50">
+        <div class="bg-gray-900 p-10 rounded-3xl max-w-lg w-full text-center">
+            <h2 class="text-4xl font-bold glow mb-4" id="planName">Creative Core</h2>
+            <p class="text-5xl font-bold mb-8 text-yellow-400" id="planPrice">$2.51/month</p>
+            <div class="grid grid-cols-2 gap-6 text-left text-sm mb-8">
+                <div class="p-5 bg-gray-800 rounded-xl"><strong>EcoCash</strong><br>071 666 9706</div>
+                <div class="p-5 bg-gray-800 rounded-xl"><strong>OneMoney</strong><br>071 666 9706</div>
+                <div class="p-5 bg-gray-800 rounded-xl"><strong>Bank Transfer</strong><br>Ask on WhatsApp</div>
+                <div class="p-5 bg-gray-800 rounded-xl"><strong>Stripe / Visa</strong><br>Coming Soon</div>
             </div>
-        </section>
-
-        <!-- Team Section -->
-        <section id="team" class="flex flex-col justify-center items-center text-center px-4">
-            <h2 class="text-4xl font-bold glow mb-6">Meet the Team</h2>
-            <button id="toggle-team" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-6">Show Our Team</button>
-            <div id="team-section" class="w-full max-w-5xl">
-                <p class="text-lg max-w-3xl mb-6 mx-auto">Our talented team drives innovation at Spudy Intelligence Technology.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                        <h3 class="text-2xl font-semibold glow mb-4">Matipaishe Blessing (Spudy)</h3>
-                        <p class="text-lg mb-4">Founder & Lead Developer</p>
-                        <p>Visionary behind Spudy Intelligence Unit. Leads innovation, coding, design, and future development.</p>
-                    </div>
-                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                        <h3 class="text-2xl font-semibold glow mb-4">Itai Whande</h3>
-                        <p class="text-lg mb-4">Final Inspector</p>
-                        <p>Ensures perfection in every line of code, UI layout, and system functionality before release.</p>
-                    </div>
-                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                        <h3 class="text-2xl font-semibold glow mb-4">Myta Zedy</h3>
-                        <p class="text-lg mb-4">Creative Support & Idea Source</p>
-                        <p>Brings heart, encouragement, and inspirational creativity that shaped SIU's growth.</p>
-                    </div>
-                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                        <h3 class="text-2xl font-semibold glow mb-4">Matipaishe Blessing</h3>
-                        <p class="text-lg mb-4">UI/UX Designer</p>
-                        <p>Crafts visually intuitive and user-focused interfaces across all Spudy platforms.</p>
-                    </div>
-                    <div class="p-6 bg-gray-900 bg-opacity-80 rounded-lg">
-                        <h3 class="text-2xl font-semibold glow mb-4">Dinhi</h3>
-                        <p class="text-lg mb-4">Marketer</p>
-                        <p>Drives the promotion and success of our services through strategic marketing.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Us Section -->
-        <section id="contact" class="flex flex-col justify-center items-center text-center px-4 bg-black bg-opacity-50">
-            <h2 class="text-4xl font-bold glow mb-6">Contact Us</h2>
-            <div class="contact-content max-w-2xl w-full">
-                <div class="contact-icons">
-                    <div class="contact-icon-card">
-                        <a href="https://api.whatsapp.com/send?phone=263716669706" target="_blank" rel="noopener noreferrer" data-tooltip="Chat on WhatsApp" aria-label="Chat on WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                    <div class="contact-icon-card">
-                        <a href="mailto:spudytv14@gmail.com" data-tooltip="Send us an Email" aria-label="Send us an Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                    <div class="contact-icon-card">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" data-tooltip="Visit Google Play" aria-label="Visit Google Play">
-                            <i class="fab fa-google-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="contact-subscribe">
-                    <input type="email" id="subscribe-email" placeholder="Enter your email" aria-label="Enter your email for subscription" required>
-                    <button type="submit" data-tooltip="Subscribe to updates" aria-label="Subscribe to updates">Subscribe</button>
-                    <div id="subscribe-error" class="error">Please enter a valid email address</div>
-                </div>
-                <div class="contact-links">
-                    <a href="https://spudytv14.github.io/Legai-Services/" target="_blank" rel="noopener noreferrer" data-tooltip="View Terms" aria-label="View Terms of Service">Terms of Service</a> |
-                    <a href="#privacy" data-tooltip="Privacy Information" aria-label="View Privacy Information">Privacy Centre</a> |
-                    <a href="mailto:spudytv14@gmail.com" data-tooltip="Share Feedback" aria-label="Share Feedback">Have feedback? Let us know</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-6 text-center bg-black bg-opacity-50">
-            <div class="footer-social">
-                <h3 class="text-2xl font-bold glow mb-4">Follow Us</h3>
-                <div class="footer-social-grid">
-                    <div class="footer-social-card youtube">
-                        <a href="https://www.youtube.com/@SpudyAI" target="_blank" rel="noopener noreferrer" data-tooltip="Visit our YouTube" aria-label="Visit our YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                    <div class="footer-social-card facebook">
-                        <a href="https://www.facebook.com/blessing.muduchwa" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on Facebook" aria-label="Follow on Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                    </div>
-                    <div class="footer-social-card twitter">
-                        <a href="https://x.com/spudyproduction" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on X" aria-label="Follow on X">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
-                    </div>
-                    <div class="footer-social-card instagram">
-                        <a href="https://www.instagram.com/matipaishe_bessing/" target="_blank" rel="noopener noreferrer" data-tooltip="Follow on Instagram" aria-label="Follow on Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                    <div class="footer-social-card spudy-books">
-                        <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" rel="noopener noreferrer" data-tooltip="Explore Spudy Books" aria-label="Explore Spudy Books">
-                            <i class="fas fa-book"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <p class="text-sm">© 2025 Spudy Intelligence Technology. All Rights Reserved.</p>
-        </footer>
+            <p class="text-yellow-400 font-bold text-lg">Send payment → WhatsApp receipt to +263 71 666 9706</p>
+            <button onclick="closePayment()" class="mt-8 px-10 py-4 bg-red-600 hover:bg-red-500 rounded-xl">Close</button>
+        </div>
     </div>
 
     <script>
-        // Three.js 3D Tech Background - Circuit Board
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-
-        // Create circuit board plane
-        const boardGeometry = new THREE.PlaneGeometry(40, 40, 40, 40);
-        const boardMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.3 });
-        const circuitBoard = new THREE.Mesh(boardGeometry, boardMaterial);
-        circuitBoard.rotation.x = -Math.PI / 3;
-        circuitBoard.position.set(0, -5, -10);
-        scene.add(circuitBoard);
-
-        // Create glowing nodes
-        const nodeCount = 30;
-        const nodes = new THREE.Group();
-        const nodeGeometry = new THREE.SphereGeometry(0.2, 16, 16);
-        const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
-        const nodePositions = [];
-
-        for (let i = 0; i < nodeCount; i++) {
-            const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
-            node.position.set(
-                (Math.random() - 0.5) * 30,
-                Math.random() * 5,
-                (Math.random() - 0.5) * 30
-            );
-            nodePositions.push(node.position.clone());
-            nodes.add(node);
-        }
-        scene.add(nodes);
-
-        // Create pulsating connections
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.5 });
-        const lines = new THREE.Group();
-        for (let i = 0; i < nodeCount - 1; i += 2) {
-            const geometry = new THREE.BufferGeometry().setFromPoints([
-                nodePositions[i],
-                nodePositions[i + 1]
-            ]);
-            const line = new THREE.Line(geometry, lineMaterial);
-            lines.add(line);
-        }
-        scene.add(lines);
-
-        camera.position.set(0, 10, 20);
-        camera.lookAt(0, 0, 0);
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Rotate circuit board
-            circuitBoard.rotation.z += 0.002;
-
-            // Animate nodes with pulsating effect
-            nodes.children.forEach((node, i) => {
-                node.scale.setScalar(1 + 0.2 * Math.sin(Date.now() * 0.002 + i));
-                node.position.y = nodePositions[i].y + Math.sin(Date.now() * 0.001 + i) * 0.5;
-            });
-
-            // Update connections
-            lines.children.forEach((line, i) => {
-                const idx = i * 2;
-                const positions = line.geometry.attributes.position.array;
-                positions[0] = nodes.children[idx].position.x;
-                positions[1] = nodes.children[idx].position.y;
-                positions[2] = nodes.children[idx].position.z;
-                positions[3] = nodes.children[idx + 1].position.x;
-                positions[4] = nodes.children[idx + 1].position.y;
-                positions[5] = nodes.children[idx + 1].position.z;
-                line.geometry.attributes.position.needsUpdate = true;
-                line.material.opacity = 0.5 + 0.3 * Math.sin(Date.now() * 0.002 + i);
-            });
-
-            renderer.render(scene, camera);
-        }
+        const grid = new THREE.Mesh(new THREE.PlaneGeometry(120, 120, 100, 100), new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.15 }));
+        grid.rotation.x = -Math.PI / 2.5;
+        scene.add(grid);
+        camera.position.z = 60;
+        function animate() { requestAnimationFrame(animate); grid.rotation.z += 0.001; renderer.render(scene, camera); }
         animate();
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+        new Typed('#typed', { strings: ["Create Without Limits", "AI for Everyone", "Built in Zimbabwe", "Powered by Spudy"], typeSpeed: 70, backSpeed: 50, loop: true });
 
-        // Smooth scrolling for navigation
-        document.querySelectorAll('.nav-link').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    // Handle modal opening
-                    if (targetId === 'login') {
-                        document.getElementById('login-modal').classList.remove('hidden');
-                    } else if (targetId === 'register') {
-                        document.getElementById('register-modal').classList.remove('hidden');
-                    }
-                }
-            });
-        });
-
-        // Account dropdown toggle
-        const accountBtn = document.getElementById('account-btn');
-        const accountDropdown = document.getElementById('account-dropdown');
-        accountBtn.addEventListener('click', () => {
-            accountDropdown.classList.toggle('hidden');
-        });
-
-        // Close modals
-        document.getElementById('close-login').addEventListener('click', () => {
-            document.getElementById('login-modal').classList.add('hidden');
-        });
-        document.getElementById('close-register').addEventListener('click', () => {
-            document.getElementById('register-modal').classList.add('hidden');
-        });
-
-        // Dynamic text cycling
-        const phrases = [
-            "Engage with Spudy IT",
-            "Innovate with Spudy IT",
-            "Transform with Spudy IT",
-            "Build with Spudy IT"
-        ];
-        let currentPhraseIndex = 0;
-        const dynamicText = document.getElementById('dynamic-text');
-
-        function changeText() {
-            dynamicText.style.opacity = 0;
-            setTimeout(() => {
-                dynamicText.textContent = phrases[currentPhraseIndex];
-                dynamicText.style.opacity = 1;
-                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-            }, 500);
-        }
-
-        setInterval(changeText, 5000);
-        changeText();
-
-        // Toggle team section
-        const toggleTeamBtn = document.getElementById('toggle-team');
-        const teamSection = document.getElementById('team-section');
-        toggleTeamBtn.addEventListener('click', () => {
-            if (teamSection.style.display === 'none') {
-                teamSection.style.display = 'block';
-                teamSection.style.opacity = 0;
-                setTimeout(() => { teamSection.style.opacity = 1; }, 10);
-                toggleTeamBtn.textContent = 'Hide Our Team';
-            } else {
-                teamSection.style.opacity = 0;
-                setTimeout(() => {
-                    teamSection.style.display = 'none';
-                    toggleTeamBtn.textContent = 'Show Our Team';
-                }, 500);
-            }
-        });
-
-        // Cycle testimonials
         const testimonials = document.querySelectorAll('.testimonial');
-        let currentTestimonialIndex = 0;
+        let current = 0;
+        setInterval(() => {
+            testimonials[current].classList.remove('active');
+            current = (current + 1) % testimonials.length;
+            testimonials[current].classList.add('active');
+        }, 7000);
 
-        function cycleTestimonials() {
-            testimonials[currentTestimonialIndex].classList.remove('active');
-            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
-            testimonials[currentTestimonialIndex].classList.add('active');
+        function openLogin() { document.getElementById('loginModal').classList.remove('hidden'); }
+        function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+        function closePayment() { document.getElementById('paymentModal').classList.add('hidden'); }
+        function checkLogin() { alert("Login required to use premium tools!"); openLogin(); }
+        function selectPlan(name, price) {
+            document.getElementById('planName').textContent = name;
+            document.getElementById('planPrice').textContent = "$" + price + "/month";
+            document.getElementById('paymentModal').classList.remove('hidden');
         }
-
-        testimonials[currentTestimonialIndex].classList.add('active');
-        setInterval(cycleTestimonials, 5000);
-
-        // Subscribe form validation
-        function submitSubscribe(event) {
-            event.preventDefault();
-            const emailInput = document.getElementById('subscribe-email');
-            const errorMsg = document.getElementById('subscribe-error');
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (emailPattern.test(emailInput.value)) {
-                errorMsg.style.display = 'none';
-                alert('Subscribed successfully!');
-                emailInput.value = '';
-            } else {
-                errorMsg.style.display = 'block';
-            }
-        }
-
-        // Handle plan selection
-        document.querySelectorAll('.select-plan').forEach(button => {
-            button.addEventListener('click', () => {
-                const plan = button.getAttribute('data-plan');
-                alert(`Please log in or register to proceed with the ${plan} plan.`);
-                document.getElementById('login-modal').classList.remove('hidden');
-            });
-        });
+        window.onclick = e => { if (e.target.id === 'loginModal' || e.target.id === 'paymentModal') e.target.classList.add('hidden'); };
     </script>
 </body>
 </html>
