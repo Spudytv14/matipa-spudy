@@ -21,6 +21,7 @@
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -47,6 +48,8 @@
         .text-gradient { background:linear-gradient(90deg,#38bdf8,#8b5cf6,#ec4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
         .blob { position:absolute; width:600px; height:600px; background:radial-gradient(circle,#38bdf820 0%,#8b5cf620 100%); filter:blur(90px); z-index:-1; animation:float 15s infinite ease-in-out; }
         .neural-line { position:absolute; height:1px; background:linear-gradient(90deg,transparent,#38bdf840,#38bdf840,transparent); }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="antialiased text-white selection:bg-brand-500 selection:text-black">
@@ -70,7 +73,8 @@
                 <a href="#services" class="nav-link hover:text-brand-400 transition">Services</a>
                 <a href="#tools" class="nav-link hover:text-brand-400 transition">Tools</a>
                 <a href="#pricing" class="nav-link hover:text-brand-400 transition">Pricing</a>
-                <a href="#faq" class="nav-link hover:text-brand-400 transition">FAQ</a>
+                <a href="#testimonials" class="nav-link hover:text-brand-400 transition">Reviews</a>
+                <a href="#about" class="nav-link hover:text-brand-400 transition">About</a>
             </div>
             
             <div class="flex items-center gap-4">
@@ -89,7 +93,7 @@
             </div>
             
             <h1 data-aos="fade-up" data-aos-delay="100" class="text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-none tracking-tighter mb-6">
-                The Future of<br>Creativity is <span class="text-gradient">Here</span>
+                The Future of<br>Creativity is <span class="text-gradient"><span id="typed"></span></span>
             </h1>
             
             <p data-aos="fade-up" data-aos-delay="200" class="text-2xl text-gray-400 max-w-2xl mx-auto mb-12">Generate studio-quality videos, images, music, code &amp; apps in seconds.</p>
@@ -183,6 +187,39 @@
             </div>
         </div>
     </section>
+
+    <!-- Testimonials (New) -->
+    <section id="testimonials" class="py-28 px-6 bg-black/20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-display font-bold text-center mb-16" data-aos="fade-up">Trusted by Creators</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition-colors" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex gap-1 text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-300 mb-6 italic">"Spudy AI transformed how I create content. The video generator is simply mind-blowing! I saved 20 hours last week alone."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-brand-500 to-cyan-500 rounded-full flex items-center justify-center font-bold text-lg">S</div>
+                        <div><div class="font-bold">Sarah K.</div><div class="text-xs text-brand-400">Digital Artist</div></div>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex gap-1 text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-300 mb-6 italic">"The code assistant helped me debug my React app in minutes. A true game changer for developers in Africa."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full flex items-center justify-center font-bold text-lg">D</div>
+                        <div><div class="font-bold">David M.</div><div class="text-xs text-purple-400">Senior Dev</div></div>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex gap-1 text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-300 mb-6 italic">"Finally, an AI platform that understands our context and supports local payments. Pure genius!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-green-500 to-emerald-500 rounded-full flex items-center justify-center font-bold text-lg">T</div>
+                        <div><div class="font-bold">Tafadzwa C.</div><div class="text-xs text-emerald-400">Entrepreneur</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- FAQ -->
     <section id="faq" class="py-28 px-6 bg-black/40">
@@ -193,43 +230,109 @@
             </div>
         </div>
     </section>
+
+    <!-- About Creator (New) -->
+    <section id="about" class="py-28 px-6 border-t border-white/5 bg-gradient-to-b from-transparent to-black">
+        <div class="max-w-6xl mx-auto glass rounded-[3rem] p-10 md:p-16 flex flex-col md:flex-row items-center gap-16" data-aos="zoom-in">
+            <div class="w-56 h-56 md:w-72 md:h-72 flex-shrink-0 relative group cursor-pointer">
+                <div class="absolute inset-0 bg-brand-500 blur-[60px] opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
+                <div class="relative w-full h-full rounded-full p-2 border border-white/20 bg-black/50 overflow-hidden">
+                    <img src="creator-owner.jpg" alt="Matipaishe Muduchwa" class="w-full h-full object-cover rounded-full filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                </div>
+                <div class="absolute bottom-0 right-0 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-full border-2 border-black transform translate-y-1/2">FOUNDER</div>
+            </div>
+            <div class="text-center md:text-left flex-1">
+                <span class="text-brand-400 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">The Visionary</span>
+                <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">Matipaishe<br>Muduchwa</h2>
+                <p class="text-xl text-gray-400 mb-8 leading-relaxed font-light">
+                    Spudy AI is born from a passion to democratize artificial intelligence across Africa. Our mission is to bridge the gap between complex technology and everyday creativity, empowering a new generation of digital artists and developers.
+                </p>
+                <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                    <span class="px-5 py-2.5 bg-white/5 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 transition-colors cursor-default">🇿🇼 Built in Zimbabwe</span>
+                    <span class="px-5 py-2.5 bg-white/5 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 transition-colors cursor-default">🚀 Visionary Dev</span>
+                    <span class="px-5 py-2.5 bg-white/5 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 transition-colors cursor-default">🤖 AI Enthusiast</span>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- Footer -->
-    <footer class="bg-black py-20 px-6 border-t border-white/10">
-        <div class="max-w-7xl mx-auto text-center">
+    <footer class="bg-black py-20 px-6 border-t border-white/10 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-brand-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto text-center relative z-10">
             <div class="flex justify-center gap-8 text-3xl mb-12">
-                <a href="https://api.whatsapp.com/send?phone=263716669706" class="hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:spudytv14@gmail.com" class="hover:text-blue-500 transition"><i class="fas fa-envelope"></i></a>
-                <a href="https://x.com/Matipa_14" class="hover:text-white transition"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://youtube.com/@SpudyAI" class="hover:text-red-500 transition"><i class="fab fa-youtube"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=263716669706" class="hover:text-green-500 transition hover:scale-110"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:spudytv14@gmail.com" class="hover:text-blue-500 transition hover:scale-110"><i class="fas fa-envelope"></i></a>
+                <a href="https://x.com/Matipa_14" class="hover:text-white transition hover:scale-110"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://youtube.com/@SpudyAI" class="hover:text-red-500 transition hover:scale-110"><i class="fab fa-youtube"></i></a>
             </div>
             <p class="text-gray-500">© 2026 Spudy Intelligence • Built with passion in Zimbabwe</p>
         </div>
     </footer>
     
     <!-- Login Modal -->
-    <div id="loginModal" class="fixed inset-0 hidden z-[999] items-center justify-center bg-black/90">
-        <div class="glass max-w-md w-full mx-4 rounded-3xl p-10 relative">
-            <button onclick="toggleLogin()" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white">&times;</button>
+    <div id="loginModal" class="fixed inset-0 hidden z-[999] items-center justify-center bg-black/90 backdrop-blur-md transition-all duration-300">
+        <div class="glass max-w-md w-full mx-4 rounded-3xl p-10 relative transform scale-95 hover:scale-100 transition-all duration-300 shadow-2xl shadow-brand-500/10">
+            <button onclick="toggleLogin()" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white transition">&times;</button>
             <h3 class="text-3xl font-bold text-center mb-8">Welcome to Spudy</h3>
             <div class="space-y-6">
-                <input id="email" type="text" placeholder="Email or Phone" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 focus:outline-none focus:border-brand-400">
-                <input id="pass" type="password" placeholder="Password" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 focus:outline-none focus:border-brand-400">
-                <button onclick="handleLogin()" class="w-full py-5 bg-white text-black font-bold rounded-2xl text-lg">Sign In</button>
-                <p class="text-center text-sm text-gray-400">No account? <span onclick="alert('Registration coming soon')" class="text-brand-400 cursor-pointer">Create one free</span></p>
+                <input id="email" type="text" placeholder="Email or Phone" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-brand-400 focus:bg-white/10 transition-all text-white placeholder-gray-500">
+                <input id="pass" type="password" placeholder="Password" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-brand-400 focus:bg-white/10 transition-all text-white placeholder-gray-500">
+                <button onclick="handleLogin()" class="w-full py-5 bg-white text-black font-bold rounded-2xl text-lg hover:bg-brand-50 transition-colors">Sign In</button>
+                <p class="text-center text-sm text-gray-400">No account? <span onclick="alert('Registration coming soon')" class="text-brand-400 cursor-pointer hover:underline">Create one free</span></p>
             </div>
         </div>
     </div>
+
+    <!-- Chat Modal (New) -->
+    <div id="chatModal" class="fixed inset-0 hidden z-[999] items-center justify-center bg-black/90 backdrop-blur-md transition-all duration-300">
+        <div class="glass max-w-2xl w-full mx-4 rounded-3xl flex flex-col h-[600px] relative overflow-hidden shadow-2xl shadow-brand-500/20 border-brand-500/20 border">
+            <!-- Header -->
+            <div class="p-6 border-b border-white/10 flex justify-between items-center bg-white/5 backdrop-blur-xl">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_10px_#34d399]"></div>
+                    <div>
+                        <span class="font-display font-bold text-xl block leading-none">Spudy Chat</span>
+                        <span class="text-xs text-brand-400 font-medium tracking-wider">ONLINE</span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition hover:rotate-90 duration-300"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            
+            <!-- Messages -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide bg-black/20">
+                <div class="flex gap-4 animate-fade-in-up">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center flex-shrink-0 shadow-lg shadow-brand-500/20"><i class="fas fa-robot text-sm"></i></div>
+                    <div class="bg-white/10 border border-white/5 rounded-2xl rounded-tl-none p-5 max-w-[85%] text-sm leading-relaxed shadow-lg">
+                        <p class="mb-2 font-bold text-brand-400 text-xs">SPUDY AI</p>
+                        Hello! I am Spudy, your advanced AI assistant. I can help you generate images, write code, create music, or just chat. How can I help you create today?
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input -->
+            <div class="p-4 border-t border-white/10 bg-black/40 backdrop-blur-xl">
+                <form onsubmit="handleChat(event)" class="relative">
+                    <input id="chat-input" type="text" placeholder="Ask Spudy anything..." class="w-full bg-white/5 border border-white/10 rounded-xl pl-5 pr-14 py-4 focus:outline-none focus:border-brand-400 focus:bg-white/10 transition-all text-white placeholder-gray-500">
+                    <button type="submit" aria-label="Send message" class="absolute right-2 top-2 bottom-2 aspect-square bg-brand-500 text-white rounded-lg hover:bg-brand-400 transition-all hover:scale-95 flex items-center justify-center shadow-lg shadow-brand-500/30"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Notifications (New) -->
+    <div id="notifications" class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 pointer-events-none transition-all"></div>
     
     <script>
         // Tailwind script already loaded
         
-        AOS.init({ once:true, duration:900 });
+        AOS.init({ once:true, duration:900, offset: 50 });
         
         // Enhanced Neural Network Three.js
         let scene, camera, renderer, particles, linesMesh;
         function initThree() {
             const container = document.getElementById('canvas-container');
+            if(!container) return;
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
             renderer = new THREE.WebGLRenderer({ alpha:true, antialias:true });
@@ -269,10 +372,23 @@
             linesMesh = new THREE.LineSegments(lineGeo, lineMat);
             scene.add(linesMesh);
             
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.0005;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.0005;
+            });
+
             function animate(){
                 requestAnimationFrame(animate);
                 particles.rotation.y += 0.0008;
                 linesMesh.rotation.y += 0.0008;
+                
+                // Subtle camera movement
+                camera.rotation.x += (mouseY - camera.rotation.x) * 0.05;
+                camera.rotation.y += (mouseX - camera.rotation.y) * 0.05;
+
                 renderer.render(scene, camera);
             }
             animate();
@@ -299,7 +415,8 @@
             });
             navLinks.forEach(link => {
                 link.classList.remove('text-brand-400','font-semibold');
-                if(link.getAttribute('href') === `#${current}`) link.classList.add('text-brand-400','font-semibold');
+                const href = link.getAttribute('href');
+                if(href === `#${current}`) link.classList.add('text-brand-400','font-semibold');
             });
         });
         
@@ -312,6 +429,8 @@
             {name:"Voice Clone", cat:"creative", icon:"🎤", premium:true},
             {name:"App Forge", cat:"dev", icon:"📱", premium:true},
             {name:"Resume AI", cat:"creative", icon:"📄", premium:false},
+            {name:"Plagiarism Check", cat:"dev", icon:"🔍", premium:false},
+            {name:"Content Writer", cat:"creative", icon:"✍️", premium:false},
             {name:"Spudy Chat", cat:"all", icon:"🤖", premium:false}
         ];
         
@@ -322,18 +441,32 @@
                 const div = document.createElement('div');
                 div.className = `glass p-8 rounded-3xl group cursor-pointer hover:scale-105 transition-all ${tool.premium?'border border-amber-400/30':''}`;
                 div.innerHTML = `
-                    <div class="text-5xl mb-6">${tool.icon}</div>
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">${tool.icon}</div>
                     <h4 class="text-2xl font-bold">${tool.name}</h4>
                     <span class="text-xs mt-3 inline-block px-4 py-1 rounded-full ${tool.premium?'bg-amber-400/10 text-amber-400':'bg-emerald-400/10 text-emerald-400'}">${tool.premium?'PREMIUM':'FREE'}</span>
                 `;
-                div.onclick = () => alert(`Opening ${tool.name}... (demo)`);
+                div.onclick = () => {
+                    if(tool.name === "Spudy Chat") toggleChat();
+                    else alert(`Opening ${tool.name}... (demo)`);
+                };
                 grid.appendChild(div);
             });
         }
         function filterTools(cat){
             const filtered = cat==='all' ? tools : tools.filter(t => t.cat===cat || t.cat==='all');
             renderTools(filtered);
+            
+            // Update active filter button
+            document.querySelectorAll('#tools button').forEach(btn => {
+                if(btn.textContent.toLowerCase() === cat || (cat==='all' && btn.textContent==='All')) {
+                    btn.className = "active-filter px-6 py-2 rounded-2xl text-sm font-medium bg-white text-black transition-all shadow-lg shadow-white/20";
+                } else {
+                    btn.className = "px-6 py-2 rounded-2xl text-sm font-medium hover:bg-white/10 transition-all";
+                }
+            });
         }
+        // Initial render with better styling for first button
+        document.querySelector('button[onclick="filterTools(\'all\')"]').classList.add('bg-white','text-black','shadow-lg','shadow-white/20');
         renderTools(tools);
         
         // Pricing toggle
@@ -351,13 +484,13 @@
             plans.forEach((plan,i) => {
                 const price = isYearly ? plan.priceY : plan.priceM;
                 const div = document.createElement('div');
-                div.className = `glass rounded-3xl p-8 ${plan.popular?'ring-2 ring-brand-400 relative':''}`;
-                if(plan.popular) div.innerHTML += `<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-400 text-black text-xs px-6 py-1 rounded-full font-bold">BEST VALUE</div>`;
+                div.className = `glass rounded-3xl p-8 transition-all hover:-translate-y-2 duration-300 ${plan.popular?'ring-2 ring-brand-400 relative shadow-2xl shadow-brand-500/10':''}`;
+                if(plan.popular) div.innerHTML += `<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-400 text-black text-xs px-6 py-1 rounded-full font-bold shadow-lg shadow-brand-500/50">BEST VALUE</div>`;
                 div.innerHTML += `
                     <h3 class="text-2xl font-bold">${plan.name}</h3>
                     <div class="my-8"><span class="text-6xl font-bold">$${price}</span><span class="text-sm opacity-60">${isYearly?'/yr':'/mo'}</span></div>
-                    <ul class="space-y-4 mb-10 text-sm">${plan.features.map(f=>`<li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> ${f}</li>`).join('')}</ul>
-                    <button onclick="selectPlan('${plan.name}', ${typeof price==='number'?price:'0'})" class="w-full py-5 rounded-3xl font-bold ${plan.popular?'bg-white text-black':'border border-white/30 hover:bg-white/10'}">Get ${plan.name}</button>
+                    <ul class="space-y-4 mb-10 text-sm">${plan.features.map(f=>`<li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400 bg-emerald-400/10 p-1 rounded-full text-xs"></i> ${f}</li>`).join('')}</ul>
+                    <button onclick="selectPlan('${plan.name}', ${typeof price==='number'?price:'0'})" class="w-full py-5 rounded-3xl font-bold transition-all active:scale-95 ${plan.popular?'bg-white text-black hover:bg-gray-100':'border border-white/30 hover:bg-white/10'}">Get ${plan.name}</button>
                 `;
                 container.appendChild(div);
             });
@@ -374,17 +507,17 @@
         
         // FAQ
         const faqs = [
-            {q:"Is it really unlimited?", a:"Yes on all paid plans. No hidden limits."},
-            {q:"Can I cancel anytime?", a:"Yes. No questions asked."},
-            {q:"Do you support local payments?", a:"EcoCash, OneMoney, Telecash &amp; bank transfers accepted."}
+            {q:"Is it really unlimited?", a:"Yes on all paid plans. No hidden limits. Create as much as your imagination allows."},
+            {q:"Can I cancel anytime?", a:"Yes. No questions asked. You can cancel directly from your dashboard."},
+            {q:"Do you support local payments?", a:"Absolutely. We accept EcoCash, OneMoney, Telecash, and local bank transfers in Zimbabwe and across Africa."}
         ];
         const faqHTML = faqs.map((f,i)=>`
-            <div class="glass rounded-3xl p-8 cursor-pointer" onclick="this.querySelector('.answer').classList.toggle('hidden')">
+            <div class="glass rounded-3xl p-8 cursor-pointer group hover:bg-white/5 transition-all" onclick="this.querySelector('.answer').classList.toggle('hidden'); this.querySelector('.fa-chevron-down').classList.toggle('rotate-180')">
                 <div class="flex justify-between items-center">
-                    <h4 class="font-medium">${f.q}</h4>
-                    <i class="fas fa-chevron-down transition-transform"></i>
+                    <h4 class="font-medium text-lg group-hover:text-brand-400 transition-colors">${f.q}</h4>
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
                 </div>
-                <p class="answer hidden text-gray-400 mt-6 leading-relaxed">${f.a}</p>
+                <p class="answer hidden text-gray-400 mt-6 leading-relaxed border-t border-white/10 pt-4 animate-fade-in-down">${f.a}</p>
             </div>
         `).join('');
         document.getElementById('faq-container').innerHTML = faqHTML;
@@ -392,17 +525,148 @@
         // Simple login
         function toggleLogin(){ document.getElementById('loginModal').classList.toggle('hidden'); document.getElementById('loginModal').classList.toggle('flex'); }
         function handleLogin(){
-            alert("✅ Logged in successfully! (demo)");
-            toggleLogin();
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+            setTimeout(() => {
+                alert("✅ Logged in successfully! (demo)");
+                btn.innerText = originalText;
+                toggleLogin();
+            }, 1000);
         }
         function selectPlan(name, price){
             alert(`✅ Upgrading to ${name} ($${price}) – Payment demo`);
         }
         
+        // Chat Logic (New)
+        function toggleChat(){
+            const modal = document.getElementById('chatModal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+            if(!modal.classList.contains('hidden')) setTimeout(() => document.getElementById('chat-input').focus(), 100);
+        }
+
+        async function handleChat(e){
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim();
+            if(!msg) return;
+            
+            const container = document.getElementById('chat-messages');
+            
+            // User message
+            container.innerHTML += `
+                <div class="flex gap-4 flex-row-reverse animate-fade-in-up">
+                    <div class="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center flex-shrink-0"><i class="fas fa-user text-sm"></i></div>
+                    <div class="bg-brand-600 rounded-2xl rounded-tr-none p-5 max-w-[85%] text-sm leading-relaxed shadow-lg">
+                        <p class="mb-2 font-bold text-white/50 text-xs text-right">YOU</p>
+                        ${msg}
+                    </div>
+                </div>
+            `;
+            
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+            
+            // Simulate typing
+            const loadingId = 'loading-' + Date.now();
+            container.innerHTML += `
+                <div id="${loadingId}" class="flex gap-4 animate-fade-in-up">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-robot text-sm"></i></div>
+                    <div class="bg-white/10 border border-white/5 rounded-2xl rounded-tl-none p-5 text-sm flex gap-1 items-center h-16 w-24">
+                        <span class="w-2 h-2 bg-brand-400 rounded-full animate-bounce"></span>
+                        <span class="w-2 h-2 bg-brand-400 rounded-full animate-bounce" style="animation-delay:0.2s"></span>
+                        <span class="w-2 h-2 bg-brand-400 rounded-full animate-bounce" style="animation-delay:0.4s"></span>
+                    </div>
+                </div>
+            `;
+            container.scrollTop = container.scrollHeight;
+            
+            // Artificial delay
+            await new Promise(r => setTimeout(r, 1500 + Math.random()*1500));
+            document.getElementById(loadingId).remove();
+            
+            // Simple response logic
+            let reply = "I'm processing that request using my neural networks...";
+            const m = msg.toLowerCase();
+            
+            if(m.includes('hello') || m.includes('hi')) reply = "Greetings! I'm Spudy AI. I'm ready to help you create something amazing today.";
+            else if(m.includes('image') || m.includes('draw') || m.includes('pic')) reply = "I can generate 4K images in seconds. Try the <b>Image Studio</b> tool in the dashboard!";
+            else if(m.includes('video') || m.includes('movie')) reply = "Video generation is one of my strongest features. Our <b>Video Generator</b> can render realistic scenes.";
+            else if(m.includes('code') || m.includes('program')) reply = "I'm fluent in Python, JavaScript, C++, and Rust. Use the <b>Code Pilot</b> tool for debugging or generation.";
+            else if(m.includes('price') || m.includes('cost') || m.includes('money')) reply = "Our pricing is very competitive! We have a free tier, and paid plans start at just $2.50/mo.";
+            else if(m.includes('matipa') || m.includes('creator')) reply = "Matipaishe Muduchwa is my creator. He is a visionary developer from Zimbabwe aiming to revolutionize AI in Africa.";
+            else if(m.includes('joke')) reply = "Why did the neural network break up with the database? Because there was no connection! 🤖";
+            else reply = "That's an interesting query. While I'm in demo mode, I'd suggest exploring our specific tools for detailed results.";
+            
+            container.innerHTML += `
+                <div class="flex gap-4 animate-fade-in-up">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center flex-shrink-0 shadow-lg shadow-brand-500/20"><i class="fas fa-robot text-sm"></i></div>
+                    <div class="bg-white/10 border border-white/5 rounded-2xl rounded-tl-none p-5 max-w-[85%] text-sm leading-relaxed shadow-lg">
+                        <p class="mb-2 font-bold text-brand-400 text-xs">SPUDY AI</p>
+                        ${reply}
+                    </div>
+                </div>
+            `;
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        // Live Activity (New)
+        const actions = ["generated a 4K image","created a music track","wrote a Python script","rendered a 3D video","cloned a voice","built a mobile app","designed a logo"];
+        const locs = ["Harare","Lagos","Nairobi","London","New York","Cape Town","Dubai","Bulawayo","Johannesburg","Accra"];
+        
+        function showNotification(){
+            const action = actions[Math.floor(Math.random()*actions.length)];
+            const loc = locs[Math.floor(Math.random()*locs.length)];
+            const div = document.createElement('div');
+            div.className = "glass p-4 rounded-xl flex items-center gap-4 text-sm animate-fade-in-up shadow-2xl shadow-brand-500/20 border-l-4 border-l-brand-500 backdrop-blur-md bg-black/80 w-72 transform hover:scale-105 transition-transform duration-300";
+            div.innerHTML = `
+                <div class="relative">
+                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-lg">🌍</div>
+                    <div class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-black rounded-full animate-pulse"></div>
+                </div>
+                <div>
+                    <span class="text-gray-400 text-xs font-bold uppercase tracking-wider">Activity • Just now</span>
+                    <div class="font-medium mt-0.5">User in <span class="text-brand-400">${loc}</span><br>${action}</div>
+                </div>
+            `;
+            const container = document.getElementById('notifications');
+            container.appendChild(div);
+            
+            // Remove after delay
+            setTimeout(() => {
+                div.style.opacity = '0';
+                div.style.transform = 'translateY(20px)';
+                setTimeout(()=>div.remove(), 500);
+            }, 5000);
+        }
+        // Start notifications loop
+        setInterval(() => { if(Math.random()>0.6) showNotification() }, 6000);
+        
         // Keyboard ESC
-        document.addEventListener('keydown', e=>{ if(e.key==="Escape") document.getElementById('loginModal').classList.add('hidden','flex'); });
+        document.addEventListener('keydown', e=>{ 
+            if(e.key==="Escape") {
+                document.getElementById('loginModal').classList.add('hidden');
+                document.getElementById('loginModal').classList.remove('flex');
+                document.getElementById('chatModal').classList.add('hidden');
+                document.getElementById('chatModal').classList.remove('flex');
+            }
+        });
         
         console.log('%c🚀 Advanced Spudy.AI loaded successfully','color:#38bdf8; font-size:13px; font-family:monospace');
     </script>
+    <style>
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fade-in-up 0.4s ease-out forwards; }
+        
+        @keyframes fade-in-down {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fade-in-down 0.3s ease-out forwards; }
+    </style>
 </body>
 </html>
