@@ -17,7 +17,725 @@
                     colors: {
                         brand: { 50:'#f0f9ff', 500:'#0ea5e9', 600:'#0284c7', 700:'#0369a1' },
                         accent: { purple:'#8b5cf6', pink:'#ec4899', cyan:'#06b6d4' }
+                    },<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spudy Intelligence | Future of AI</title>
+    <meta name="description" content="The most powerful AI platform in Africa. Create videos, images, music, code &amp; apps instantly.">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            content: ["*"],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] },
+                    colors: {
+                        brand: { 50:'#f0f9ff', 500:'#0ea5e9', 600:'#0284c7', 700:'#0369a1' },
+                        accent: { purple:'#8b5cf6', pink:'#ec4899', cyan:'#06b6d4' }
                     },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        :root { --brand: #0ea5e9; }
+        body { background:#030712; overflow-x:hidden; }
+        .glass { background:rgba(17,24,39,0.75); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.08); }
+        .glass-hover:hover { background:rgba(31,41,55,0.95); border-color:rgba(56,189,248,0.6); box-shadow:0 0 40px -10px rgb(56 189 248 / 40%); }
+        .text-gradient { background:linear-gradient(90deg,#38bdf8,#8b5cf6,#ec4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .blob { position:absolute; width:600px; height:600px; background:radial-gradient(circle,#38bdf820 0%,#8b5cf620 100%); filter:blur(90px); z-index:-1; animation:float 15s infinite ease-in-out; }
+        .neural-line { position:absolute; height:1px; background:linear-gradient(90deg,transparent,#38bdf840,#38bdf840,transparent); }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="antialiased text-white selection:bg-brand-500 selection:text-black">
+    <!-- 3D Neural Background -->
+    <div id="canvas-container" class="fixed inset-0 z-[-1] opacity-70"></div>
+    
+    <!-- Blobs -->
+    <div class="blob top-[-20%] left-[-15%]"></div>
+    <div class="blob bottom-[-30%] right-[-10%] animation-delay-4000" style="animation-delay:4s"></div>
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-1.5 cursor-pointer">
+                <span class="text-3xl font-display font-bold tracking-tighter">Spudy</span>
+                <span class="text-3xl font-display font-bold tracking-tighter text-brand-500">.AI</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="nav-link hover:text-brand-400 transition">Home</a>
+                <a href="#services" class="nav-link hover:text-brand-400 transition">Services</a>
+                <a href="#tools" class="nav-link hover:text-brand-400 transition">Tools</a>
+                <a href="#pricing" class="nav-link hover:text-brand-400 transition">Pricing</a>
+                <a href="#testimonials" class="nav-link hover:text-brand-400 transition">Reviews</a>
+                <a href="#about" class="nav-link hover:text-brand-400 transition">About</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLogin()" class="text-sm font-medium px-6 py-2.5 hover:text-brand-400 transition">Login</button>
+                <button onclick="toggleLogin()" class="px-6 py-2.5 bg-white text-black font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-brand-500/30">Get Started Free</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero -->
+    <section id="home" class="min-h-screen flex items-center pt-20 relative">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div data-aos="fade-up" class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-3xl px-5 py-2 text-sm mb-8">
+                <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span></span>
+                Now in 12 African countries
+            </div>
+            
+            <h1 data-aos="fade-up" data-aos-delay="100" class="text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-none tracking-tighter mb-6">
+                The Future of<br>Creativity is <span class="text-gradient"><span id="typed"></span></span>
+            </h1>
+            
+            <p data-aos="fade-up" data-aos-delay="200" class="text-2xl text-gray-400 max-w-2xl mx-auto mb-12">Generate studio-quality videos, images, music, code &amp; apps in seconds.</p>
+            
+            <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#pricing" class="w-full sm:w-auto px-10 py-5 bg-white text-black font-bold text-lg rounded-3xl hover:scale-105 transition-all">Start Creating Free</a>
+                <a href="#tools" class="w-full sm:w-auto px-10 py-5 border border-white/30 hover:bg-white/10 rounded-3xl text-lg font-medium transition-all">Watch 38s Demo</a>
+            </div>
+            
+            <div class="mt-20 flex flex-wrap justify-center gap-8 opacity-70" data-aos="fade-up" data-aos-delay="500">
+                <img src="visa.png" class="h-6 grayscale" alt="Visa">
+                <img src="ecocash.png" class="h-6 grayscale" alt="EcoCash">
+                <img src="mastercard.png" class="h-6 grayscale" alt="Mastercard">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section id="services" class="py-28 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-brand-400 text-sm tracking-[3px] font-medium">ECOSYSTEM</span>
+                <h2 class="text-5xl font-display font-bold mt-3">One platform.<br>Endless possibilities.</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div onclick="showDetails('Spudy AI Suite', 'Access over 20 professional AI tools designed for creators and developers. From advanced video synthesis to code generation, our suite empowers you to build the future. Includes API access for enterprise integration.')" data-aos="fade-up" data-aos-delay="100" class="glass p-10 rounded-3xl group hover:-translate-y-3 transition-all duration-500 cursor-pointer overflow-hidden relative">
+                    <div class="absolute inset-0 bg-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center text-3xl mb-8 relative z-10">🧠</div>
+                    <h3 class="text-2xl font-bold mb-4 relative z-10 break-words">Spudy AI Suite</h3>
+                    <p class="text-sm text-gray-400 relative z-10 break-words hyphens-auto">20+ pro AI tools for creators &amp; developers. Click to learn more.</p>
+                    <div class="mt-8 inline-flex items-center gap-2 text-brand-400 font-medium relative z-10">Explore details <i class="fas fa-arrow-right"></i></div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div data-aos="fade-up" data-aos-delay="200" class="glass p-10 rounded-3xl group hover:-translate-y-3 transition-all duration-500 overflow-hidden relative">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-3xl mb-8">📚</div>
+                    <h3 class="text-2xl font-bold mb-4 break-words">Spudy Library</h3>
+                    <p class="text-sm text-gray-400 break-words hyphens-auto">Millions of premium assets &amp; courses.</p>
+                    <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" class="mt-8 inline-flex items-center gap-2 text-purple-400 font-medium">Open Library <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                
+                <!-- Card 3 -->
+                <div data-aos="fade-up" data-aos-delay="300" class="glass p-10 rounded-3xl group hover:-translate-y-3 transition-all duration-500 overflow-hidden relative">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-3xl mb-8">🎮</div>
+                    <h3 class="text-2xl font-bold mb-4 break-words">Spudy Games</h3>
+                    <p class="text-sm text-gray-400 break-words hyphens-auto">AI-powered immersive gaming.</p>
+                    <a href="https://spudytv14.github.io/PLAY.GAMES/" target="_blank" class="mt-8 inline-flex items-center gap-2 text-emerald-400 font-medium">Play Now <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tools with Filter -->
+    <section id="tools" class="py-28 px-6 bg-black/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div data-aos="fade-up">
+                    <h2 class="text-5xl font-display font-bold">Powerful AI Tools</h2>
+                    <p class="text-xl text-gray-400 mt-2">Choose your weapon.</p>
+                </div>
+                
+                <!-- Filter -->
+                <div class="flex gap-2 mt-6 md:mt-0" data-aos="fade-up">
+                    <button onclick="filterTools('all')" class="active-filter px-6 py-2 rounded-2xl text-sm font-medium">All</button>
+                    <button onclick="filterTools('media')" class="px-6 py-2 rounded-2xl text-sm font-medium hover:bg-white/10">Media</button>
+                    <button onclick="filterTools('creative')" class="px-6 py-2 rounded-2xl text-sm font-medium hover:bg-white/10">Creative</button>
+                    <button onclick="filterTools('dev')" class="px-6 py-2 rounded-2xl text-sm font-medium hover:bg-white/10">Dev</button>
+                </div>
+            </div>
+            
+            <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Populated by JS - see script -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section id="pricing" class="py-28 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-display font-bold">Choose your plan</h2>
+                <div class="flex justify-center gap-4 mt-8">
+                    <button onclick="togglePricing(0)" id="monthlyBtn" class="px-8 py-3 rounded-3xl font-medium bg-white text-black">Monthly</button>
+                    <button onclick="togglePricing(1)" id="yearlyBtn" class="px-8 py-3 rounded-3xl font-medium">Yearly <span class="text-emerald-400 text-xs align-super">−20%</span></button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <!-- Plans populated by JS -->
+            </div>
+            
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <p class="text-gray-400 mb-6 uppercase tracking-widest text-xs font-bold">Secure Local & International Payments</p>
+                <div class="flex flex-wrap justify-center gap-8 items-center opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="visa.png" class="h-8" alt="Visa">
+                    <img src="mastercard.png" class="h-8" alt="Mastercard">
+                    <div class="h-8 w-[1px] bg-white/10 mx-2 hidden sm:block"></div>
+                    <img src="ecocash.png" class="h-8" alt="EcoCash">
+                    <img src="1money.png" class="h-8" alt="OneMoney">
+                    <img src="netone.png" class="h-8" alt="NetOne">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (New) -->
+    <section id="testimonials" class="py-28 px-6 bg-black/20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-display font-bold text-center mb-16" data-aos="fade-up">Trusted by Creators</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition-colors" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex gap-1 text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-sm text-gray-300 mb-6 italic">"Spudy AI transformed how I create content. The video generator is simply mind-blowing! I saved 20 hours last week alone."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-brand-500 to-cyan-500 rounded-full flex items-center justify-center font-bold text-lg">S</div>
+                        <div><div class="font-bold">Sarah K.</div><div class="text-xs text-brand-400">Digital Artist</div></div>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex gap-1 text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-sm text-gray-300 mb-6 italic">"The code assistant helped me debug my React app in minutes. A true game changer for developers in Africa."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full flex items-center justify-center font-bold text-lg">D</div>
+                        <div><div class="font-bold">David M.</div><div class="text-xs text-purple-400">Senior Dev</div></div>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex gap-1 text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-sm text-gray-300 mb-6 italic">"Finally, an AI platform that understands our context and supports local payments. Pure genius!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-green-500 to-emerald-500 rounded-full flex items-center justify-center font-bold text-lg">T</div>
+                        <div><div class="font-bold">Tafadzwa C.</div><div class="text-xs text-emerald-400">Entrepreneur</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-28 px-6 bg-black/40">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-5xl font-display font-bold text-center mb-16" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="space-y-4" id="faq-container">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Creator (New) -->
+    <section id="about" class="py-28 px-6 border-t border-white/5 bg-gradient-to-b from-transparent to-black">
+        <div class="max-w-6xl mx-auto glass rounded-[3rem] p-10 md:p-16 flex flex-col md:flex-row items-center gap-16" data-aos="zoom-in">
+            <div class="w-56 h-56 md:w-72 md:h-72 flex-shrink-0 relative group cursor-pointer">
+                <div class="absolute inset-0 bg-brand-500 blur-[60px] opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
+                <div class="relative w-full h-full rounded-full p-2 border border-white/20 bg-black/50 overflow-hidden">
+                    <img src="creator-owner.jpg" alt="Matipaishe Muduchwa" class="w-full h-full object-cover rounded-full filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                </div>
+                <div class="absolute bottom-0 right-0 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-full border-2 border-black transform translate-y-1/2">FOUNDER</div>
+            </div>
+            <div class="text-center md:text-left flex-1">
+                <span class="text-brand-400 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">The Visionary</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight break-words">Matipaishe<br>Muduchwa</h2>
+                <p class="text-lg text-gray-400 mb-8 leading-relaxed font-light">
+                    Spudy AI is born from a passion to democratize artificial intelligence across Africa. Our mission is to bridge the gap between complex technology and everyday creativity, empowering a new generation of digital artists and developers.
+                </p>
+                <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                    <span class="px-5 py-2.5 bg-white/5 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 transition-colors cursor-default">🇿🇼 Built in Zimbabwe</span>
+                    <span class="px-5 py-2.5 bg-white/5 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 transition-colors cursor-default">🚀 Visionary Dev</span>
+                    <span class="px-5 py-2.5 bg-white/5 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 transition-colors cursor-default">🤖 AI Enthusiast</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black py-20 px-6 border-t border-white/10 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-brand-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div class="flex justify-center gap-8 text-3xl mb-12">
+                <a href="https://api.whatsapp.com/send?phone=263716669706" class="hover:text-green-500 transition hover:scale-110"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:spudytv14@gmail.com" class="hover:text-blue-500 transition hover:scale-110"><i class="fas fa-envelope"></i></a>
+                <a href="https://x.com/Matipa_14" class="hover:text-white transition hover:scale-110"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://youtube.com/@SpudyAI" class="hover:text-red-500 transition hover:scale-110"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="text-gray-500">© 2026 Spudy Intelligence • Built with passion in Zimbabwe</p>
+        </div>
+    </footer>
+    
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 hidden z-[999] items-center justify-center bg-black/90 backdrop-blur-md transition-all duration-300">
+        <div class="glass max-w-md w-full mx-4 rounded-3xl p-10 relative transform scale-95 hover:scale-100 transition-all duration-300 shadow-2xl shadow-brand-500/10">
+            <button onclick="toggleLogin()" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white transition">&times;</button>
+            <h3 class="text-3xl font-bold text-center mb-8">Welcome to Spudy</h3>
+            <div class="space-y-6">
+                <input id="email" type="text" placeholder="Email or Phone" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-brand-400 focus:bg-white/10 transition-all text-white placeholder-gray-500">
+                <input id="pass" type="password" placeholder="Password" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-brand-400 focus:bg-white/10 transition-all text-white placeholder-gray-500">
+                <button onclick="handleLogin()" class="w-full py-5 bg-white text-black font-bold rounded-2xl text-lg hover:bg-brand-50 transition-colors">Sign In</button>
+                <p class="text-center text-sm text-gray-400">No account? <span onclick="alert('Registration coming soon')" class="text-brand-400 cursor-pointer hover:underline">Create one free</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Details Modal (New) -->
+    <div id="detailsModal" class="fixed inset-0 hidden z-[999] items-center justify-center bg-black/90 backdrop-blur-md transition-all duration-300 p-4">
+        <div class="glass max-w-2xl w-full rounded-3xl p-8 md:p-12 relative transform scale-95 hover:scale-100 transition-all duration-300 shadow-2xl shadow-brand-500/10 overflow-hidden">
+            <button onclick="toggleDetails()" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white transition z-10">&times;</button>
+            <div class="relative z-10">
+                <h3 id="details-title" class="text-2xl md:text-3xl font-display font-bold mb-6 break-words"></h3>
+                <div id="details-content" class="text-gray-300 leading-relaxed space-y-4 max-h-[60vh] overflow-y-auto pr-2 scrollbar-hide text-lg break-words hyphens-auto"></div>
+                <button onclick="toggleDetails()" class="mt-8 px-8 py-3 bg-white/10 hover:bg-white/20 rounded-full font-medium transition-colors">Close</button>
+            </div>
+            <!-- Decorative background blob -->
+            <div class="absolute -top-20 -right-20 w-64 h-64 bg-brand-500/20 rounded-full blur-[60px] pointer-events-none"></div>
+        </div>
+    </div>
+
+    <!-- Chat Widget (Refactored) -->
+    <!-- Trigger Button -->
+    <button onclick="toggleChat()" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-brand-500 rounded-full shadow-2xl shadow-brand-500/50 flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform duration-300 group">
+        <i class="fas fa-comment-dots group-hover:hidden"></i>
+        <i class="fas fa-times hidden group-hover:block"></i>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chatModal" class="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] h-[500px] z-[999] bg-[#0f172a] rounded-3xl flex-col hidden shadow-2xl shadow-brand-500/20 border border-white/10 overflow-hidden origin-bottom-right transition-all duration-300">
+        <!-- Header -->
+        <div class="p-4 border-b border-white/10 flex justify-between items-center bg-white/5 backdrop-blur-xl">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-brand-500/20"><i class="fas fa-robot text-sm"></i></div>
+                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 rounded-full border-2 border-[#0f172a]"></div>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg block leading-none">Spudy Support</span>
+                    <span class="text-xs text-brand-400 font-medium">We typically reply instantly</span>
+                </div>
+            </div>
+            <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition"><i class="fas fa-minus"></i></button>
+        </div>
+        
+        <!-- Messages -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide bg-black/20">
+            <div class="flex gap-3 animate-fade-in-up">
+                <div class="bg-white/10 border border-white/5 rounded-2xl rounded-tl-none p-4 text-sm leading-relaxed shadow-lg">
+                    Hello! 👋 How can we help you today?
+                </div>
+            </div>
+        </div>
+        
+        <!-- Input -->
+        <div class="p-4 border-t border-white/10 bg-black/40 backdrop-blur-xl">
+            <form onsubmit="handleChat(event)" class="relative">
+                <input id="chat-input" type="text" placeholder="Type a message..." class="w-full bg-white/5 border border-white/10 rounded-xl pl-4 pr-12 py-3 focus:outline-none focus:border-brand-400 focus:bg-white/10 transition-all text-white placeholder-gray-500 text-sm">
+                <button type="submit" aria-label="Send message" class="absolute right-2 top-2 bottom-2 aspect-square bg-brand-500 text-white rounded-lg hover:bg-brand-400 transition-all hover:scale-95 flex items-center justify-center shadow-lg shadow-brand-500/30"><i class="fas fa-paper-plane text-xs"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Live Notifications (New) -->
+    <div id="notifications" class="fixed bottom-6 left-6 z-40 flex flex-col gap-3 pointer-events-none transition-all"></div>
+    
+    <script>
+        // Tailwind script already loaded
+        
+        AOS.init({ once:true, duration:900, offset: 50 });
+        
+        // Enhanced Neural Network Three.js
+        let scene, camera, renderer, particles, linesMesh;
+        function initThree() {
+            const container = document.getElementById('canvas-container');
+            if(!container) return;
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ alpha:true, antialias:true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+            
+            // Particles
+            const count = 1200;
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
+            for(let i=0; i<count*3; i+=3){
+                positions[i]   = (Math.random()-0.5)*80;
+                positions[i+1] = (Math.random()-0.5)*80;
+                positions[i+2] = (Math.random()-0.5)*80;
+                colors[i]   = 0.1; colors[i+1] = 0.7; colors[i+2] = 1;
+            }
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions,3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors,3));
+            
+            const material = new THREE.PointsMaterial({ size:0.12, vertexColors:true, transparent:true, opacity:0.9, blending:THREE.AdditiveBlending });
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+            
+            camera.position.z = 45;
+            
+            // Simple connecting lines (neural feel)
+            const linePositions = [];
+            for(let i=0; i<180; i++){
+                linePositions.push((Math.random()-0.5)*60, (Math.random()-0.5)*60, (Math.random()-0.5)*60);
+                linePositions.push((Math.random()-0.5)*60, (Math.random()-0.5)*60, (Math.random()-0.5)*60);
+            }
+            const lineGeo = new THREE.BufferGeometry();
+            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions,3));
+            const lineMat = new THREE.LineBasicMaterial({ color:0x38bdf8, transparent:true, opacity:0.15 });
+            linesMesh = new THREE.LineSegments(lineGeo, lineMat);
+            scene.add(linesMesh);
+            
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.0005;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.0005;
+            });
+
+            function animate(){
+                requestAnimationFrame(animate);
+                particles.rotation.y += 0.0008;
+                linesMesh.rotation.y += 0.0008;
+                
+                // Subtle camera movement
+                camera.rotation.x += (mouseY - camera.rotation.x) * 0.05;
+                camera.rotation.y += (mouseX - camera.rotation.y) * 0.05;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            window.addEventListener('resize', ()=>{
+                camera.aspect = window.innerWidth/window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+        initThree();
+        
+        // Typed
+        new Typed('#typed', { strings:["Videos.","Images.","Music.","Apps.","Code."], typeSpeed:70, backSpeed:50, loop:true });
+        
+        // Navbar active
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if(scrollY >= sectionTop - 300) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-brand-400','font-semibold');
+                const href = link.getAttribute('href');
+                if(href === `#${current}`) link.classList.add('text-brand-400','font-semibold');
+            });
+        });
+        
+        // Tools data & filter
+        const tools = [
+            {name:"Video Generator", cat:"media", icon:"🎥", premium:true},
+            {name:"Image Studio", cat:"creative", icon:"🖼️", premium:true},
+            {name:"Music Lab", cat:"creative", icon:"🎵", premium:true},
+            {name:"Code Pilot", cat:"dev", icon:"💻", premium:true},
+            {name:"Voice Clone", cat:"creative", icon:"🎤", premium:true},
+            {name:"App Forge", cat:"dev", icon:"📱", premium:true},
+            {name:"Resume AI", cat:"creative", icon:"📄", premium:false},
+            {name:"Plagiarism Check", cat:"dev", icon:"🔍", premium:false},
+            {name:"Content Writer", cat:"creative", icon:"✍️", premium:false},
+            {name:"Spudy Chat", cat:"all", icon:"🤖", premium:false}
+        ];
+        
+        function renderTools(filtered){
+            const grid = document.getElementById('tools-grid');
+            grid.innerHTML = '';
+            filtered.forEach(tool => {
+                const div = document.createElement('div');
+                div.className = `glass p-8 rounded-3xl group cursor-pointer hover:scale-105 transition-all ${tool.premium?'border border-amber-400/30':''}`;
+                div.innerHTML = `
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">${tool.icon}</div>
+                    <h4 class="text-xl font-bold break-words">${tool.name}</h4>
+                    <span class="text-xs mt-3 inline-block px-4 py-1 rounded-full ${tool.premium?'bg-amber-400/10 text-amber-400':'bg-emerald-400/10 text-emerald-400'}">${tool.premium?'PREMIUM':'FREE'}</span>
+                `;
+                div.onclick = () => {
+                    if(tool.name === "Spudy Chat") toggleChat();
+                    else showDetails(tool.name, `Experience the power of <b>${tool.name}</b>. This tool is part of our comprehensive AI suite designed to enhance your workflow. <br><br>Features include:<br>• High-speed generation<br>• Professional quality output<br>• Cloud integration<br><br>${tool.premium ? 'This is a Premium feature available in our Creator and Pro plans.' : 'This tool is free for all users.'}`);
+                };
+                grid.appendChild(div);
+            });
+        }
+        function filterTools(cat){
+            const filtered = cat==='all' ? tools : tools.filter(t => t.cat===cat || t.cat==='all');
+            renderTools(filtered);
+            
+            // Update active filter button
+            document.querySelectorAll('#tools button').forEach(btn => {
+                if(btn.textContent.toLowerCase() === cat || (cat==='all' && btn.textContent==='All')) {
+                    btn.className = "active-filter px-6 py-2 rounded-2xl text-sm font-medium bg-white text-black transition-all shadow-lg shadow-white/20";
+                } else {
+                    btn.className = "px-6 py-2 rounded-2xl text-sm font-medium hover:bg-white/10 transition-all";
+                }
+            });
+        }
+        // Initial render with better styling for first button
+        document.querySelector('button[onclick="filterTools(\'all\')"]').classList.add('bg-white','text-black','shadow-lg','shadow-white/20');
+        renderTools(tools);
+        
+        // Pricing toggle
+        let isYearly = false;
+        const plans = [
+            {name:"Starter", priceM:0, priceY:0, features:["Spudy Chat","Basic tools","Community support"]},
+            {name:"Creator", priceM:2.51, priceY:24, popular:true, features:["All media tools","Unlimited generations","Priority"]},
+            {name:"Pro", priceM:5.03, priceY:48, features:["Voice + App Builder","Commercial license","Dedicated support"]},
+            {name:"Enterprise", priceM:"Custom", priceY:"Custom", features:["Unlimited API","Custom models","White-label"]}
+        ];
+        
+        function renderPricing(){
+            const container = document.querySelector('#pricing .grid');
+            container.innerHTML = '';
+            plans.forEach((plan,i) => {
+                const price = isYearly ? plan.priceY : plan.priceM;
+                const div = document.createElement('div');
+                div.className = `glass rounded-3xl p-8 transition-all hover:-translate-y-2 duration-300 ${plan.popular?'ring-2 ring-brand-400 relative shadow-2xl shadow-brand-500/10':''}`;
+                if(plan.popular) div.innerHTML += `<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-400 text-black text-xs px-6 py-1 rounded-full font-bold shadow-lg shadow-brand-500/50">BEST VALUE</div>`;
+                div.innerHTML += `
+                    <h3 class="text-xl font-bold break-words">${plan.name}</h3>
+                    <div class="my-8"><span class="text-5xl font-bold">$${price}</span><span class="text-sm opacity-60">${isYearly?'/yr':'/mo'}</span></div>
+                    <ul class="space-y-4 mb-10 text-sm">${plan.features.map(f=>`<li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400 bg-emerald-400/10 p-1 rounded-full text-xs"></i> <span class="break-words">${f}</span></li>`).join('')}</ul>
+                    <button onclick="selectPlan('${plan.name}', ${typeof price==='number'?price:'0'})" class="w-full py-5 rounded-3xl font-bold transition-all active:scale-95 ${plan.popular?'bg-white text-black hover:bg-gray-100':'border border-white/30 hover:bg-white/10'}">Get ${plan.name}</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+        function togglePricing(n){
+            isYearly = n===1;
+            document.getElementById('monthlyBtn').classList.toggle('bg-white',!isYearly);
+            document.getElementById('monthlyBtn').classList.toggle('text-black',!isYearly);
+            document.getElementById('yearlyBtn').classList.toggle('bg-white',isYearly);
+            document.getElementById('yearlyBtn').classList.toggle('text-black',isYearly);
+            renderPricing();
+        }
+        renderPricing();
+        
+        // FAQ
+        const faqs = [
+            {q:"Is it really unlimited?", a:"Yes on all paid plans. No hidden limits. Create as much as your imagination allows."},
+            {q:"Can I cancel anytime?", a:"Yes. No questions asked. You can cancel directly from your dashboard."},
+            {q:"Do you support local payments?", a:"Absolutely. We accept EcoCash, OneMoney, Telecash, and local bank transfers in Zimbabwe and across Africa."},
+            {q:"Can I use Spudy on multiple devices?", a:"Yes, Spudy is cloud-based and works on any device with a browser, including mobile phones and tablets."},
+            {q:"Is my data secure?", a:"We use enterprise-grade encryption to protect your data and intellectual property. Your creations are yours alone."},
+            {q:"Do you offer student discounts?", a:"Yes, verified students get 50% off the Pro plan. Contact our support team with your student ID for details."}
+        ];
+        const faqHTML = faqs.map((f,i)=>`
+            <div class="glass rounded-3xl p-8 cursor-pointer group hover:bg-white/5 transition-all" onclick="this.querySelector('.answer').classList.toggle('hidden'); this.querySelector('.fa-chevron-down').classList.toggle('rotate-180')">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-medium text-lg group-hover:text-brand-400 transition-colors">${f.q}</h4>
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </div>
+                <p class="answer hidden text-gray-400 mt-6 leading-relaxed border-t border-white/10 pt-4 animate-fade-in-down">${f.a}</p>
+            </div>
+        `).join('');
+        document.getElementById('faq-container').innerHTML = faqHTML;
+        
+        // Details Modal
+        function toggleDetails(){ document.getElementById('detailsModal').classList.toggle('hidden'); document.getElementById('detailsModal').classList.toggle('flex'); }
+        function showDetails(title, content){
+            document.getElementById('details-title').innerText = title;
+            document.getElementById('details-content').innerHTML = content;
+            toggleDetails();
+        }
+
+        // Simple login
+        function toggleLogin(){ document.getElementById('loginModal').classList.toggle('hidden'); document.getElementById('loginModal').classList.toggle('flex'); }
+        function handleLogin(){
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+            setTimeout(() => {
+                alert("✅ Logged in successfully! (demo)");
+                btn.innerText = originalText;
+                toggleLogin();
+            }, 1000);
+        }
+        function selectPlan(name, price){
+            alert(`✅ Upgrading to ${name} ($${price}) – Payment demo`);
+        }
+        
+        // Chat Logic (New)
+        let isFirstChat = true;
+        
+        function toggleChat(){
+            const modal = document.getElementById('chatModal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+            if(!modal.classList.contains('hidden')) setTimeout(() => document.getElementById('chat-input').focus(), 100);
+        }
+        
+        async function addBotMessage(htmlContent) {
+            const container = document.getElementById('chat-messages');
+            // Typing indicator
+            const loadingId = 'loading-' + Date.now();
+            container.innerHTML += `
+                <div id="${loadingId}" class="flex gap-3 animate-fade-in-up">
+                    <div class="bg-white/10 border border-white/5 rounded-2xl rounded-tl-none p-4 text-sm flex gap-1 items-center h-12 w-16">
+                        <span class="w-1.5 h-1.5 bg-brand-400 rounded-full animate-bounce"></span>
+                        <span class="w-1.5 h-1.5 bg-brand-400 rounded-full animate-bounce" style="animation-delay:0.2s"></span>
+                        <span class="w-1.5 h-1.5 bg-brand-400 rounded-full animate-bounce" style="animation-delay:0.4s"></span>
+                    </div>
+                </div>
+            `;
+            container.scrollTop = container.scrollHeight;
+            
+            // Delay
+            await new Promise(r => setTimeout(r, 1000 + Math.random()*1000));
+            document.getElementById(loadingId).remove();
+            
+            // Message
+            container.innerHTML += `
+                <div class="flex gap-3 animate-fade-in-up">
+                    <div class="bg-white/10 border border-white/5 rounded-2xl rounded-tl-none p-4 text-sm leading-relaxed shadow-lg">
+                        ${htmlContent}
+                    </div>
+                </div>
+            `;
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function handleChat(e){
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim();
+            if(!msg) return;
+            
+            // Basic sanitization
+            const safeMsg = msg.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            
+            const container = document.getElementById('chat-messages');
+            
+            // User message
+            container.innerHTML += `
+                <div class="flex gap-3 flex-row-reverse animate-fade-in-up">
+                    <div class="bg-brand-600 rounded-2xl rounded-tr-none p-4 max-w-[85%] text-sm leading-relaxed shadow-lg text-white">
+                        ${safeMsg}
+                    </div>
+                </div>
+            `;
+            
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+            
+            if (isFirstChat) {
+                isFirstChat = false;
+                await addBotMessage("Wait, Agent is being connected...");
+                await new Promise(r => setTimeout(r, 2000));
+                await addBotMessage('You can also chat on Whatsapp with Matipa: <a href="https://api.whatsapp.com/send?phone=263716669706" target="_blank" class="text-brand-400 hover:underline font-bold">Click here to chat</a>');
+                await new Promise(r => setTimeout(r, 3000));
+                await addBotMessage("Still no agents at the moment.");
+            } else {
+                await addBotMessage("I apologize, but our human agents are currently offline. Please use the WhatsApp link above to contact Matipa directly.");
+            }
+        }
+        
+        // Live Activity (New)
+        const actions = ["generated a 4K image","created a music track","wrote a Python script","rendered a 3D video","cloned a voice","built a mobile app","designed a logo"];
+        const locs = ["Harare","Lagos","Nairobi","London","New York","Cape Town","Dubai","Bulawayo","Johannesburg","Accra"];
+        
+        function showNotification(){
+            const action = actions[Math.floor(Math.random()*actions.length)];
+            const loc = locs[Math.floor(Math.random()*locs.length)];
+            const div = document.createElement('div');
+            div.className = "glass p-4 rounded-xl flex items-center gap-4 text-sm animate-fade-in-up shadow-2xl shadow-brand-500/20 border-l-4 border-l-brand-500 backdrop-blur-md bg-black/80 w-72 transform hover:scale-105 transition-transform duration-300";
+            div.innerHTML = `
+                <div class="relative">
+                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-lg">🌍</div>
+                    <div class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-black rounded-full animate-pulse"></div>
+                </div>
+                <div>
+                    <span class="text-gray-400 text-xs font-bold uppercase tracking-wider">Activity • Just now</span>
+                    <div class="font-medium mt-0.5">User in <span class="text-brand-400">${loc}</span><br>${action}</div>
+                </div>
+            `;
+            const container = document.getElementById('notifications');
+            container.appendChild(div);
+            
+            // Remove after delay
+            setTimeout(() => {
+                div.style.opacity = '0';
+                div.style.transform = 'translateY(20px)';
+                setTimeout(()=>div.remove(), 500);
+            }, 5000);
+        }
+        // Start notifications loop
+        setInterval(() => { if(Math.random()>0.6) showNotification() }, 6000);
+        
+        // Keyboard ESC
+        document.addEventListener('keydown', e=>{ 
+            if(e.key==="Escape") {
+                document.getElementById('loginModal').classList.add('hidden');
+                document.getElementById('loginModal').classList.remove('flex');
+                document.getElementById('chatModal').classList.add('hidden');
+                document.getElementById('chatModal').classList.remove('flex');
+            }
+        });
+        
+        console.log('%c🚀 Advanced Spudy.AI loaded successfully','color:#38bdf8; font-size:13px; font-family:monospace');
+    </script>
+    <style>
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fade-in-up 0.4s ease-out forwards; }
+        
+        @keyframes fade-in-down {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fade-in-down 0.3s ease-out forwards; }
+    </style>
+</body>
+</html>
+
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
