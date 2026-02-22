@@ -4,816 +4,405 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spudy Intelligence | Future of AI</title>
+    <meta name="description" content="The most powerful AI platform in Africa. Create videos, images, music, code &amp; apps instantly.">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
+            content: ["*"],
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                            950: '#082f49',
-                        },
-                        accent: {
-                            purple: '#8b5cf6',
-                            pink: '#ec4899',
-                            cyan: '#06b6d4'
-                        }
+                        brand: { 50:'#f0f9ff', 500:'#0ea5e9', 600:'#0284c7', 700:'#0369a1' },
+                        accent: { purple:'#8b5cf6', pink:'#ec4899', cyan:'#06b6d4' }
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
+                        'glow': 'glow 2s ease-in-out infinite alternate',
                     }
                 }
             }
         }
     </script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Three.js -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+    
     <style>
-        body { 
-            background-color: #030712; /* Gray 950 */
-            color: #f3f4f6; 
-            overflow-x: hidden;
-        }
-        
-        /* Glassmorphism Utilities */
-        .glass {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .glass-hover:hover {
-            background: rgba(31, 41, 55, 0.8);
-            border-color: rgba(56, 189, 248, 0.5);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-        }
-
-        .glass-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, #38bdf8, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .text-gradient-gold {
-            background: linear-gradient(to right, #fbbf24, #d97706);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.6;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030712;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #374151;
-        }
-
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(180deg, rgba(56, 189, 248, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -2;
-            animation: float 10s infinite ease-in-out;
-        }
+        :root { --brand: #0ea5e9; }
+        body { background:#030712; overflow-x:hidden; }
+        .glass { background:rgba(17,24,39,0.75); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.08); }
+        .glass-hover:hover { background:rgba(31,41,55,0.95); border-color:rgba(56,189,248,0.6); box-shadow:0 0 40px -10px rgb(56 189 248 / 40%); }
+        .text-gradient { background:linear-gradient(90deg,#38bdf8,#8b5cf6,#ec4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .blob { position:absolute; width:600px; height:600px; background:radial-gradient(circle,#38bdf820 0%,#8b5cf620 100%); filter:blur(90px); z-index:-1; animation:float 15s infinite ease-in-out; }
+        .neural-line { position:absolute; height:1px; background:linear-gradient(90deg,transparent,#38bdf840,#38bdf840,transparent); }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-500 selection:text-white">
-
-    <!-- 3D Background -->
-    <div id="canvas-container"></div>
+<body class="antialiased text-white selection:bg-brand-500 selection:text-black">
+    <!-- 3D Neural Background -->
+    <div id="canvas-container" class="fixed inset-0 z-[-1] opacity-70"></div>
     
-    <!-- Background Blobs -->
-    <div class="blob top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
-    <div class="blob bottom-0 right-0 translate-x-1/2 translate-y-1/2 animation-delay-2000"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <span class="text-2xl font-display font-bold tracking-tight">
-                        Spudy<span class="text-brand-400">.AI</span>
-                    </span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Home</a>
-                    <a href="#services" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
-                    <a href="#tools" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Tools</a>
-                    <a href="#pricing" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Pricing</a>
-                    <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
-                </div>
-
-                <!-- Auth Buttons -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <button onclick="openLogin()" id="navLoginBtn" class="text-sm font-medium text-white hover:text-brand-400 transition-colors">Login</button>
-                    <button onclick="openLogin()" class="group relative px-6 py-2 bg-white text-black text-sm font-bold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95">
-                        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-brand-400 to-accent-purple opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                        Get Started
-                    </button>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
+    <!-- Blobs -->
+    <div class="blob top-[-20%] left-[-15%]"></div>
+    <div class="blob bottom-[-30%] right-[-10%] animation-delay-4000" style="animation-delay:4s"></div>
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-1.5 cursor-pointer">
+                <span class="text-3xl font-display font-bold tracking-tighter">Spudy</span>
+                <span class="text-3xl font-display font-bold tracking-tighter text-brand-500">.AI</span>
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div class="md:hidden hidden glass border-t border-gray-800" id="mobile-menu">
-            <div class="px-4 pt-4 pb-6 space-y-2">
-                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Home</a>
-                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Services</a>
-                <a href="#tools" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Tools</a>
-                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Pricing</a>
-                <button onclick="openLogin()" class="w-full mt-4 bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 rounded-lg transition">Login / Sign Up</button>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="nav-link hover:text-brand-400 transition">Home</a>
+                <a href="#services" class="nav-link hover:text-brand-400 transition">Services</a>
+                <a href="#tools" class="nav-link hover:text-brand-400 transition">Tools</a>
+                <a href="#pricing" class="nav-link hover:text-brand-400 transition">Pricing</a>
+                <a href="#faq" class="nav-link hover:text-brand-400 transition">FAQ</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLogin()" class="text-sm font-medium px-6 py-2.5 hover:text-brand-400 transition">Login</button>
+                <button onclick="toggleLogin()" class="px-6 py-2.5 bg-white text-black font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-brand-500/30">Get Started Free</button>
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
-        <div class="text-center max-w-5xl mx-auto z-10" data-aos="fade-up" data-aos-duration="1000">
-            <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 backdrop-blur-sm">
-                <span class="text-xs font-semibold text-brand-300 tracking-wide uppercase">✨ Next Gen AI Platform</span>
+    
+    <!-- Hero -->
+    <section id="home" class="min-h-screen flex items-center pt-20 relative">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div data-aos="fade-up" class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-3xl px-5 py-2 text-sm mb-8">
+                <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span></span>
+                Now in 12 African countries
             </div>
             
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-tight mb-8">
-                Unlock Your <br>
-                <span class="text-gradient">Creative Potential</span>
+            <h1 data-aos="fade-up" data-aos-delay="100" class="text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-none tracking-tighter mb-6">
+                The Future of<br>Creativity is <span class="text-gradient">Here</span>
             </h1>
             
-            <p class="text-xl md:text-2xl text-gray-400 mb-12 h-16 font-light">
-                <span id="typed"></span>
-            </p>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <a href="#pricing" class="w-full sm:w-auto px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition transform shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
-                    Start Creating
-                </a>
-                <a href="#services" class="w-full sm:w-auto px-8 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition flex items-center justify-center gap-3 group">
-                    Explore Tools 
-                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                </a>
+            <p data-aos="fade-up" data-aos-delay="200" class="text-2xl text-gray-400 max-w-2xl mx-auto mb-12">Generate studio-quality videos, images, music, code &amp; apps in seconds.</p>
+            
+            <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#pricing" class="w-full sm:w-auto px-10 py-5 bg-white text-black font-bold text-lg rounded-3xl hover:scale-105 transition-all">Start Creating Free</a>
+                <a href="#tools" class="w-full sm:w-auto px-10 py-5 border border-white/30 hover:bg-white/10 rounded-3xl text-lg font-medium transition-all">Watch 38s Demo</a>
             </div>
-
-            <!-- Stats -->
-            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10">
-                <div>
-                    <h4 class="text-3xl font-bold text-white">20+</h4>
-                    <p class="text-sm text-gray-500 mt-1">AI Tools</p>
-                </div>
-                <div>
-                    <h4 class="text-3xl font-bold text-white">10k+</h4>
-                    <p class="text-sm text-gray-500 mt-1">Users</p>
-                </div>
-                <div>
-                    <h4 class="text-3xl font-bold text-white">99%</h4>
-                    <p class="text-sm text-gray-500 mt-1">Uptime</p>
-                </div>
-                <div>
-                    <h4 class="text-3xl font-bold text-white">24/7</h4>
-                    <p class="text-sm text-gray-500 mt-1">Support</p>
-                </div>
+            
+            <div class="mt-20 flex flex-wrap justify-center gap-8 opacity-70" data-aos="fade-up" data-aos-delay="500">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Visa_2022.svg/2560px-Visa_2022.svg.png" class="h-5 grayscale" alt="Visa">
+                <img src="https://www.ecocash.co.zw/wp-content/uploads/2023/08/ecocash-logo.png" class="h-6 grayscale" alt="EcoCash">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/2560px-Mastercard_2019_logo.svg.png" class="h-6 grayscale" alt="Mastercard">
             </div>
         </div>
     </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-32 px-6 relative">
+    
+    <!-- Services -->
+    <section id="services" class="py-28 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Our Ecosystem</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Comprehensive solutions powered by advanced artificial intelligence to streamline your workflow.</p>
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-brand-400 text-sm tracking-[3px] font-medium">ECOSYSTEM</span>
+                <h2 class="text-5xl font-display font-bold mt-3">One platform.<br>Endless possibilities.</h2>
             </div>
-
+            
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="glass-card p-10 rounded-3xl hover:translate-y-[-10px] duration-300 group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 rounded-2xl bg-brand-500/10 flex items-center justify-center mb-8 group-hover:bg-brand-500/20 transition">
-                        <i class="fas fa-brain text-3xl text-brand-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Spudy AI Suite</h3>
-                    <p class="text-gray-400 mb-8 leading-relaxed">Access over 20 powerful AI tools for content creation, coding, and analysis.</p>
-                    <a href="#tools" class="inline-flex items-center text-brand-400 font-semibold hover:text-brand-300">
-                        Try Now <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                    </a>
+                <div data-aos="fade-up" data-aos-delay="100" class="glass p-10 rounded-3xl group hover:-translate-y-3 transition-all duration-500">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center text-3xl mb-8">🧠</div>
+                    <h3 class="text-3xl font-bold mb-4">Spudy AI Suite</h3>
+                    <p class="text-gray-400">20+ pro AI tools for creators &amp; developers.</p>
+                    <a href="#tools" class="mt-8 inline-flex items-center gap-2 text-brand-400 font-medium">Explore tools <i class="fas fa-arrow-right"></i></a>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="glass-card p-10 rounded-3xl hover:translate-y-[-10px] duration-300 group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-8 group-hover:bg-accent-purple/20 transition">
-                        <i class="fas fa-book-open text-3xl text-accent-purple"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Spudy Library</h3>
-                    <p class="text-gray-400 mb-8 leading-relaxed">Extensive collection of digital resources and educational materials.</p>
-                    <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" class="inline-flex items-center text-accent-purple font-semibold hover:text-purple-400">
-                        Open Library <i class="fas fa-external-link-alt ml-2 text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="glass-card p-10 rounded-3xl hover:translate-y-[-10px] duration-300 group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-16 h-16 rounded-2xl bg-green-500/10 flex items-center justify-center mb-8 group-hover:bg-green-500/20 transition">
-                        <i class="fas fa-gamepad text-3xl text-green-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Spudy Games</h3>
-                    <p class="text-gray-400 mb-8 leading-relaxed">Immersive AI-powered gaming experiences and interactive entertainment.</p>
-                    <a href="https://spudytv14.github.io/PLAY.GAMES/" target="_blank" class="inline-flex items-center text-green-400 font-semibold hover:text-green-300">
-                        Play Now <i class="fas fa-external-link-alt ml-2 text-xs"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Tools Grid -->
-    <section id="tools" class="py-32 px-6 bg-black/20">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6" data-aos="fade-up">
-                <div>
-                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Powerful Tools</h2>
-                    <p class="text-gray-400">Everything you need to create, faster.</p>
-                </div>
-                <a href="#pricing" class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition">View All Features</a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Tool Item Template -->
-                <div class="glass-card p-6 rounded-2xl group hover:border-brand-500/50 cursor-pointer" onclick="checkLogin()" data-aos="fade-up">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-brand-500/20 text-brand-300 px-2 py-1 rounded-full border border-brand-500/20">PREMIUM</span>
-                    </div>
-                    <h4 class="text-lg font-bold mb-1 group-hover:text-brand-400 transition">Video Generator</h4>
-                    <p class="text-xs text-gray-500">Text-to-Video AI</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl group hover:border-brand-500/50 cursor-pointer" onclick="checkLogin()" data-aos="fade-up" data-aos-delay="50">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-accent-pink group-hover:text-white transition">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-brand-500/20 text-brand-300 px-2 py-1 rounded-full border border-brand-500/20">PREMIUM</span>
-                    </div>
-                    <h4 class="text-lg font-bold mb-1 group-hover:text-brand-400 transition">Image Generator</h4>
-                    <p class="text-xs text-gray-500">Professional Art</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl group hover:border-brand-500/50 cursor-pointer" onclick="checkLogin()" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-accent-purple group-hover:text-white transition">
-                            <i class="fas fa-music"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-brand-500/20 text-brand-300 px-2 py-1 rounded-full border border-brand-500/20">PREMIUM</span>
-                    </div>
-                    <h4 class="text-lg font-bold mb-1 group-hover:text-brand-400 transition">Music AI</h4>
-                    <p class="text-xs text-gray-500">Beat & Song Creator</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl group hover:border-brand-500/50 cursor-pointer" onclick="checkLogin()" data-aos="fade-up" data-aos-delay="150">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-green-500 group-hover:text-white transition">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-brand-500/20 text-brand-300 px-2 py-1 rounded-full border border-brand-500/20">PREMIUM</span>
-                    </div>
-                    <h4 class="text-lg font-bold mb-1 group-hover:text-brand-400 transition">Code Generator</h4>
-                    <p class="text-xs text-gray-500">Python, JS, C++</p>
-                </div>
-
-                 <div class="glass-card p-6 rounded-2xl group hover:border-brand-500/50 cursor-pointer" onclick="checkLogin()" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition">
-                            <i class="fas fa-microphone"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-brand-500/20 text-brand-300 px-2 py-1 rounded-full border border-brand-500/20">PREMIUM</span>
-                    </div>
-                    <h4 class="text-lg font-bold mb-1 group-hover:text-brand-400 transition">Voice Cloner</h4>
-                    <p class="text-xs text-gray-500">Realistic TTS</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl group hover:border-brand-500/50 cursor-pointer" onclick="checkLogin()" data-aos="fade-up" data-aos-delay="250">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-brand-500/20 text-brand-300 px-2 py-1 rounded-full border border-brand-500/20">PREMIUM</span>
-                    </div>
-                    <h4 class="text-lg font-bold mb-1 group-hover:text-brand-400 transition">App Builder</h4>
-                    <p class="text-xs text-gray-500">No-Code Development</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl group hover:border-brand-500/50 cursor-pointer" onclick="checkLogin()" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-yellow-500 group-hover:text-white transition">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-brand-500/20 text-brand-300 px-2 py-1 rounded-full border border-brand-500/20">PREMIUM</span>
-                    </div>
-                    <h4 class="text-lg font-bold mb-1 group-hover:text-brand-400 transition">Resume Builder</h4>
-                    <p class="text-xs text-gray-500">Professional CVs</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl group hover:border-brand-500/50 cursor-pointer" onclick="window.open('https://spudytv14.github.io/Spudy-AI/spudy-ai-interface.html', '_blank')" data-aos="fade-up" data-aos-delay="350">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-gray-200 group-hover:text-black transition">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-green-500/20 text-green-400 px-2 py-1 rounded-full border border-green-500/20">FREE</span>
-                    </div>
-                    <h4 class="text-lg font-bold mb-1 group-hover:text-brand-400 transition">Spudy Chat</h4>
-                    <p class="text-xs text-gray-500">Smart Assistant</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Simple, Transparent Pricing</h2>
-                <p class="text-gray-400">Unlock the full power of AI with our flexible plans.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
                 
-                <!-- Free Plan -->
-                <div class="glass-card p-8 rounded-3xl border-gray-800" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-xl font-bold mb-2">Starter Spark</h3>
-                    <div class="text-3xl font-bold mb-6">Free</div>
-                    <ul class="space-y-4 mb-8 text-sm text-gray-400">
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Spudy Chat (Limited)</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Text-to-Speech</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Basic Support</li>
-                    </ul>
-                    <button class="w-full py-3 rounded-xl border border-white/20 hover:bg-white hover:text-black transition font-semibold">Current Plan</button>
+                <!-- Card 2 -->
+                <div data-aos="fade-up" data-aos-delay="200" class="glass p-10 rounded-3xl group hover:-translate-y-3 transition-all duration-500">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-3xl mb-8">📚</div>
+                    <h3 class="text-3xl font-bold mb-4">Spudy Library</h3>
+                    <p class="text-gray-400">Millions of premium assets &amp; courses.</p>
+                    <a href="https://spudytv14.github.io/Spudy-Production/#auth-section" target="_blank" class="mt-8 inline-flex items-center gap-2 text-purple-400 font-medium">Open Library <i class="fas fa-external-link-alt"></i></a>
                 </div>
-
-                <!-- Popular Plan -->
-                <div class="relative p-1 rounded-3xl bg-gradient-to-b from-brand-400 to-accent-purple" data-aos="fade-up" data-aos-delay="200">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-400 to-accent-purple text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">Most Popular</div>
-                    <div class="bg-[#0b1120] p-8 rounded-[22px] h-full">
-                        <h3 class="text-xl font-bold mb-2 text-brand-300">Creative Core</h3>
-                        <div class="flex items-baseline gap-1 mb-6">
-                            <span class="text-4xl font-bold text-white">$2.51</span>
-                            <span class="text-gray-500 text-sm">/mo</span>
-                        </div>
-                        <ul class="space-y-4 mb-8 text-sm text-gray-300">
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-400"></i> Everything in Free</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-400"></i> Image Generator</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-400"></i> Video Generator</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-400"></i> Music AI</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-400"></i> No Usage Limits</li>
-                        </ul>
-                        <button onclick="selectPlan('Creative Core', 2.51)" class="w-full py-3 rounded-xl bg-white text-black font-bold hover:scale-105 transition shadow-lg shadow-brand-500/20">Upgrade Now</button>
-                    </div>
+                
+                <!-- Card 3 -->
+                <div data-aos="fade-up" data-aos-delay="300" class="glass p-10 rounded-3xl group hover:-translate-y-3 transition-all duration-500">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-3xl mb-8">🎮</div>
+                    <h3 class="text-3xl font-bold mb-4">Spudy Games</h3>
+                    <p class="text-gray-400">AI-powered immersive gaming.</p>
+                    <a href="https://spudytv14.github.io/PLAY.GAMES/" target="_blank" class="mt-8 inline-flex items-center gap-2 text-emerald-400 font-medium">Play Now <i class="fas fa-external-link-alt"></i></a>
                 </div>
-
-                <!-- Pro Plan -->
-                <div class="glass-card p-8 rounded-3xl border-purple-900/50" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-xl font-bold mb-2">Pro Vision</h3>
-                    <div class="flex items-baseline gap-1 mb-6">
-                        <span class="text-3xl font-bold">$5.03</span>
-                        <span class="text-gray-500 text-sm">/mo</span>
-                    </div>
-                    <ul class="space-y-4 mb-8 text-sm text-gray-400">
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-accent-purple"></i> Everything in Core</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-accent-purple"></i> Voice Cloner</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-accent-purple"></i> App Builder</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-accent-purple"></i> Priority Access</li>
-                    </ul>
-                    <button onclick="selectPlan('Pro Vision', 5.03)" class="w-full py-3 rounded-xl bg-accent-purple/20 text-accent-purple border border-accent-purple/50 hover:bg-accent-purple hover:text-white transition font-semibold">Go Pro</button>
-                </div>
-
-                <!-- Enterprise -->
-                <div class="glass-card p-8 rounded-3xl border-gray-800" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="text-xl font-bold mb-2">Enterprise</h3>
-                    <div class="text-3xl font-bold mb-6">Custom</div>
-                    <ul class="space-y-4 mb-8 text-sm text-gray-400">
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-gray-500"></i> Unlimited API</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-gray-500"></i> Custom Models</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-gray-500"></i> 24/7 Dedicated Support</li>
-                    </ul>
-                    <a href="https://api.whatsapp.com/send?phone=263716669706&text=Hi Spudy, Enterprise plan enquiry" class="block w-full text-center py-3 rounded-xl border border-white/20 hover:bg-white hover:text-black transition font-semibold">Contact Sales</a>
-                </div>
-
             </div>
         </div>
     </section>
-
-    <!-- Testimonials -->
-    <section id="testimonials" class="py-32 px-6 bg-gradient-to-b from-transparent to-black/80">
-        <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
-            <i class="fas fa-quote-left text-4xl text-brand-500/30 mb-8"></i>
+    
+    <!-- Tools with Filter -->
+    <section id="tools" class="py-28 px-6 bg-black/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div data-aos="fade-up">
+                    <h2 class="text-5xl font-display font-bold">Powerful AI Tools</h2>
+                    <p class="text-xl text-gray-400 mt-2">Choose your weapon.</p>
+                </div>
+                
+                <!-- Filter -->
+                <div class="flex gap-2 mt-6 md:mt-0" data-aos="fade-up">
+                    <button onclick="filterTools('all')" class="active-filter px-6 py-2 rounded-2xl text-sm font-medium">All</button>
+                    <button onclick="filterTools('media')" class="px-6 py-2 rounded-2xl text-sm font-medium hover:bg-white/10">Media</button>
+                    <button onclick="filterTools('creative')" class="px-6 py-2 rounded-2xl text-sm font-medium hover:bg-white/10">Creative</button>
+                    <button onclick="filterTools('dev')" class="px-6 py-2 rounded-2xl text-sm font-medium hover:bg-white/10">Dev</button>
+                </div>
+            </div>
             
-            <div id="testimonial-slider" class="min-h-[200px] flex items-center justify-center">
-                <div class="testimonial active transition-all duration-500">
-                    <p class="text-2xl md:text-4xl font-display font-medium leading-relaxed mb-8">"Spudy Video Generator saved my channel! The quality is unmatched and the speed is incredible."</p>
-                    <div class="flex items-center justify-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center font-bold text-xl">T</div>
-                        <div class="text-left">
-                            <p class="font-bold text-white">Tatenda</p>
-                            <p class="text-sm text-brand-400">Content Creator</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- More injected via JS -->
+            <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Populated by JS - see script -->
             </div>
         </div>
     </section>
-
+    
+    <!-- Pricing -->
+    <section id="pricing" class="py-28 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-display font-bold">Choose your plan</h2>
+                <div class="flex justify-center gap-4 mt-8">
+                    <button onclick="togglePricing(0)" id="monthlyBtn" class="px-8 py-3 rounded-3xl font-medium bg-white text-black">Monthly</button>
+                    <button onclick="togglePricing(1)" id="yearlyBtn" class="px-8 py-3 rounded-3xl font-medium">Yearly <span class="text-emerald-400 text-xs align-super">−20%</span></button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <!-- Plans populated by JS -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-28 px-6 bg-black/40">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-5xl font-display font-bold text-center mb-16" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="space-y-4" id="faq-container">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
-    <footer class="bg-black py-16 px-6 border-t border-white/10">
-        <div class="max-w-7xl mx-auto flex flex-col items-center">
-            <div class="flex gap-8 mb-10">
-                <a href="https://api.whatsapp.com/send?phone=263716669706" class="w-12 h-12 rounded-full glass flex items-center justify-center text-xl hover:bg-green-500 hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:spudytv14@gmail.com" class="w-12 h-12 rounded-full glass flex items-center justify-center text-xl hover:bg-blue-500 hover:text-white transition"><i class="fas fa-envelope"></i></a>
-                <a href="https://facebook.com/matipaishe.blessing.muduchwa" class="w-12 h-12 rounded-full glass flex items-center justify-center text-xl hover:bg-blue-600 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://x.com/Matipa_14" class="w-12 h-12 rounded-full glass flex items-center justify-center text-xl hover:bg-black hover:text-white border border-transparent hover:border-white transition"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://youtube.com/@SpudyAI" class="w-12 h-12 rounded-full glass flex items-center justify-center text-xl hover:bg-red-600 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+    <footer class="bg-black py-20 px-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex justify-center gap-8 text-3xl mb-12">
+                <a href="https://api.whatsapp.com/send?phone=263716669706" class="hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:spudytv14@gmail.com" class="hover:text-blue-500 transition"><i class="fas fa-envelope"></i></a>
+                <a href="https://x.com/Matipa_14" class="hover:text-white transition"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://youtube.com/@SpudyAI" class="hover:text-red-500 transition"><i class="fab fa-youtube"></i></a>
             </div>
-            
-            <p class="text-gray-500 text-sm mb-2">© 2026 Spudy Intelligence Technology. All Rights Reserved.</p>
-            <p class="text-gray-700 text-xs">Designed & Developed by Matipaishe</p>
+            <p class="text-gray-500">© 2026 Spudy Intelligence • Built with passion in Zimbabwe</p>
         </div>
     </footer>
-
+    
     <!-- Login Modal -->
-    <div id="loginModal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeLogin()"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-6">
-            <div class="glass bg-[#111827] rounded-3xl p-8 border border-gray-700 shadow-2xl relative">
-                <button onclick="closeLogin()" class="absolute top-4 right-6 text-gray-400 hover:text-white text-2xl">&times;</button>
-                
-                <h2 class="text-3xl font-bold text-center mb-2" id="modalTitle">Welcome Back</h2>
-                <p class="text-gray-400 text-center mb-8 text-sm">Enter your details to access your account.</p>
-                
-                <div id="loginForm" class="space-y-4">
-                    <input type="text" id="loginIdentifier" placeholder="Email or Phone" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-brand-500 focus:outline-none text-white transition">
-                    <input type="password" id="loginPass" placeholder="Password" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-brand-500 focus:outline-none text-white transition">
-                    <button onclick="handleLogin()" class="w-full py-4 bg-brand-600 hover:bg-brand-500 rounded-xl font-bold text-white transition shadow-lg shadow-brand-600/20">Sign In</button>
-                    <p class="text-center text-sm text-gray-400">Don't have an account? <a href="#" onclick="showRegister()" class="text-brand-400 hover:underline">Create one</a></p>
-                </div>
-
-                <div id="registerForm" class="hidden space-y-4">
-                    <input type="text" id="regName" placeholder="Full Name" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-brand-500 focus:outline-none text-white transition">
-                    <input type="text" id="regEmail" placeholder="Email or Phone" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-brand-500 focus:outline-none text-white transition">
-                    <input type="password" id="regPass" placeholder="Password" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-brand-500 focus:outline-none text-white transition">
-                    <input type="password" id="regConfirm" placeholder="Confirm Password" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-brand-500 focus:outline-none text-white transition">
-                    <button onclick="handleRegister()" class="w-full py-4 bg-accent-purple hover:bg-purple-500 rounded-xl font-bold text-white transition shadow-lg shadow-purple-600/20">Create Account</button>
-                    <p class="text-center text-sm text-gray-400">Already have an account? <a href="#" onclick="showLogin()" class="text-brand-400 hover:underline">Sign In</a></p>
-                </div>
+    <div id="loginModal" class="fixed inset-0 hidden z-[999] items-center justify-center bg-black/90">
+        <div class="glass max-w-md w-full mx-4 rounded-3xl p-10 relative">
+            <button onclick="toggleLogin()" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white">&times;</button>
+            <h3 class="text-3xl font-bold text-center mb-8">Welcome to Spudy</h3>
+            <div class="space-y-6">
+                <input id="email" type="text" placeholder="Email or Phone" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 focus:outline-none focus:border-brand-400">
+                <input id="pass" type="password" placeholder="Password" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 focus:outline-none focus:border-brand-400">
+                <button onclick="handleLogin()" class="w-full py-5 bg-white text-black font-bold rounded-2xl text-lg">Sign In</button>
+                <p class="text-center text-sm text-gray-400">No account? <span onclick="alert('Registration coming soon')" class="text-brand-400 cursor-pointer">Create one free</span></p>
             </div>
         </div>
     </div>
-
-    <!-- Payment Modal -->
-    <div id="paymentModal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closePayment()"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl p-4 h-full md:h-auto overflow-y-auto">
-            <div class="glass bg-[#111827] rounded-3xl p-8 border border-gray-700 shadow-2xl relative">
-                <button onclick="closePayment()" class="absolute top-4 right-6 text-gray-400 hover:text-white text-2xl">&times;</button>
-                
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold mb-2">Complete Payment</h2>
-                    <p class="text-xl text-gray-400">Upgrade to <span id="planName" class="text-white font-bold"></span></p>
-                    <p class="text-3xl font-bold text-brand-400 mt-2" id="planPrice"></p>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div class="p-6 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-green-500 cursor-pointer transition text-center group">
-                        <img src="ecocash.png" alt="EcoCash" class="h-12 mx-auto mb-3 object-contain grayscale group-hover:grayscale-0 transition">
-                        <p class="font-bold text-sm">EcoCash</p>
-                        <p class="text-xs text-gray-500">071 666 9706</p>
-                    </div>
-                    <div class="p-6 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-blue-500 cursor-pointer transition text-center group">
-                        <img src="onemoney.png" alt="OneMoney" class="h-12 mx-auto mb-3 object-contain grayscale group-hover:grayscale-0 transition">
-                        <p class="font-bold text-sm">OneMoney</p>
-                        <p class="text-xs text-gray-500">071 666 9706</p>
-                    </div>
-                    <div class="p-6 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-red-500 cursor-pointer transition text-center group">
-                        <img src="netone.png" alt="NetOne" class="h-12 mx-auto mb-3 object-contain grayscale group-hover:grayscale-0 transition">
-                        <p class="font-bold text-sm">NetOne</p>
-                        <p class="text-xs text-gray-500">071 666 9706</p>
-                    </div>
-                    <div class="p-6 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-blue-700 cursor-pointer transition text-center group opacity-50">
-                        <img src="visa.png" alt="Visa" class="h-12 mx-auto mb-3 object-contain">
-                        <p class="font-bold text-sm">Visa</p>
-                        <p class="text-xs text-gray-500">Coming Soon</p>
-                    </div>
-                    <div class="p-6 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-orange-500 cursor-pointer transition text-center group opacity-50">
-                        <img src="mastercard.png" alt="Mastercard" class="h-12 mx-auto mb-3 object-contain">
-                        <p class="font-bold text-sm">Mastercard</p>
-                        <p class="text-xs text-gray-500">Coming Soon</p>
-                    </div>
-                     <div class="p-6 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-white cursor-pointer transition text-center group">
-                        <i class="fas fa-university text-4xl mb-3 text-gray-400 group-hover:text-white"></i>
-                        <p class="font-bold text-sm">Bank Transfer</p>
-                        <p class="text-xs text-gray-500">Manual</p>
-                    </div>
-                </div>
-
-                <div class="mt-8 bg-brand-900/20 border border-brand-500/30 p-6 rounded-2xl text-center">
-                    <p class="text-sm text-brand-200 mb-4">After sending payment, please verify your transaction via WhatsApp to activate your account instantly.</p>
-                    <a href="https://api.whatsapp.com/send?phone=263716669706&text=I just paid for Spudy Premium!" class="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 rounded-full font-bold text-white transition">
-                        <i class="fab fa-whatsapp"></i> Send Proof of Payment
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
+    
     <script>
-        // AOS Init
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-        });
-
-        // Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('glass', 'py-0');
-                navbar.classList.remove('bg-transparent', 'py-4');
-            } else {
-                navbar.classList.remove('glass', 'py-0');
-                navbar.classList.add('bg-transparent', 'py-4');
-            }
-        });
-
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Typed.js
-        new Typed('#typed', {
-            strings: ["Videos.", "Images.", "Code.", "Music.", "Solutions."],
-            typeSpeed: 60,
-            backSpeed: 40,
-            backDelay: 1500,
-            loop: true
-        });
-
-        // Three.js Background
-        const initThreeJS = () => {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            
+        // Tailwind script already loaded
+        
+        AOS.init({ once:true, duration:900 });
+        
+        // Enhanced Neural Network Three.js
+        let scene, camera, renderer, particles, linesMesh;
+        function initThree() {
             const container = document.getElementById('canvas-container');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ alpha:true, antialias:true });
             renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             container.appendChild(renderer.domElement);
-
-            // Particles
-            const geometry = new THREE.BufferGeometry();
-            const particlesCount = 700;
-            const posArray = new Float32Array(particlesCount * 3);
-
-            for(let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 60; // Spread
-            }
-
-            geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
             
-            const material = new THREE.PointsMaterial({
-                size: 0.05,
-                color: 0x38bdf8,
-                transparent: true,
-                opacity: 0.8,
-            });
-
-            const particlesMesh = new THREE.Points(geometry, material);
-            scene.add(particlesMesh);
-
-            camera.position.z = 20;
-
-            // Mouse interaction
-            let mouseX = 0;
-            let mouseY = 0;
-
-            document.addEventListener('mousemove', (event) => {
-                mouseX = event.clientX / window.innerWidth - 0.5;
-                mouseY = event.clientY / window.innerHeight - 0.5;
-            });
-
-            const animate = () => {
+            // Particles
+            const count = 1200;
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
+            for(let i=0; i<count*3; i+=3){
+                positions[i]   = (Math.random()-0.5)*80;
+                positions[i+1] = (Math.random()-0.5)*80;
+                positions[i+2] = (Math.random()-0.5)*80;
+                colors[i]   = 0.1; colors[i+1] = 0.7; colors[i+2] = 1;
+            }
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions,3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors,3));
+            
+            const material = new THREE.PointsMaterial({ size:0.12, vertexColors:true, transparent:true, opacity:0.9, blending:THREE.AdditiveBlending });
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+            
+            camera.position.z = 45;
+            
+            // Simple connecting lines (neural feel)
+            const linePositions = [];
+            for(let i=0; i<180; i++){
+                linePositions.push((Math.random()-0.5)*60, (Math.random()-0.5)*60, (Math.random()-0.5)*60);
+                linePositions.push((Math.random()-0.5)*60, (Math.random()-0.5)*60, (Math.random()-0.5)*60);
+            }
+            const lineGeo = new THREE.BufferGeometry();
+            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions,3));
+            const lineMat = new THREE.LineBasicMaterial({ color:0x38bdf8, transparent:true, opacity:0.15 });
+            linesMesh = new THREE.LineSegments(lineGeo, lineMat);
+            scene.add(linesMesh);
+            
+            function animate(){
                 requestAnimationFrame(animate);
-                particlesMesh.rotation.y += 0.001;
-                particlesMesh.rotation.x += 0.001;
-                
-                // Gentle follow mouse
-                particlesMesh.rotation.y += 0.05 * (mouseX - particlesMesh.rotation.y);
-                particlesMesh.rotation.x += 0.05 * (mouseY - particlesMesh.rotation.x);
-
+                particles.rotation.y += 0.0008;
+                linesMesh.rotation.y += 0.0008;
                 renderer.render(scene, camera);
-            };
-
+            }
             animate();
-
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
+            
+            window.addEventListener('resize', ()=>{
+                camera.aspect = window.innerWidth/window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
-        };
-        initThreeJS();
-
-        // Auth Logic
-        const checkUser = () => {
-            if (localStorage.getItem('spudyLoggedIn') === 'true') {
-                const btn = document.getElementById('navLoginBtn');
-                if(btn) {
-                    btn.textContent = 'Account';
-                    btn.onclick = () => alert('Logged in as ' + localStorage.getItem('spudyUser'));
-                }
-            }
-        };
-        checkUser();
-
-        function openLogin() { document.getElementById('loginModal').classList.remove('hidden'); }
-        function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
-        function closePayment() { document.getElementById('paymentModal').classList.add('hidden'); }
+        }
+        initThree();
         
-        function showRegister() { 
-            document.getElementById('modalTitle').textContent = 'Create Account'; 
-            document.getElementById('loginForm').classList.add('hidden'); 
-            document.getElementById('registerForm').classList.remove('hidden'); 
-        }
+        // Typed
+        new Typed('#typed', { strings:["Videos.","Images.","Music.","Apps.","Code."], typeSpeed:70, backSpeed:50, loop:true });
         
-        function showLogin() { 
-            document.getElementById('modalTitle').textContent = 'Welcome Back'; 
-            document.getElementById('registerForm').classList.add('hidden'); 
-            document.getElementById('loginForm').classList.remove('hidden'); 
-        }
-
-        function handleLogin() {
-            const id = document.getElementById('loginIdentifier').value;
-            if (id) {
-                localStorage.setItem('spudyLoggedIn', 'true');
-                localStorage.setItem('spudyUser', id);
-                closeLogin();
-                checkUser();
-                alert('Welcome back!');
-            }
-        }
-
-        function handleRegister() {
-            const email = document.getElementById('regEmail').value;
-            const pass = document.getElementById('regPass').value;
-            const confirm = document.getElementById('regConfirm').value;
-            
-            if (pass !== confirm) return alert('Passwords do not match');
-            if (pass.length < 6) return alert('Password too short');
-            
-            localStorage.setItem('spudyLoggedIn', 'true');
-            localStorage.setItem('spudyUser', email);
-            closeLogin();
-            checkUser();
-            alert('Account created successfully!');
-        }
-
-        function checkLogin() { 
-            if (localStorage.getItem('spudyLoggedIn') !== 'true') { 
-                openLogin(); 
-            } else {
-                // In a real app, this would redirect to the tool
-                alert('Opening tool...'); 
-            }
-        }
-
-        function selectPlan(name, price) {
-            if (localStorage.getItem('spudyLoggedIn') !== 'true') { 
-                alert('Please login to upgrade'); 
-                openLogin(); 
-                return; 
-            }
-            document.getElementById('planName').textContent = name;
-            document.getElementById('planPrice').textContent = "$" + price + "/mo";
-            document.getElementById('paymentModal').classList.remove('hidden');
-        }
-
-        // Testimonial Slider
-        const testimonialsData = [
-            { text: "Spudy Video Generator saved my channel! The quality is unmatched and the speed is incredible.", author: "Tatenda", role: "Content Creator" },
-            { text: "I built a fully functional app in just 2 days using the App Builder. No coding knowledge required!", author: "Kudzai", role: "Entrepreneur" },
-            { text: "The best AI tools platform in Zimbabwe. Affordable and extremely powerful.", author: "Rumbidzai", role: "Student" }
+        // Navbar active
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if(scrollY >= sectionTop - 300) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-brand-400','font-semibold');
+                if(link.getAttribute('href') === `#${current}`) link.classList.add('text-brand-400','font-semibold');
+            });
+        });
+        
+        // Tools data & filter
+        const tools = [
+            {name:"Video Generator", cat:"media", icon:"🎥", premium:true},
+            {name:"Image Studio", cat:"creative", icon:"🖼️", premium:true},
+            {name:"Music Lab", cat:"creative", icon:"🎵", premium:true},
+            {name:"Code Pilot", cat:"dev", icon:"💻", premium:true},
+            {name:"Voice Clone", cat:"creative", icon:"🎤", premium:true},
+            {name:"App Forge", cat:"dev", icon:"📱", premium:true},
+            {name:"Resume AI", cat:"creative", icon:"📄", premium:false},
+            {name:"Spudy Chat", cat:"all", icon:"🤖", premium:false}
         ];
         
-        let currentTestimonial = 0;
-        const slider = document.getElementById('testimonial-slider');
-        
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonialsData.length;
-            const t = testimonialsData[currentTestimonial];
-            
-            // Fade out
-            slider.style.opacity = '0';
-            
-            setTimeout(() => {
-                slider.innerHTML = `
-                    <div class="testimonial active transition-all duration-500">
-                        <p class="text-2xl md:text-4xl font-display font-medium leading-relaxed mb-8">"${t.text}"</p>
-                        <div class="flex items-center justify-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center font-bold text-xl">${t.author[0]}</div>
-                            <div class="text-left">
-                                <p class="font-bold text-white">${t.author}</p>
-                                <p class="text-sm text-brand-400">${t.role}</p>
-                            </div>
-                        </div>
-                    </div>
+        function renderTools(filtered){
+            const grid = document.getElementById('tools-grid');
+            grid.innerHTML = '';
+            filtered.forEach(tool => {
+                const div = document.createElement('div');
+                div.className = `glass p-8 rounded-3xl group cursor-pointer hover:scale-105 transition-all ${tool.premium?'border border-amber-400/30':''}`;
+                div.innerHTML = `
+                    <div class="text-5xl mb-6">${tool.icon}</div>
+                    <h4 class="text-2xl font-bold">${tool.name}</h4>
+                    <span class="text-xs mt-3 inline-block px-4 py-1 rounded-full ${tool.premium?'bg-amber-400/10 text-amber-400':'bg-emerald-400/10 text-emerald-400'}">${tool.premium?'PREMIUM':'FREE'}</span>
                 `;
-                slider.style.opacity = '1';
-            }, 300);
-            
-        }, 5000);
-
+                div.onclick = () => alert(`Opening ${tool.name}... (demo)`);
+                grid.appendChild(div);
+            });
+        }
+        function filterTools(cat){
+            const filtered = cat==='all' ? tools : tools.filter(t => t.cat===cat || t.cat==='all');
+            renderTools(filtered);
+        }
+        renderTools(tools);
+        
+        // Pricing toggle
+        let isYearly = false;
+        const plans = [
+            {name:"Starter", priceM:0, priceY:0, features:["Spudy Chat","Basic tools","Community support"]},
+            {name:"Creator", priceM:2.51, priceY:24, popular:true, features:["All media tools","Unlimited generations","Priority"]},
+            {name:"Pro", priceM:5.03, priceY:48, features:["Voice + App Builder","Commercial license","Dedicated support"]},
+            {name:"Enterprise", priceM:"Custom", priceY:"Custom", features:["Unlimited API","Custom models","White-label"]}
+        ];
+        
+        function renderPricing(){
+            const container = document.querySelector('#pricing .grid');
+            container.innerHTML = '';
+            plans.forEach((plan,i) => {
+                const price = isYearly ? plan.priceY : plan.priceM;
+                const div = document.createElement('div');
+                div.className = `glass rounded-3xl p-8 ${plan.popular?'ring-2 ring-brand-400 relative':''}`;
+                if(plan.popular) div.innerHTML += `<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-400 text-black text-xs px-6 py-1 rounded-full font-bold">BEST VALUE</div>`;
+                div.innerHTML += `
+                    <h3 class="text-2xl font-bold">${plan.name}</h3>
+                    <div class="my-8"><span class="text-6xl font-bold">$${price}</span><span class="text-sm opacity-60">${isYearly?'/yr':'/mo'}</span></div>
+                    <ul class="space-y-4 mb-10 text-sm">${plan.features.map(f=>`<li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> ${f}</li>`).join('')}</ul>
+                    <button onclick="selectPlan('${plan.name}', ${typeof price==='number'?price:'0'})" class="w-full py-5 rounded-3xl font-bold ${plan.popular?'bg-white text-black':'border border-white/30 hover:bg-white/10'}">Get ${plan.name}</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+        function togglePricing(n){
+            isYearly = n===1;
+            document.getElementById('monthlyBtn').classList.toggle('bg-white',!isYearly);
+            document.getElementById('monthlyBtn').classList.toggle('text-black',!isYearly);
+            document.getElementById('yearlyBtn').classList.toggle('bg-white',isYearly);
+            document.getElementById('yearlyBtn').classList.toggle('text-black',isYearly);
+            renderPricing();
+        }
+        renderPricing();
+        
+        // FAQ
+        const faqs = [
+            {q:"Is it really unlimited?", a:"Yes on all paid plans. No hidden limits."},
+            {q:"Can I cancel anytime?", a:"Yes. No questions asked."},
+            {q:"Do you support local payments?", a:"EcoCash, OneMoney, Telecash &amp; bank transfers accepted."}
+        ];
+        const faqHTML = faqs.map((f,i)=>`
+            <div class="glass rounded-3xl p-8 cursor-pointer" onclick="this.querySelector('.answer').classList.toggle('hidden')">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-medium">${f.q}</h4>
+                    <i class="fas fa-chevron-down transition-transform"></i>
+                </div>
+                <p class="answer hidden text-gray-400 mt-6 leading-relaxed">${f.a}</p>
+            </div>
+        `).join('');
+        document.getElementById('faq-container').innerHTML = faqHTML;
+        
+        // Simple login
+        function toggleLogin(){ document.getElementById('loginModal').classList.toggle('hidden'); document.getElementById('loginModal').classList.toggle('flex'); }
+        function handleLogin(){
+            alert("✅ Logged in successfully! (demo)");
+            toggleLogin();
+        }
+        function selectPlan(name, price){
+            alert(`✅ Upgrading to ${name} ($${price}) – Payment demo`);
+        }
+        
+        // Keyboard ESC
+        document.addEventListener('keydown', e=>{ if(e.key==="Escape") document.getElementById('loginModal').classList.add('hidden','flex'); });
+        
+        console.log('%c🚀 Advanced Spudy.AI loaded successfully','color:#38bdf8; font-size:13px; font-family:monospace');
     </script>
 </body>
 </html>
